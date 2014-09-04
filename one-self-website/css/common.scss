@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+a {
+    cursor: pointer;
+}
+li {
+    list-style: none;
+}
+@font-face {
+    font-family: seguisb;
+    src: url(../font/seguisb.ttf);
+}
+@font-face {
+    font-family: HelveticaNeue-Thin;
+    src: url(../font/HelveticaNeue-Thin.otf);
+}
+.ui-accordion .ui-accordion-icons {
+    padding-left: 0;
+}
+.ui-accordion .ui-accordion-header, .ui-accordion .ui-accordion-content {
+    padding: 0;
+}
+.ui-accordion .ui-accordion-header{
+	margin: 0;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, .ui-widget-content, .ui-widget-content:hover, .ui-widget-header:hover, .ui-state-hover, .ui-state-active, .ui-state-default {
+    border: none!important;
+}
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+heder .ui-state-default{
+	background: none;
+}
+$header-bg-color:#FFF;
+ $header-bg-faint-color:#e5e5e5;
+ $dark-black:#1d2c31;
+ $faint-black:#23363b;
+ $text-color:#FFF;
+ $dark-orange:#d68335;
+$faint-orange:#f8983d; 
+$dark-red:#8e4436;
+$faint-red:#a44f3f;
+$dark-green:#7a7d46;
+$faint-green:#8d9151;
+$dark-lavender:#7a58a5;
+$faint-lavender:#8963b9;
+ body {
+    font-family: "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #FFF;
+}
+.ui-widget-content {
+    color: $text-color;
+}
+header {
+    background: $header-bg-color;
+    color: #333;
+}
+header.row {
+    margin-left: 0;
+}
+.dark-black {
+    background: $dark-black;
+}
+.faint-black {
+    background: $faint-black;
+}
+.header-bg-faint-color {
+    background: #e5e5e5;
+}
+.accordian-height {
+    height: 135px;
+}
+.width-20 {
+    width: 20%;
+}
+.width-80 {
+    width: 80%;
+}
+.width-80 h1, .width-80 span, .ui-widget {
+    font-family: HelveticaNeue-Thin, sans-serif;
+}
+.width-80 h1, .width-80 span {
+    margin: 20px 0 0 20px;
+    display: inline-block;
+}
+.width-80 span {
+    font-size: 45px;
+    color: #FFF;
+}
+.width-80 p {
+    width: 70%;
+    margin: 20px;
+}
+.accordian-text-height {
+    height: 160px!important;
+}
+header img {
+    width: 251px;
+    margin: 10px 20px;
+}
+.dark-orange{
+	background: $dark-orange;
+}
+.faint-orange{
+	background: $faint-orange;
+}
+.dark-red{
+	background: $dark-red;
+}
+.faint-red{
+	background: $faint-red;
+}
+.dark-green{
+	background: $dark-green;
+}
+.faint-green{
+	background: $faint-green;
+}
