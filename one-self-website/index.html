@@ -10,123 +10,85 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript">
     </script>
-
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap-modal.js" type="text/javascript"></script>
+    <script src="js/bootstrap-modalmanager.js" type="text/javascript"></script>
+    <script src="js/head.js" type="text/javascript">
+    </script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
 
     <link rel="stylesheet" type="text/css" href="css/common.css">
-    <script>
-    $(function() {
-        $("#accordion").accordion();
-    });
-    </script>
+
 
 </head>
 
 <body>
     <div class="container-fluid">
         <header class="row">
-            <div class="width-20 pull-left header-bg-faint-color accordian-height"></div>
+            <!-- <div class="width-20 pull-left  accordian-height"></div>
             <div class="width-80 pull-left  accordian-height">
+                <img src="images/one-self-log0.png">
+                <div class="btn-container">
+                    <button value="Login" class="btn"></button>        
+                    <button value="Signup" class="btn"></button>        
+                </div>  
+            </div> -->
+            <div class="navbar navbar-inverse " role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
 
-                <img src="images/OneSELF_Logo.jpg">
+                        <div class="mainlogo">
+                            <img src="images/one-self-log0.png">
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse pull-right">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <button  class="btn btn-default custom-btn">Log in</button>
+                            </li>
+                            <li>
+                                <button  class="btn btn-default custom-btn colored-btn">Sign up</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+
             </div>
         </header>
-
-        <div id="accordion">
-            <div class="row">
-                <div class="width-20 pull-left dark-black accordian-height"></div>
-                <div class="width-80 pull-left faint-black accordian-height">
-                    <span>Website</span>
+        <div class="wrapper">
+            <div class="diagramContainer">
+                <span class="headerText">1 place for all the data about you</span>
+                <span class="secondary-headerText margin-top-thirty">1Self - Your digital trail.All in 1 place. All for you.
+                </span>
+                <div class="row diagram">
+                    <div class="pull-left first-diagram-set">
+                        <a class="website link-menu" data-toggle="modal" data-target="#myModal">Website</a >
+                        <a class="apps link-menu">Apps</a>
+                        <a class="things link-menu">Things</a>
+                    </div>
+                    <div class="pull-left second-diagram-set">
+                        <a class="oneself-circle">One self</a>
+                    </div>
+                    <div class="pull-left third-diagram-set">
+                        <a class="getThings link-menu">Get insights</a>
+                        <a class="tell-story link-menu">Tell stories</a>
+                        <a class="yourself link-menu">Understand yourself</a>
+                        <a class="compare link-menu">comapre</a>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="width-20 pull-left  faint-black accordian-text-height"></div>
-                <div class="width-80 pull-left  dark-black accordian-text-height ">
-                    <p>
-                        From Amazon and ASOS to Zappos and Zillow, every website that you visit collects information about you. What you bought, how long you spent looking. Those companies use your data to personalise your experience and sell to you more effectively. With 1self, you can collect that information and use it yourself.
-
-                    </p>
-                </div>
-            </div>
-
-
-
-
-            <div class="row">
-                <div class="width-20 pull-left dark-red accordian-height"></div>
-                <div class="width-80 pull-left faint-red accordian-height">
-                    <span>Apps</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="width-20 pull-left  faint-red accordian-text-height"></div>
-                <div class="width-80 pull-left  dark-red accordian-text-height ">
-                    <p>
-                        Your phone is the hub around which your world of data spins. It’s laden with sensors and apps, all of which are constantly collecting data about you. Currently that data is hived off and kept separate within each of your apps and you don’t even get to see most of that information. With 1self, you can bring your phone data to life by collating it and connecting it and deriving new insights from it.
-
-
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="width-20 pull-left dark-orange accordian-height"></div>
-                <div class="width-80 pull-left faint-orange accordian-height">
-                    <span>Things</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="width-20 pull-left  faint-orange accordian-text-height"></div>
-                <div class="width-80 pull-left  dark-orange accordian-text-height ">
-                    <p>
-                        Have you heard of The Internet of Things? If not, you soon will. There are already 25 billion internet connected “things” in the world and that’s growing fast. These things range from buses to sneakers and from bracelets to surfboards. These things collect data about the environment they’re in and that environment often includes you. What are they saying about you? With 1self, you can collect that data and find out for yourself.
-
-
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="width-20 pull-left dark-green accordian-height"></div>
-                <div class="width-80 pull-left faint-green accordian-height">
-                    <span>Get insights
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="width-20 pull-left  faint-green accordian-text-height"></div>
-                <div class="width-80 pull-left  dark-green accordian-text-height ">
-                    <p>
-                        Data doesn’t tell you much on its own. 1self brings your data to life by automatically connecting and correlating it to produce interesting, useful and actionable insights about your life. <p>Maybe, if you go to bed earlier you could earn more money. Or if you took a different route to work you’d be less stressed all day. With 1Self you can find out.<p>
-
-
-
-                    </p>
-                </div>
-            </div>
-            <h3>Section 3</h3>
-            <div>
-                <p>
-                    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-                </p>
-                <ul>
-                    <li>List item one</li>
-                    <li>List item two</li>
-                    <li>List item three</li>
-                </ul>
-            </div>
-            <h3>Section 4</h3>
-            <div>
-                <p>
-                    Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.
-                </p>
-                <p>
-                    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                </p>
             </div>
         </div>
     </div>
+
+
     <footer></footer>
 </body>
 

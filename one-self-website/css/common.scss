@@ -22,8 +22,8 @@ li {
 .ui-accordion .ui-accordion-header, .ui-accordion .ui-accordion-content {
     padding: 0;
 }
-.ui-accordion .ui-accordion-header{
-	margin: 0;
+.ui-accordion .ui-accordion-header {
+    margin: 0;
 }
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, .ui-widget-content, .ui-widget-content:hover, .ui-widget-header:hover, .ui-state-hover, .ui-state-active, .ui-state-default {
     border: none!important;
@@ -32,34 +32,47 @@ li {
     padding-left: 0;
     padding-right: 0;
 }
-heder .ui-state-default{
-	background: none;
+heder .ui-state-default {
+    background: none;
 }
 $header-bg-color:#FFF;
  $header-bg-faint-color:#e5e5e5;
  $dark-black:#1d2c31;
  $faint-black:#23363b;
- $text-color:#FFF;
+ $text-color:#444647;
  $dark-orange:#d68335;
-$faint-orange:#f8983d; 
-$dark-red:#8e4436;
-$faint-red:#a44f3f;
-$dark-green:#7a7d46;
-$faint-green:#8d9151;
-$dark-lavender:#7a58a5;
-$faint-lavender:#8963b9;
+ $dark-red:#8e4436;
+ $faint-red:#a44f3f;
+ $dark-green:#7a7d46;
+ $faint-green:#8d9151;
+ $dark-lavender:#7a58a5;
+ $faint-lavender:#8963b9;
+ $link-text-color:#444647;
+ $border-color:#444647;
+ $header-bg:#f8983d;
+ $diagram-bg-color:#fcd730;
+ $border-color:#fff;
+ $btn-bg-color:#8064a2;
+ /*new set of colors */
+ $header-bg:#F4A821;
+ $diagram-bg-color:#114D75;
+ $btn-border-color:#444647;
+ $btn-bg-color:#114D75;
+ $link-text-color:#fff;
  body {
-    font-family: "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
+    font-family: "HelveticaNeue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.42857143;
-    color: #FFF;
+    color: $text-color;
+    overflow-x: hidden;
 }
 .ui-widget-content {
     color: $text-color;
 }
-header {
-    background: $header-bg-color;
+header, header .navbar-inverse {
+    background: $header-bg;
     color: #333;
+    border: none;
 }
 header.row {
     margin-left: 0;
@@ -74,7 +87,7 @@ header.row {
     background: #e5e5e5;
 }
 .accordian-height {
-    height: 135px;
+    height: 100px;
 }
 .width-20 {
     width: 20%;
@@ -85,40 +98,91 @@ header.row {
 .width-80 h1, .width-80 span, .ui-widget {
     font-family: HelveticaNeue-Thin, sans-serif;
 }
-.width-80 h1, .width-80 span {
-    margin: 20px 0 0 20px;
-    display: inline-block;
-}
-.width-80 span {
-    font-size: 45px;
-    color: #FFF;
-}
-.width-80 p {
-    width: 70%;
-    margin: 20px;
-}
-.accordian-text-height {
-    height: 160px!important;
-}
 header img {
     width: 251px;
+    height: 69px;
     margin: 10px 20px;
 }
-.dark-orange{
-	background: $dark-orange;
+.diagramContainer {
+    width: 760px;
+    margin: 20px auto;
 }
-.faint-orange{
-	background: $faint-orange;
+.headerText {
+    font-size: 40px;
+    margin: 0 0 30px 0;
 }
-.dark-red{
-	background: $dark-red;
+.headerText, .secondary-headerText {
+    text-align: center;
+    display: block;
 }
-.faint-red{
-	background: $faint-red;
+.secondary-headerText {
+    font-size: 25px;
 }
-.dark-green{
-	background: $dark-green;
+.diagram {
+    margin: 15px 0;
+    background: $diagram-bg-color;
+    height: 500px;
+    width: 600px;
+    margin: 0 auto;
+    padding: 60px 0 0 39px;
 }
-.faint-green{
-	background: $faint-green;
+.link-menu {
+    display: block;
+    padding: 20px 4px;
+    border-radius: 7px;
+    clear: both;
+    margin: 20px 0 20px 0;
+    text-align: center;
+    width: 120px;
+}
+.link-menu, .oneself-circle {
+    /* background: #cfe2f3; */
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 19px;
+    border: 2px solid $border-color;
+}
+.link-menu:hover, .link-menu,.custom-btn:hover {
+    color: $link-text-color;
+}
+.oneself-circle {
+    display: block;
+    text-align: center;
+    background: url("../images/oneself-circle.png") no-repeat;
+    background: none;
+    border: 2px solid #fff;
+    width: 100px;
+    margin: 100px auto;
+    padding: 32px 0;
+    border-radius: 50%;
+    color: #fff;
+   background: rgba(0, 0, 0, 0.2);
+}
+.second-diagram-set {
+    width: 281px;
+}
+.third-diagram-set {
+    width: 100px;
+    margin: 5px 0 0 0;
+}
+a:hover {
+    text-decoration: none;
+}
+.custom-btn:hover, .custom-btn {
+    background: transparent;
+    border: 1px solid $border-color;
+}
+.custom-btn {
+    width: 100px;
+    padding: 5px;
+    margin: 20px 5px;
+    color: #FFF;
+    font-size: 20px;
+    border-radius: 0;
+    border: 1px solid $border-color;
+}
+.colored-btn, .colored-btn:hover {
+    background: $btn-bg-color;
+}
+header .navbar-inverse {
+    margin: 10px 0 0 0;
 }
