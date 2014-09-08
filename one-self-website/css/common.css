@@ -47,7 +47,7 @@ body {
   color: #444647; }
 
 header, header .navbar-inverse {
-  background: #fcc103;
+  background: #86d742;
   color: #333;
   border: none; }
 
@@ -163,7 +163,7 @@ a:hover {
   border: 1px solid white; }
 
 .colored-btn, .colored-btn:hover {
-  background: #114d75; }
+  background: #fcc103; }
 
 header .navbar-inverse {
   margin: 10px 0 0 0; }
