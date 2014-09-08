@@ -16,6 +16,11 @@ li {
     font-family: HelveticaNeue-Thin;
     src: url(../font/HelveticaNeue-Thin.otf);
 }
+@font-face {
+    font-family: Lato-Regular;
+    src: url(../font/Lato-Regular.ttf);
+}
+
 .ui-accordion .ui-accordion-icons {
     padding-left: 0;
 }
@@ -39,7 +44,7 @@ $header-bg-color:#FFF;
  $header-bg-faint-color:#e5e5e5;
  $dark-black:#1d2c31;
  $faint-black:#23363b;
- $text-color:#444647;
+ $text-color:#FFF;
  $dark-orange:#d68335;
  $dark-red:#8e4436;
  $faint-red:#a44f3f;
@@ -54,18 +59,21 @@ $header-bg-color:#FFF;
  $border-color:#fff;
  $btn-bg-color:#8064a2;
  /*new set of colors */
- $header-bg:#86d742;
- $diagram-bg-color:#fdf202;
+ $header-bg:#3498db;
+ 
  $btn-border-color:#444647;
- $btn-bg-color:#fcc103;
+ $btn-bg-color:#f0ad4e;
  $link-text-color:#fff;
- $link-bg-color:#fcc103;
+ $link-bg-color:#1abc9c;
+ $body-bg-color:#3498db;
  body {
-    font-family: "HelveticaNeue", Helvetica, Arial, sans-serif;
+    font-family: "Lato-Regular", Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.42857143;
     color: $text-color;
     overflow-x: hidden;
+    background: $body-bg-color;
+    padding-top: 95px;
 }
 .ui-widget-content {
     color: $text-color;
@@ -110,7 +118,7 @@ header img {
 }
 .headerText {
     font-size: 40px;
-    margin: 0 0 30px 0;
+    margin: 0 0 10px 0;
 }
 .headerText, .secondary-headerText {
     text-align: center;
@@ -121,11 +129,10 @@ header img {
 }
 .diagram {
     margin: 15px 0;
-    background: $diagram-bg-color;
     height: 500px;
     width: 600px;
     margin: 0 auto;
-    padding: 60px 0 0 39px;
+    padding: 30px 0 0 39px;
 }
 .link-menu {
     display: block;
@@ -142,7 +149,7 @@ header img {
     font-size: 19px;
     border: 2px solid $border-color;
 }
-.link-menu:hover, .link-menu,.custom-btn:hover {
+.link-menu:hover, .link-menu,.custom-btn:hover,.oneself-circle:hover {
     color: $link-text-color;
 }
 .oneself-circle {
@@ -159,7 +166,7 @@ header img {
    background:  $link-bg-color;
 }
 .mainlogo{
-    font-size: 45px;
+    font-size: 25px;
     padding-top: 10px;
     color: #FFF;
 }
@@ -173,21 +180,23 @@ header img {
 a:hover {
     text-decoration: none;
 }
-.custom-btn:hover, .custom-btn {
-    background: transparent;
+.custom-btn:hover, .custom-btn,.custom-btn:hover {
+    background: transparent!important;
     border: 1px solid $border-color;
+    color: #FFF!important;
 }
 .custom-btn {
     width: 100px;
     padding: 5px;
     margin: 20px 5px;
     color: #FFF;
-    font-size: 20px;
+    font-size: 15px;
     border-radius: 0;
     border: 1px solid $border-color;
 }
-.colored-btn, .colored-btn:hover {
-    background: $btn-bg-color;
+.colored-btn, .colored-btn:hover,.colored-btn:focus {
+    background: $btn-bg-color!important;
+    color: #FFF;
 }
 header .navbar-inverse {
     margin: 10px 0 0 0;
