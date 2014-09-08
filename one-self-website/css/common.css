@@ -120,7 +120,7 @@ header img {
 .link-menu, .oneself-circle {
   background: #1abc9c;
   /* background: rgba(0, 0, 0, 0.2); */
-  font-size: 19px;
+  font-size: 16px;
   border: 2px solid white; }
 
 .link-menu:hover, .link-menu, .custom-btn:hover, .oneself-circle:hover {
@@ -134,7 +134,7 @@ header img {
   border: 2px solid #fff;
   width: 100px;
   margin: 100px auto;
-  padding: 32px 0;
+  padding: 35px 0;
   border-radius: 50%;
   color: #fff;
   background: #1abc9c; }
@@ -171,6 +171,3 @@ a:hover {
 .colored-btn, .colored-btn:hover, .colored-btn:focus {
   background: #f0ad4e !important;
   color: #FFF; }
-
-header .navbar-inverse {
-  margin: 10px 0 0 0; }
