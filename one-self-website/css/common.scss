@@ -54,11 +54,12 @@ $header-bg-color:#FFF;
  $border-color:#fff;
  $btn-bg-color:#8064a2;
  /*new set of colors */
- $header-bg:#F4A821;
- $diagram-bg-color:#114D75;
+ $header-bg:#fcc103;
+ $diagram-bg-color:#fdf202;
  $btn-border-color:#444647;
  $btn-bg-color:#114D75;
  $link-text-color:#fff;
+ $link-bg-color:#fcc103;
  body {
     font-family: "HelveticaNeue", Helvetica, Arial, sans-serif;
     font-size: 16px;
@@ -136,8 +137,8 @@ header img {
     width: 120px;
 }
 .link-menu, .oneself-circle {
-    /* background: #cfe2f3; */
-    background: rgba(0, 0, 0, 0.2);
+    background: $link-bg-color;
+    /* background: rgba(0, 0, 0, 0.2); */
     font-size: 19px;
     border: 2px solid $border-color;
 }
@@ -155,7 +156,12 @@ header img {
     padding: 32px 0;
     border-radius: 50%;
     color: #fff;
-   background: rgba(0, 0, 0, 0.2);
+   background:  $link-bg-color;
+}
+.mainlogo{
+    font-size: 45px;
+    padding-top: 10px;
+    color: #FFF;
 }
 .second-diagram-set {
     width: 281px;
