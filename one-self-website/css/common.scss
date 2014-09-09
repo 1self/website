@@ -20,7 +20,6 @@ li {
     font-family: Lato-Regular;
     src: url(../font/Lato-Regular.ttf);
 }
-
 .ui-accordion .ui-accordion-icons {
     padding-left: 0;
 }
@@ -52,20 +51,20 @@ $header-bg-color:#FFF;
  $faint-green:#8d9151;
  $dark-lavender:#7a58a5;
  $faint-lavender:#8963b9;
- $link-text-color:#444647;
  $border-color:#444647;
- $header-bg:#f8983d;
  $diagram-bg-color:#fcd730;
  $border-color:#fff;
- $btn-bg-color:#8064a2;
- /*new set of colors */
- $header-bg:#3498db;
- 
+
+/*new set of colors */
+
+$header-bg:#3498db;
  $btn-border-color:#444647;
  $btn-bg-color:#f0ad4e;
  $link-text-color:#fff;
  $link-bg-color:#1abc9c;
  $body-bg-color:#3498db;
+ $modal-bg-color:#1abc9c;
+ $modal-text-color:#fff;
  body {
     font-family: "Lato-Regular", Helvetica, Arial, sans-serif;
     font-size: 16px;
@@ -82,6 +81,9 @@ header, header .navbar-inverse {
     background: $header-bg;
     color: #333;
     border: none;
+}
+.bold {
+    font-weight: bold;
 }
 header.row {
     margin-left: 0;
@@ -149,7 +151,7 @@ header img {
     font-size: 16px;
     border: 2px solid $border-color;
 }
-.link-menu:hover, .link-menu,.custom-btn:hover,.oneself-circle:hover {
+.link-menu:hover, .link-menu, .custom-btn:hover, .oneself-circle:hover {
     color: $link-text-color;
 }
 .oneself-circle {
@@ -163,9 +165,9 @@ header img {
     padding: 35px 0;
     border-radius: 50%;
     color: #fff;
-   background:  $link-bg-color;
+    background: $link-bg-color;
 }
-.mainlogo{
+.mainlogo {
     font-size: 25px;
     padding-top: 10px;
     color: #FFF;
@@ -180,7 +182,7 @@ header img {
 a:hover {
     text-decoration: none;
 }
-.custom-btn:hover, .custom-btn,.custom-btn:hover {
+.custom-btn:hover, .custom-btn, .custom-btn:hover {
     background: transparent!important;
     border: 1px solid $border-color;
     color: #FFF!important;
@@ -194,7 +196,121 @@ a:hover {
     border-radius: 0;
     border: 1px solid $border-color;
 }
-.colored-btn, .colored-btn:hover,.colored-btn:focus {
+.colored-btn, .colored-btn:hover, .colored-btn:focus {
     background: $btn-bg-color!important;
     color: #FFF;
+    border: 1px solid #e4a346;
+}
+.modal-scrollable {
+    position: relative;
+    color: #404040;
+}
+.modal-content {
+    padding: 20px;
+    background: $modal-bg-color;
+    color: $modal-text-color;
+}
+.modal-content .close {
+    font-size: 30px;
+    margin-right: 23px;
+    color: $modal-text-color;
+    opacity: 0.8;
+}
+.modal-content .close span {
+    font-weight: normal;
+}
+.modal-header-text {
+    font-size: 20px;
+}
+.margin-bottom-ten {
+    margin-bottom: 10px;
+}
+@media (min-width: 768px) {
+    .modal-dialog {
+        margin: 70px auto 30px auto;
+    }
+}
+@media (max-width: 767px) {
+    .diagramContainer, .diagram, .navbar-inverse .navbar-collapse {
+        width: 100%;
+    }
+    .second-diagram-set {
+        margin: 0 auto;
+    }
+    .navbar-inverse .navbar-toggle {
+        border: none;
+    }
+    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:active {
+        background: transparent;
+    }
+    .mainlogo {
+        margin-left: 20px;
+    }
+    .container, .navbar-inverse .navbar-collapse {
+        padding: 0;
+    }
+    .container > .navbar-header {
+        padding: 0 15px;
+        border-bottom: 1px solid #2882be;
+    }
+    .navbar-nav, .navbar-inverse .navbar-collapse {
+        margin: 0;
+    }
+    .navbar-inverse .navbar-collapse {
+        border: none;
+        float: left!important;
+        box-shadow: 0px 3px 2px #2882be;
+    }
+    .custom-btn {
+        margin: 10px auto;
+        display: block;
+        width: 200px;
+    }
+    body {
+        padding-top: 50px;
+    }
+    .oneself-circle {
+        margin: 20px auto;
+    }
+    .modal-content{
+        padding: 10px 11px 0 11px;
+    }
+}
+@media (max-width: 620px) {
+    .second-diagram-set, .third-diagram-set {
+        width: 100%;
+    }
+    .diagram {
+        padding: 0;
+    }
+    .headerText {
+        font-size: 20px;
+    }
+    .secondary-headerText {
+        font-size: 18px;
+    }
+    .first-diagram-set {
+        display: block!important;
+        width: 81%;
+        float: none!important;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    .oneself-circle, .link-menu {
+        font-size: 13px;
+    }
+    .link-menu {
+        float: left;
+        clear: none;
+        margin-left: 1%;
+        width: 24%;
+        padding: 10px 3px;
+    }
+    .mobile-margin-left {
+        margin-left: 10%;
+    }
+    .oneself-circle {
+        padding: 23px 0;
+        width: 73px;
+    }
 }
