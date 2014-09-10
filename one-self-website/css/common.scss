@@ -32,10 +32,6 @@ li {
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, .ui-widget-content, .ui-widget-content:hover, .ui-widget-header:hover, .ui-state-hover, .ui-state-active, .ui-state-default {
     border: none!important;
 }
-.container-fluid {
-    padding-left: 0;
-    padding-right: 0;
-}
 heder .ui-state-default {
     background: none;
 }
@@ -62,7 +58,7 @@ $header-bg:#3498db;
  $btn-bg-color:#f0ad4e;
  $link-text-color:#fff;
  $link-bg-color:#1abc9c;
- $body-bg-color:#3498db;
+ $body-bg-color:#f3f3f3;
  $modal-bg-color:#1abc9c;
  $modal-text-color:#fff;
  body {
@@ -71,8 +67,8 @@ $header-bg:#3498db;
     line-height: 1.42857143;
     color: $text-color;
     overflow-x: hidden;
+    padding-top: 75px;
     background: $body-bg-color;
-    padding-top: 95px;
 }
 .ui-widget-content {
     color: $text-color;
@@ -84,6 +80,23 @@ header, header .navbar-inverse {
 }
 .bold {
     font-weight: bold;
+}
+.grid {
+    display: table;
+}
+.grid-row {
+    display: table-row;
+}
+.grid-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+.width-50 {
+    width: 50%;
+}
+.width-70 {
+    width: 70%;
+    margin: 0 auto;
 }
 header.row {
     margin-left: 0;
@@ -97,18 +110,6 @@ header.row {
 .header-bg-faint-color {
     background: #e5e5e5;
 }
-.accordian-height {
-    height: 100px;
-}
-.width-20 {
-    width: 20%;
-}
-.width-80 {
-    width: 80%;
-}
-.width-80 h1, .width-80 span, .ui-widget {
-    font-family: HelveticaNeue-Thin, sans-serif;
-}
 header img {
     width: 251px;
     height: 69px;
@@ -116,10 +117,10 @@ header img {
 }
 .diagramContainer {
     width: 760px;
-    margin: 20px auto;
+    margin: 20px auto 30px auto;
 }
 .headerText {
-    font-size: 40px;
+    font-size: 48px;
     margin: 0 0 10px 0;
 }
 .headerText, .secondary-headerText {
@@ -127,190 +128,186 @@ header img {
     display: block;
 }
 .secondary-headerText {
-    font-size: 25px;
-}
-.diagram {
-    margin: 15px 0;
-    height: 500px;
-    width: 600px;
-    margin: 0 auto;
-    padding: 30px 0 0 39px;
-}
-.link-menu {
-    display: block;
-    padding: 20px 4px;
-    border-radius: 7px;
-    clear: both;
-    margin: 20px 0 20px 0;
-    text-align: center;
-    width: 120px;
-}
-.link-menu, .oneself-circle {
-    background: $link-bg-color;
-    /* background: rgba(0, 0, 0, 0.2); */
-    font-size: 16px;
-    border: 2px solid $border-color;
-}
-.link-menu:hover, .link-menu, .custom-btn:hover, .oneself-circle:hover {
-    color: $link-text-color;
-}
-.oneself-circle {
-    display: block;
-    text-align: center;
-    background: url("../images/oneself-circle.png") no-repeat;
-    background: none;
-    border: 2px solid #fff;
-    width: 100px;
-    margin: 100px auto;
-    padding: 35px 0;
-    border-radius: 50%;
-    color: #fff;
-    background: $link-bg-color;
+    font-size: 30px;
 }
 .mainlogo {
-    font-size: 25px;
+    font-size: 48px;
     padding-top: 10px;
     color: #FFF;
-}
-.second-diagram-set {
-    width: 281px;
-}
-.third-diagram-set {
-    width: 100px;
-    margin: 5px 0 0 0;
 }
 a:hover {
     text-decoration: none;
 }
-.custom-btn:hover, .custom-btn, .custom-btn:hover {
-    background: transparent!important;
-    border: 1px solid $border-color;
-    color: #FFF!important;
-}
-.custom-btn {
-    width: 100px;
-    padding: 5px;
-    margin: 20px 5px;
-    color: #FFF;
-    font-size: 15px;
-    border-radius: 0;
-    border: 1px solid $border-color;
-}
-.colored-btn, .colored-btn:hover, .colored-btn:focus {
-    background: $btn-bg-color!important;
-    color: #FFF;
-    border: 1px solid #e4a346;
-}
-.modal-scrollable {
-    position: relative;
-    color: #404040;
-}
-.modal-content {
-    padding: 20px;
-    background: $modal-bg-color;
-    color: $modal-text-color;
-}
-.modal-content .close {
-    font-size: 30px;
-    margin-right: 23px;
-    color: $modal-text-color;
-    opacity: 0.8;
-}
-.modal-content .close span {
-    font-weight: normal;
-}
-.modal-header-text {
-    font-size: 20px;
-}
 .margin-bottom-ten {
     margin-bottom: 10px;
 }
-@media (min-width: 768px) {
-    .modal-dialog {
-        margin: 70px auto 30px auto;
+.custom-btn:hover, .custom-btn, .custom-btn:focus {
+    background: transparent!important;
+    border: 1px solid #e4a346;
+    color: #FFF!important;
+}
+.image {
+    max-width: 100%;
+}
+.custom-btn:hover, .custom-btn:focus {} .custom-btn {
+    padding: 6px 16px;
+    margin: 20px 5px;
+    font-size: 19px;
+    border-radius: 5px;
+    color: #FFF;
+}
+.custom-btn, .custom-btn:hover, .custom-btn:focus {
+    background: $btn-bg-color!important;
+}
+.custom-text-box {
+    padding: 8px;
+    width: 300px;
+    border-radius: 5px;
+    color: #404040;
+}
+.navbar-wrapper {
+    position: relative;
+    z-index: 15;
+}
+.carousel-header-text {
+    font-size: 30px;
+}
+.carousel {
+    margin: 0px auto;
+    padding: 10px 0;
+    width: 60%;
+}
+.carousel-caption {
+    z-index: 10;
+}
+.carousel .item {
+    height: 330px;
+}
+.carousel-inner > .item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 300px;
+}
+.carousel-control.right, .carousel-control.left {
+    background: none;
+}
+.marketing {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.marketing .col-lg-4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.marketing h2 {
+    font-weight: normal;
+}
+.marketing .col-lg-4 p {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.featurette-divider {
+    margin: 80px 0;
+    /* Space out the Bootstrap <hr> more */
+}
+.featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+.carousel-caption p {
+    font-size: 16px;
+}
+.wrapper {
+    background: #3498db;
+}
+.image-container {
+    height: 280px;
+}
+.carousel-caption {
+    color: #555;
+    text-shadow: none;
+}
+.carousel-indicators li {
+    border: 1px solid #1abc9c;
+}
+.carousel-indicators .active {
+    background-color: #1abc9c;
+}
+.carousel-control .left-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    left: 50%;
+}
+.carousel-control {
+    opacity: 0.7;
+}
+@media (max-width: 1150px) {
+    .carousel .item {
+        height: 400px;
     }
 }
 @media (max-width: 767px) {
-    .diagramContainer, .diagram, .navbar-inverse .navbar-collapse {
+    .diagramContainer, .width-50, .carousel {
         width: 100%;
     }
-    .second-diagram-set {
-        margin: 0 auto;
+    .headerText {
+        font-size: 30px;
     }
-    .navbar-inverse .navbar-toggle {
-        border: none;
-    }
-    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:active {
-        background: transparent;
+    .secondary-headerText {
+        font-size: 25px;
     }
     .mainlogo {
         margin-left: 20px;
+        font-weight: bold;
     }
     .container, .navbar-inverse .navbar-collapse {
         padding: 0;
     }
-    .container > .navbar-header {
-        padding: 0 15px;
-        border-bottom: 1px solid #2882be;
-    }
-    .navbar-nav, .navbar-inverse .navbar-collapse {
-        margin: 0;
-    }
-    .navbar-inverse .navbar-collapse {
-        border: none;
-        float: left!important;
-        box-shadow: 0px 3px 2px #2882be;
-    }
-    .custom-btn {
-        margin: 10px auto;
-        display: block;
-        width: 200px;
-    }
     body {
         padding-top: 50px;
     }
-    .oneself-circle {
-        margin: 20px auto;
+    .herosection .grid-cell {
+        display: table-row;
     }
-    .modal-content{
-        padding: 10px 11px 0 11px;
+    .carousel .image {
+        max-width: 70%;
+    }
+    .carousel .item {
+        height: 330px;
     }
 }
-@media (max-width: 620px) {
-    .second-diagram-set, .third-diagram-set {
-        width: 100%;
+@media (min-width: 768px) {
+    .marketing {
+        padding-left: 0;
+        padding-right: 0;
     }
-    .diagram {
-        padding: 0;
+    .navbar-wrapper {
+        margin-top: 20px;
     }
-    .headerText {
-        font-size: 20px;
+    .navbar-wrapper .navbar {
+        border-radius: 4px;
     }
-    .secondary-headerText {
-        font-size: 18px;
+    .carousel-caption p {
+        margin-bottom: 20px;
     }
-    .first-diagram-set {
-        display: block!important;
-        width: 81%;
-        float: none!important;
-        overflow: hidden;
-        margin: 0 auto;
+    .featurette-heading {
+        font-size: 50px;
     }
-    .oneself-circle, .link-menu {
-        font-size: 13px;
+    .carousel-control .left-arrow {
+        width: 30px;
+        height: 30px;
+        margin-top: -15px;
+        margin-left: -15px;
+        font-size: 30px;
     }
-    .link-menu {
-        float: left;
-        clear: none;
-        margin-left: 1%;
-        width: 24%;
-        padding: 10px 3px;
-    }
-    .mobile-margin-left {
-        margin-left: 10%;
-    }
-    .oneself-circle {
-        padding: 23px 0;
-        width: 73px;
+}
+@media (min-width: 992px) {
+    .featurette-heading {
+        margin-top: 120px;
     }
 }
