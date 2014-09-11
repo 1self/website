@@ -256,14 +256,18 @@ a:hover {
         width: 100%;
     }
     .headerText {
-        font-size: 30px;
-    }
-    .secondary-headerText {
         font-size: 25px;
+    }
+    .secondary-headerText, .carousel-header-text {
+        font-size: 20px;
+    }
+    .carousel-caption p {
+        font-size: 15px;
     }
     .mainlogo {
         margin-left: 20px;
         font-weight: bold;
+        font-size: 30px;
     }
     .container, .navbar-inverse .navbar-collapse {
         padding: 0;
@@ -278,7 +282,13 @@ a:hover {
         max-width: 70%;
     }
     .carousel .item {
-        height: 330px;
+        height: 355px;
+    }
+    .image-container {
+        height: 215px;
+    }
+    .carousel-control{
+       width: 32px; 
     }
 }
 @media (min-width: 768px) {
