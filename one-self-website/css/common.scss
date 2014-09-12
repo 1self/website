@@ -70,6 +70,12 @@ $header-bg:#3498db;
     padding-top: 75px;
     background: $body-bg-color;
 }
+html, body, .confirmation-wrapper {
+    height: 100%;
+}
+.confirmation {
+    height: 80%;
+}
 .ui-widget-content {
     color: $text-color;
 }
@@ -148,7 +154,7 @@ a:hover {
 }
 .image {
     max-width: 100%;
-    width:100%;
+    width: 100%;
 }
 .custom-btn {
     padding: 6px 16px;
@@ -158,7 +164,7 @@ a:hover {
     color: #FFF;
     background: $btn-bg-color!important;
 }
- .custom-btn:hover, .custom-btn:focus {
+.custom-btn:hover, .custom-btn:focus {
     background: #f8a229!important;
 }
 .custom-text-box {
@@ -260,20 +266,20 @@ a:hover {
     font-size: 14px;
     margin: 20px 0;
 }
-.confirmation-content p{
+.confirmation-content p {
     margin: 20px 0;
 }
 .add-us-link {
     color: #a0d6fa;
 }
-.add-us-link,.add-us-link:hover{
+.add-us-link, .add-us-link:hover {
     text-decoration: underline;
 }
 .confirmation .custom-btn {
     font-size: 16px;
     margin: 25px 0;
 }
-.or{
+.or {
     padding: 0 20px;
 }
 #mc_embed_signup form {
@@ -349,21 +355,29 @@ a:hover {
     text-align: left;
     padding: .5em 0;
 }
+footer {
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+    padding: 50px 0 30px 0;
+    margin: 50px 0 0 0;
+    opacity: 0.5;
+}
 @media (max-width: 1150px) {
     .carousel .item {
         height: 400px;
     }
 }
 @media (max-width: 950px) {
-     .width-70 {
+    .width-70 {
         width: 100%;
     }
 }
 @media (max-width: 767px) {
-    .diagramContainer,.carousel,.confirmation-wrapper,.image {
+    .diagramContainer, .carousel, .confirmation-wrapper, .image {
         width: 100%;
     }
-    .confirmation{
+    .confirmation {
         width: 94%;
         margin: 0 auto;
     }
@@ -399,8 +413,14 @@ a:hover {
     .carousel-control {
         width: 32px;
     }
-    #mc_embed_signup form{
+    #mc_embed_signup form {
         padding-left: 0;
+    }
+    footer {
+        font-size: 13px;
+    }
+    .confirmation {
+        height: auto;
     }
 }
 @media (min-width: 768px) {
@@ -434,7 +454,7 @@ a:hover {
     }
 }
 @media (max-width: 600px) {
-     .width-50 {
+    .width-50 {
         width: 100%;
     }
     .herosection .grid-cell {
@@ -442,7 +462,7 @@ a:hover {
     }
 }
 @media (max-width: 420px) {
-    .custom-text-box{
+    .custom-text-box {
         width: 100%;
     }
 }

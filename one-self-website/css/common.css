@@ -45,6 +45,12 @@ body {
   padding-top: 75px;
   background: #f3f3f3; }
 
+html, body, .confirmation-wrapper {
+  height: 100%; }
+
+.confirmation {
+  height: 80%; }
+
 .ui-widget-content {
   color: white; }
 
@@ -324,6 +330,14 @@ a:hover {
   text-align: left;
   padding: .5em 0; }
 
+footer {
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+  padding: 50px 0 30px 0;
+  margin: 50px 0 0 0;
+  opacity: 0.5; }
+
 @media (max-width: 1150px) {
   .carousel .item {
     height: 400px; } }
@@ -371,7 +385,13 @@ a:hover {
     width: 32px; }
 
   #mc_embed_signup form {
-    padding-left: 0; } }
+    padding-left: 0; }
+
+  footer {
+    font-size: 13px; }
+
+  .confirmation {
+    height: auto; } }
 @media (min-width: 768px) {
   .marketing {
     padding-left: 0;
