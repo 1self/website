@@ -118,16 +118,17 @@ a:hover {
 
 .custom-btn:hover, .custom-btn, .custom-btn:focus {
   background: transparent !important;
-  border: 1px solid #e4a346;
+  border: 1px solid #e4a346 !important;
   color: white !important; }
 
 .image {
-  max-width: 100%; }
+  max-width: 100%;
+  width: 100%; }
 
 .custom-btn {
   padding: 6px 16px;
   margin: 5px 5px;
-  font-size: 19px;
+  font-size: 17px;
   border-radius: 5px;
   color: #FFF;
   background: #f0ad4e !important; }
@@ -228,7 +229,7 @@ a:hover {
   border-radius: 6px; }
 
 .confirmation-content {
-  background: #308dcc;
+  background: #2d84bf;
   color: #fff;
   padding: 20px;
   font-size: 14px;
@@ -263,7 +264,6 @@ a:hover {
   font-size: 1.4em; }
 
 #mc_embed_signup input {
-  border: 1px solid #999;
   -webkit-appearance: none; }
 
 #mc_embed_signup input[type=checkbox] {
@@ -327,9 +327,16 @@ a:hover {
 @media (max-width: 1150px) {
   .carousel .item {
     height: 400px; } }
+@media (max-width: 950px) {
+  .width-70 {
+    width: 100%; } }
 @media (max-width: 767px) {
-  .diagramContainer, .width-50, .carousel {
+  .diagramContainer, .carousel, .confirmation-wrapper, .image {
     width: 100%; }
+
+  .confirmation {
+    width: 94%;
+    margin: 0 auto; }
 
   .headerText, .confirmation h2 {
     font-size: 25px; }
@@ -351,9 +358,6 @@ a:hover {
   body {
     padding-top: 50px; }
 
-  .herosection .grid-cell {
-    display: table-row; }
-
   .carousel .image {
     max-width: 70%; }
 
@@ -366,8 +370,8 @@ a:hover {
   .carousel-control {
     width: 32px; }
 
-  .confirmation-wrapper {
-    width: 90%; } }
+  #mc_embed_signup form {
+    padding-left: 0; } }
 @media (min-width: 768px) {
   .marketing {
     padding-left: 0;
@@ -394,3 +398,12 @@ a:hover {
 @media (min-width: 992px) {
   .featurette-heading {
     margin-top: 120px; } }
+@media (max-width: 600px) {
+  .width-50 {
+    width: 100%; }
+
+  .herosection .grid-cell {
+    display: table-row; } }
+@media (max-width: 420px) {
+  .custom-text-box {
+    width: 100%; } }
