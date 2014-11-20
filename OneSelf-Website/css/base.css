@@ -1,0 +1,29 @@
+body{
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+	font-family: 'kingclarity',sans-serif;
+	background: #30363E;
+	color: #ffffff;
+}
+h1{ font-size: 2.5em;}
+h2{ font-size: 2.2em;}
+h3{ font-size: 2.0em;}
+h4{ font-size: 1.7em;}
+h5{ font-size: 1.5em;}
+h6{ font-size: 1.2em;}
+a{}
+b{}
+p{}
+header{}
+nav{}
+footer{}
+section{}
+aside{}
+img{
+	//max-width: 100%;
+}
+hr{}
+input,button{}
+
+.center {text-align:center;}

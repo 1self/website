@@ -1,0 +1,125 @@
+@import url('reset.css');
+@import url('base.css');
+@import url('fonts/fonts.css');
+a.button, button, input[type='sumbit'], input[type='button']{
+	line-height: 1em;
+	display: inline-block;
+	text-align: center;
+	background: #30363E;
+	padding: 12px 10px;
+	font-size: 1.2em;
+	color: #fff;
+	width: 200px;
+	border: 2px solid #ECECEC;
+	cursor: pointer;
+}
+a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:hover {
+	background: #00b698;
+}
+
+
+
+
+
+/*Page Navigation css*/
+.page-nav:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.page-nav{
+	display: block;
+	padding:20px 10px 10px 10px;
+	position: fixed;
+	width: 98%;
+	background: #30363E;
+}
+.logo {
+	margin-left: 13px;
+	float: left;
+}
+.nav-right a.button:hover{
+	background-color: #f2ae1c;
+}
+.nav-right a.button{
+	width: 70px;
+	font-size: 1em;
+	margin-left: 15px;
+}
+.nav-right a.nav-link:hover span {
+	visibility: visible;
+}
+.nav-right a.nav-link:hover {
+	border-bottom: 1px solid #fff;
+}
+.nav-right a.nav-link span {
+	visibility: hidden;
+	display: block;
+	bottom: -8px;
+	position: relative;
+}
+.nav-right a.nav-link {
+	text-align: center;
+	display: inline-block;
+	color:#fff;
+	padding: 14px 10px 0 10px ;
+	font-size: 1em;
+	margin-left: 10px;
+	position: relative;
+}
+.nav-right{
+	float:right;
+	padding-right: 10px;
+}
+.page-content {
+	padding-top: 93px;
+}
+.banner h1{
+	font-size: 3.5em;
+	margin-bottom: 40px;
+}
+.banner p span{
+	display: block;
+	color: #00bc9d;
+}
+.banner p {
+	margin-top: 37px;
+	font-size: 2em;
+	line-height: 1.3em;
+}
+
+.invite form{
+	margin: 15px auto;
+}
+.invite {
+	margin: 40px;
+	font-size: 1.2em;
+}
+.invite input[type="button"]:hover{
+	background: #00967D;
+}
+.invite input[type="button"]{
+	width: 100px;
+	padding: 10px;
+	font-size: 1em;
+	background: #00b698;
+}
+
+.invite ::-webkit-input-placeholder { 
+/*.invite :-ms-input-placeholder,
+.invite ::-moz-placeholder,
+.invite :-moz-placeholder ,*/
+    color: #ececec;
+}
+
+.invite input[type="text"]{
+	width:200px;
+	padding: 9px 11px 12px 25px;
+	border:1px solid #ffffff;
+	font-size: 0.9em;
+	color: #333333;
+}
+.invite input{
+	vertical-align: middle;
+
+}
