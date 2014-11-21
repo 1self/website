@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
     font-family: 'kingclarity';
     src: url('kingthings_clarity1.1-webfont.eot');
     src: url('kingthings_clarity1.1-webfont.eot?#iefix') format('embedded-opentype'),
@@ -10,3 +10,24 @@
     font-style: normal;
 
 }
+*/
+/*@import url('fonts/Raleway/styles.css');
+@import url('fonts/Raleway-Bold/styles.css');
+@import url('fonts/Raleway-ExtraBold/styles.css');
+@import url('fonts/Raleway-ExtraLight/styles.css');
+@import url('fonts/Raleway-Heavy/styles.css');
+@import url('fonts/Raleway-Light/styles.css');
+@import url('fonts/Raleway-Medium/styles.css');
+@import url('fonts/Raleway-SemiBold/styles.css');
+@import url('fonts/Raleway-Thin/styles.css');
+
+*/
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('Raleway.eot?#iefix') format('embedded-opentype'),  url('Raleway.woff') format('woff'), url('Raleway.ttf')  format('truetype'), url('Raleway.svg#Raleway') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
