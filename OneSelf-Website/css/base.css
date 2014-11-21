@@ -86,4 +86,14 @@ input,button{}
 	.nav-right a{
 		display: block;
 	}
+	.img .red-dot-desktop,
+	.content .red-dot-desktop,
+	.profit-content .yarrow-top-desktop{
+		right:50%;
+	}
+
+	.img .yarrow-down-desktop {
+		left: 50%;
+	}
+
 }

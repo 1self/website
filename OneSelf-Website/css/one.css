@@ -271,38 +271,38 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 
 .yarrow-top-desktop img{
 	position: relative;
-	top: -19px;
-	right: -19px;
+	top: -22px;
+	right: -22px;
 }
 .yarrow-down-desktop img{
 	position: relative;
-	bottom:-19px;
-	left:-19px;
+	bottom:-22px;
+	left:-22px;
 }
 .yarrow-top-desktop {
 	position: absolute;
 	right:100%;
 	top: 100%;
-	width: 39px;
+	width: 45px;
 	z-index: 900;
 }
 .yarrow-down-desktop {
 	position: absolute;
 	left:100%;
 	bottom: 100%;
-	width: 39px;
+	width: 45px;
 	z-index: 900;
 }
 .red-dot-desktop img{
 	position: relative;
-	top: -12px;
-	right: -12px;
+	top: -15px;
+	right: -15px;
 }
 .red-dot-desktop {
 	position: absolute;
 	right:100%;
 	top:100%;
-	width: 25px;
+	width: 31px;
 	z-index: 900;
 }
 .seagreen {color:#00B698;}
