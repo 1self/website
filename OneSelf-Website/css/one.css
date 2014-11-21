@@ -80,9 +80,11 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 }
 
 /*Banner section*/
+.banner h1, .invite-footer h1{
+	font-family: 'Raleway-Bold';
+}
 .banner h1{
 	font-size: 3.25em;
-	font-family: 'Raleway-Bold';
 	margin-bottom: 40px;
 }
 .banner p span{
@@ -128,6 +130,25 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 	vertical-align: middle;
 	font-size: 0.7em;
 	line-height: 1em;
+}
+.invite-footer h1 {
+	padding-top: 50px;
+	margin-bottom: 10px;
+}
+.invite-footer h1 img{
+	vertical-align: middle;
+}
+.invite-footer input[type="button"]:hover{
+	background: #F1B024;
+}
+.invite-footer input[type="button"]{
+	background: #FDC526;
+}
+.invite-footer {
+	margin-top: 40px;
+	text-align: center;
+	border-bottom: 7px solid #454B54;
+	margin-bottom: 5px;
 }
 
 
