@@ -21,9 +21,69 @@ footer{}
 section{}
 aside{}
 img{
-	//max-width: 100%;
+	max-width: 100%;
 }
 hr{}
 input,button{}
 
 .center {text-align:center;}
+.right-reset {
+	float: right;
+}
+.left-reset {
+	float:left;
+}
+.clearfix:after {
+	clear:both;
+	content: "";
+	display: block;
+
+}
+
+.grid-reset-mobile, .grid {
+	display: table;
+	width: 100%;
+}
+.grid-row {
+	display: table-row;
+}
+.grid-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+@media screen and (max-width: 800px){
+	.build-data  .grid-cell.content,
+	.united-data  .grid-cell.content,
+	.no-profit .grid-cell.profit-content,
+	.no-profit .grid-cell.empower{
+		padding: 3em;
+	}
+}
+@media screen and (max-width: 575px){
+	body{
+		min-width: 320px;
+	}
+	.grid-reset-mobile .grid-row .grid-cell{
+		display: block;
+		width: auto;
+	}
+	.grid-reset-mobile .grid-row{
+		display: block;
+	}
+	.grid-reset-mobile {
+		display: block;
+	}
+	.left-reset{
+		float: none;
+	}
+	.right-reset{
+		float: none;
+	}
+	body header .nav-right, body header .logo{
+		float: none;
+		text-align: center;
+	}
+	.nav-right a{
+		display: block;
+	}
+}

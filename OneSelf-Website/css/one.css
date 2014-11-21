@@ -18,9 +18,6 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 }
 
 
-
-
-
 /*Page Navigation css*/
 .page-nav:after{
 	content: "";
@@ -33,6 +30,7 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 	position: fixed;
 	width: 98%;
 	background: #30363E;
+	z-index: 1000;
 }
 .logo {
 	margin-left: 13px;
@@ -71,9 +69,13 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 	float:right;
 	padding-right: 10px;
 }
+
+/*Main content*/
 .page-content {
 	padding-top: 93px;
 }
+
+/*Banner section*/
 .banner h1{
 	font-size: 3.5em;
 	margin-bottom: 40px;
@@ -87,12 +89,11 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 	font-size: 2em;
 	line-height: 1.3em;
 }
-
 .invite form{
 	margin: 15px auto;
 }
 .invite {
-	margin: 40px;
+	padding: 40px;
 	font-size: 1.2em;
 }
 .invite input[type="button"]:hover{
@@ -103,6 +104,7 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 	padding: 10px;
 	font-size: 1em;
 	background: #00b698;
+	border-color: #fff;
 }
 
 .invite ::-webkit-input-placeholder { 
@@ -111,7 +113,6 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 .invite :-moz-placeholder ,*/
     color: #ececec;
 }
-
 .invite input[type="text"]{
 	width:200px;
 	padding: 9px 11px 12px 25px;
@@ -121,5 +122,187 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 }
 .invite input{
 	vertical-align: middle;
+}
+
+
+.build-data{
+	background: #00B698;
+	border-right: 1px solid #333;
+}
+.build-data .content h2{
+	color: #FDC526;
+	margin-bottom: 20px;
+}
+.build-data .content p{
+	font-size: 0.9em;
+}
+.build-data .content p,
+.build-data .content b{
+	line-height: 1.5em;
+	margin-bottom: 20px;
+}
+.build-data .content b{
+	font-weight: bold;
+	display: block;
+}
+.build-data .content h2{
+	color: #fdc526;
+	margin-bottom: 20px;
+}
+.build-data .content a.button:hover{
+	background: #01A17E;
+}
+.build-data .content a.button{
+	background: #00AD87;
+	font-size: 1em;
+	width: 150px;
+}
+.build-data .content {
+	position: relative;
+	padding:5em;
+}
+.build-data .img img.build{
+	width: 80%;
+	margin:15% auto; 
+}
+.build-data .img {
+	background: #fff;
+	text-align: center;
+	position: relative;
+	border-left: 1px solid #333;
+	width: 50%;
+}
+
+
+
+
+.united-data{
+	background: #ffffff;
+	border-top: 2px solid #cdd1dc;
+	border-left: 1px solid #333;
 
 }
+.united-data .img img.united{
+	width: 80%;
+	margin:15% auto; 
+}
+.united-data .img {
+	text-align: center;
+	position: relative;
+	width: 50%;
+	border-right: 1px solid #333;
+}
+.united-data .content p{
+	font-size: 0.9em;
+}
+.united-data .content p,
+.united-data .content b{
+	line-height: 1.5em;
+	margin-bottom: 20px;
+}
+.united-data .content b{
+	font-weight: bold;
+	display: block;
+}
+.united-data .content h2{
+	color: #fdc526;
+	margin-bottom: 20px;
+}
+.united-data .content a.button:hover{
+	background: #CF2014;
+}
+.united-data .content a.button{
+	background: #e93d31;
+	font-size: 1em;
+	width: 150px;
+}
+.united-data .content {
+	position: relative;
+	padding: 5em;
+	background: #f05a43;
+}
+
+
+.no-profit .empower b,
+.no-profit .empower p{
+	margin-bottom: 20px;
+	line-height: 1.5em;
+}
+.no-profit .empower b{
+	font-weight: bold;
+	display: block;
+}
+.no-profit .empower h2{
+	color: #00b698;
+	margin-bottom: 20px;
+}
+.no-profit .empower{
+	padding: 5em;
+
+}
+.no-profit .profit-content a.button:hover{
+	background: #D30E00;
+}
+.no-profit .profit-content a.button{
+	background: #e93d31;
+	padding: 20px;
+	border-color: #4C545C;
+	width: 160px;
+	font-size: 1em;
+}
+.no-profit .profit-content h2{
+	color: #f05a43;
+	margin-bottom: 50px;
+}
+.no-profit .profit-content{
+	position: relative;
+	width: 50%;
+	padding: 5em;
+	text-align: center;
+}
+.no-profit {
+	background: #ffffff;
+	border-top: 2px solid #cdd1dc;
+	color: #333;
+}
+
+
+
+
+.yarrow-top-desktop img{
+	position: relative;
+	top: -19px;
+	right: -19px;
+}
+.yarrow-down-desktop img{
+	position: relative;
+	bottom:-19px;
+	left:-19px;
+}
+.yarrow-top-desktop {
+	position: absolute;
+	right:100%;
+	top: 100%;
+	width: 39px;
+	z-index: 900;
+}
+.yarrow-down-desktop {
+	position: absolute;
+	left:100%;
+	bottom: 100%;
+	width: 39px;
+	z-index: 900;
+}
+.red-dot-desktop img{
+	position: relative;
+	top: -12px;
+	right: -12px;
+}
+.red-dot-desktop {
+	position: absolute;
+	right:100%;
+	top:100%;
+	width: 25px;
+	z-index: 900;
+}
+.seagreen {color:#00B698;}
