@@ -12,9 +12,12 @@ a.button, button, input[type='sumbit'], input[type='button']{
 	width: 200px;
 	border: 2px solid #ECECEC;
 	cursor: pointer;
+	font-family: 'Raleway-Bold';
+	text-transform: uppercase;
 }
 a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:hover {
 	background: #00b698;
+
 }
 
 
@@ -61,9 +64,10 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 	display: inline-block;
 	color:#fff;
 	padding: 14px 10px 0 10px ;
-	font-size: 1em;
+	font-size: 0.95em;
 	margin-left: 10px;
 	position: relative;
+	font-family: 'Raleway-SemiBold';
 }
 .nav-right{
 	float:right;
@@ -77,7 +81,8 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 
 /*Banner section*/
 .banner h1{
-	font-size: 3.5em;
+	font-size: 3.25em;
+	font-family: 'Raleway-Bold';
 	margin-bottom: 40px;
 }
 .banner p span{
@@ -94,15 +99,14 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 }
 .invite {
 	padding: 40px;
-	font-size: 1.2em;
+	font-size: 1.4em;
 }
 .invite input[type="button"]:hover{
 	background: #00967D;
 }
 .invite input[type="button"]{
 	width: 100px;
-	padding: 10px;
-	font-size: 1em;
+	padding: 10px 10px 11px 10px;
 	background: #00b698;
 	border-color: #fff;
 }
@@ -115,13 +119,15 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 }
 .invite input[type="text"]{
 	width:200px;
-	padding: 9px 11px 12px 25px;
+	padding: 8px 11px 9px 25px;
 	border:1px solid #ffffff;
-	font-size: 0.9em;
 	color: #333333;
 }
 .invite input{
+	font-family:'Raleway-SemiBold';
 	vertical-align: middle;
+	font-size: 0.7em;
+	line-height: 1em;
 }
 
 
@@ -306,3 +312,4 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 	z-index: 900;
 }
 .seagreen {color:#00B698;}
+*{letter-spacing: 1px;}
