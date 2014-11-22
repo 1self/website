@@ -39,6 +39,7 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 }
 .footer ul.nav li a:hover{
 	color: #cdd1dc;
+	border-bottom: 1px solid #5D656E; 
 }
 .footer ul.nav li,
 .footer ul.nav li a{
@@ -50,7 +51,7 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 .footer ul.nav .sepearator-left {
 	position: relative;
 	overflow: hidden;
-	padding: 21px 0;
+	padding: 21px 0 31px 0 ;
 }
 
 .footer ul.nav .sepearator-right img,
@@ -94,6 +95,11 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 	font-family: 'Raleway-Light';
 }
 
+.footer .copyright{
+	color: #646E7A;
+	font-size: 0.7em;
+	padding-top: 35px;
+}
 .footer {
 	text-align: center;
 	background: #454B54;
@@ -173,6 +179,7 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 .invite input[type="button"]{
 	width: 100px;
 	padding: 10px 10px 11px 10px;
+	padding: 8px 10px 10px 10px;
 	background: #00b698;
 	border-color: #fff;
 }
