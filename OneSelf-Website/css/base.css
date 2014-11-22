@@ -62,6 +62,18 @@ input,button{}
 	.no-profit .grid-cell.empower{
 		padding: 3em;
 	}
+	footer.footer ul.nav{
+		font-size: 0.9em;
+	}
+	footer.footer{
+		padding: 1em;
+	}
+	body .footer ul.nav .sepearator-right,
+	body .footer ul.nav .sepearator-center,
+	body .footer ul.nav .sepearator-left {
+		padding-top: 18px;
+		padding-bottom: 28px;
+	}
 }
 @media screen and (max-width: 575px){
 	body{

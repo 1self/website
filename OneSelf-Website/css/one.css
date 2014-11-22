@@ -27,13 +27,77 @@ a.button:hover, button:hover, input[type='sumbit']:hover, input[type='button']:h
 	display: block;
 	clear: both;
 }
-.page-nav{
+.footer, .page-nav{
 	display: block;
+}
+.page-nav{
 	padding:20px 10px 10px 10px;
 	position: fixed;
 	width: 98%;
 	background: #30363E;
 	z-index: 1000;
+}
+.footer ul.nav li a:hover{
+	color: #cdd1dc;
+}
+.footer ul.nav li,
+.footer ul.nav li a{
+	color: #a9b2bd;
+	line-height: 1.75em;
+}
+.footer ul.nav .sepearator-right ,
+.footer ul.nav .sepearator-center ,
+.footer ul.nav .sepearator-left {
+	position: relative;
+	overflow: hidden;
+	padding: 21px 0;
+}
+
+.footer ul.nav .sepearator-right img,
+.footer ul.nav .sepearator-center img,
+.footer ul.nav .sepearator-left img{
+	position: absolute;
+	max-width: none;
+}
+.footer ul.nav .sepearator-right{
+
+	width: 130%;
+}
+.footer ul.nav .sepearator-right img{
+	right:0;
+}
+.footer ul.nav .sepearator-center {
+	left:-10%;
+	width: 120%;
+}
+.footer ul.nav .sepearator-center img{
+	left: -50px;
+}
+.footer ul.nav .sepearator-left{
+	left: -30%;
+	width: 130%;
+}
+.footer ul.nav .heading{
+	font-family: 'Raleway-medium';
+}
+.footer ul.nav{
+	vertical-align: top;
+	background: #454B54;
+	display: inline-block;
+	text-align: left;
+	min-width: 17.5%;
+	max-width: 23.5%;
+	padding:0;
+	margin: 0;
+	padding-left: 1%;
+	font-size: 1.2em;
+	font-family: 'Raleway-Light';
+}
+
+.footer {
+	text-align: center;
+	background: #454B54;
+	padding: 3em 5em;
 }
 .logo {
 	margin-left: 13px;
