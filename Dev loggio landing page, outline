@@ -1,0 +1,53 @@
+Dev loggio landing page, outline
+
+* Why you would hook into loggio
+	* Every time a user interacts with your app / software you create an interesting data point
+	* your users are generating a gold mine of data
+	* help get that back to them
+	* create a story of your touchpoints with your users
+	* easily recognise the last time a user interacted with your app
+* How easy is it
+	* 3 lines of code to store the data
+		* var loggio = require('loggio')
+		* var eventStream = loggio.create('dhdlskd38384dhkd', '12345678')
+		* eventStream.add({'type': 'app:open', 'name':'guitartuner'})
+		* model.ClaimYourEventStream = eventStream.url
+	* easier than setting up a database
+	* anonymous data feed
+	* the users can then use this to build a numbers based picture of their life
+	* set the data free
+	* convenient place to store your data without having to setup a backend
+	* ui developers - should there be a different pitch? Pre-canned html/javascript to get jquery ui folk to store stuff.
+	* libraries in all major languages
+		* c++
+		* c#
+		* java
+		* python
+		* javascript
+		* objective-c
+		* ruby
+		* php
+		* perl
+* cool visualisations
+	* get access to a set of great visualisations
+	* interactivity
+	* pre-canned - give an example of what the code would look like
+		* var interactiveGraph = loggio.graph(eventStream, '#graphCanvas')
+	* users can compare themselves to others
+	* 
+
+
+sections
+* 
+
+Who is the audience?
+* developers who might be writing apps for the first time
+* 
+
+
+Facts that might show up.
+
+You used guitar tuner 12 times last month. 
+
+list of apps that i use:
+

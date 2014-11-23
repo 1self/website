@@ -1,0 +1,99 @@
+
+@media only screen and (max-width : 1200px) {
+	.LR-box-wrapper{
+		width: 100%;
+	}
+			
+	.LR-box{
+		text-align: center;
+	}
+			
+	.LR-box-inner{
+		margin: 0px;
+		width:100%;
+	}
+					
+	.LR-sign-up-container{
+		margin: 0px;
+		width: 100%;
+	}
+							
+	.LR-sign-up-container-inner{
+		margin: 0px;
+	}
+	
+	input[type="email"].LR-sign-up-input{
+		width: calc(100% - 95px);
+	}
+
+	input[type="submit"].LR-sign-up-submit{
+		width: 60px;
+	}
+
+	.LR-site-tagline{
+		text-align: center;
+	}
+
+ 	/* post signup */
+	.LR-site-share .LR-site-share-container{
+		background: transparent;
+		}
+				
+	input.LR-share-email-emails[type="email"]{
+		width: calc(100% - 41px);
+		padding-right: 30px;
+	}
+							
+	.LR-share-email-import{
+		padding: 0px;
+	}
+
+	input.LR-share-link{
+		width: auto;
+		float: left;
+		margin-left: 10px;
+	}
+
+	.LR-site-connect{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.LR-site-share-email input[type="text"]{
+		width: calc(100% - 25px);
+	}
+		
+	.LR-site-share-email textarea{
+		width: calc(100% - 25px);			
+		max-width: none;
+	}
+
+	.LR-site-share{
+		margin: 0px;
+	}
+		
+	.LR-site-incentive{
+		margin: 0px;
+	}
+				
+	.LR-site-share-inner{
+			margin: 0px;
+	}
+
+	.LR-pwd-lr{
+		position: relative;
+		display: none;
+	}
+	
+	.LR-site-social-share ul li{
+		float: none;
+	}
+	
+	.fb_iframe_widget_lift {
+		width: 180px;
+	}
+	
+	#u_0_3{
+		width: 100%;
+	}
+}
