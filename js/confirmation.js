@@ -12,7 +12,8 @@ $(document).ready(function(){
 	xmlhttp.open("POST","http://localhost:3000", false);
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
 	xmlhttp.send(JSON.stringify({
-		email: localStorage.signupEmail
+		email: localStorage.signupEmail,
+		referredBy: localStorage.referrer
 	}));
 	
 	var response = JSON.parse(xmlhttp.response);
