@@ -1,5 +1,5 @@
 var cacheEmail = function(){
-	localStorage.signupEmail = $('#mce-EMAIL')[0].value;
+    localStorage.signupEmail = $('#mce-EMAIL')[0].value;
 };
 
 function getParameterByName(name) {
@@ -10,13 +10,13 @@ function getParameterByName(name) {
 }
 
 $(document).ready(function(){
-	return;
-	// enable this when api is launched
+    //return;
+    // enable this when api is launched
 
-	console.log("ready");
-	var referrer = getParameterByName("referrer");
-	if(typeof(referrer) == "undefined" || referrer === "")
-		return;
+    console.log("ready");
+    var referrer = getParameterByName("referrer");
+    if(typeof(referrer) == "undefined" || referrer === "")
+        return;
 
-	localStorage.referrer = referrer;
+    localStorage.referrer = referrer;
 });
