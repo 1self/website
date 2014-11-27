@@ -198,6 +198,10 @@ $('#mc-embedded-subscribe').on('click', function() {
    _gaq.push(['_trackEvent', 'signup', 'referrerCode', 1]);
  }
 
+ if(window.location.search.match(/referrer/)){
+   ga('send', 'event', 'signup_with_referrer_code', 'referrer_code_used');
+ }
+
 </script>
 
 </html>
