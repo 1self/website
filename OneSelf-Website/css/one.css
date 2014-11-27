@@ -65,7 +65,7 @@ input[type='button']:hover {
 	max-width: none;
 }
 .footer ul.nav .sepearator-right {
-	width: 130%;
+	//width: 130%;
 }
 .footer ul.nav .sepearator-right img {
 	right: 0;
@@ -160,6 +160,12 @@ input[type='button']:hover {
 .invite-footer h1 {
 	font-family: 'Raleway-Bold';
 }
+.banner-white {
+	background: #ffffff;
+	padding: 4em;
+	text-align: center;
+	color: #333;
+}
 .banner h1 {
 	font-size: 3.25em;
 	margin-bottom: 40px;
@@ -225,6 +231,59 @@ input[type='button']:hover {
 	border-bottom: 7px solid #454B54;
 	margin-bottom: 5px;
 }
+
+
+.enable-smart-life {
+	background: #00B698;
+	border-right: 1px solid #333;
+}
+.enable-smart-life .content h2 {
+	color: #FDC526;
+	margin-bottom: 20px;
+}
+.enable-smart-life .content p {
+	//font-size: 0.9em;
+}
+.enable-smart-life .content p,
+.enable-smart-life .content b {
+	line-height: 1.5em;
+	margin-bottom: 20px;
+}
+.enable-smart-life .content b {
+	font-weight: bold;
+	display: block;
+}
+.enable-smart-life .content h2 {
+	color: #fdc526;
+	margin-bottom: 20px;
+}
+.enable-smart-life .content a.button:hover {
+	background: #01A17E;
+}
+.enable-smart-life .content a.button {
+	background: #00AD87;
+	font-size: 1em;
+	width: 150px;
+}
+.enable-smart-life .content {
+	position: relative;
+	padding: 5em;
+}
+.enable-smart-life .img img.build {
+	width: 80%;
+	margin: 5% auto;
+}
+.enable-smart-life .img {
+	background: #fff;
+	text-align: center;
+	position: relative;
+	border-left: 1px solid #333;
+	width: 50%;
+}
+
+
+
+
 .build-data {
 	background: #00B698;
 	border-right: 1px solid #333;
@@ -234,7 +293,7 @@ input[type='button']:hover {
 	margin-bottom: 20px;
 }
 .build-data .content p {
-	font-size: 0.9em;
+	//font-size: 0.9em;
 }
 .build-data .content p,
 .build-data .content b {
@@ -272,6 +331,9 @@ input[type='button']:hover {
 	border-left: 1px solid #333;
 	width: 50%;
 }
+
+
+
 .united-data {
 	background: #ffffff;
 	border-top: 2px solid #cdd1dc;
@@ -288,7 +350,7 @@ input[type='button']:hover {
 	border-right: 1px solid #333;
 }
 .united-data .content p {
-	font-size: 0.9em;
+	//font-size: 0.9em;
 }
 .united-data .content p,
 .united-data .content b {
@@ -315,6 +377,58 @@ input[type='button']:hover {
 	position: relative;
 	padding: 5em;
 	background: #f05a43;
+}
+
+
+
+.big-data {
+	background: #ffffff;
+	border-top: 2px solid #cdd1dc;
+	border-left: 1px solid #333;
+}
+.big-data .img img.united {
+	width: 80%;
+	margin: 15% auto;
+}
+.big-data .img {
+	text-align: center;
+	position: relative;
+	width: 50%;
+	border-right: 1px solid #333;
+}
+.big-data .content p {
+	//font-size: 0.9em;
+}
+.big-data .content p,
+.big-data .content b {
+	line-height: 1.5em;
+	margin-bottom: 20px;
+}
+.big-data .content b {
+	font-weight: bold;
+	display: block;
+}
+.big-data .content h2 {
+	color: #fdc526;
+	margin-bottom: 20px;
+}
+.big-data .content a.button:hover {
+	background: #CF2014;
+}
+.big-data .content a.button {
+	background: #e93d31;
+	font-size: 1em;
+	width: 150px;
+}
+.big-data .content {
+	position: relative;
+	padding: 5em;
+	background: #f05a43;
+}
+
+.content-slider-container{
+	padding: 30px;
+	background: #f2ae1c;
 }
 .no-profit .empower b,
 .no-profit .empower p {
@@ -393,6 +507,9 @@ input[type='button']:hover {
 	width: 31px;
 	z-index: 900;
 }
+.maroon {
+	color: #c0504d;
+}
 .seagreen {
 	color: #00B698;
 }
@@ -463,6 +580,15 @@ input[type='button']:hover {
 	}
 }
 @media screen and (max-width:800px) {
+	.page-nav .logo img{
+		height: 40px;
+	}
+	.page-nav .logo{
+		margin: 0;
+	}
+	.page-nav{
+		padding: 1em;
+	}
 	.build-data  .grid-cell.content,
 	.united-data  .grid-cell.content,
 	.no-profit .grid-cell.profit-content,
@@ -490,11 +616,11 @@ input[type='button']:hover {
 	}
 	.mobile-only-nav div {
 		border: 1px solid;
-		margin: 9px 10px;
+		margin: 7px 7px;
 	}
 	.mobile-only-nav {
 		float: right;
-		width: 45px;
+		width: 40px;
 		margin-right: 2%;
 		margin-left: 2%;
 		border: 2px solid #646E7A;
