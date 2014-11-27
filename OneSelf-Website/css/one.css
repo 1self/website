@@ -471,6 +471,36 @@ input[type='button']:hover {
 	border-top: 2px solid #cdd1dc;
 	color: #333;
 }
+
+.slide-content .content p {
+	//font-size: 0.9em;
+}
+.slide-content .content p,
+.slide-content .content b {
+	line-height: 1.5em;
+	margin-bottom: 20px;
+}
+.slide-content .content b {
+	font-weight: bold;
+	display: block;
+}
+.slide-content .content h2 {
+	color: #31859c;
+	margin-bottom: 20px;
+}
+
+
+.slide-content .img img{
+	margin: 0 auto;
+}
+.slide-content .img{
+	width: 25%;
+	padding-right: 30px;
+}
+.slide-content .content{
+	padding: 3em; 
+}
+
 .yarrow-top-desktop img {
 	position: relative;
 	top: -22px;
