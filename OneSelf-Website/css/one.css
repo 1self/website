@@ -282,6 +282,55 @@ input[type='button']:hover {
 }
 
 
+.integrity {
+	background: #cf4b9a;
+	border-right: 1px solid #333;
+}
+.integrity .content h2 {
+	color: #FDC526;
+	margin-bottom: 20px;
+}
+.integrity .content p {
+	//font-size: 0.9em;
+}
+.integrity .content p,
+.integrity .content b {
+	line-height: 1.5em;
+	margin-bottom: 20px;
+}
+.integrity .content b {
+	font-weight: bold;
+	display: block;
+}
+.integrity .content h2 {
+	color: #fdc526;
+	margin-bottom: 20px;
+}
+.integrity .content a.button:hover {
+	background: #01A17E;
+}
+.integrity .content a.button {
+	background: #00AD87;
+	font-size: 1em;
+	width: 150px;
+}
+.integrity .content {
+	position: relative;
+	padding: 5em;
+}
+.integrity .img img.build {
+	width: 80%;
+	margin: 5% auto;
+}
+.integrity .img {
+	background: #fff;
+	text-align: center;
+	position: relative;
+	border-left: 1px solid #333;
+	width: 50%;
+}
+
+
 
 
 .build-data {
@@ -377,6 +426,51 @@ input[type='button']:hover {
 	position: relative;
 	padding: 5em;
 	background: #f05a43;
+}
+
+.any-data {
+	background: #ffffff;
+	border-top: 2px solid #cdd1dc;
+	border-left: 1px solid #333;
+}
+.any-data .img img.united {
+	width: 80%;
+	margin: 15% auto;
+}
+.any-data .img {
+	text-align: center;
+	position: relative;
+	width: 50%;
+	border-right: 1px solid #333;
+}
+.any-data .content p {
+	//font-size: 0.9em;
+}
+.any-data .content p,
+.any-data .content b {
+	line-height: 1.5em;
+	margin-bottom: 20px;
+}
+.any-data .content b {
+	font-weight: bold;
+	display: block;
+}
+.any-data .content h2 {
+	color: #cf4b9a;
+	margin-bottom: 20px;
+}
+.any-data .content a.button:hover {
+	background: #CF2014;
+}
+.any-data .content a.button {
+	background: #e93d31;
+	font-size: 1em;
+	width: 150px;
+}
+.any-data .content {
+	position: relative;
+	padding: 5em;
+	background: #f2ae1c;
 }
 
 
@@ -489,15 +583,28 @@ input[type='button']:hover {
 	margin-bottom: 20px;
 }
 
+.build-banner-white p{
+	margin-top: 20px;
+	font-family: 'Raleway-medium';
+	font-size: 1.2em;
+}
+.build-banner-white h2{
+	color: #367ec0;	
+}
+.build-banner-white {
+	background: #fff;
+	padding: 4em 6em;
+	color: #333;
+}
 
-.slide-content .img img{
+.slide-content .img img {
 	margin: 0 auto;
 }
-.slide-content .img{
+.slide-content .img {
 	width: 25%;
 	padding-right: 30px;
 }
-.slide-content .content{
+.slide-content .content {
 	padding: 3em; 
 }
 
