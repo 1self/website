@@ -1,0 +1,185 @@
+@media screen and (max-width: 875px) {
+	body .nav-right a.nav-link {
+		padding-left: 0;
+		padding-right: 5px;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.build-banner-white {
+		padding: 3em 4.5em;
+	}
+	.page-nav .logo img {
+		height: 40px;
+	}
+
+	.page-nav .logo {
+		margin: 0;
+	}
+
+	.page-nav {
+		padding: 1em;
+	}
+
+	.enable-smart-life .content,
+	.integrity .content,
+	.build-data .content,
+	.united-data .content,
+	.any-data .content,
+	.big-data .content,
+	.slide-content .content,
+	.build-data .grid-cell.content,
+	.united-data .grid-cell.content,
+	.no-profit .grid-cell.profit-content,
+	.no-profit .grid-cell.empower,
+	.quest-content {
+		padding: 3em;
+	}
+
+	body .page-content {
+		padding-top: 8em;
+	}
+
+	footer.footer ul.nav {
+		font-size: 0.9em;
+	}
+
+	footer.footer {
+		padding: 1em;
+	}
+
+	body .footer ul.nav .sepearator-right,
+	body .footer ul.nav .sepearator-center,
+	body .footer ul.nav .sepearator-left {
+		padding-top: 18px;
+		padding-bottom: 28px;
+	}
+
+	.logo {
+		width: 50%;
+	}
+
+	.mobile-only-nav div {
+		border: 1px solid;
+		margin: 7px 7px;
+	}
+
+	.mobile-only-nav {
+		float: right;
+		width: 40px;
+		margin-right: 4.5%;
+		margin-left: 2%;
+		border: 2px solid #646E7A;
+		color: #646E7A;
+		border-radius: 5px;
+		padding: 0px;
+		cursor: pointer;
+	}
+
+	.nav-right {
+		float: none;
+		display: none;
+		clear: both;
+		width: 100%;
+		padding: 0;
+		padding-top: 20px;
+	}
+
+	.nav-right a.nav-link:hover {
+		background: #454b54;
+		border-top: 1px solid #454B54;
+	}
+
+	.nav-right a.nav-link:hover,
+	.nav-right a.nav-link,
+	.nav-right a.button {
+		margin: 0;
+		display: block;
+		clear: both;
+		width: auto;
+		border: none;
+		padding-left: 0;
+		padding-right: 0;
+		border-top: 1px solid #454b54;
+	}
+}
+
+@media screen and (max-width: 575px) {
+	body {
+		min-width: 320px;
+	}
+
+	.grid-reset-mobile .grid-row .grid-cell {
+		display: block;
+		width: auto;
+	}
+
+	.grid-reset-mobile .grid-row {
+		display: block;
+	}
+
+	.grid-reset-mobile {
+		display: block;
+	}
+
+	.left-reset {
+		float: none;
+	}
+
+	.right-reset {
+		float: none;
+	}
+	.build-banner-white {
+		padding: 3em;
+	}
+	.invite form input[type="button"] {
+		width: 85px;
+	}
+
+	.invite form input[type="text"] {
+		width: 115px;
+	}
+
+	.img .red-dot-desktop,
+	.content .red-dot-desktop,
+	.profit-content .yarrow-top-desktop {
+		right: 50%;
+	}
+
+	.img .yarrow-down-desktop {
+		left: 50%;
+	}
+	.quest-banner h2 {
+		font-size: 2.5em;
+	}
+
+	footer.footer ul.nav .sepearator-left img,
+	footer.footer ul.nav .sepearator-center img,
+	footer.footer ul.nav .sepearator-right img {
+		width: 100%;
+		position: static;
+	}
+
+	footer.footer ul.nav .sepearator-left,
+	footer.footer ul.nav .sepearator-center,
+	footer.footer ul.nav .sepearator-right {
+		padding: 0;
+		width: 100%;
+		left: 0;
+		height: auto;
+	}
+
+	footer.footer ul.nav li.heading {
+		padding-top: 20px;
+	}
+
+	footer.footer ul.nav li {
+		padding-left: 2em;
+	}
+
+	footer.footer ul.nav {
+		padding: 0;
+		display: block;
+		max-width: none;
+	}
+}
