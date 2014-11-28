@@ -743,6 +743,13 @@ input[type='button']:hover {
 		padding: 1em;
 	}
 
+	.enable-smart-life .content,
+	.integrity .content,
+	.build-data .content,
+	.united-data .content,
+	.any-data .content,
+	.big-data .content,
+	.slide-content .content,
 	.build-data .grid-cell.content,
 	.united-data .grid-cell.content,
 	.no-profit .grid-cell.profit-content,
