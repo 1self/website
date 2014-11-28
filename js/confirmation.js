@@ -19,10 +19,13 @@ $(document).ready(function(){
     var response = JSON.parse(xmlhttp.response);
     localStorage.referralCode = response.referralCode;
 
+    var shareTitle = "1self -  Every data bit about you in one place";
+    var shareCaption = "Share and win";
     var shareLink = "http://www.1self.co?referrer=" + response.referralCode;
     var shareText = "Refer 3 people and get 1self free for a year";
+    
 
-    $('#referral').append("<p>refer 3 people and get 1self free for a year</p>");
+    $('#referral').append("<p>"+shareText+"</p>");
     $('#referral').append("<p>"+ shareLink +"</p>");
 
     $('#referral').append("<p>");
@@ -31,16 +34,30 @@ $(document).ready(function(){
 
     $('#referral').append("<span style='margin-left:25px;'></span>");
 
+    var fbShareLink = "http://www.facebook.com/dialog/feed?display=popup&app_id=743829829032520&link=http://www.1self.co&picture=http://www.1self.co/images/hero.png&name="+encodeURIComponent(shareTitle)+"&caption="+encodeURIComponent(shareCaption)+"&description="+encodeURIComponent(shareText)+"&message="+encodeURIComponent(shareText)+"&redirect_uri=http://www.1self.co";
+
     window.fbs_click = function() {
-        window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(shareLink)+'&t='+encodeURIComponent(shareText),'sharer','toolbar=0,status=0,width=626,height=436'); return false;
+        window.open(fbShareLink);
+        // FB.ui({
+        //     method: 'feed',
+        //     link: 'http://www.1self.co',
+        //     caption: shareCaption,
+        //     app_id: "743829829032520",
+        //     picture: "http://www.1self.co/images/hero.png",
+        //     name: shareTitle,
+        //     description: shareText,
+        //     message: shareText,
+        //     redirect_uri: 'http://www.1self.co/'
+        // }, function(response){});
+        // return false; 
+        
     };
 
-    var fbShare = "<img src='/images/facebook-image.png' /> <a rel='nofollow' class='share-link' href='javascript://' onclick='fbs_click()' target='_blank'>Share on Facebook</a>";
+    var fbShare = "<img src='/images/facebook-image.png' /> <a rel='nofollow' class='share-link' href='javascript://' onclick='return fbs_click()' target='_blank'>Share on Facebook</a>";    
 
     $("#referral").append(fbShare);
 
     $('#referral').append("</p>");
 
     $("#referral").append("<br> <br />");
-
 });
