@@ -34,7 +34,7 @@ $(document).ready(function(){
 
     $('#referral').append("<span style='margin-left:25px;'></span>");
 
-    var fbShareLink = "http://www.facebook.com/dialog/feed?display=popup&app_id=743829829032520&link=http://www.1self.co&picture=http://www.1self.co/images/hero.png&name="+encodeURIComponent(shareTitle)+"&caption="+encodeURIComponent(shareCaption)+"&description="+encodeURIComponent(shareText)+"&message="+encodeURIComponent(shareText)+"&redirect_uri=http://www.1self.co";
+    var fbShareLink = "http://www.facebook.com/dialog/feed?display=popup&app_id=743829829032520&link="+shareLink+"&picture=http://www.1self.co/images/hero.png&name="+encodeURIComponent(shareTitle)+"&caption="+encodeURIComponent(shareCaption)+"&description="+encodeURIComponent(shareText)+"&message="+encodeURIComponent(shareText)+"&redirect_uri=http://www.1self.co";
 
     window.fbs_click = function() {
         window.open(fbShareLink);
