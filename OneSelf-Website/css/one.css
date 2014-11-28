@@ -41,7 +41,7 @@ input[type='button']:hover {
 .page-nav {
 	padding: 20px 10px 10px 10px;
 	position: fixed;
-	width: 98%;
+	width: 99%;
 	background: #30363E;
 	z-index: 1000;
 }
@@ -578,7 +578,16 @@ input[type='button']:hover {
 	font-weight: bold;
 	display: block;
 }
-
+.enable-smart-life .content .button,
+.integrity .content .button,
+.build-data .content .button,
+.united-data .content .button,
+.any-data .content .button,
+.big-data .content .button,
+.slide-content .content .button,
+.no-profit .empower .button {
+	margin-top: 35px;
+}
 .build-banner-white {
 	background: #fff;
 	padding: 4em 6em;
