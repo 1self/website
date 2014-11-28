@@ -189,17 +189,12 @@
 
 ga('create', 'UA-54838479-1', 'auto');
 ga('send', 'pageview');
-$('#mc-embedded-subscribe').on('click', function() {
+ $('#mc-embedded-subscribe').on('click', function() {
     ga('send', 'event', 'invite_button', 'invite_button_click');
  });
 
- var _gaq = _gaq || [];
  if(window.location.search.match(/referrer/)){
-   _gaq.push(['_trackEvent', 'signup', 'referrerCode', 1]);
- }
-
- if(window.location.search.match(/referrer/)){
-   ga('send', 'event', 'signup_with_referrer_code', 'referrer_code_used');
+   ga('send', 'event', { eventCategory: 'Signup', eventAction: 'signup_with_referrer_code', eventLabel: 'started'});
  }
 
 </script>

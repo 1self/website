@@ -26,7 +26,8 @@ $(document).ready(function(){
     
 
     $('#referral').append("<p>"+shareText+"</p>");
-    $('#referral').append("<p>"+ shareLink +"</p>");
+
+    $('#referral').append("<p><div id='share-link-copy-area'>"+ "<a href='"+shareLink+"'>" + shareLink +"</a></div></p>");
 
     $('#referral').append("<p>");
 

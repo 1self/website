@@ -546,3 +546,9 @@ footer {
 
   .width-50 {
     width: 90%; } }
+
+
+#share-link-copy-area a {
+    padding: 10px;
+    color: white;
+}
