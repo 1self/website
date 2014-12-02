@@ -29,15 +29,37 @@ input[type='button']:hover { background: #00b698 }
     clear: both;
 }
 .footer,
-.page-nav { 
-    display: block;
+.page-nav { display: block }
+.page-nav {
     padding: 20px 10px 10px 10px;
+}
+.header-wrapper {
     position: fixed;
-    width: 99%;
+    width: 100%;
     background: rgba(48, 54, 62, 1);
     z-index: 1000;
     box-shadow: 0 0px 10px 3px #30363E;
 }
+.page-nav.shrink .nav-right a.nav-link span {
+    padding-bottom: 9px;
+    height:0;
+    bottom: -4px;
+}
+.page-nav.shrink a.button {
+    padding: 10px;
+}
+.page-nav.shrink .logo img{
+    width: 100px;
+}
+.page-nav.shrink {
+    padding: 10px 10px 6px 10px;
+}
+/** {
+ -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}*/
 .footer ul.nav li a:hover {
     color: #cdd1dc;
     border-bottom: 1px solid #5D656E;
@@ -130,6 +152,8 @@ input[type='button']:hover { background: #00b698 }
     display: block;
     padding-right: 10px;
 }
+/* ===[ Main content ]=== */
+.page-content { padding-top: 93px }
 /* ===[ Banner section ]=== */
 .banner h1,
 .invite-footer h1 { font-family: 'Raleway-Bold' }
@@ -207,8 +231,6 @@ input[type='button']:hover { background: #00b698 }
     border-bottom: 7px solid #454B54;
     margin-bottom: 5px;
 }
-/* ===[ Main content ]=== */
-.page-content { padding-top: 93px }
 .enable-smart-life {
     background: #00B698;
     border-right: 1px solid #333;
@@ -228,6 +250,13 @@ input[type='button']:hover { background: #00b698 }
     width: 80%;
     margin: 5% auto;
 }
+.enable-smart-life .img {
+    background: #fff;
+    text-align: center;
+    position: relative;
+    border-left: 1px solid #333;
+    width: 50%;
+}
 .integrity {
     background: #cf4b9a;
     border-right: 1px solid #333;
@@ -246,6 +275,13 @@ input[type='button']:hover { background: #00b698 }
     width: 80%;
     margin: 5% auto;
 }
+.integrity .img {
+    background: #fff;
+    text-align: center;
+    position: relative;
+    border-left: 1px solid #333;
+    width: 50%;
+}
 .build-data {
     background: #00B698;
     border-right: 1px solid #333;
@@ -263,6 +299,13 @@ input[type='button']:hover { background: #00b698 }
 .build-data .img img.build {
     width: 80%;
     margin: 15% auto;
+}
+.build-data .img {
+    background: #fff;
+    text-align: center;
+    position: relative;
+    border-left: 1px solid #333;
+    width: 50%;
 }
 .united-data {
     background: #ffffff;
@@ -430,15 +473,6 @@ div.quest-content p { line-height: 1.2em }
     padding: 4em 6em;
     color: #333;
 }
-.build-data .img,
-.integrity .img,
-.enable-smart-life .img {
-    background: #fff;
-    text-align: center;
-    position: relative;
-    border-left: 1px solid #333;
-    width: 50%;
-}
 .slide-content .img img { margin: 0 auto }
 .slide-content .img {
     width: 25%;
@@ -514,14 +548,14 @@ div.quest-content p { line-height: 1.2em }
 .maroon { color: #c0504d }
 .seagreen { color: #00B698 }
 * { letter-spacing: 1px }
-@media screen and (min-width: 800px) { 
-    #collapse-link { display: block !important }
-}
 @media screen and (max-width: 875px) { 
     body .nav-right a.nav-link {
         padding-left: 0;
         padding-right: 5px;
     }
+}
+@media screen and (min-width: 800px) { 
+    #collapse-link { display: block !important }
 }
 @media screen and (max-width: 800px) { 
     .build-banner-white { padding: 3em 4.5em }

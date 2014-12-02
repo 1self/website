@@ -9,31 +9,34 @@
 	<title>1Self</title>
 </head>
 <body>
-	<header class="page-nav">
-		<div class="logo">
-			<a href="index.html"><img src="images/logo.png" alt="logo"/></a>
-		</div>
-		<div class="mobile-only-nav" onclick="showNavigation('slow')">
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-		<nav class="nav-right" id="collapse-link">
+		<div class="header-wrapper">
+		<header class="page-nav">
+			<div class="logo">
+				<a href="index.html"><img src="images/logo.png" alt="logo"/></a>
+			</div>
+			<div class="mobile-only-nav" onclick="showNavigation('slow')">
+				<!-- $( "#collapse-link" ).animate({opacity: 0.25,left: "+=50",height: "toggle"}, 5000, function() {}); -->
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<nav class="nav-right" id="collapse-link">
 
-			<a class="nav-link" href="#" onclick="showNavigation('fast')">LEARN MORE
-				<span>
-					<img src="images/link-dot.png" alt=""/>
-				</span>
-			</a>
-			 <a class="nav-link" href="quest.html" onclick="showNavigation('fast')">QUEST
-				<span>
-					<img src="images/link-dot.png" alt=""/>
-				</span>
-			</a>
-			<a class="button" href="#" onclick="showNavigation('fast')">LOG IN</a>
-			<a class="button" href="#" onclick="showNavigation('fast')">SIGN UP</a>
-		</nav>
-	</header>
+				<a class="nav-link" href="#" onclick="showNavigation('fast')">LEARN MORE
+					<span>
+						<img src="images/link-dot.png" alt=""/>
+					</span>
+				</a>
+				<a class="nav-link" href="quest.html" onclick="showNavigation('fast')">QUEST
+					<span>
+						<img src="images/link-dot.png" alt=""/>
+					</span>
+				</a>
+				<a class="button" href="#" onclick="showNavigation('fast')">LOG IN</a>
+				<a class="button" href="#" onclick="showNavigation('fast')">SIGN UP</a>
+			</nav>
+		</header>
+	</div>
 	<div class="page-content">
 		<div class="banner quest-banner">
 			<h2>The 1self quest</h2>
@@ -113,14 +116,6 @@
 	<div class="copyright">Copyright © 2014 1SELF. All rights reserved. 
 	</div>
 </footer>
-<script type="text/javascript">
-	function showNavigation(){
-		$(document).ready(function(mode){
-			if( $( document ).width() < 800){
-				$('#collapse-link').slideToggle(mode);
-			}
-		});
-	}
-</script>
+<script src="js/app.js" type="text/javascript"></script>
 </body>
 </html>
