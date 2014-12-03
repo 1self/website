@@ -385,9 +385,29 @@ input[type='button']:hover { background: #00b698 }
     padding: 5em;
     background: #f05a43;
 }
+
+.content-slider{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+}
 .content-slider-container {
-    padding: 30px;
+    padding: 50px;
     background: #f2ae1c;
+}
+
+.slick-slider{
+    margin-bottom: 0%;
+}
+
+.slick-prev{
+    height: 58px;
+    left: -85px;
+}
+
+.slick-next{
+    height: 58px;
+    right: -85px;
 }
 .no-profit .empower { padding: 5em }
 .no-profit .profit-content a.button:hover { background: #D30E00 }
@@ -663,4 +683,8 @@ div.quest-content p { line-height: 1.2em }
         display: block;
         max-width: none;
     }
+}
+
+.unite-heading{
+    font-family: Raleway-light;
 }
