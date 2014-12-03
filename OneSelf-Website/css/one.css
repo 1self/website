@@ -157,6 +157,10 @@ input[type='button']:hover {
     background-color: #f2ae1c
 }
 
+.nav-right .signupButton {
+    background-color: #f2ae1c
+}
+
 .nav-right a.button {
     vertical-align: middle;
     width: 70px;
