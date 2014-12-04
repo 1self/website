@@ -536,12 +536,6 @@ input[type='button']:hover {
     background: #f05a43;
 }
 
-.content-slider {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .content-slider-container {
     padding: 50px;
     background: #f2ae1c;
@@ -560,6 +554,12 @@ input[type='button']:hover {
     height: 58px;
     right: -85px;
 }
+
+.slide-content .grid-row {
+    padding-left: 200px;
+}
+
+
 
 .no-profit .empower {
     padding: 5em
@@ -719,7 +719,11 @@ div.quest-content p {
 }
 
 .slide-content .content {
-    padding: 5% 5% 5% 20%
+    padding: 5% 5% 5% 15%
+}
+
+.slide-content .img {
+    padding: 5% 15% 5% 5%
 }
 
 .yarrow-top-desktop img {
@@ -882,7 +886,6 @@ div.quest-content p {
     .united-data .content,
     .any-data .content,
     .big-data .content,
-    .slide-content .content,
     .build-data .grid-cell.content,
     .united-data .grid-cell.content,
     .no-profit .grid-cell.profit-content,
@@ -890,6 +893,37 @@ div.quest-content p {
     .quest-content {
         padding: 3em
     }
+
+
+    .slide-content .content{
+        padding: 2% 2% 2% 5%;
+    }
+
+    .slide-content .img{
+        padding: 2% 5% 2% 2%;
+    }
+
+
+    .slide-content .img img {
+    max-width: 100px;
+    }
+
+    .slick-prev {
+        height: 29px;
+        left: -50px;
+    }
+
+    .slick-next {
+        height: 29px;
+        right: -50px;
+    }
+
+    .content-slider {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .united-data .img img.united {
         width: 80%;
     }
@@ -1044,6 +1078,40 @@ div.quest-content p {
         display: block;
         max-width: none;
     }
+
+    .slide-content .content{
+        padding: 0% 0% 0% 2%;
+        width: 100%;
+        margin-left: -10%;
+    }
+
+    .slide-content .img{
+        padding: 0% 2% 0% 0%;
+        width: 100%;
+        margin-right: -10%;
+    }
+
+
+    .slide-content .img img {
+    max-width: 100px;
+    }
+
+    .slick-prev {
+        height: 29px;
+        left: -50px;
+    }
+
+    .slick-next {
+        height: 29px;
+        right: -50px;
+    }
+
+    .content-slider-container{
+        padding: 50px;
+    }
+
+
+    
 }
 
 /* unite section */
