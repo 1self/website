@@ -547,12 +547,12 @@ input[type='button']:hover {
 
 .slick-prev {
     height: 58px;
-    left: -85px;
+    left: 0%;
 }
 
 .slick-next {
     height: 58px;
-    right: -85px;
+    right: 0%;
 }
 
 .slide-content .grid-row {
