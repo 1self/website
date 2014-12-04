@@ -159,10 +159,6 @@ input[type='button']:hover {
     background-color: #f2ae1c
 }
 
-.nav-right .signupButton {
-    background-color: #f2ae1c
-}
-
 .nav-right a.button {
     vertical-align: middle;
     width: 70px;
@@ -202,6 +198,13 @@ input[type='button']:hover {
     float: right;
     display: block;
     padding-right: 10px;
+}
+
+.nav-right a.button.signupButton:hover {
+    background-color: #FFB921;
+}
+.nav-right a.button.signupButton {
+    background-color: #f2ae1c
 }
 
 /* ===[ Main content ]=== */
@@ -272,7 +275,7 @@ input[type='button']:hover {
 }
 
 .invite {
-    padding: 40px;
+    padding: 40px 0;
     font-size: 1.4em;
 }
 
@@ -814,7 +817,7 @@ div.quest-content p {
     top:-22px;
     margin: 0 auto;
     color: #fff;
-    font-size: 0.9em;
+    font-size: 1.1em;
     font-family: 'Raleway-bold';
 }
 .next-btn {
@@ -850,7 +853,7 @@ div.quest-content p {
     }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 801px) {
     #collapse-link {
         display: block !important
     }
@@ -887,7 +890,9 @@ div.quest-content p {
     .quest-content {
         padding: 3em
     }
-
+    .united-data .img img.united {
+        width: 80%;
+    }
     body .page-content {
         padding-top: 8em
     }
@@ -1003,7 +1008,9 @@ div.quest-content p {
     .img .yarrow-down-desktop {
         left: 50%
     }
-
+    .next-page {
+        font-size: 0.9em;
+    }
     .quest-banner h2 {
         font-size: 2.5em
     }
