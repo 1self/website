@@ -33,9 +33,11 @@ $(window).scroll(function () {
     console.log($(".page-content").scrollTop());
     if ($(window).scrollTop() < headerHeight) {
         $(".page-nav").removeClass("shrink");
+        headerResize();
     }
     else {
         $(".page-nav").addClass("shrink");
+        headerResize();
 
     }
 });
