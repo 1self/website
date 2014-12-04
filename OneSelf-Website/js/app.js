@@ -1,12 +1,22 @@
-function showNavigation(mode) {
-    $(document).ready(function () {
-        if ($(document).width() < 801) {
-            $('#collapse-link').slideToggle(mode);
-        }
-    });
-}
 $(document).ready(function () {
     headerResize();
+    
+    function showNavigation(mode) {
+            if ($(document).width() < 801) {
+                $('#collapse-link').slideToggle(mode);
+            }
+    }
+
+    $('.mobile-only-nav').click(function(e){
+        showNavigation('slow');
+    });
+
+    $('.page-content').click(function(e) {
+    if ($('#collapse-link').css('display') == 'block') {
+        showNavigation('slow');
+    };
+});
+
     $('.back-to-top').click(function (event) {
         event.preventDefault();
         $('html, body').animate({scrollTop: 0}, 500);
