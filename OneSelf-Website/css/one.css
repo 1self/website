@@ -272,7 +272,6 @@ input[type='button']:hover {
 }
 
 .banner p span {
-    display: block;
     color: #00bc9d;
 }
 
@@ -315,7 +314,7 @@ input[type='button']:hover {
 
 .invite input[type="text"] {
     width: 200px;
-    padding: 8px 11px 9px 25px;
+    padding: 8px 11px 9px 10px;
     border: 1px solid #ffffff;
     color: #333333;
 }
@@ -1074,7 +1073,8 @@ div.quest-content p {
 }
 
 @media (max-width: 575px) {
-    body {
+    body{
+        font-size: 13px;
         min-width: 320px
     }
 
@@ -1187,11 +1187,18 @@ div.quest-content p {
         right: -50px;
     }
 
-    .content-slider-container{
+    .content-slider-container {
         padding: 50px;
     }
-
-
+   .any-data .img,
+   .united-data .img {
+        border-right: 0 none;
+    }
+    .build-data .img,
+    .enable-smart-life .img,
+    .integrity .img {
+        border-left: 0 none;
+    }
     
 }
 
