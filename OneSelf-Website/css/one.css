@@ -63,6 +63,10 @@ input[type='button']:hover {
     padding: 10px;
 }
 
+.big-logo {
+    padding: 10px;
+    text-align: center;
+}
 .page-nav.shrink .logo img {
     width: 100px;
 }
@@ -241,13 +245,15 @@ input[type='button']:hover {
 .banner.quest-banner {
     padding: 3em 3em 6em 3em
 }
-
+.confirmation h2,
+.quest-banner h2 {
+    color: #fdc526;
+}
 .quest-banner h2 {
     text-align: center;
     font-family: 'Raleway-Bold';
     font-size: 3.2em;
     margin-top: 40px;
-    color: #fdc526;
 }
 
 .quest-banner .page-title {
@@ -831,6 +837,37 @@ div.quest-content p {
     padding: 5% 8% 5% 12%;
 }
 
+.confirmation h2 {
+    font-family: 'Raleway-medium';
+}
+.confirmation p {
+    margin: 25px 0;
+    position: relative;
+}
+.confirmation {
+    margin: 3em 5em;
+    padding: 2.5em;
+    border-radius: 2em;
+    background: #454b54;
+    font-size: 1.1em;
+}
+.confirmation .button {
+    position: absolute;
+    right: 0;
+    top:0;
+    font-size: 1em;
+    width: 130px;
+}
+.link-box {
+    color: #84c341;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 4px;
+    padding-bottom: 4px;font-size: 1.1em;
+font-family: 'Raleway-medium';
+
+
+}
 .yarrow-top-desktop img {
     position: relative;
     top: -22px;
@@ -945,7 +982,9 @@ div.quest-content p {
 .next-page img {
     height: 45px;
 }
-
+/*body .margin-zero{
+    margin:0;
+}*/
 .maroon {
     color: #c0504d
 }
