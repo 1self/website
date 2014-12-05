@@ -17,7 +17,7 @@ $(document).ready(function () {
         }
     });
 
-    $('.back-to-top').click(function (event) {
+    $('.back-to-top, .y-dwarrow-center').click(function (event) {
         event.preventDefault();
         $('html, body').animate({scrollTop: 0}, 500);
         return false;

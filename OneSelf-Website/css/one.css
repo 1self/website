@@ -880,6 +880,9 @@ div.quest-content p {
     width: 45px;
     z-index: 999;
 }
+.y-dwarrow-center {
+    cursor: pointer;
+}
 .next-page .grid .grid-row .grd-cell{
     width: 45px;
 }
