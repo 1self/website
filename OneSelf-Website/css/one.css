@@ -264,6 +264,26 @@ input[type='button']:hover {
     background: #ffffff
 }
 
+.no-exploit-content h3 {
+    font-family: 'Raleway-Medium';
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.no-exploit-content .page-title {
+    color: #61B346
+}
+
+.no-exploit-content {
+    color: #333333;
+    font-family: 'Raleway-medium';
+}
+
+.no-exploit-content{
+    background: #ffffff
+}
+}
+
 .banner-white {
     padding: 4em;
     text-align: center;
@@ -370,7 +390,8 @@ input[type='button']:hover {
 }
 
 .enable-smart-life .content,
-.quest-content {
+.quest-content,
+.no-exploit-content {
     position: relative;
     padding: 5em;
 }
@@ -744,7 +765,8 @@ input[type='button']:hover {
 .no-profit .empower b,
 .no-profit .empower p,
 .build-banner-white p,
-.quest-content p {
+.quest-content p ,
+.no-exploit-content p {
     margin-top: 20px;
     font-size: 1.2em;
     line-height: 130%;
@@ -754,6 +776,7 @@ input[type='button']:hover {
     margin-top: 5px;
 }
 
+div.no-exploit-content p ,
 div.quest-content p {
     line-height: 1.2em
 }
@@ -926,8 +949,15 @@ div.quest-content p {
 .maroon {
     color: #c0504d
 }
-
-.seagreen {
+.yellow {
+    color: #f2ae1c;
+}
+.pink {
+    color: #cf4b9a;
+}
+.green {
+    color: #61b346
+}.seagreen {
     color: #00B698
 }
 
@@ -984,7 +1014,8 @@ div.quest-content p {
     .united-data .grid-cell.content,
     .no-profit .grid-cell.profit-content,
     .no-profit .grid-cell.empower,
-    .quest-content {
+    .quest-content,
+    .no-exploit-content {
         padding: 3em
     }
 
@@ -1151,7 +1182,9 @@ div.quest-content p {
     .next-page {
         font-size: 0.9em;
     }
-
+   .no-exploit-content h2 {
+        font-size: 2.5em
+    }
     .quest-banner h2 {
         font-size: 2.5em
     }
