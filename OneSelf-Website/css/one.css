@@ -1,6 +1,7 @@
 @import url("reset.css");
 @import url("base.css");
 @import url("fonts/fonts.css");
+@import url("fonts/font-awesome.min.css");
 
 a.button,
 button,
@@ -266,12 +267,13 @@ input[type='button']:hover {
 
 .banner p {
     margin-top: 37px;
+    margin-bottom: 47px;
     font-size: 2em;
     line-height: 1.3em;
 }
 
 .invite form {
-    margin: 15px auto
+    margin: 25px auto
 }
 
 .invite {
@@ -311,7 +313,7 @@ input[type='button']:hover {
 }
 
 .invite-footer h1 {
-    padding-top: 50px;
+    padding-bottom: 0.55em;
     margin-bottom: 10px;
 }
 
@@ -434,15 +436,61 @@ input[type='button']:hover {
     width: 50%;
 }
 
+.signup-content {
+    background: #F2AE1C;
+    border-right: 1px solid #333;
+}
+
+.signup-content .content {
+    position: relative;
+    padding: 5em;
+}
+.signup-content li{
+    vertical-align: middle;
+    background: url('../images/dot-blue-list.png') left top no-repeat;
+    padding-left: 30px;
+    line-height: 20px;
+    font-size: 1.2em;
+    padding-bottom: 8px;
+    font-family: 'Raleway-medium';
+}
+.signup-content ul{
+    list-style: none;
+}
+.signup-content h2{
+    color: #0591BD;
+}
+.signup-content .invite h3{
+    font-size: 1.3em;
+    margin-bottom:40px;
+    font-family: 'Raleway-medium';
+}
+.signup-content .invite {
+    width: 50%;
+    background: #fff;
+    color:#0591BD;
+    text-align: center;
+    position: relative;
+    padding:3em  1em;
+}
+
+.signup-content .invite input[type="text"] {
+    border-color: #00A2D4;
+   }
+.signup-content .invite input[type="button"] {
+    background: #00A2D4;
+    border-color: #00A2D4;
+}
+.signup-content .invite input[type="button"]:hover {
+    background: #0591BD;
+    border-color: #0591BD;
+
+}
+
 .united-data {
     background: #ffffff;
     border-top: 2px solid #cdd1dc;
     border-left: 1px solid #333;
-}
-
-.united-data .img img.united {
-    width: 50%;
-    margin: 15% auto;
 }
 
 .united-data .img {
@@ -474,12 +522,14 @@ input[type='button']:hover {
     border-left: 1px solid #333;
 }
 
-.any-data .img img.united {
+.any-data .img img.united,
+.united-data .img img {
     width: 80%;
-    margin: 15% auto;
+    margin: 5% auto;
 }
 
-.any-data .img {
+.any-data .img,
+ .united-data .img{
     text-align: center;
     position: relative;
     width: 50%;
@@ -510,7 +560,7 @@ input[type='button']:hover {
 
 .big-data .img img.united {
     width: 80%;
-    margin: 15% auto;
+    margin: 5% auto;
 }
 
 .big-data .img {
@@ -576,7 +626,7 @@ input[type='button']:hover {
 .no-profit .profit-content a.button {
     background: #e93d31;
     margin-top: 20px;
-    padding: 20px;
+    padding: 15px;
     margin: 20px;
     border-color: #4C545C;
     width: 160px;
@@ -604,6 +654,9 @@ input[type='button']:hover {
     color: #fdc526
 }
 
+.build-data .content h2 {
+    color: #fdc526
+}
 .build-data .content h2 {
     color: #fdc526
 }
@@ -637,6 +690,7 @@ input[type='button']:hover {
 .big-data .content h2,
 .any-data .content h2,
 .united-data .content h2,
+.signup-content .content h2,
 .build-data .content h2,
 .enable-smart-life .content h2,
 .integrity .content h2 {
@@ -647,6 +701,8 @@ input[type='button']:hover {
 .enable-smart-life .content b,
 .integrity .content p,
 .integrity .content b,
+.signup-content .content p,
+.signup-content .content b,
 .build-data .content p,
 .build-data .content b,
 .united-data .content p,
@@ -680,6 +736,7 @@ div.quest-content p {
 
 .enable-smart-life .content b,
 .integrity .content b,
+.signup-content .content b,
 .build-data .content b,
 .united-data .content b,
 .any-data .content b,
@@ -692,6 +749,7 @@ div.quest-content p {
 
 .enable-smart-life .content .button,
 .integrity .content .button,
+.signup-content .content .button,
 .build-data .content .button,
 .united-data .content .button,
 .any-data .content .button,
@@ -719,11 +777,7 @@ div.quest-content p {
 }
 
 .slide-content .content {
-    padding: 5% 5% 5% 15%
-}
-
-.slide-content .img {
-    padding: 5% 15% 5% 5%
+    padding: 5% 8% 5% 12%;
 }
 
 .yarrow-top-desktop img {
@@ -850,20 +904,20 @@ div.quest-content p {
     letter-spacing: 1px
 }
 
-@media screen and (max-width: 875px) {
+@media (max-width: 875px) {
     body .nav-right a.nav-link {
         padding-left: 0;
         padding-right: 5px;
     }
 }
 
-@media screen and (min-width: 801px) {
+@media (min-width: 801px) {
     #collapse-link {
         display: block !important
     }
 }
 
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
     .build-banner-white {
         padding: 3em 4.5em
     }
@@ -882,6 +936,7 @@ div.quest-content p {
 
     .enable-smart-life .content,
     .integrity .content,
+    .signup-content .content,
     .build-data .content,
     .united-data .content,
     .any-data .content,
@@ -893,7 +948,6 @@ div.quest-content p {
     .quest-content {
         padding: 3em
     }
-
 
     .slide-content .content{
         padding: 2% 2% 2% 5%;
@@ -924,9 +978,10 @@ div.quest-content p {
         margin-right: auto;
     }
 
-    .united-data .img img.united {
+
+/*    .united-data .img img.united {
         width: 80%;
-    }
+    }*/
     body .page-content {
         padding-top: 8em
     }
@@ -993,9 +1048,17 @@ div.quest-content p {
         padding-right: 0;
         border-top: 1px solid #454b54;
     }
+
+    .signup-content .invite input[type="text"] {
+        width: 120px;
+        }
+    .signup-content .invite input[type="button"] {
+        width: 80px;
+        }
+
 }
 
-@media screen and (max-width: 575px) {
+@media (max-width: 575px) {
     body {
         min-width: 320px
     }
@@ -1006,15 +1069,15 @@ div.quest-content p {
     }
 
     .grid-reset-mobile .grid-row {
-        display: block
+        display: block;
     }
 
     .grid-reset-mobile {
-        display: block
+        display: block;
     }
 
     .left-reset {
-        float: none
+        float: none;
     }
 
     .right-reset {
@@ -1035,11 +1098,14 @@ div.quest-content p {
 
     .img .red-dot-desktop,
     .content .red-dot-desktop,
-    .profit-content .yarrow-top-desktop {
-        right: 50%
+    .profit-content .yarrow-top-desktop,
+     .red-dot-desktop{
+        right: 50%;
+        left: none;
     }
 
-    .img .yarrow-down-desktop {
+    .img .yarrow-down-desktop,
+     .yarrow-down-desktop{
         left: 50%
     }
     .next-page {
