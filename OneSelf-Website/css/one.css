@@ -151,6 +151,21 @@ input[type='button']:hover {
     padding: 3em 5em;
 }
 
+
+.footer .nav.connect li a:hover {
+    background: #30363E;
+    border-radius:100%;
+}
+.footer .nav.connect li {
+    text-align: center;
+}
+.footer .nav.connect li a {
+    font-size: 2em;
+    padding: 5px 8px;
+}
+.footer .nav.connect li.heading {
+    text-align: left;
+}
 .logo {
     margin-left: 13px;
     float: left;

@@ -15,14 +15,13 @@ $(document).ready(function () {
         if ($('#collapse-link').css('display') == 'block') {
             showNavigation('slow');
         }
-        ;
     });
 
     $('.back-to-top').click(function (event) {
         event.preventDefault();
         $('html, body').animate({scrollTop: 0}, 500);
         return false;
-    })
+    });
 });
 
 $(window).resize(function () {
