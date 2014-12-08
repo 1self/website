@@ -6,6 +6,8 @@
     <link rel="icon" href="images/fav.ico">
     <link rel="stylesheet" type="text/css" href="css/one.css">
     <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="js/confirmation.js" type="text/javascript"></script>
+
     <title>1Self</title>
 </head>
 <body>
@@ -19,6 +21,7 @@
             <h2>Thank you and welcome!</h2>
             <p>(We've just sent you an email to double-check it was you who signed up)</p>
             <div class="seperator pink-divider"><img src="images/pink-white-dot.png" alt=""></div>
+            
             <h2>Get 1self <u>free for life</u></h2>
             <p>If 3 or more people sign up using your unique referrer link then we'll give you 1self free for life. That's every single bit of data about you helping you live smarter for the rest of your life, for free.</p>
             <p>Your unique referrer link:<br>
@@ -27,19 +30,17 @@
                         <div class="grid-cell copy-link">
                             <button class="">Copy</button>
                         </div>
-                        <textarea rows="3" class="grid-cell link-box">http://www.1self.co?referrer=DAAFEASDASDFASEASE</textarea>
+                        <textarea id="shareLink" rows="3" class="grid-cell link-box">http://www.1self.co?referrer=DAAFEASDASDFASEASE</textarea>
                     </div>
                 </div>
-                    
-                
             </p>
             <div class="grid-reset-tablet share">
                 <div class="grid-row">
-                    <a href="#" class="grid-cell twitter">
+                    <a id="share_twitter" href="#" class="grid-cell twitter">
                         <span><i class="fa fa-twitter"></i></span> Share on Twitter</a>
-                        <a href="#" class="grid-cell facebook">
+                        <a id="share_facebook" href="#" class="grid-cell facebook">
                             <span><i class="fa fa-facebook"></i></span> Share on Facebook</a>
-                            <a href="#" class="grid-cell email">
+                            <a id="share_email" href="#" class="grid-cell email">
                                 <span><i class="fa fa-envelope"></i></span> Share by email
                             </a>
                         </div>
