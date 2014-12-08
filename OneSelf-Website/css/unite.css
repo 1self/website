@@ -1,14 +1,14 @@
 @media screen and (max-width: 575px) {
-    .slide-content .grid-row {
-padding-left: 30px;
-}
+    /*.slide-content .grid-row {
+        padding-left: 30px;
+    }*/
     .slide-content .img{
         padding-top: 20px;
     }
 
-.content-slider-container{
-    padding: 30px 0px 20px 0px;
-}
+    .content-slider-container{
+        padding: 30px 0px 40px 0px;
+    }
 
     .slick-prev{
         left: 5px;
