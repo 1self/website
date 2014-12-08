@@ -1365,12 +1365,12 @@ div.quest-content p {
     .profit-content .yarrow-top-desktop,
     .red-dot-desktop {
         right: 50%;
-        left: 0;
+        left: none;
     }
 
     .img .yarrow-down-desktop,
     .yarrow-down-desktop {
-        left: 50%
+        left: 50%;
     }
 
     .next-page {
