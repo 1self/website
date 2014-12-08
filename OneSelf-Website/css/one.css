@@ -29,7 +29,8 @@ input[type='button']:hover {
 }
 
 /* ===[ Page Navigation css ]=== */
-.page-nav:after {
+.page-nav:after,
+.clearfix:after {
     content: "";
     display: block;
     clear: both;
@@ -92,35 +93,35 @@ input[type='button']:hover {
     line-height: 1.75em;
 }
 
-.footer ul.nav .sepearator-right,
-.footer ul.nav .sepearator-center,
-.footer ul.nav .sepearator-left {
+.footer ul.nav .seperator-right,
+.footer ul.nav .seperator-center,
+.footer ul.nav .seperator-left {
     position: relative;
     overflow: hidden;
     padding: 21px 0 31px 0;
 }
 
-.footer ul.nav .sepearator-right img,
-.footer ul.nav .sepearator-center img,
-.footer ul.nav .sepearator-left img {
+.footer ul.nav .seperator-right img,
+.footer ul.nav .seperator-center img,
+.footer ul.nav .seperator-left img {
     position: absolute;
     max-width: none;
 }
 
-.footer ul.nav .sepearator-right img {
+.footer ul.nav .seperator-right img {
     right: 0
 }
 
-.footer ul.nav .sepearator-center {
+.footer ul.nav .seperator-center {
     left: -10%;
     width: 120%;
 }
 
-.footer ul.nav .sepearator-center img {
+.footer ul.nav .seperator-center img {
     left: -50px
 }
 
-.footer ul.nav .sepearator-left {
+.footer ul.nav .seperator-left {
     left: -30%;
     width: 130%;
 }
@@ -143,7 +144,8 @@ input[type='button']:hover {
     font-family: 'Raleway-Light';
 }
 
-.footer .copyright {
+.copyright {
+    text-align: center;
     color: #646E7A;
     font-size: 0.7em;
     padding-top: 35px;
@@ -851,12 +853,53 @@ div.quest-content p {
     background: #454b54;
     font-size: 1.1em;
 }
+.confirmation .share a:hover{
+    border: 1px solid #30363e;
+}
+/*.confirmation .share a.twitter:hover span{
+    background: #30363E;
+}*/
+.confirmation .share a.twitter span,
+.confirmation .share a.twitter:hover{
+    background: #5EA9DD;    
+}
+.confirmation .share a.facebook span,
+.confirmation .share a.facebook:hover{
+    background: #3B579D;
+}
+.confirmation .share a.email span,
+.confirmation .share a.email:hover{
+    background: #CF4B9A;
+}
+
+.confirmation .share a span{
+    font-size: 1.2em;
+    padding: 5px;
+    display: inline-block;
+    width: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+.confirmation .share a{
+    text-align: center;
+    padding: 0 5px;
+    color: #ffffff;
+    border: 1px solid #454B54;
+    font-family: 'Raleway-Medium';
+    font-size: 0.95em;
+}
+.confirmation .share {
+    width: 600px;
+    margin: auto;
+}
 .confirmation .button {
     position: absolute;
     right: 0;
     top:0;
-    font-size: 1em;
-    width: 130px;
+    font-size: 0.8em;
+    width: auto;
+    font-family: 'Raleway-bold';
 }
 .link-box {
     color: #84c341;
@@ -864,9 +907,8 @@ div.quest-content p {
     padding-right: 1%;
     padding-top: 4px;
     padding-bottom: 4px;font-size: 1.1em;
-font-family: 'Raleway-medium';
-
-
+    font-family: 'Raleway-medium';
+    word-wrap: break-word;
 }
 .yarrow-top-desktop img {
     position: relative;
@@ -929,12 +971,12 @@ font-family: 'Raleway-medium';
     border-top: 2px solid #ffffff
 }
 
-.sepearator-dark {
+.seperator-dark {
     border-top: 2px solid #333
 }
 
-.sepearator-dark,
-.sepearator {
+.seperator-dark,
+.seperator {
     margin: 40px auto;
     text-align: center;
     height: 0;
@@ -999,7 +1041,12 @@ font-family: 'Raleway-medium';
 }.seagreen {
     color: #00B698
 }
-
+.rightFloat{
+    float: right;
+}
+.leftFloat{
+    float:left;
+}
 .text-right {
     text-align: right;
 }
@@ -1026,14 +1073,48 @@ font-family: 'Raleway-medium';
 }
 
 @media (max-width: 800px) {
+    .confirmation .share a span{
+        text-align: center;
+        padding-left: 7px;
+        width: 28px;
+    }
+    .confirmation .share a{
+        text-align: left;
+        margin: 5px auto;
+    }
+    .confirmation {
+        margin: 2em;
+    }
+    .confirmation .share {
+        width: 250px;
+        margin: 0 auto;
+    }
+    .grid-reset-tablet .grid-row .grid-cell {
+        display: block;
+        width: auto;
+    }
+
+    .grid-reset-tablet .grid-row {
+        display: block;
+    }
+
+    .grid-reset-tablet {
+        display: block;
+    }
+
     .build-banner-white {
         padding: 3em 4.5em
     }
-
+    .confirmation .button{
+        font-size: 0.7em;
+        width: 139px;
+        padding: 10px 5px;
+        width: 140px;
+        border: 1px solid #fff;
+    }
     .page-nav .logo img {
         height: 40px
     }
-
     .page-nav .logo {
         margin: 0
     }
@@ -1041,7 +1122,6 @@ font-family: 'Raleway-medium';
     .page-nav {
         padding: 1em
     }
-
     .enable-smart-life .content,
     .integrity .content,
     .signup-content .content,
@@ -1101,9 +1181,9 @@ font-family: 'Raleway-medium';
         padding: 1em
     }
 
-    body .footer ul.nav .sepearator-right,
-    body .footer ul.nav .sepearator-center,
-    body .footer ul.nav .sepearator-left {
+    body .footer ul.nav .seperator-right,
+    body .footer ul.nav .seperator-center,
+    body .footer ul.nav .seperator-left {
         padding-top: 18px;
         padding-bottom: 28px;
     }
@@ -1171,7 +1251,16 @@ font-family: 'Raleway-medium';
         font-size: 13px;
         min-width: 320px
     }
-
+    .confirmation .seperator.pink-divider{
+        min-width: 100%;
+    }
+    .confirmation .button {
+        position: relative;
+        margin-top: 20px;
+    }
+    .confirmation .share {
+        width: auto;
+    }
     .grid-reset-mobile .grid-row .grid-cell {
         display: block;
         width: auto;
@@ -1228,16 +1317,16 @@ font-family: 'Raleway-medium';
         font-size: 2.5em
     }
 
-    footer.footer ul.nav .sepearator-left img,
-    footer.footer ul.nav .sepearator-center img,
-    footer.footer ul.nav .sepearator-right img {
+    footer.footer ul.nav .seperator-left img,
+    footer.footer ul.nav .seperator-center img,
+    footer.footer ul.nav .seperator-right img {
         width: 100%;
         position: static;
     }
 
-    footer.footer ul.nav .sepearator-left,
-    footer.footer ul.nav .sepearator-center,
-    footer.footer ul.nav .sepearator-right {
+    footer.footer ul.nav .seperator-left,
+    footer.footer ul.nav .seperator-center,
+    footer.footer ul.nav .seperator-right {
         padding: 0;
         width: 100%;
         left: 0;
