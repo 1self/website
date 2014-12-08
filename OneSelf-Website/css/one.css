@@ -162,10 +162,6 @@ input[type='button']:hover {
     border-radius: 100%;
 }
 
-.footer .nav.connect li {
-    text-align: center;
-}
-
 .footer .nav.connect li a {
     font-size: 2em;
     padding: 5px 8px;
@@ -846,6 +842,27 @@ div.quest-content p {
     margin: 25px 0;
     position: relative;
 }
+.confirmation .next-page .text-left img{
+    float: left;
+}
+.confirmation .next-page .text-right img{
+    float: right;
+}
+.confirmation .next-page:hover div{
+    text-decoration: underline;
+}
+.confirmation .next-page{
+    display: block;
+    text-align: center;
+    position: static;
+    top:0;
+    font-size: 1em;
+    margin-top: 10px;
+}
+.confirmation .address{
+    line-height: 1.2em;
+    font-family: 'Raleway-medium';
+}
 .confirmation {
     margin: 3em 5em;
     padding: 2.5em;
@@ -893,23 +910,30 @@ div.quest-content p {
     width: 600px;
     margin: auto;
 }
-.confirmation .button {
-    position: absolute;
-    right: 0;
-    top:0;
-    font-size: 0.8em;
-    width: auto;
-    font-family: 'Raleway-bold';
-}
-.link-box {
-    color: #84c341;
-    padding-left: 1%;
-    padding-right: 1%;
-    padding-top: 4px;
-    padding-bottom: 4px;font-size: 1.1em;
+ .confirmation-link .copy-link button{
+    width: 100%;
+ }
+ .confirmation-link .copy-link{
+    width: 100px;
+    text-align: right;
+ }
+
+ .link-box {
+    white-space: nowrap;
+    border:2px solid #ffffff;
+    height: 38px;
+    resize: none;
+    width: 100%;
+    color: #fff;
     font-family: 'Raleway-medium';
-    word-wrap: break-word;
-}
+    vertical-align: middle;
+    display:inline-block;
+    background: #454B54;
+    font-size: 1.1em;
+    line-height: 2em;
+    overflow-y:hidden;
+    overflow-x:auto;
+ }
 .yarrow-top-desktop img {
     position: relative;
     top: -22px;
@@ -1269,17 +1293,17 @@ div.quest-content p {
     .grid-reset-mobile .grid-row {
         display: block;
     }
-
+    .link-box {
+        height: 37px;
+    }
     .grid-reset-mobile {
         display: block;
     }
-
-    .left-reset {
-        float: none;
-    }
-
+    .leftFloat,
+    .rightFloat,
+    .left-reset ,
     .right-reset {
-        float: none
+        float: none;
     }
 
     .build-banner-white {
@@ -1316,7 +1340,12 @@ div.quest-content p {
     .quest-banner h2 {
         font-size: 2.5em
     }
-
+    .footer .nav.connect li {
+        text-align: center;
+    }
+    footer.footer ul.nav{
+        font-size: 1.1em;
+    }
     footer.footer ul.nav .seperator-left img,
     footer.footer ul.nav .seperator-center img,
     footer.footer ul.nav .seperator-right img {

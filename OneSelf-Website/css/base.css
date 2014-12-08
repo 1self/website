@@ -26,6 +26,8 @@ section{}
 aside{}
 img{
 	max-width: 100%;
+	line-height: 0;
+	font-size: 0;
 }
 hr{}
 input,button{}
