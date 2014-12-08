@@ -68,6 +68,7 @@ input[type='button']:hover {
     padding: 10px;
     text-align: center;
 }
+
 .page-nav.shrink .logo img {
     width: 100px;
 }
@@ -243,10 +244,12 @@ input[type='button']:hover {
 .banner.quest-banner {
     padding: 3em 3em 6em 3em
 }
+
 .confirmation h2,
 .quest-banner h2 {
     color: #fdc526;
 }
+
 .quest-banner h2 {
     text-align: center;
     font-family: 'Raleway-Bold';
@@ -283,9 +286,8 @@ input[type='button']:hover {
     font-family: 'Raleway-medium';
 }
 
-.no-exploit-content{
+.no-exploit-content {
     background: #ffffff
-}
 }
 
 .banner-white {
@@ -769,7 +771,7 @@ input[type='button']:hover {
 .no-profit .empower b,
 .no-profit .empower p,
 .build-banner-white p,
-.quest-content p ,
+.quest-content p,
 .no-exploit-content p {
     margin-top: 20px;
     font-size: 1.2em;
@@ -780,7 +782,7 @@ input[type='button']:hover {
     margin-top: 5px;
 }
 
-div.no-exploit-content p ,
+div.no-exploit-content p,
 div.quest-content p {
     line-height: 1.2em
 }
@@ -838,31 +840,38 @@ div.quest-content p {
 .confirmation h2 {
     font-family: 'Raleway-medium';
 }
+
 .confirmation p {
     margin: 25px 0;
     position: relative;
 }
-.confirmation .next-page .text-left img{
+
+.confirmation .next-page .text-left img {
     float: left;
 }
-.confirmation .next-page .text-right img{
+
+.confirmation .next-page .text-right img {
     float: right;
 }
-.confirmation .next-page:hover div{
+
+.confirmation .next-page:hover div {
     text-decoration: underline;
 }
-.confirmation .next-page{
+
+.confirmation .next-page {
     display: block;
     text-align: center;
     position: static;
-    top:0;
+    top: 0;
     font-size: 1em;
     margin-top: 10px;
 }
-.confirmation .address{
+
+.confirmation .address {
     line-height: 1.2em;
     font-family: 'Raleway-medium';
 }
+
 .confirmation {
     margin: 3em 5em;
     padding: 2.5em;
@@ -870,26 +879,30 @@ div.quest-content p {
     background: #454b54;
     font-size: 1.1em;
 }
-.confirmation .share a:hover{
+
+.confirmation .share a:hover {
     border: 1px solid #30363e;
 }
+
 /*.confirmation .share a.twitter:hover span{
     background: #30363E;
 }*/
 .confirmation .share a.twitter span,
-.confirmation .share a.twitter:hover{
-    background: #5EA9DD;    
+.confirmation .share a.twitter:hover {
+    background: #5EA9DD;
 }
+
 .confirmation .share a.facebook span,
-.confirmation .share a.facebook:hover{
+.confirmation .share a.facebook:hover {
     background: #3B579D;
 }
+
 .confirmation .share a.email span,
-.confirmation .share a.email:hover{
+.confirmation .share a.email:hover {
     background: #CF4B9A;
 }
 
-.confirmation .share a span{
+.confirmation .share a span {
     font-size: 1.2em;
     padding: 5px;
     display: inline-block;
@@ -898,7 +911,8 @@ div.quest-content p {
     vertical-align: middle;
     border-radius: 50%;
 }
-.confirmation .share a{
+
+.confirmation .share a {
     text-align: center;
     padding: 0 5px;
     color: #ffffff;
@@ -906,34 +920,38 @@ div.quest-content p {
     font-family: 'Raleway-Medium';
     font-size: 0.95em;
 }
+
 .confirmation .share {
     width: 600px;
     margin: auto;
 }
- .confirmation-link .copy-link button{
+
+.confirmation-link .copy-link button {
     width: 100%;
- }
- .confirmation-link .copy-link{
+}
+
+.confirmation-link .copy-link {
     width: 100px;
     text-align: right;
- }
+}
 
- .link-box {
+.link-box {
     white-space: nowrap;
-    border:2px solid #ffffff;
+    border: 2px solid #ffffff;
     height: 38px;
     resize: none;
     width: 100%;
     color: #fff;
     font-family: 'Raleway-medium';
     vertical-align: middle;
-    display:inline-block;
+    display: inline-block;
     background: #454B54;
     font-size: 1.1em;
     line-height: 2em;
-    overflow-y:hidden;
-    overflow-x:auto;
- }
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
 .yarrow-top-desktop img {
     position: relative;
     top: -22px;
@@ -1048,29 +1066,38 @@ div.quest-content p {
 .next-page img {
     height: 45px;
 }
+
 /*body .margin-zero{
     margin:0;
 }*/
 .maroon {
     color: #c0504d
 }
+
 .yellow {
     color: #f2ae1c;
 }
+
 .pink {
     color: #cf4b9a;
 }
+
 .green {
     color: #61b346
-}.seagreen {
+}
+
+.seagreen {
     color: #00B698
 }
-.rightFloat{
+
+.rightFloat {
     float: right;
 }
-.leftFloat{
-    float:left;
+
+.leftFloat {
+    float: left;
 }
+
 .text-right {
     text-align: right;
 }
@@ -1097,22 +1124,26 @@ div.quest-content p {
 }
 
 @media (max-width: 800px) {
-    .confirmation .share a span{
+    .confirmation .share a span {
         text-align: center;
         padding-left: 7px;
         width: 28px;
     }
-    .confirmation .share a{
+
+    .confirmation .share a {
         text-align: left;
         margin: 5px auto;
     }
+
     .confirmation {
         margin: 2em;
     }
+
     .confirmation .share {
         width: 250px;
         margin: 0 auto;
     }
+
     .grid-reset-tablet .grid-row .grid-cell {
         display: block;
         width: auto;
@@ -1129,16 +1160,19 @@ div.quest-content p {
     .build-banner-white {
         padding: 3em 4.5em
     }
-    .confirmation .button{
+
+    .confirmation .button {
         font-size: 0.7em;
         width: 139px;
         padding: 10px 5px;
         width: 140px;
         border: 1px solid #fff;
     }
+
     .page-nav .logo img {
         height: 40px
     }
+
     .page-nav .logo {
         margin: 0
     }
@@ -1146,6 +1180,7 @@ div.quest-content p {
     .page-nav {
         padding: 1em
     }
+
     .enable-smart-life .content,
     .integrity .content,
     .signup-content .content,
@@ -1275,16 +1310,20 @@ div.quest-content p {
         font-size: 13px;
         min-width: 320px
     }
-    .confirmation .seperator.pink-divider{
+
+    .confirmation .seperator.pink-divider {
         min-width: 100%;
     }
+
     .confirmation .button {
         position: relative;
         margin-top: 20px;
     }
+
     .confirmation .share {
         width: auto;
     }
+
     .grid-reset-mobile .grid-row .grid-cell {
         display: block;
         width: auto;
@@ -1293,15 +1332,18 @@ div.quest-content p {
     .grid-reset-mobile .grid-row {
         display: block;
     }
+
     .link-box {
         height: 37px;
     }
+
     .grid-reset-mobile {
         display: block;
     }
+
     .leftFloat,
     .rightFloat,
-    .left-reset ,
+    .left-reset,
     .right-reset {
         float: none;
     }
@@ -1323,7 +1365,7 @@ div.quest-content p {
     .profit-content .yarrow-top-desktop,
     .red-dot-desktop {
         right: 50%;
-        left: none;
+        left: 0;
     }
 
     .img .yarrow-down-desktop,
@@ -1334,18 +1376,23 @@ div.quest-content p {
     .next-page {
         font-size: 0.9em;
     }
-   .no-exploit-content h2 {
+
+    .no-exploit-content h2 {
         font-size: 2.5em
     }
+
     .quest-banner h2 {
         font-size: 2.5em
     }
+
     .footer .nav.connect li {
         text-align: center;
     }
-    footer.footer ul.nav{
+
+    footer.footer ul.nav {
         font-size: 1.1em;
     }
+
     footer.footer ul.nav .seperator-left img,
     footer.footer ul.nav .seperator-center img,
     footer.footer ul.nav .seperator-right img {
