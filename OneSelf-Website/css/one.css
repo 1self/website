@@ -25,7 +25,7 @@ a.button:hover,
 button:hover,
 input[type='sumbit']:hover,
 input[type='button']:hover {
-    background: #00b698
+    background: #00b698;
 }
 
 /* ===[ Page Navigation css ]=== */
@@ -325,22 +325,27 @@ input[type='button']:hover {
     font-size: 1.4em;
 }
 
+.invite input[type="submit"]:hover,
 .invite input[type="button"]:hover {
     background: #00967D
 }
 
+.invite input[type="submit"],
 .invite input[type="button"] {
     width: 100px;
     padding: 10px 10px 11px 10px;
     padding: 8px 10px 10px 10px;
     background: #00b698;
-    border-color: #fff;
+    border: 2px solid #fff;
+    color: #fff;
+    cursor: pointer;
 }
 
 .invite::-webkit-input-placeholder {
     color: #ececec;
 }
 
+.invite input[type="email"],
 .invite input[type="text"] {
     width: 200px;
     padding: 8px 11px 9px 10px;
@@ -534,16 +539,18 @@ input[type='button']:hover {
     padding: 3em 1em;
 }
 
-.signup-content .invite input[type="text"] {
+.signup-content .invite input[type="email"] {
     border-color: #00A2D4;
 }
 
-.signup-content .invite input[type="button"] {
+.signup-content .invite input[type="submit"] {
     background: #00A2D4;
-    border-color: #00A2D4;
+    border: 2px solid #00A2D4;
+    color: #ffffff;
+    cursor: pointer;
 }
 
-.signup-content .invite input[type="button"]:hover {
+.signup-content .invite input[type="submit"]:hover {
     background: #0591BD;
     border-color: #0591BD;
 
@@ -1394,8 +1401,11 @@ div.quest-content p {
 
     .next-page {
         font-size: 0.9em;
+        margin-bottom: 15px;
     }
-
+    .confirmation p {
+        line-height: 1.2em;
+    }
     .no-exploit-content h2 {
         font-size: 2.5em
     }
@@ -1407,7 +1417,9 @@ div.quest-content p {
     .footer .nav.connect li {
         text-align: center;
     }
-
+    .confirmation .share a{
+        font-size: 0.85em;
+    }
     footer.footer ul.nav {
         font-size: 1.1em;
     }
