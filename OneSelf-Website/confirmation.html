@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="css/one.css">
     <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="js/confirmation.js" type="text/javascript"></script>
+    <script src="js/zeroclipboard/ZeroClipboard.js"></script>
+
 
     <title>1Self</title>
 </head>
@@ -28,7 +30,7 @@
                 <div class="grid confirmation-link">
                     <div class="grid-row">
                         <div class="grid-cell copy-link">
-                            <button class="">Copy</button>
+                            <button id="copy-button" data-clipboard-target="shareLink">Copy</button>
                         </div>
                         <textarea id="shareLink" rows="3" class="grid-cell link-box">http://www.1self.co</textarea>
                     </div>
@@ -55,7 +57,7 @@
                                     <div class="grid-cell text-right">
                                         <img src="images/next-btn_left.png">
                                     </div>
-                                    <div class="grid-cell next-btn"><span style="font-size:1.2em;"><
+                                    <div class="grid-cell next-btn"><span style="font-size:1.2em;">
                                     </span> return to our website
                                 </div>
                                 <div class="grid-cell text-left">
@@ -76,5 +78,14 @@
     <div class="copyright">Copyright © 2014 1SELF. All rights reserved.
     </div>
     <script src="js/app.js" type="text/javascript"></script>
+    <script>
+    (function() {
+        //ZeroClipboard
+        var zc_client = new ZeroClipboard(document.getElementById('copy-button'));
+        zc_client.on('ready', function(r_event) {
+            console.log("Ready!");
+        });
+    })();
+    </script>
 </body>
 </html>
