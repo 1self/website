@@ -1,10 +1,8 @@
 var cacheEmail1 = function(){
-    alert($('#mce-EMAIL1')[0].value);
     localStorage.signupEmail = $('#mce-EMAIL1')[0].value;
 };
 
 var cacheEmail2 = function(){
-    alert($('#mce-EMAIL2')[0].value);
     localStorage.signupEmail = $('#mce-EMAIL2')[0].value;
 };
 
