@@ -1,27 +1,35 @@
 $(document).ready(function(){
     //return;
     // enable this when api is launched
-    
+    var referralCode;
     console.log("ready");
-    // if(typeof localStorage.signupEmail === "undefined"){
-    //     return;
-    // }
+    if(typeof localStorage.signupEmail === "undefined"){
+        if(typeof localStorage.referralCode !== "undefined") {
+            referralCode = localStorage.referralCode;
+        }
+        else {
+            return;
+        }
+    }
+    else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST","http://localhost:3000", false);
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.send(JSON.stringify({
+            email: localStorage.signupEmail,
+            referredBy: localStorage.referrer 
+        }));
 
-    var xmlhttp = new XMLHttpRequest();
-    
-    xmlhttp.open("POST","http://signup.1self.co", false);
-    xmlhttp.setRequestHeader("Content-Type", "application/json");
-    xmlhttp.send(JSON.stringify({
-        email: localStorage.signupEmail,
-        referredBy: localStorage.referrer 
-    }));
+        var response = JSON.parse(xmlhttp.response);
+        referralCode = response.referralCode;
+        localStorage.referralCode = referralCode;
 
-    var response = JSON.parse(xmlhttp.response);
-    localStorage.referralCode = response.referralCode;
+        delete localStorage.signupEmail;
+    }
 
     var shareTitle = "1self -  Every data bit about you in one place";
     var shareCaption = "Share and win";
-    var shareLink = "http://www.1self.co?referrer=" + response.referralCode;
+    var shareLink = "http://www.1self.co?referrer=" + referralCode;
     var shareText = "Refer 3 people and get 1self free for a year";
 
     $('#shareLink').text(shareLink);
