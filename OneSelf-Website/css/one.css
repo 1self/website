@@ -369,11 +369,11 @@ input[type='button']:hover {
     vertical-align: middle
 }
 
-.invite-footer input[type="button"]:hover {
+.invite-footer input[type="submit"]:hover {
     background: #F1B024
 }
 
-.invite-footer input[type="button"] {
+.invite-footer input[type="submit"] {
     background: #FDC526
 }
 
@@ -383,16 +383,19 @@ input[type='button']:hover {
     border-bottom: 7px solid #454B54;
     margin-bottom: 5px;
 }
-.privacy b{
+
+.privacy b {
     font-family: 'Raleway-bold';
 }
-.privacy h4{
-        font-family: 'Raleway-bold';
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding-left: 5px;
-        font-size: 1.3em;
+
+.privacy h4 {
+    font-family: 'Raleway-bold';
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 5px;
+    font-size: 1.3em;
 }
+
 .enable-smart-life {
     background: #00B698;
     border-right: 1px solid #333;
@@ -414,9 +417,11 @@ input[type='button']:hover {
     position: relative;
     padding: 5em;
 }
+
 .privacy {
     padding: 5em 8em;
 }
+
 .enable-smart-life .img img.build {
     width: 50%;
     margin: 5% auto;
@@ -941,7 +946,7 @@ div.quest-content p {
 
 .confirmation-link .copy-link button {
     width: 100%;
-    border:1px solid #fff;
+    border: 1px solid #fff;
 }
 
 .confirmation-link .copy-link {
@@ -1325,12 +1330,15 @@ div.quest-content p {
         font-size: 13px;
         min-width: 320px
     }
+
     .mobile-only {
         display: block;
     }
+
     .desktop-only {
         display: none !important;
     }
+
     .confirmation .seperator.pink-divider {
         min-width: 100%;
     }
@@ -1371,13 +1379,16 @@ div.quest-content p {
     .build-banner-white {
         padding: 3em
     }
-    .banner-white h2{
+
+    .banner-white h2 {
         font-size: 1.6em;
         font-family: 'Raleway-medium';
     }
+
     .banner-white {
         padding: 4em 2em;
     }
+
     .invite form input[type="button"] {
         width: 85px
     }
@@ -1403,9 +1414,11 @@ div.quest-content p {
         font-size: 0.9em;
         margin-bottom: 15px;
     }
+
     .confirmation p {
         line-height: 1.2em;
     }
+
     .no-exploit-content h2 {
         font-size: 2.5em
     }
@@ -1417,9 +1430,11 @@ div.quest-content p {
     .footer .nav.connect li {
         text-align: center;
     }
-    .confirmation .share a{
+
+    .confirmation .share a {
         font-size: 0.85em;
     }
+
     footer.footer ul.nav {
         font-size: 1.1em;
     }
@@ -1457,13 +1472,13 @@ div.quest-content p {
     .slide-content .content {
         padding: 0% 0% 0% 2%;
         width: 100%;
-        //margin-left: -10%;
+    / / margin-left : - 10 %;
     }
 
     .slide-content .img {
         padding: 0% 2% 0% 0%;
         width: 100%;
-        //margin-right: -10%;
+    / / margin-right : - 10 %;
         margin: 0 auto;
     }
 

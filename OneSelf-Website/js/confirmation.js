@@ -2,7 +2,6 @@ $(document).ready(function(){
     //return;
     // enable this when api is launched
     var referralCode;
-    console.log("ready");
     if(typeof localStorage.signupEmail === "undefined"){
         if(typeof localStorage.referralCode !== "undefined") {
             referralCode = localStorage.referralCode;

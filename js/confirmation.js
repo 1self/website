@@ -2,7 +2,6 @@ $(document).ready(function(){
     //return;
     // enable this when api is launched
 
-    console.log("ready");
     if(typeof localStorage.signupEmail === "undefined"){
         return;
     }
