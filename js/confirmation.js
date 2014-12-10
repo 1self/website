@@ -1,9 +1,9 @@
-$(document).ready(function(){
+$(document).ready(function () {
     //return;
     // enable this when api is launched
     var referralCode;
-    if(typeof localStorage.signupEmail === "undefined"){
-        if(typeof localStorage.referralCode !== "undefined") {
+    if (typeof localStorage.signupEmail === "undefined") {
+        if (typeof localStorage.referralCode !== "undefined") {
             referralCode = localStorage.referralCode;
         }
         else {
@@ -12,11 +12,11 @@ $(document).ready(function(){
     }
     else {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST","http://localhost:3000", false);
+        xmlhttp.open("POST", "http://signup.1self.co", false);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify({
             email: localStorage.signupEmail,
-            referredBy: localStorage.referrer 
+            referredBy: localStorage.referrer
         }));
 
         var response = JSON.parse(xmlhttp.response);
@@ -33,18 +33,18 @@ $(document).ready(function(){
 
     $('#shareLink').text(shareLink);
 
-    var twitter_share_link = "https://twitter.com/intent/tweet?text="+ shareText +" \n"+ shareLink;
+    var twitter_share_link = "https://twitter.com/intent/tweet?text=" + shareText + " \n" + shareLink;
 
     $("#share_twitter").attr("href", twitter_share_link);
     $("#share_twitter").attr("target", "_blank");
 
-    var emailText = "mailto:?subject="+shareTitle+"&body="+ shareText +" "+ shareLink;
+    var emailText = "mailto:?subject=" + shareTitle + "&body=" + shareText + " " + shareLink;
 
     $("#share_email").attr("href", emailText);
 
-    var fbShareLink = "http://www.facebook.com/dialog/feed?display=popup&app_id=743829829032520&link="+shareLink+"&picture=http://www.1self.co/images/hero.png&name="+encodeURIComponent(shareTitle)+"&caption="+encodeURIComponent(shareCaption)+"&description="+encodeURIComponent(shareText)+"&message="+encodeURIComponent(shareText)+"&redirect_uri=http://www.1self.co";
+    var fbShareLink = "http://www.facebook.com/dialog/feed?display=popup&app_id=743829829032520&link=" + shareLink + "&picture=http://www.1self.co/images/hero.png&name=" + encodeURIComponent(shareTitle) + "&caption=" + encodeURIComponent(shareCaption) + "&description=" + encodeURIComponent(shareText) + "&message=" + encodeURIComponent(shareText) + "&redirect_uri=http://www.1self.co";
 
-    window.fbs_click = function() {
+    window.fbs_click = function () {
         window.open(fbShareLink);
         // FB.ui({
         //     method: 'feed',
