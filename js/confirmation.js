@@ -54,21 +54,9 @@ $(document).ready(function () {
     $("#share_email").attr("target", "_blank");
 
     var fbShareLink = "http://www.facebook.com/dialog/share?app_id=743829829032520&display=popup&href=" + shareLink + "&redirect_uri=http://www.1self.co";
-
     window.fbs_click = function () {
-        window.open(fbShareLink);
-        // FB.ui({
-        //     method: 'feed',
-        //     link: 'http://www.1self.co',
-        //     caption: shareCaption,
-        //     app_id: "743829829032520",
-        //     picture: "http://www.1self.co/images/hero.png",
-        //     name: shareTitle,
-        //     description: shareText,
-        //     message: shareText,
-        //     redirect_uri: 'http://www.1self.co/'
-        // }, function(response){});
-        // return false; 
+        window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(shareLink)+'&t='+encodeURIComponent(shareText),'sharer','toolbar=0,status=0,width=626,height=436');
+        return false;
     };
 
     $("#share_facebook").click(window.fbs_click);
