@@ -1,6 +1,13 @@
 $(document).ready(function () {
     //return;
     // enable this when api is launched
+
+    $(".copy-link").hide();
+    var zc_client = new ZeroClipboard(document.getElementById('copy-button'));
+    zc_client.on('ready', function (r_event) {
+        $(".copy-link").show();
+    });
+
     var referralCode;
     if (typeof localStorage.signupEmail === "undefined") {
         if (typeof localStorage.referralCode !== "undefined") {
