@@ -53,7 +53,7 @@ $(document).ready(function () {
     $("#share_email").attr("href", emailText);
     $("#share_email").attr("target", "_blank");
 
-    var fbShareLink = "http://www.facebook.com/dialog/feed?app_id=743829829032520&link=" + shareLink + "&picture=http://www.1self.co/images/hero.png&name=" + encodeURIComponent(shareTitle) + "&caption=" + encodeURIComponent(shareCaption) + "&description=" + encodeURIComponent(shareText) + "&message=" + encodeURIComponent(shareText) + "&redirect_uri=http://www.1self.co";
+    var fbShareLink = "http://www.facebook.com/dialog/share?app_id=743829829032520&display=popup&href=" + shareLink + "&redirect_uri=http://www.1self.co";
 
     window.fbs_click = function () {
         window.open(fbShareLink);
