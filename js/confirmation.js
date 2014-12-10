@@ -14,6 +14,7 @@ $(document).ready(function () {
             referralCode = localStorage.referralCode;
         }
         else {
+            // referralCode = "x";
             return;
         }
     }
@@ -33,10 +34,10 @@ $(document).ready(function () {
         delete localStorage.signupEmail;
     }
 
-    var shareTitle = "1self -  Every data bit about you in one place";
-    var shareCaption = "Share and win";
+    var shareTitle = "Check out 1self";
+    var shareCaption = "Join 1self!";
     var shareLink = "http://www.1self.co?referrer=" + referralCode;
-    var shareText = "Refer 3 people and get 1self free for a year";
+    var shareText = "1self is the new platform that lets me collect, compare, correlate and comment on my big data to live a smarter life";
 
     $('#shareLink').text(shareLink);
 
@@ -45,9 +46,12 @@ $(document).ready(function () {
     $("#share_twitter").attr("href", twitter_share_link);
     $("#share_twitter").attr("target", "_blank");
 
-    var emailText = "mailto:?subject=" + shareTitle + "&body=" + shareText + " " + shareLink;
+    var urlEncodedLineBreak = "%0D%0A";
+
+    var emailText = "mailto:?subject=" + shareTitle + "&body=" + shareText + urlEncodedLineBreak + urlEncodedLineBreak + shareLink;
 
     $("#share_email").attr("href", emailText);
+    $("#share_email").attr("target", "_blank");
 
     var fbShareLink = "http://www.facebook.com/dialog/feed?display=popup&app_id=743829829032520&link=" + shareLink + "&picture=http://www.1self.co/images/hero.png&name=" + encodeURIComponent(shareTitle) + "&caption=" + encodeURIComponent(shareCaption) + "&description=" + encodeURIComponent(shareText) + "&message=" + encodeURIComponent(shareText) + "&redirect_uri=http://www.1self.co";
 
