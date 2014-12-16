@@ -4,12 +4,6 @@
     <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
-          $("#createAppForm").submit(function(event){
-              event.preventDefault();
-              create_api_keys();
-          });
-      });
-
       const API_HOST = "http://localhost:5000";
 
       var create_api_keys = function(){
@@ -30,6 +24,12 @@
               $('#create_key_message').show();
           });
       };
+          $("#createAppForm").submit(function(event){
+              event.preventDefault();
+              create_api_keys();
+          });
+      });
+
       </script>
 
       <style type="text/css">
