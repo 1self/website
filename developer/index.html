@@ -102,6 +102,8 @@
         var handleRoute = function(){
             if(location.hash.length > 0) {
                 fetchPage(location.hash);
+            } else {
+                history.pushState({tabPath: "#!/1self"}, '', "#!/1self");
             }
         };
 
@@ -112,7 +114,6 @@
             }
         };
 
-        history.pushState({tabPath: "#!/1self"}, '', "#!/1self");
         window.onhashchange = handleRoute();
         handleRoute();
 
