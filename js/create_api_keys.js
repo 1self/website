@@ -9,14 +9,10 @@ const API_HOST = "http://localhost:5000";
 
 var create_api_keys = function(){
     var appName = $('#appName').val(),
-        appDescription = $('#appDescription').val(),
-        appUrl = $('#appUrl').val(),
         appEmail = $('#appEmail').val(),
 
         params = {
             appName: appName.trim(),
-            appDescription: appDescription.trim(),
-            appUrl: appUrl.trim(),
             appEmail: appEmail.trim()
         };
 
