@@ -44,12 +44,12 @@
         <core-header-panel drawer style="margin-top: 100px;">
         <nav>
         <core-menu id="drawer_menu" class="menu">
-            <paper-item noink onclick="fetchPage('#1self')">1self</paper-item>
-            <paper-item noink onclick="fetchPage('#features')">Features</paper-item>
-            <paper-item noink onclick="fetchPage('#pricing')">Pricing</paper-item>
-            <paper-item noink onclick="fetchPage('#api')">Get API Key</paper-item>
-            <paper-item noink onclick="fetchPage('#resources')">Dev Resources</paper-item>
-            <paper-item noink onclick="fetchPage('#faq')">FAQ</paper-item>
+            <paper-item noink onclick="fetchPage('#!/1self')">1self</paper-item>
+            <paper-item noink onclick="fetchPage('#!/features')">Features</paper-item>
+            <paper-item noink onclick="fetchPage('#!/pricing')">Pricing</paper-item>
+            <paper-item noink onclick="fetchPage('#!/api')">Get API Key</paper-item>
+            <paper-item noink onclick="fetchPage('#!/resources')">Dev Resources</paper-item>
+            <paper-item noink onclick="fetchPage('#!/faq')">FAQ</paper-item>
         </core-menu>
         </nav>
         </core-header-panel>
@@ -66,16 +66,16 @@
 
         window.fetchPage = function(route) {
             var map = {
-                '#1self': '1self.html',
-                '#features': 'features.html',
-                '#pricing': 'pricing.html',
-                '#api': 'api.html',
-                '#resources': 'resources.html',
-                '#faq': 'faq.html'
+                '#!/1self': {path: '1self.html', index: 0},
+                '#!/features': {path: 'features.html', index: 1},
+                '#!/pricing': {path: 'pricing.html', index: 2},
+                '#!/api': {path: 'api.html', index: 3},
+                '#!/resources': {path: 'resources.html', index: 4},
+                '#!/faq': {path: 'faq.html', index: 5}
             };
             if(!map[route]) return;
 
-            var path = map[route];
+            var path = map[route].path;
 
             var selector = "#content-container";
             $.ajax({
@@ -86,7 +86,9 @@
             })
             .success(function(result){
                 $(selector).html(result);
-                window.location.hash = route;
+                document.querySelector('core-menu').selected = map[route].index;
+                //history.pushState({tabPath: route}, '',route);
+
             })
             .error(function(xhr, status){
                 console.log(new Error(status));
@@ -98,6 +100,13 @@
                 fetchPage(location.hash);
             }
         };
+
+        $(window).bind('popstate', function(event){
+            var state = event.originalEvent.state;
+            if(state){
+                fetchPage(event.originalEvent.state.tabPath);
+            }
+        });
 
         window.onhashchange = handleRoute();
         handleRoute();
