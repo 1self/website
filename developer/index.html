@@ -44,12 +44,12 @@
         <core-header-panel drawer style="margin-top: 100px;">
         <nav>
         <core-menu id="drawer_menu" class="menu">
-            <paper-item noink onclick="fetchPage('#!/1self')">1self</paper-item>
-            <paper-item noink onclick="fetchPage('#!/features')">Features</paper-item>
-            <paper-item noink onclick="fetchPage('#!/pricing')">Pricing</paper-item>
-            <paper-item noink onclick="fetchPage('#!/api')">Get API Key</paper-item>
-            <paper-item noink onclick="fetchPage('#!/resources')">Dev Resources</paper-item>
-            <paper-item noink onclick="fetchPage('#!/faq')">FAQ</paper-item>
+            <paper-item noink onclick="changePage('#!/1self')">1self</paper-item>
+            <paper-item noink onclick="changePage('#!/features')">Features</paper-item>
+            <paper-item noink onclick="changePage('#!/pricing')">Pricing</paper-item>
+            <paper-item noink onclick="changePage('#!/api')">Get API Key</paper-item>
+            <paper-item noink onclick="changePage('#!/resources')">Dev Resources</paper-item>
+            <paper-item noink onclick="changePage('#!/faq')">FAQ</paper-item>
         </core-menu>
         </nav>
         </core-header-panel>
@@ -63,6 +63,11 @@
 <script src="../js/app.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+
+        window.changePage = function (route) {
+            history.pushState({tabPath: route}, '', route);
+            fetchPage(route);
+        }
 
         window.fetchPage = function(route) {
             var map = {
@@ -87,7 +92,6 @@
             .success(function(result){
                 $(selector).html(result);
                 document.querySelector('core-menu').selected = map[route].index;
-                //history.pushState({tabPath: route}, '',route);
 
             })
             .error(function(xhr, status){
@@ -101,15 +105,17 @@
             }
         };
 
-        $(window).bind('popstate', function(event){
-            var state = event.originalEvent.state;
+        window.onpopstate = function(event){
+            var state = window.history.state;
             if(state){
-                fetchPage(event.originalEvent.state.tabPath);
+                fetchPage(state.tabPath);
             }
-        });
+        };
 
+        history.pushState({tabPath: "#!/1self"}, '', "#!/1self");
         window.onhashchange = handleRoute();
         handleRoute();
+
     })
 </script>
 </body>
