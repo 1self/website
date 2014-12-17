@@ -23,9 +23,11 @@ var create_api_keys = function(){
     $.post(API_HOST + "/v1/app", params)
         .done(function(message){
             $('#create_key_message').html(message);
+            $('#create_key_message').addClass('alert-success');
         })
         .error(function(){
             $('#create_key_message').html("Something wrong, please try after sometime");
+            $('#create_key_message').addClass('alert-danger');
         })
         .always(function() {
             $('#create_key_message').show();
