@@ -1,71 +1,51 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="fragment" content="!">
-    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-      const API_HOST = "http://localhost:5000";
+<script type="text/javascript" src="/js/create_api_keys.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/create_api_keys.css" />
 
-      var create_api_keys = function(){
-          var appName = $('#appName').val(),
-          appDescription = $('#appDescription').val(),
-          appUrl = $('#appUrl').val(),
-          appEmail = $('#appEmail').val(),
+<div id="create_key_message" class="alert" role="alert"></div>
 
-          params = {
-              appName: appName.trim(),
-              appDescription: appDescription.trim(),
-              appUrl: appUrl.trim(),
-              appEmail: appEmail.trim()
-          };
+<form id="createAppForm">
+  <div class="form-group clearfix">
+    <label for="appName" class="col-sm-2 control-label">Application Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="appName" placeholder="Application Name" required />
+    </div>
+  </div>
 
-          $.post(API_HOST + "/v1/app", params, function(message){
-              $('#create_key_message').html(message);
-              $('#create_key_message').show();
-          });
-      };
-          $("#createAppForm").submit(function(event){
-              event.preventDefault();
-              create_api_keys();
-          });
-      });
 
-      </script>
 
-      <style type="text/css">
-        #create_key_message{
-            display:none;
-            color: green;
-        }
-      </style>
-  </head>
-  <body>
-    <form id="createAppForm">
-      App Name:<br/>
-      <input type="text" id="appName" required/>
+  <div class="form-group clearfix">
+    <label for="appDescription" class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="appDescription" placeholder="Description" required />
+    </div>
+  </div>
 
-      <br />
+  
 
-      Description:<br>
-      <input type="text" id="appDescription" required/>
-      
-      <br/>
+  <div class="form-group clearfix">
+    <label for="appUrl" class="col-sm-2 control-label">URL</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="appUrl" placeholder="URL" required />
+    </div>
+  </div>
 
-      Url: <br/>
-      <input type="text" id="appUrl" />
+  
 
-      <br/>
+  <div class="form-group clearfix">
+    <label for="appEmail" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="appEmail" placeholder="Email (to send app_key and app_secret)" required />
+    </div>
+  </div>
 
-      Email (to send app_key and app_secret) <br/>
-      <input type="email" id="appEmail" required/>
+  
 
-      <br/>
-      <br/>
+  <div class="form-group clearfix">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success">Get Keys by Email</button>
+    </div>
+  </div>
 
-      <input type="submit" value="Get Keys by Email">
-    </form>
+</form>
 
-    <span id="create_key_message"></span>
-  </body>
-</html>
