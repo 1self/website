@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    const API_HOST = "http://localhost:5000";
+    const API_HOST = "http://api.1self.co";
 
     var create_api_keys = function(){
         var appName = $('#appName').val(),
