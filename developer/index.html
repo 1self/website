@@ -41,7 +41,7 @@
         </div>
         <core-drawer-panel>
 
-        <core-header-panel drawer style="margin-top: 100px;">
+        <core-header-panel drawer style="margin-top: 100px; background: #30363E;">
         <nav>
         <core-menu id="drawer_menu" class="menu">
             <paper-item noink onclick="changePage('#!/1self')">1self</paper-item>
@@ -60,65 +60,131 @@
         </div>
         </core-header-panel>
 </core-drawer-panel>
-<script src="../js/app.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
+function headerResize() {
+    var headerHeight = $(".header-wrapper").height();
+    $(".page-content").css("padding-top", headerHeight + "px");
+}
 
-        window.changePage = function (route) {
-            history.pushState({tabPath: route}, '', route);
-            fetchPage(route);
+$(window).resize(function() {
+    headerResize();
+});
+
+$(window).scroll(function() {
+    var headerHeight = $(".header-wrapper").height();
+    if ($(window).scrollTop() < headerHeight) {
+        $(".page-nav").removeClass("shrink");
+    } else {
+        $(".page-nav").addClass("shrink");
+    }
+});
+
+
+
+$(document).ready(function() {
+
+    headerResize();
+
+    $('.nav-toggle').click(function(e) {
+        var drawer = document.querySelector('core-drawer-panel');
+        drawer.togglePanel();
+    });
+
+    $('.page-content').click(function(e) {
+        if ($('#collapse-link').css('display') == 'block') {
+            showNavigation('slow');
         }
+    });
 
-        window.fetchPage = function(route) {
-            var map = {
-                '#!/1self': {path: '1self.html', index: 0},
-                '#!/features': {path: 'features.html', index: 1},
-                '#!/pricing': {path: 'pricing.html', index: 2},
-                '#!/api': {path: 'api.html', index: 3},
-                '#!/resources': {path: 'resources.html', index: 4},
-                '#!/faq': {path: 'faq.html', index: 5}
-            };
-            if(!map[route]) return;
+    $('.back-to-top, .y-dwarrow-center').click(function(event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
 
-            var path = map[route].path;
+    //Route Handler
+    window.changePage = function(route) {
+        history.pushState({
+            tabPath: route
+        }, '', route);
+        fetchPage(route);
+        var drawer = document.querySelector('core-drawer-panel');
+        drawer.togglePanel();
 
-            var selector = "#content-container";
-            $.ajax({
+    }
+
+    window.fetchPage = function(route) {
+        var map = {
+            '#!/1self': {
+                path: '1self.html',
+                index: 0
+            },
+            '#!/features': {
+                path: 'features.html',
+                index: 1
+            },
+            '#!/pricing': {
+                path: 'pricing.html',
+                index: 2
+            },
+            '#!/api': {
+                path: 'api.html',
+                index: 3
+            },
+            '#!/resources': {
+                path: 'resources.html',
+                index: 4
+            },
+            '#!/faq': {
+                path: 'faq.html',
+                index: 5
+            }
+        };
+        if (!map[route]) return;
+
+        var path = map[route].path;
+
+        var selector = "#content-container";
+        $.ajax({
                 url: path,
                 contentType: 'application/html; charset=UTF-8',
                 type: 'GET',
                 dataType: 'html'
             })
-            .success(function(result){
+            .success(function(result) {
                 $(selector).html(result);
                 document.querySelector('core-menu').selected = activeFragment = map[route].index;
             })
-            .error(function(xhr, status){
+            .error(function(xhr, status) {
                 console.log(new Error(status));
             })
-        };
+    };
 
-        var handleRoute = function(){
-            if(location.hash.length > 0) {
-                fetchPage(location.hash);
-            } else {
-                history.pushState({tabPath: "#!/1self"}, '', "#!/1self");
-            }
-        };
-
-        window.onpopstate = function(event){
-            var state = window.history.state;
-            if(state){
-                fetchPage(state.tabPath);
-            }
-        };
-
-        window.onhashchange = handleRoute();
-        window.onload = function(){
+    var handleRoute = function() {
+        if (location.hash.length > 0) {
             fetchPage(location.hash);
+        } else {
+            history.pushState({
+                tabPath: "#!/1self"
+            }, '', "#!/1self");
         }
+    };
 
-    })
+    window.onpopstate = function(event) {
+        var state = window.history.state;
+        if (state) {
+            fetchPage(state.tabPath);
+        }
+    };
+
+    window.onhashchange = handleRoute();
+    window.onload = function() {
+        fetchPage(location.hash);
+    }
+
+})
 </script>
 </body>
 </html>
