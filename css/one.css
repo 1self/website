@@ -1500,7 +1500,7 @@ div.quest-content p {
 }
 
 .core-selected {
-    background: rgba(105, 104, 104, 0.59) !important;
+    background: rgba(255, 255, 255, 0.43) !important;
 }
 
 .container {
@@ -1516,6 +1516,7 @@ div.quest-content p {
 
 .container h1, h2, h3, h4, h5, h6 {
     margin: 0.5em 0;
+    margin-top: 0;
     text-align: start;
     font-family: inherit;
     font-weight: 300;
