@@ -1503,3 +1503,48 @@ div.quest-content p {
     background: rgba(105, 104, 104, 0.59) !important;
 }
 
+.container {
+    font-family: "Source Sans Pro",sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+    /*color: #000;*/
+}
+
+.container ul{
+    list-style-type: circle;
+}
+
+.container h1, h2, h3, h4, h5, h6 {
+    margin: 0.5em 0;
+    text-align: start;
+    font-family: inherit;
+    font-weight: 300;
+    line-height: 1.1;
+    color: inherit;
+}
+
+.container h1 {
+    font-size: 2.6em;
+}
+
+.container h2 {
+    font-size: 2.15em;
+}
+
+.container p, pre, pre.prettyprint, blockquote {
+    margin: 0 0 1.1em;
+}
+
+.container blockquote {
+    border-left-width: 10px;
+    background-color: rgba(248, 248, 248, 0.18);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 15px 20px;
+}
+
+.container hr {
+    margin: 2em 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
