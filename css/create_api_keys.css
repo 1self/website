@@ -7,3 +7,24 @@ body{
     display:none;
     color: green;
 }
+
+.btn-api-key, .btn-api-key:hover{
+    background-color: #f2ae1c;
+    color: white;
+    float: right;
+    border: 2px solid white;
+    font-weight: bold;
+}
+
+h1.api_heading{
+    font-size: 45px;
+    font-weight: bold;
+}
+
+p.api_description{
+    font-size: 18px;
+}
+
+div.col-sm-4{
+    padding-left: 0px;
+}

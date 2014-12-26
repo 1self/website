@@ -2,28 +2,29 @@
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/create_api_keys.css" />
 
+<h1 class="api_heading">Request an api key</h1>
+<p class="api_description">To integrate 1self, you need an api key. Please tell us your email, so that we can send you the key.</p>
+
 <div id="create_key_message" class="alert" role="alert"></div>
 
 <form id="createAppForm">
   <div class="form-group clearfix">
-    <label for="appName" class="col-sm-2 control-label">Application Name</label>
-    <div class="col-sm-5">
+    <div class="col-sm-4">
       <input type="text" class="form-control" id="appName" placeholder="Application Name" required />
     </div>
   </div>
 
 
   <div class="form-group clearfix">
-    <label for="appEmail" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-5">
-      <input type="email" class="form-control" id="appEmail" placeholder="Email (to send app_key and app_secret)" required />
+    <div class="col-sm-4">
+      <input type="email" class="form-control" id="appEmail" placeholder="Email Address" required />
     </div>
   </div>
 
   
   <div class="form-group clearfix">
-    <div class="col-sm-offset-2 col-sm-5">
-      <button type="submit" class="btn btn-success">Get Keys by Email</button>
+    <div class="col-sm-4">
+      <button type="submit" class="btn btn-api-key">Request api key</button>
     </div>
   </div>
 
