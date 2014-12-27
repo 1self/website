@@ -55,6 +55,8 @@
             <paper-item noink onclick="changePage('#!/api')">Get API Key</paper-item>
             <paper-item noink onclick="changePage('#!/resources')">Dev Resources</paper-item>
             <paper-item noink onclick="changePage('#!/faq')">FAQ</paper-item>
+            <paper-item noink onclick="changePage('#!/requests')">Integration requests</paper-item>
+            <paper-item noink onclick="changePage('#!/terms')">Terms and conditions</paper-item>
         </core-menu>
         </nav>
         </core-header-panel>
@@ -145,6 +147,14 @@ $(document).ready(function() {
             '#!/faq': {
                 path: 'faq.html',
                 index: 5
+            },
+            '#!/requests': {
+                path: 'requests.html',
+                index: 6
+            },
+            '#!/terms': {
+                path: 'terms.html',
+                index: 7
             }
         };
         if (!map[route]) return;
