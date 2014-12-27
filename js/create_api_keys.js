@@ -16,7 +16,7 @@ $(document).ready(function(){
                 $('#create_key_message').addClass('alert-success');
             })
             .error(function(){
-                $('#create_key_message').html("Something wrong, please try after sometime");
+                $('#create_key_message').html("Sorry, something went wrong, please try again later");
                 $('#create_key_message').addClass('alert-danger');
             })
             .always(function() {
