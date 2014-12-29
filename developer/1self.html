@@ -18,6 +18,21 @@
 <p>The API is a vertically integrated storage, analytics and visualization application stack for human measurement. Events, representing human measurements, are fed into 1self. The developer calls an API which provides event visualizations and insights to the user. Developers describe event metadata and values, 1self does everything else.</p>
 
 <p><img src="../images/intro.png" alt="Overview" title=""></p>
-<hr>
+
+<h2 id="concepts">Concepts</h2>
+
+  <blockquote>
+  <ul>
+  <li><p><strong><em>Applications</em></strong> are web or native programs that provide value to users. Applications integrate with 1self to record interactions and show the data back to their users. Applications are a type of integration.</p></li>
+  <li><p><strong><em>Collectors</em></strong> are headless web apps that collect a user’s data from existing APIs and send it to 1self. Collectors can be transient, meaning they collect the currently available information. Or, they can be historical, meaning they collect historical data and send it to 1self. Collectors are a type of integration.</p></li>
+  <li><p><strong><em>Integrations</em></strong> are any type of software that make use of the 1self platform. </p></li>
+  <li><p><strong><em>Devices</em></strong> are objects that contain one or more sensors that can record personally relevant information about an individual. Devices can send data direct to 1self if they have that capability or via a companion application.</p></li>
+  <li><p><strong><em>Events</em></strong> capture data about the self. Events may be about physiology, environment or activity. Events represent something about the self that happened at a particular point in time. </p></li>
+  <li><p><strong><em>Streams</em></strong> are a logical collection of events on the 1self API. They provide a place to read and write events for applications and integrations. They control event access and coordinate integration synchronisation.</p></li>
+  <li><p><strong><em>Visualizations</em></strong> aggregate and display events to show users useful views of themselves. Currently, there is one visualization, the barchart. More will be added soon.</p></li>
+  <li><p>The <strong><em>Event API</em></strong> is the set of rest endpoints that allow the reading and writing of events.</p></li>
+  <li><p>The <strong><em>Visualization API</em></strong> is the set of rest endpoints that allow applications to display a visualization based on a set of parameters.</p></li>
+  </ul>
+</blockquote>
 
 </div>
