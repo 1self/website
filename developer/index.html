@@ -50,7 +50,6 @@
         <nav>
         <core-menu id="drawer_menu" class="menu">
             <paper-item noink onclick="changePage('#!/1self')">1self</paper-item>
-            <paper-item noink onclick="changePage('#!/features')">Features</paper-item>
             <paper-item noink onclick="changePage('#!/pricing')">Pricing</paper-item>
             <paper-item noink onclick="changePage('#!/api')">Get API Key</paper-item>
             <paper-item noink onclick="changePage('#!/resources')">Dev Resources</paper-item>
@@ -128,33 +127,29 @@ $(document).ready(function() {
                 path: '1self.html',
                 index: 0
             },
-            '#!/features': {
-                path: 'features.html',
-                index: 1
-            },
             '#!/pricing': {
                 path: 'pricing.html',
-                index: 2
+                index: 1
             },
             '#!/api': {
                 path: 'api.html',
-                index: 3
+                index: 2
             },
             '#!/resources': {
                 path: 'resources.html',
-                index: 4
+                index: 3
             },
             '#!/faq': {
                 path: 'faq.html',
-                index: 5
+                index: 4
             },
             '#!/requests': {
                 path: 'requests.html',
-                index: 6
+                index: 5
             },
             '#!/terms': {
                 path: 'terms.html',
-                index: 7
+                index: 6
             }
         };
         if (!map[route]) return;
