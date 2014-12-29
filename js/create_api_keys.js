@@ -1,12 +1,10 @@
 $(document).ready(function(){
-    const API_HOST = "http://api.1self.co";
+    const API_HOST = "http://api-sandbox.1self.co";
 
     var create_api_keys = function(){
-        var appName = $('#appName').val(),
-        appEmail = $('#appEmail').val(),
+        var appEmail = $('#appEmail').val(),
 
         params = {
-            appName: appName.trim(),
             appEmail: appEmail.trim()
         };
 
