@@ -7119,3 +7119,8 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .container body.rtl .container {
   direction: rtl;
 }
+
+/* Custom CSS */
+table { 
+  border: 1px solid;
+}
