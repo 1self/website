@@ -14,6 +14,7 @@
         <link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
         <link rel="import" href="../bower_components/core-drawer-panel/core-drawer-panel.html">
         <link rel="import" href="../bower_components/core-menu/core-menu.html">
+        <link rel="import" href="../bower_components/core-menu/core-submenu.html">
         <link rel="import" href="../bower_components/paper-item/paper-item.html">
         <title>1Self</title>
     </head>
@@ -41,7 +42,12 @@
             <paper-item noink onclick="changePage('#!/1self')">1self</paper-item>
             <paper-item noink onclick="changePage('#!/pricing')">Pricing</paper-item>
             <paper-item noink onclick="changePage('#!/api')">Get API Key</paper-item>
-            <paper-item noink onclick="changePage('#!/resources')">Dev Resources</paper-item>
+            <core-submenu label="Dev Resources" style="padding-left: 20px;">
+                <paper-item noink onclick="changePage('#!/resources/hello1self')">Hello 1self</paper-item>
+                <paper-item noink onclick="changePage('#!/resources/integration_guide')">Integration Guide</paper-item>
+                <paper-item noink onclick="changePage('#!/resources/event_guide')">Event Guide</paper-item>
+                <paper-item noink onclick="changePage('#!/resources/rest_api')">REST API</paper-item>
+            </core-submenu>
             <paper-item noink onclick="changePage('#!/faq')">FAQ</paper-item>
             <paper-item noink onclick="changePage('#!/requests')">Integration requests</paper-item>
             <paper-item noink onclick="changePage('#!/terms')">Terms and conditions</paper-item>
@@ -108,7 +114,6 @@ $(document).ready(function() {
         fetchPage(route);
         var drawer = document.querySelector('core-drawer-panel');
         drawer.togglePanel();
-
     }
 
     window.fetchPage = function(route) {
@@ -126,6 +131,22 @@ $(document).ready(function() {
                 index: 2
             },
             '#!/resources': {
+                path: 'resources.html',
+                index: 3
+            },
+            '#!/resources/hello1self': {
+                path: 'resources.html',
+                index: 3
+            },
+            '#!/resources/integration_guide': {
+                path: 'resources.html',
+                index: 3
+            },
+            '#!/resources/event_guide': {
+                path: 'resources.html',
+                index: 3
+            },
+            '#!/resources/rest_api': {
                 path: 'resources.html',
                 index: 3
             },
