@@ -132,23 +132,28 @@ $(document).ready(function() {
             },
             '#!/resources': {
                 path: 'resources.html',
-                index: 3
+                index: 3,
+                subindex: 0
             },
             '#!/resources/hello1self': {
                 path: 'resources.html',
-                index: 3
+                index: 3,
+                subindex: 0
             },
             '#!/resources/integration_guide': {
                 path: 'resources.html',
-                index: 3
+                index: 3,
+                subindex: 1
             },
             '#!/resources/event_guide': {
-                path: 'resources.html',
-                index: 3
+                path: 'event_guide.html',
+                index: 3,
+                subindex: 2
             },
             '#!/resources/rest_api': {
                 path: 'resources.html',
-                index: 3
+                index: 3,
+                subindex: 3
             },
             '#!/faq': {
                 path: 'faq.html',
@@ -177,6 +182,9 @@ $(document).ready(function() {
             .success(function(result) {
                 $(selector).html(result);
                 document.querySelector('core-menu').selected = activeFragment = map[route].index;
+                if(map[route].subindex) {
+                    document.querySelector('core-submenu').selected = map[route].subindex;
+                }
             })
             .error(function(xhr, status) {
                 console.log(new Error(status));
