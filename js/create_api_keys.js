@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    const API_HOST = "http://api-staging.1self.co";
+    const API_HOST = "http://api-sandbox.1self.co";
 
     var create_api_keys = function(){
         var appEmail = $('#appEmail').val(),
