@@ -29,28 +29,13 @@
                     <div></div>
                 </div>
                 <nav class="nav-right" id="collapse-link">
-                    <!-- <a class="nav-link nav-toggle" href="#learn-more">LEARN MORE
-                        <span>
-                        <img src="../images/link-dot.png" alt=""/>
-                        </span>
-                    </a>
-                    <a class="nav-link nav-toggle" href="../quest.html">QUEST
-                        <span>
-                        <img src="../images/link-dot.png" alt=""/>
-                        </span>
-                    </a>
-                    <a class="nav-link nav-toggle" href="developer">DEVELOPERS
-                        <span>
-                        <img src="images/link-dot.png" alt=""/>
-                        </span>
-                    </a> -->
                     <a class="button signupButton nav-toggle" href="../index.html#signup">SIGN UP</a>
                 </nav>
             </header>
         </div>
-        <core-drawer-panel>
+        <core-drawer-panel style="top: 67px;">
 
-        <core-header-panel drawer style="margin-top: 100px; background: #30363E;">
+        <core-header-panel drawer style="background: #30363E;">
         <nav>
         <core-menu id="drawer_menu" class="menu">
             <paper-item noink onclick="changePage('#!/1self')">1self</paper-item>
@@ -64,8 +49,8 @@
         </nav>
         </core-header-panel>
         
-        <core-header-panel main style="margin-top: 100px;">
-        <div id="content-container" style="padding: 10px;">
+        <core-header-panel main style="">
+        <div class="container" id="content-container" style="padding: 10px;">
 
         </div>
         </core-header-panel>
@@ -74,6 +59,7 @@
 function headerResize() {
     var headerHeight = $(".header-wrapper").height();
     $(".page-content").css("padding-top", headerHeight + "px");
+    $("core-drawer-panel").css("top", headerHeight-2 + "px");
 }
 
 $(window).resize(function() {

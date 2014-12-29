@@ -47,12 +47,22 @@ input[type='button']:hover {
     -webkit-transition: all .2s ease-in-out;
 }
 
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit !important;
+  -moz-box-sizing: inherit !important;
+  box-sizing: inherit !important;
+}
+
 .header-wrapper {
     position: fixed;
     width: 100%;
     background: rgba(48, 54, 62, 1);
     z-index: 1000;
+    color: #ffffff !important;
 }
+
 
 .page-nav.shrink .nav-right a.nav-link span {
     padding-bottom: 9px;
@@ -1503,3 +1513,6 @@ div.quest-content p {
     background: rgba(255, 255, 255, 0.43) !important;
 }
 
+nav {
+    color: #ffffff !important;
+}

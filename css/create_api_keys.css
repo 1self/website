@@ -1,11 +1,6 @@
-body{
-    color: #ffffff;
-    background: #30363E;
-}
 
 #create_key_message{
     display:none;
-    color: green;
 }
 
 .btn-api-key, .btn-api-key:hover{
