@@ -18,6 +18,7 @@ $(document).ready(function(){
             .error(function(){
                 $('#create_key_message').html("Sorry, something went wrong, please try again later");
                 $('#create_key_message').addClass('alert-danger');
+                $('.btn-api-key').show();
             })
             .always(function() {
                 $('#create_key_message').show();
