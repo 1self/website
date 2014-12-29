@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    const API_HOST = "http://api-sandbox.1self.co";
+    const API_HOST = "http://sandbox.1self.co";
 
     var create_api_keys = function(){
         var appEmail = $('#appEmail').val(),
@@ -7,6 +7,8 @@ $(document).ready(function(){
         params = {
             appEmail: appEmail.trim()
         };
+
+        $('.btn-api-key').hide();
 
         $.post(API_HOST + "/v1/app", params)
             .done(function(message){
@@ -16,6 +18,7 @@ $(document).ready(function(){
             .error(function(){
                 $('#create_key_message').html("Sorry, something went wrong, please try again later");
                 $('#create_key_message').addClass('alert-danger');
+                $('.btn-api-key').show();
             })
             .always(function() {
                 $('#create_key_message').show();
