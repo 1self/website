@@ -1,29 +1,29 @@
 <meta name="fragment" content="!">
-<div class="container">
+  <div class="container">
 
     <h1 id="introduction">Introduction</h1>
 
     <p>1self allows users to collect, compare, correlate and comment on all of their data. 1self’s flexible, adaptable
-        platform let’s users collect all the measurements they care about in 2 ways:</p>
+    platform let’s users collect all the measurements they care about in 2 ways:</p>
 
     <blockquote>
-        <ul>
-            <li>Using 1self, users manually collect any measurement they can imagine</li>
-            <li>By providing an API for developers to automatically send user’s measurement data</li>
-        </ul>
+      <ul>
+        <li>Using 1self, users manually collect any measurement they can imagine</li>
+        <li>By providing an API for developers to automatically send user’s measurement data</li>
+      </ul>
     </blockquote>
 
     <p>This guide is for developers, rather than users. Use cases for the API can be found <a href="#use-cases">here</a>.
-        Two types of developers will find this guide useful: Application developers and integration developers.
-        Application developers engage users through API provided visualizations. Integration developers connect existing
-        data, such as Twitter or Facebook, to the 1self Platform.</p>
+    Two types of developers will find this guide useful: Application developers and integration developers.
+    Application developers engage users through API provided visualizations. Integration developers connect existing
+    data, such as Twitter or Facebook, to the 1self Platform.</p>
 
     <h2 id="overview">Overview</h2>
 
     <p>The API is a vertically integrated storage, analytics and visualization application stack for human measurement.
-        Events, representing human measurements, are fed into 1self. The developer calls an API which provides event
-        visualizations and insights to the user. Developers describe event metadata and values, 1self does everything
-        else.</p>
+    Events, representing human measurements, are fed into 1self. The developer calls an API which provides event
+    visualizations and insights to the user. Developers describe event metadata and values, 1self does everything
+    else.</p>
 
     <p><img src="../images/intro.png" alt="Overview" title=""></p>
 
@@ -31,98 +31,114 @@
     <h2 id="concepts">Concepts</h2>
 
     <blockquote>
-        <ul>
-            <li><strong><em>Applications</em></strong> are web or native programs that provide value to users.
-                Applications integrate with 1self to record interactions and show the data back to their users.
-                Applications are a type of integration.
-            </li>
-            <li><strong><em>Collectors</em></strong> are headless web apps that collect a user’s data from existing APIs
-                and send it to 1self. Collectors can be transient, meaning they collect the currently available
-                information. Or, they can be historical, meaning they collect historical data and send it to 1self.
-                Collectors are a type of integration.
-            </li>
-            <li><strong><em>Integrations</em></strong> are any type of software that make use of the 1self platform.
-            </li>
-            <li><strong><em>Devices</em></strong> are objects that contain one or more sensors that can record
-                personally relevant information about an individual. Devices can send data direct to 1self if they have
-                that capability or via a companion application.
-            </li>
-            <li><strong><em>Events</em></strong> capture data about the self. Events may be about physiology,
-                environment or activity. Events represent something about the self that happened at a particular point
-                in time.
-            </li>
-            <li><strong><em>Streams</em></strong> are a logical collection of events on the 1self API. They provide a
-                place to read and write events for applications and integrations. They control event access and
-                coordinate integration synchronisation.
-            </li>
-            <li><strong><em>Visualizations</em></strong> aggregate and display events to show users useful views of
-                themselves. Currently, there is one visualization, the barchart. More will be added soon.
-            </li>
-            <li>The <strong><em>Event API</em></strong> is the set of rest endpoints that allow the reading and writing
-                of events.
-            </li>
-            <li>The <strong><em>Visualization API</em></strong> is the set of rest endpoints that allow applications to
-                display a visualization based on a set of parameters.
-            </li>
-        </ul>
+      <ul>
+        <li><strong><em>Applications</em></strong> are web or native programs that provide value to users.
+        Applications integrate with 1self to record interactions and show the data back to their users.
+        Applications are a type of integration.
+        </li>
+        <li><strong><em>Collectors</em></strong> are headless web apps that collect a user’s data from existing APIs
+        and send it to 1self. Collectors can be transient, meaning they collect the currently available
+        information. Or, they can be historical, meaning they collect historical data and send it to 1self.
+        Collectors are a type of integration.
+        </li>
+        <li><strong><em>Integrations</em></strong> are any type of software that make use of the 1self platform.
+        </li>
+        <li><strong><em>Devices</em></strong> are objects that contain one or more sensors that can record
+        personally relevant information about an individual. Devices can send data direct to 1self if they have
+        that capability or via a companion application.
+        </li>
+        <li><strong><em>Events</em></strong> capture data about the self. Events may be about physiology,
+        environment or activity. Events represent something about the self that happened at a particular point
+        in time.
+        </li>
+        <li><strong><em>Streams</em></strong> are a logical collection of events on the 1self API. They provide a
+        place to read and write events for applications and integrations. They control event access and
+        coordinate integration synchronisation.
+        </li>
+        <li><strong><em>Visualizations</em></strong> aggregate and display events to show users useful views of
+        themselves. Currently, there is one visualization, the barchart. More will be added soon.
+        </li>
+        <li>The <strong><em>Event API</em></strong> is the set of rest endpoints that allow the reading and writing
+        of events.
+        </li>
+        <li>The <strong><em>Visualization API</em></strong> is the set of rest endpoints that allow applications to
+        display a visualization based on a set of parameters.
+        </li>
+      </ul>
     </blockquote>
 
-    <h2 id="use-cases">Use Cases</h2>
+    <h1 id="use-cases">Use Cases</h1>
 
     <p>1self is designed to significantly reduce the cost of understanding personal data. Here’s how.</p>
 
-    <h3 id="user-silo-connector">User Silo Connector</h3>
 
-    <p>Often, personal data resides in places that don’t provide good tools for understanding it. Building an
-        application that brings better understanding to that data involves reading it, transforming it, storing it,
-        syncing it and visualizing it. This is difficult and time-consuming - requiring expertise in all areas. <br>
-        1self does most of that for you. You simply read the source data, convert it into 1self events and use our
-        syncing hooks. Once the data is in 1self, visualizations come out of the box. As we build new visualizations,
-        they automatically appear for the data you synchronize. <br>
-        For example, Facebook doesn’t give you any messaging stats. Creating a 1self silo connector would allow the
-        visualization of messages sent and received over time.</p>
 
-    <h3 id="snapshotting-connector">Snapshotting connector</h3>
+    <h2 id="user-silo-connector">User Silo Connector</h2>
 
-    <p>Many apis don’t provide rich historical access. To build a historical view, you would need to: read the api data,
-        store it, and visualize it. Then you re-trigger data collection. <br>
-        1self takes care of everything reading the data. You write code to read source data and hook into our
-        snapshotting hooks. 1self stores the data and shows it back to users so that they can understand trends over
-        time. <br>
-        For example, the twitter api will tell you the number of followers you have, but doesn’t let you get that
-        information for points in the past. Build a 1self integration to grab that data and 1self will store the data
-        and co-ordinate the snapshotting.</p>
+    <p>Often, personal data resides in places that don’t provide good tools for understanding it. Building better personal data applications involves reading, transforming, storing, syncing and visualizing the data. Once data is visualized, users want to easily share the data. All this is difficult and time-consuming - requiring serious expertise across a wide technology stack.</p>
 
-    <h3 id="1self-integrated-app">1self integrated app</h3>
+    <p>Don’t build your own, let 1self do most of the work for you. You simply read the source data, convert it into 1self events and use our syncing hooks. Once the data is in 1self, visualizations come out of the box. As we build new visualizations, they automatically appear for the data. Users can share the visualizations with their friends.</p>
 
-    <p>Whenever a user interacts with an application - be it web or native - data about them is being generated. This
-        data is interesting to users, it creates a more engaging in-app experience - but application developers have
-        precious little time to surface it. They must focus on the main features. <br>
-        1self is a scalable, robust backend that makes it trivial create an engaging user data experience. Simply
-        describe user events and send them to our api. We store the data and provide visualizations and insights for the
-        user. 1self makes it easy for you to give the interaction data to your users. Your users will engage with your
-        app more and 1self can give users timely encouragements that remind them of your app. <br>
-        <a href="https://itunes.apple.com/us/app/noise-by-1self/id933101357?mt=8">1self noise</a> is a sound meter. It
-        uses 1self to visualize noise, as you experience it.</p>
+    <p>For example, Facebook doesn’t give you any messaging statistics. You can’t understand how your messaging behaviour has changed over time. But connecting that data to 1self would allow it to be easily visualized.</p>
 
-    <h3 id="measure-anything">Measure anything</h3>
+    <p>To learn how to build a silo connector start with the following guides:</p>
 
-    <p>Until we’re in a world of ubiquitous sensors and personal data, there are aspects of ourselves that can only be
-        measured manually. Building applications to collect data about ourselves takes a huge amount of time, knowledge
-        and effort. Currently, building them is too hard - even for developers. <br>
-        1self lets you build manual collection quickly with cross-platform collection simple, reliable storage and
-        beuatiful visualizations. Simply build an app that feeds measurements into 1self, then 1self takes care of
-        everything else. <br>
-        Here at 1self, we created <a href="http://temperature.1self.co">temperature</a> in an hour. It manually captures
-        measureements from an off-the-shelf digital thermometer.</p>
+    <ul>
+      <li><p><a href="http://www.1self.co/developer/#!/resources/hello1self">Hello, 1self - an introduction to the platform</a></p></li>
+      <li><p><a href="http://www.1self.co/developer/#!/resources/integration_guide">Integration Guide</a></p></li>
+    </ul>
 
-    <h3 id="sensor-capture">Sensor capture</h3>
 
-    <p>The world around us is becoming instrumented with sensors. As a manufacturer or hacker of sensors, building a
-        backend to capture, store and visualize that data is expensive and time consuming. <br>
-        1self let’s you concentrate on building better, more reliable sensors. Rather than building your own, use our
-        platform to capture and visualize the sensor data. Sensors can be pre-loaded with the configuration required to
-        write to our api. From that point on, users of the sensors can make sense of their data with insights and
-        visualizations provided by the platform.</p>
 
-</div>
+    <h2 id="snapshotting-connector">Snapshotting connector</h2>
+
+    <p>Many apis don’t provide rich historical access. To build a historical view, you need to periodically snapshot the data. The system must read, store and visualize the data; it must schedule the data collection.</p>
+
+    <p>1self takes care of everything but reading the data. You write code to read source data and hook into our snapshotting endpoints. 1self stores the data and shows it back to users so that they can understand trends over time. Users can share their trends to canvas opinion and show off.</p>
+
+    <p>For example, the twitter api provides a follower count - but no historical view. 1self makes it easy to build a snapshotting connector that periodically picks up data to provide a chronological perspective. </p>
+
+    <p>To learn how to build a snapshotting connector start with the following guides:</p>
+
+    <ul>
+      <li><p><a href="http://www.1self.co/developer/#!/resources/hello1self">Hello, 1self - an introduction to the platform</a></p></li>
+      <li><p><a href="http://www.1self.co/developer/#!/resources/integration_guide">Integration Guide</a></p></li>
+    </ul>
+
+    <h2 id="1self-integrated-app">1self integrated app</h2>
+
+    <p>As users interact with applications - web or native - data about them is generated. This data is interesting to users, it creates a more engaging in-app experience - but application developers have precious little time to surface it. Building a system to capture the data themselves is expensive.</p>
+
+    <p>1self makes it trivial to show users their data - significantly reducing the cost of an engaging user data experience. Describe user events, send them to our api and embed our interactive visualizations. Using 1self, your users build a history with your app - making their experience stickier. Using our social features, your users share their experience with their networks - creating exposure for your app.</p>
+
+    <p>For example, <a href="https://itunes.apple.com/us/app/noise-by-1self/id933101357?mt=8">1self noise</a> shows users their noise data, as they collect it.</p>
+
+    <p>To learn how to build a 1self integrated app start with the following guides:</p>
+
+    <ul>
+      <li><p><a href="http://www.1self.co/developer/#!/resources/hello1self">Hello, 1self - an introduction to the platform</a></p></li>
+      <li><p><a href="http://www.1self.co/developer/#!/resources/integration_guide">Integration Guide</a></p></li>
+    </ul>
+
+    <h2 id="manual-collector">Manual collector</h2>
+
+    <p>Eventually we’ll live in a world of ubiquitous sensors and personal data. Until then, there are aspects of ourselves that can only be measured manually. Building personal data collection applications takes time, knowledge and effort. Building them is hard - even for developers. You need to describe the data, build the app, build the api, store the data and design the visualizations.</p>
+
+    <p>1self lets you build manual collection apps quickly: it provides cross-platform collection, reliable storage and beautiful visualizations. </p>
+
+    <p>For example, 1self <a href="http://temperature.1self.co">temperature</a> was created in an hour. It manually captures measurements from an off-the-shelf digital thermometer. </p>
+
+    <p>To learn how to build a manual collector, start with the following guides:</p>
+
+    <ul>
+      <li><p><a href="http://www.1self.co/developer/#!/resources/hello1self">Hello, 1self - an introduction to the platform</a></p></li>
+      <li><p><a href="http://www.1self.co/developer/#!/resources/integration_guide">Integration Guide</a></p></li>
+    </ul>
+
+    <h2 id="sensor-capture">Sensor capture</h2>
+
+    <p>The world around us is becoming instrumented with sensors. These sensors will be used not only for machine to machine intelligence, but also to help people better understand their world. As a manufacturer - or hacker - of sensors, building a backend to capture, store and visualize that data is expensive and time consuming.</p>
+
+    <p>1self let’s you concentrate on building better sensors. Rather than building your own, use our platform to capture and visualize the sensor data. Sensors can be pre-loaded with the configuration required to write to our api. Once sensor data is in 1self, users can understand it better through insights and visualizations provided by the platform. They can share their data using our social features. </p>
+
+  </div>
