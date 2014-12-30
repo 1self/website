@@ -1,6 +1,4 @@
-Hello 1self
-
-# Introduction
+# Hello 1self - Introduction
 
 We’ve designed the 1self platform to create a simple, friction-free developer experience. Once you feed in human information you get beautiful, shareable, commentable visualizations of what the data represents. Let’s work through a simple example so that you can understand what is possible using the api.
 
