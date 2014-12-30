@@ -1,17 +1,18 @@
 <meta name="fragment" content="!">
+<div class="container">
 
-<div class="container"><h1 id="introduction">Introduction</h1>
+<h1 id="introduction">Introduction</h1>
 
 <p>1self allows users to collect, compare, correlate and comment on all of their data. 1self’s flexible, adaptable platform let’s users collect all the measurements they care about in 2 ways:</p>
 
 <blockquote>
   <ul>
-  <li><p>Using 1self, users manually collect any measurement they can imagine</p></li>
-  <li><p>By providing an API for developers to automatically send user’s measurement data </p></li>
+  <li>Using 1self, users manually collect any measurement they can imagine     </li>
+  <li>By providing an API for developers to automatically send user’s measurement data</li>
   </ul>
 </blockquote>
 
-<p>This guide is for developers, rather than users. Use cases for the API can be found here &lt;&gt;. Two types of developers will find this guide useful: Application developers and integration developers. Application developers engage users through API provided visualizations. Integration developers connect existing data, such as Twitter or Facebook, to the 1self Platform.</p>
+<p>This guide is for developers, rather than users. Use cases for the API can be found here. Two types of developers will find this guide useful: Application developers and integration developers. Application developers engage users through API provided visualizations. Integration developers connect existing data, such as Twitter or Facebook, to the 1self Platform.</p>
 
 <h2 id="overview">Overview</h2>
 
@@ -19,19 +20,21 @@
 
 <p><img src="../images/intro.png" alt="Overview" title=""></p>
 
+
+
 <h2 id="concepts">Concepts</h2>
 
-  <blockquote>
+<blockquote>
   <ul>
-  <li><p><strong><em>Applications</em></strong> are web or native programs that provide value to users. Applications integrate with 1self to record interactions and show the data back to their users. Applications are a type of integration.</p></li>
-  <li><p><strong><em>Collectors</em></strong> are headless web apps that collect a user’s data from existing APIs and send it to 1self. Collectors can be transient, meaning they collect the currently available information. Or, they can be historical, meaning they collect historical data and send it to 1self. Collectors are a type of integration.</p></li>
-  <li><p><strong><em>Integrations</em></strong> are any type of software that make use of the 1self platform. </p></li>
-  <li><p><strong><em>Devices</em></strong> are objects that contain one or more sensors that can record personally relevant information about an individual. Devices can send data direct to 1self if they have that capability or via a companion application.</p></li>
-  <li><p><strong><em>Events</em></strong> capture data about the self. Events may be about physiology, environment or activity. Events represent something about the self that happened at a particular point in time. </p></li>
-  <li><p><strong><em>Streams</em></strong> are a logical collection of events on the 1self API. They provide a place to read and write events for applications and integrations. They control event access and coordinate integration synchronisation.</p></li>
-  <li><p><strong><em>Visualizations</em></strong> aggregate and display events to show users useful views of themselves. Currently, there is one visualization, the barchart. More will be added soon.</p></li>
-  <li><p>The <strong><em>Event API</em></strong> is the set of rest endpoints that allow the reading and writing of events.</p></li>
-  <li><p>The <strong><em>Visualization API</em></strong> is the set of rest endpoints that allow applications to display a visualization based on a set of parameters.</p></li>
+  <li><strong><em>Applications</em></strong> are web or native programs that provide value to users. Applications integrate with 1self to record interactions and show the data back to their users. Applications are a type of integration.</li>
+  <li><strong><em>Collectors</em></strong> are headless web apps that collect a user’s data from existing APIs and send it to 1self. Collectors can be transient, meaning they collect the currently available information. Or, they can be historical, meaning they collect historical data and send it to 1self. Collectors are a type of integration.</li>
+  <li><strong><em>Integrations</em></strong> are any type of software that make use of the 1self platform.</li>
+  <li><strong><em>Devices</em></strong> are objects that contain one or more sensors that can record personally relevant information about an individual. Devices can send data direct to 1self if they have that capability or via a companion application.</li>
+  <li><strong><em>Events</em></strong> capture data about the self. Events may be about physiology, environment or activity. Events represent something about the self that happened at a particular point in time.</li>
+  <li><strong><em>Streams</em></strong> are a logical collection of events on the 1self API. They provide a place to read and write events for applications and integrations. They control event access and coordinate integration synchronisation.</li>
+  <li><strong><em>Visualizations</em></strong> aggregate and display events to show users useful views of themselves. Currently, there is one visualization, the barchart. More will be added soon.</li>
+  <li>The <strong><em>Event API</em></strong> is the set of rest endpoints that allow the reading and writing of events.</li>
+  <li>The <strong><em>Visualization API</em></strong> is the set of rest endpoints that allow applications to display a visualization based on a set of parameters.</li>
   </ul>
 </blockquote>
 
