@@ -137,7 +137,7 @@ The second resource is the action tags. We tell 1self to visualize events with â
 
 [computer,program,helloworld/](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[write](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/sum(linesofcode)](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/daily/barchart](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 
-The third resource is the aggregation function. We specify sum(linesofcode) and 1self adds the linesofcode measurements in the event properties. More details on the functions available are here. <INSERT LINK>
+The third resource is the aggregation function. We specify sum(linesofcode) and 1self adds the linesofcode measurements in the event properties. 
 
 ## Time Bucket
 
@@ -231,7 +231,7 @@ With a complete function itâ€™s time to plug in some html and CSS to create the 
 	72 </body>
 	73 </html>
 
-The latest full listing, with comments, can also be found on Github here. <INSERT LINK>
+The latest full listing, with comments, [can also be found on Github, here](https://github.com/QuantifiedDev/hello1self)
 
 # Summary
 
