@@ -5,7 +5,7 @@
 > *   Using 1self, users manually collect any measurement they can imagine     
 > *   By providing an API for developers to automatically send user’s measurement data
 
-This guide is for developers, rather than users. Use cases for the API can be found here. Two types of developers will find this guide useful: Application developers and integration developers. Application developers engage users through API provided visualizations. Integration developers connect existing data, such as Twitter or Facebook, to the 1self Platform.
+This guide is for developers, rather than users. Use cases for the API can be found [here](#use-cases). Two types of developers will find this guide useful: Application developers and integration developers. Application developers engage users through API provided visualizations. Integration developers connect existing data, such as Twitter or Facebook, to the 1self Platform.
 
 ## Overview
 
