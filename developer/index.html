@@ -156,7 +156,7 @@
                         index: 6
                     }
                 };
-                if (!map[route]) return;
+                if (!map[route]) route = '#!/1self';
                 var path = map[route].path;
                 var selector = "#fragment-container";
                 $.ajax({
@@ -177,6 +177,7 @@
                     })
             };
             var handleRoute = function() {
+                console.log("Hash change");
                 if (location.hash.length > 0) {
                     fetchPage(location.hash);
                 } else {
@@ -191,11 +192,11 @@
                     fetchPage(state.tabPath);
                 }
             };
-            window.onhashchange = handleRoute();
-            window.onload = function() {
-                fetchPage(location.hash);
-            }
-        })
+            $(window).bind('hashchange', function(){
+                handleRoute();
+            });
+            window.fetchPage(location.hash);
+        });
         </script>
     </body>
 </html>
