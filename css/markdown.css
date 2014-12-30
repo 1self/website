@@ -7124,3 +7124,7 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 table { 
   border: 1px solid;
 }
+
+body {
+  overflow: hidden;
+}
