@@ -202,7 +202,7 @@ Before we can create an event we need a stream to write the event into. A stream
 Let’s look at the method that creates a stream.
 POST [https://api.1self.co/v1/streams/](https://api.1self.co/v1/streams/)
 Authorization: clientid:clientsecret
-The post doesn’t expect a request body. It does, however, need an clientid and clientsecret which you get from here <INSERT LINK>. An application is a client of the api and the clientid uniquely identifies it. The clientsecret is used by the client to prove that it the application registered with 1self. The method call returns 3 pieces of information.
+The post doesn’t expect a request body. It does, however, need an clientid and clientsecret which you [get from here](http://www.1self.co/developer/#!/api). An application is a client of the api and the clientid uniquely identifies it. The clientsecret is used by the client to prove that it the application registered with 1self. The method call returns 3 pieces of information.
 <table>
   <tr>
     <td>streamid</td>
