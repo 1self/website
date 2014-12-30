@@ -1,10 +1,13 @@
-### POST /v1/streams
+# Environments
+There are two environments that host the api. The sandbox URL is http://sandbox.1self.co and live is https://api.1self.co. To get started [request your api key](http://www.1self.co/developer/#!/api), which gives you access to the sandbox. When you're ready to go live, [email us](mailto:team@1self.co) and we'll promote your app to live.
 
-Data sources like apps or plugins use a stream to record and visualize events. Once a streamid and tokens for reading and writing to the stream that can be be used to send events to 1self.
+# POST /v1/streams
 
-## Resource URL
+Data sources like apps or plugins use a stream to record and visualize events. Once you have a streamid and tokens for reading and writing, you can send events to 1self.
 
-[https://api.1self.co/v1/streams](https://api.1self.co/v1/streams)
+## Resource URLS
+Live:     [https://api.1self.co/v1/streams](https://api.1self.co/v1/streams)
+Sandbox:  [https://sandbox.1self.co/v1/streams](https://sandbox.1self.co/v1/streams)
 
 ## Resource Information
 
@@ -70,7 +73,7 @@ None
 
 ```
 POST /v1/streams HTTP/1.1
-Host: api.1self.co
+Host: sandbox.1self.co
 Authorization: democlientid:d69e6fd81afca9faea6262e312aa82f716cab3c10899
 ```
 
@@ -92,7 +95,8 @@ Adds an event to a stream. All events are added to 1self by adding them to a str
 
 ## Resource URL
 
-[https://api.1self.co/v1/streams/GVMQJABSPFULCJUW/events/](https://api.1self.co/v1/streams)
+Live: [https://api.1self.co/v1/streams/GVMQJABSPFULCJUW/events/](https://api.1self.co/v1/streams)
+Sandbox: [https://sandbox.1self.co/v1/streams/GVMQJABSPFULCJUW/events/](https://sandbox.1self.co/v1/streams)
 
 ## Resource Information
 
@@ -191,17 +195,17 @@ None
 
 ```
 POST /v1/streams/GVMQJABSPFULCJUW/events HTTP/1.1
-Host: api.1self.co
+Host: sandbox.1self.co
 Authorization: 0cc82228d40e964df6c7c1d7f8ea530ad703fd2f175e
 
 {
-	"objectTags": "teeth,oral,mouth",
-	"actionTags": "brush,clean",
-	"properties": {
-		"duration": 120,
-		"pressureKgSqm": 0.15
-	},
-	 "datetime": "2014-11-11T22:30:00.000Z"
+  "objectTags": "teeth,oral,mouth",
+  "actionTags": "brush,clean",
+  "properties": {
+    "duration": 120,
+    "pressureKgSqm": 0.15
+  },
+   "datetime": "2014-11-11T22:30:00.000Z"
 }
 ```
 
@@ -217,11 +221,12 @@ Authorization: 0cc82228d40e964df6c7c1d7f8ea530ad703fd2f175e
 
 ### POST /v1/streams/:streamid/events/:objecttags/:actiontags/:aggregation/:timerollup/:visualization?readToken=:readtoken
 
-Creates an html visualization of a stream’s events. This is the entry point for the user into their data on 1self. This call on api.1self.co redirects to app.1self.co, then the visulization is loaded. This endpoint is designed to be given to a browser or webview to render. 
+Creates an html visualization of a stream’s events. This is the entry point for the user into their data on 1self. On live, api.1self.co, this call redirects to app.1self.co, then the visualization is loaded. This endpoint is designed to be given to a browser or webview to render. 
 
 ## Resource URL
 
-[https://api.1self.co/v1/streams/:streamid/events/:objecttags/:actiontags/:aggregation/:timerollup/:visualization?readToken=:readtoken]()
+Live: [https://api.1self.co/v1/streams/:streamid/events/:objecttags/:actiontags/:aggregation/:timerollup/:visualization?readToken=:readtoken]()
+Sandbox: [https://sandbox.1self.co/v1/streams/:streamid/events/:objecttags/:actiontags/:aggregation/:timerollup/:visualization?readToken=:readtoken]()
 
 ## Resource Information
 
@@ -313,7 +318,7 @@ None
 ```
 GET
 /v1/streams/GVMQJABSPFULCJUW/events/self/sit/sum(duration)/daily/barchart?readToken=e7a68f89509ab4d7b13d1e116dd10d2aad43ed97053991816447ca06ea321ad1 HTTP/1.1
-Host: api.1self.co
+Host: sandbox.1self.co
 Authorization: 0cc82228d40e964df6c7c1d7f8ea530ad703fd2f175e
 ```
 
