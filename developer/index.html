@@ -5,17 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <meta content="../images/fav.ico" itemprop="image">
         <link rel="icon" href="images/fav.ico">
-        <script src="../js/jquery-1.11.1.min.js" type="text/javascript"></script>
-        <script src="../bower_components/webcomponentsjs/webcomponents.js"></script>
-
         <link rel="stylesheet" type="text/css" href="../css/one.css">
         <link rel="stylesheet" type="text/css" href="../css/markdown.css">
-
         <link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
         <link rel="import" href="../bower_components/core-drawer-panel/core-drawer-panel.html">
         <link rel="import" href="../bower_components/core-menu/core-menu.html">
         <link rel="import" href="../bower_components/core-menu/core-submenu.html">
         <link rel="import" href="../bower_components/paper-item/paper-item.html">
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+        <script src="../js/jquery-1.11.1.min.js" type="text/javascript"></script>
+        <script src="../bower_components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
         <title>1self</title>
     </head>
     <body>
@@ -35,185 +35,167 @@
             </header>
         </div>
         <core-drawer-panel style="top: 67px;">
-
         <core-header-panel drawer style="background: #30363E;">
         <nav>
-        <core-menu id="drawer_menu" class="menu">
+            <core-menu id="drawer_menu" class="menu">
             <paper-item noink onclick="changePage('#!/1self')">1self</paper-item>
             <paper-item noink onclick="changePage('#!/pricing')">Pricing</paper-item>
             <paper-item noink onclick="changePage('#!/api')">Get API Key</paper-item>
             <core-submenu label="Dev Resources" style="padding-left: 20px;">
-                <paper-item noink onclick="changePage('#!/resources/hello1self')">Hello 1self</paper-item>
-                <paper-item noink onclick="changePage('#!/resources/integration_guide')">Integration Guide</paper-item>
-                <paper-item noink onclick="changePage('#!/resources/event_guide')">Event Guide</paper-item>
-                <paper-item noink onclick="changePage('#!/resources/rest_api')">REST API</paper-item>
+            <paper-item noink onclick="changePage('#!/resources/hello1self')">Hello 1self</paper-item>
+            <paper-item noink onclick="changePage('#!/resources/integration_guide')">Integration Guide</paper-item>
+            <paper-item noink onclick="changePage('#!/resources/event_guide')">Event Guide</paper-item>
+            <paper-item noink onclick="changePage('#!/resources/rest_api')">REST API</paper-item>
             </core-submenu>
             <paper-item noink onclick="changePage('#!/faq')">FAQ</paper-item>
-            <paper-item noink onclick="changePage('#!/requests')">Integration requests</paper-item>
-            <paper-item noink onclick="changePage('#!/terms')">Terms and conditions</paper-item>
-        </core-menu>
+            <paper-item noink onclick="changePage('#!/requests')">Integration Requests</paper-item>
+            <paper-item noink onclick="changePage('#!/terms')">Terms and Conditions</paper-item>
+            </core-menu>
         </nav>
         </core-header-panel>
         
         <core-header-panel main style="">
         <div class="container" id="content-container" style="padding: 10px;">
-
         </div>
         </core-header-panel>
-</core-drawer-panel>
-<script type="text/javascript">
-function headerResize() {
-    var headerHeight = $(".header-wrapper").height();
-    $(".page-content").css("padding-top", headerHeight + "px");
-    $("core-drawer-panel").css("top", headerHeight-2 + "px");
-}
-
-$(window).resize(function() {
-    headerResize();
-});
-
-$(window).scroll(function() {
-    var headerHeight = $(".header-wrapper").height();
-    if ($(window).scrollTop() < headerHeight) {
-        $(".page-nav").removeClass("shrink");
-    } else {
-        $(".page-nav").addClass("shrink");
-    }
-});
-
-
-
-$(document).ready(function() {
-
-    headerResize();
-
-    $('.nav-toggle').click(function(e) {
-        var drawer = document.querySelector('core-drawer-panel');
-        drawer.togglePanel();
-    });
-
-    $('.page-content').click(function(e) {
-        if ($('#collapse-link').css('display') == 'block') {
-            showNavigation('slow');
-        }
-    });
-
-    $('.back-to-top, .y-dwarrow-center').click(function(event) {
-        event.preventDefault();
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500);
-        return false;
-    });
-
-    //Route Handler
-    window.changePage = function(route) {
-        history.pushState({
-            tabPath: route
-        }, '', route);
-        fetchPage(route);
-        var drawer = document.querySelector('core-drawer-panel');
-        drawer.togglePanel();
-    }
-
-    window.fetchPage = function(route) {
-        var map = {
-            '#!/1self': {
-                path: '1self.html',
-                index: 0
-            },
-            '#!/pricing': {
-                path: 'pricing.html',
-                index: 1
-            },
-            '#!/api': {
-                path: 'api.html',
-                index: 2
-            },
-            '#!/resources': {
-                path: 'resources.html',
-                index: 3,
-                subindex: 0
-            },
-            '#!/resources/hello1self': {
-                path: 'hello1self.html',
-                index: 3,
-                subindex: 0
-            },
-            '#!/resources/integration_guide': {
-                path: 'integration_guide.html',
-                index: 3,
-                subindex: 1
-            },
-            '#!/resources/event_guide': {
-                path: 'event_guide.html',
-                index: 3,
-                subindex: 2
-            },
-            '#!/resources/rest_api': {
-                path: 'rest_apis.html',
-                index: 3,
-                subindex: 3
-            },
-            '#!/faq': {
-                path: 'faq.html',
-                index: 4
-            },
-            '#!/requests': {
-                path: 'requests.html',
-                index: 5
-            },
-            '#!/terms': {
-                path: 'terms.html',
-                index: 6
+        </core-drawer-panel>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            function headerResize() {
+                var headerHeight = $(".header-wrapper").height();
+                $(".page-content").css("padding-top", headerHeight + "px");
+                $("core-drawer-panel").css("top", headerHeight - 2 + "px");
             }
-        };
-        if (!map[route]) return;
-
-        var path = map[route].path;
-
-        var selector = "#content-container";
-        $.ajax({
-                url: path,
-                contentType: 'application/html; charset=UTF-8',
-                type: 'GET',
-                dataType: 'html'
-            })
-            .success(function(result) {
-                $(selector).html(result);
-                document.querySelector('core-menu').selected = activeFragment = map[route].index;
-                if(map[route].subindex) {
-                    document.querySelector('core-submenu').selected = map[route].subindex;
+            $(window).resize(function() {
+                headerResize();
+            });
+            $(window).scroll(function() {
+                var headerHeight = $(".header-wrapper").height();
+                if ($(window).scrollTop() < headerHeight) {
+                    $(".page-nav").removeClass("shrink");
+                } else {
+                    $(".page-nav").addClass("shrink");
                 }
-            })
-            .error(function(xhr, status) {
-                console.log(new Error(status));
-            })
-    };
-
-    var handleRoute = function() {
-        if (location.hash.length > 0) {
-            fetchPage(location.hash);
-        } else {
-            history.pushState({
-                tabPath: "#!/1self"
-            }, '', "#!/1self");
-        }
-    };
-
-    window.onpopstate = function(event) {
-        var state = window.history.state;
-        if (state) {
-            fetchPage(state.tabPath);
-        }
-    };
-
-    window.onhashchange = handleRoute();
-    window.onload = function() {
-        fetchPage(location.hash);
-    }
-
-})
-</script>
-</body>
+            });
+            
+            headerResize();
+            $('.nav-toggle').click(function(e) {
+                var drawer = document.querySelector('core-drawer-panel');
+                drawer.togglePanel();
+            });
+            $('.page-content').click(function(e) {
+                if ($('#collapse-link').css('display') == 'block') {
+                    showNavigation('slow');
+                }
+            });
+            $('.back-to-top, .y-dwarrow-center').click(function(event) {
+                event.preventDefault();
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 500);
+                return false;
+            });
+            //Route Handler
+            window.changePage = function(route) {
+                history.pushState({
+                    tabPath: route
+                }, '', route);
+                fetchPage(route);
+                var drawer = document.querySelector('core-drawer-panel');
+                drawer.togglePanel();
+            }
+            window.fetchPage = function(route) {
+                var map = {
+                    '#!/1self': {
+                        path: '1self.html',
+                        index: 0
+                    },
+                    '#!/pricing': {
+                        path: 'pricing.html',
+                        index: 1
+                    },
+                    '#!/api': {
+                        path: 'api.html',
+                        index: 2
+                    },
+                    '#!/resources': {
+                        path: 'resources.html',
+                        index: 3,
+                        subindex: 0
+                    },
+                    '#!/resources/hello1self': {
+                        path: 'hello1self.html',
+                        index: 3,
+                        subindex: 0
+                    },
+                    '#!/resources/integration_guide': {
+                        path: 'integration_guide.html',
+                        index: 3,
+                        subindex: 1
+                    },
+                    '#!/resources/event_guide': {
+                        path: 'event_guide.html',
+                        index: 3,
+                        subindex: 2
+                    },
+                    '#!/resources/rest_api': {
+                        path: 'rest_apis.html',
+                        index: 3,
+                        subindex: 3
+                    },
+                    '#!/faq': {
+                        path: 'faq.html',
+                        index: 4
+                    },
+                    '#!/requests': {
+                        path: 'requests.html',
+                        index: 5
+                    },
+                    '#!/terms': {
+                        path: 'terms.html',
+                        index: 6
+                    }
+                };
+                if (!map[route]) return;
+                var path = map[route].path;
+                var selector = "#content-container";
+                $.ajax({
+                        url: path,
+                        contentType: 'application/html; charset=UTF-8',
+                        type: 'GET',
+                        dataType: 'html'
+                    })
+                    .success(function(result) {
+                        $(selector).html(result);
+                        document.querySelector('core-menu').selected = activeFragment = map[route].index;
+                        if (map[route].subindex) {
+                            document.querySelector('core-submenu').selected = map[route].subindex;
+                        }
+                    })
+                    .error(function(xhr, status) {
+                        console.log(new Error(status));
+                    })
+            };
+            var handleRoute = function() {
+                if (location.hash.length > 0) {
+                    fetchPage(location.hash);
+                } else {
+                    history.pushState({
+                        tabPath: "#!/1self"
+                    }, '', "#!/1self");
+                }
+            };
+            window.onpopstate = function(event) {
+                var state = window.history.state;
+                if (state) {
+                    fetchPage(state.tabPath);
+                }
+            };
+            window.onhashchange = handleRoute();
+            window.onload = function() {
+                fetchPage(location.hash);
+            }
+        })
+        </script>
+    </body>
 </html>

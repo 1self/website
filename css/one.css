@@ -1134,7 +1134,7 @@ div.quest-content p {
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 640px) {
     .confirmation .share a span {
         text-align: center;
         padding-left: 7px;
