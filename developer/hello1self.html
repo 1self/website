@@ -184,143 +184,75 @@
 <code>02 &lt;script&gt;</code> <br>
 <code>03 var logHelloWorld = function (){</code> <br>
 <code>04     var xmlhttp = new XMLHttpRequest();</code> <br>
-<code>05     if(localStorage.streamid === undefined){</code></p>
-
-<p><code>06         xmlhttp.open("POST","https://api-test.1self.co/v1/streams", false);</code></p>
-
-<p><code>07         xmlhttp.setRequestHeader("Authorization", "1selfnoise:12345678");</code></p>
-
-<p><code>08         xmlhttp.send();</code></p>
-
-<p><code>09         var response = JSON.parse(xmlhttp.response);</code></p>
-
-<p><code>10         localStorage.streamid = response.streamid;</code></p>
-
-<p><code>11         localStorage.readtoken = response.readToken;</code></p>
-
-<p><code>12         localStorage.writetoken = response.writeToken;</code></p>
-
-<p><code>13     }</code></p>
-
-<p><code>14</code></p>
-
-<p><code>15    var helloWorldEvent = {</code></p>
-
-<p><code>16        "dateTime": new Date().toISOString(),</code></p>
-
-<p><code>17        "objectTags": ["computer", "program", "helloworld"],</code></p>
-
-<p><code>18        "actionTags": ["write"],</code></p>
-
-<p><code>19        "properties": {</code></p>
-
-<p><code>20            "linesofcode": parseInt(document.getElementById('linesofcode').value)</code></p>
-
-<p><code>21        }</code></p>
-
-<p><code>22    };</code></p>
-
-<p><code>23</code></p>
-
-<p><code>24    xmlhttp.open("POST", "https://api-test.1self.co/v1/streams/"</code></p>
-
-<p><code>25                     + localStorage.streamid</code></p>
-
-<p><code>26                     + "/events"</code></p>
-
-<p><code>27                     , false);</code></p>
-
-<p><code>28    xmlhttp.setRequestHeader("Authorization", localStorage.writetoken);</code></p>
-
-<p><code>29    xmlhttp.setRequestHeader("Content-Type", "application/json");</code></p>
-
-<p><code>30    xmlhttp.send(JSON.stringify(helloWorldEvent));</code></p>
-
-<p><code>31</code></p>
-
-<p><code>32    var visualizationUrl = "https://api-test.1self.co/v1/streams/"</code></p>
-
-<p><code>33                         + localStorage.streamid</code></p>
-
-<p><code>34                         +  "/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart";</code></p>
-
-<p><code>35</code></p>
-
-<p><code>36    var iframe = document.getElementById("visualization");</code></p>
-
-<p><code>37    iframe.src = visualizationUrl;</code></p>
-
-<p><code>38    }</code></p>
-
-<p><code>39 &lt;/script&gt;</code></p>
-
-<p><code>40 &lt;style&gt;</code></p>
-
-<p><code>41 input{</code></p>
-
-<p><code>42     border: 2px solid grey;</code></p>
-
-<p><code>43     border-radius: 8px;</code></p>
-
-<p><code>44     height: 30px;</code></p>
-
-<p><code>45     width: 200px;</code></p>
-
-<p><code>46 }</code></p>
-
-<p><code>47</code></p>
-
-<p><code>48 h1{</code></p>
-
-<p><code>49     margin-top: 100px;</code></p>
-
-<p><code>50     font-family: helvetica</code></p>
-
-<p><code>51 }</code></p>
-
-<p><code>52</code></p>
-
-<p><code>53 div{</code></p>
-
-<p><code>54     text-align: center;</code></p>
-
-<p><code>55 }</code></p>
-
-<p><code>56</code></p>
-
-<p><code>57 iframe{</code></p>
-
-<p><code>58     width: 320;</code></p>
-
-<p><code>59     height: 568;</code></p>
-
-<p><code>60     margin-top: 50px;</code></p>
-
-<p><code>61 }</code></p>
-
-<p><code>62 &lt;/style&gt;</code></p>
-
-<p><code>63 &lt;body&gt;</code></p>
-
-<p><code>64 &lt;div&gt;</code></p>
-
-<p><code>65 &lt;h1&gt;Hello, 1self&lt;/h1&gt;</code></p>
-
-<p><code>66 &lt;input id="linesofcode" type="number" value="lines of hello, world code"&gt;</code></p>
-
-<p><code>67 &lt;input type="button" value="log" onclick="logHelloWorld()"&gt;</code></p>
-
-<p><code>68 &lt;div&gt;&lt;/div&gt;</code></p>
-
-<p><code>69 &lt;iframe id="visualization"&gt;</code></p>
-
-<p><code>70 &lt;/iframe&gt;</code></p>
-
-<p><code>71 &lt;/div&gt;</code></p>
-
-<p><code>72 &lt;/body&gt;</code></p>
-
-<p><code>73 &lt;/html&gt;</code></p>
+<code>05     if(localStorage.streamid === undefined){</code> <br>
+<code>06         xmlhttp.open("POST","https://api-test.1self.co/v1/streams", false);</code> <br>
+<code>07         xmlhttp.setRequestHeader("Authorization", "1selfnoise:12345678");</code> <br>
+<code>08         xmlhttp.send();</code> <br>
+<code>09         var response = JSON.parse(xmlhttp.response);</code> <br>
+<code>10         localStorage.streamid = response.streamid;</code> <br>
+<code>11         localStorage.readtoken = response.readToken;</code> <br>
+<code>12         localStorage.writetoken = response.writeToken;</code> <br>
+<code>13     }</code> <br>
+<code>14</code> <br>
+<code>15    var helloWorldEvent = {</code> <br>
+<code>16        "dateTime": new Date().toISOString(),</code> <br>
+<code>17        "objectTags": ["computer", "program", "helloworld"],</code> <br>
+<code>18        "actionTags": ["write"],</code> <br>
+<code>19        "properties": {</code> <br>
+<code>20            "linesofcode": parseInt(document.getElementById('linesofcode').value)</code> <br>
+<code>21        }</code> <br>
+<code>22    };</code> <br>
+<code>23</code> <br>
+<code>24    xmlhttp.open("POST", "https://api-test.1self.co/v1/streams/"</code> <br>
+<code>25                     + localStorage.streamid</code> <br>
+<code>26                     + "/events"</code> <br>
+<code>27                     , false);</code> <br>
+<code>28    xmlhttp.setRequestHeader("Authorization", localStorage.writetoken);</code> <br>
+<code>29    xmlhttp.setRequestHeader("Content-Type", "application/json");</code> <br>
+<code>30    xmlhttp.send(JSON.stringify(helloWorldEvent));</code> <br>
+<code>31</code> <br>
+<code>32    var visualizationUrl = "https://api-test.1self.co/v1/streams/"</code> <br>
+<code>33                         + localStorage.streamid</code> <br>
+<code>34                         +  "/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart";</code> <br>
+<code>35</code> <br>
+<code>36    var iframe = document.getElementById("visualization");</code> <br>
+<code>37    iframe.src = visualizationUrl;</code> <br>
+<code>38    }</code> <br>
+<code>39 &lt;/script&gt;</code> <br>
+<code>40 &lt;style&gt;</code> <br>
+<code>41 input{</code> <br>
+<code>42     border: 2px solid grey;</code> <br>
+<code>43     border-radius: 8px;</code> <br>
+<code>44     height: 30px;</code> <br>
+<code>45     width: 200px;</code> <br>
+<code>46 }</code> <br>
+<code>47</code> <br>
+<code>48 h1{</code> <br>
+<code>49     margin-top: 100px;</code> <br>
+<code>50     font-family: helvetica</code> <br>
+<code>51 }</code> <br>
+<code>52</code> <br>
+<code>53 div{</code> <br>
+<code>54     text-align: center;</code> <br>
+<code>55 }</code> <br>
+<code>56</code> <br>
+<code>57 iframe{</code> <br>
+<code>58     width: 320;</code> <br>
+<code>59     height: 568;</code> <br>
+<code>60     margin-top: 50px;</code> <br>
+<code>61 }</code> <br>
+<code>62 &lt;/style&gt;</code> <br>
+<code>63 &lt;body&gt;</code> <br>
+<code>64 &lt;div&gt;</code> <br>
+<code>65 &lt;h1&gt;Hello, 1self&lt;/h1&gt;</code> <br>
+<code>66 &lt;input id="linesofcode" type="number" value="lines of hello, world code"&gt;</code> <br>
+<code>67 &lt;input type="button" value="log" onclick="logHelloWorld()"&gt;</code> <br>
+<code>68 &lt;div&gt;&lt;/div&gt;</code> <br>
+<code>69 &lt;iframe id="visualization"&gt;</code> <br>
+<code>70 &lt;/iframe&gt;</code> <br>
+<code>71 &lt;/div&gt;</code> <br>
+<code>72 &lt;/body&gt;</code> <br>
+<code>73 &lt;/html&gt;</code></p>
 
 <p>The latest full listing, with comments, can also be found on Github here. </p>
 
@@ -332,10 +264,7 @@
 
 <h1 id="further-reading">Further reading</h1>
 
-<p>The detailed developer guide. </p>
-
-<p>Rest api documentation .</p>
-
-<p>Developer FAQ .</p>
-
-<p>Main FAQ </p>
+<p><a href="http://www.1self.co/developer/#!/resources/integration_guide">The detailed integration guide</a> <br>
+<a href="http://www.1self.co/developer/#!/resources/rest_api">Rest api documentation</a>. <br>
+<a href="http://www.1self.co/developer/#!/resources/event_guide">Event Guide</a> <br>
+<a href="http://www.1self.co/developer/#!/faq">Developer FAQ</a></p>
