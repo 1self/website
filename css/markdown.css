@@ -181,7 +181,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 15px;
   line-height: 1.45;
   color: #000000;
@@ -6664,6 +6664,7 @@ li.L9 {
   font-weight: 700;
   src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldItalic'), url("fonts/SourceSansPro-BoldItalic-webfont.woff") format('woff');
 }
+
 @font-face {
   font-family: 'Source Code Pro';
   font-style: normal;
@@ -6707,7 +6708,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 1.5em 0;
+  margin: 15px 0;
   text-align: start;
 }
 pre {
@@ -6989,4 +6990,16 @@ table {
 
 body {
   overflow: hidden;
+}
+
+@font-face {
+    font-family: helvetica;
+    src: url(fonts/HelveticaNeueLTCom-Lt.woff);
+    src: url(fonts/HelveticaNeueLTCom-Lt.ttf);
+}
+
+.content-container{
+  margin: 0 15px;
+  font-family: helvetica;
+  font-size: 16px;
 }

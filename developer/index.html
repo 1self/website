@@ -55,7 +55,7 @@
         </core-header-panel>
         
         <core-header-panel main style="">
-        <div class="container" id="content-container" style="padding: 10px;">
+        <div class="content-container" id="fragment-container" style="padding: 10px;">
         </div>
         </core-header-panel>
         </core-drawer-panel>
@@ -158,7 +158,7 @@
                 };
                 if (!map[route]) return;
                 var path = map[route].path;
-                var selector = "#content-container";
+                var selector = "#fragment-container";
                 $.ajax({
                         url: path,
                         contentType: 'application/html; charset=UTF-8',
