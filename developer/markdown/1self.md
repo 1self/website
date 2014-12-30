@@ -30,26 +30,58 @@ The API is a vertically integrated storage, analytics and visualization applicat
 1self is designed to significantly reduce the cost of understanding personal data. Here’s how.
 
 
-### User Silo Connector
-Often, personal data resides in places that don’t provide good tools for understanding it. Building an application that brings better understanding to that data involves reading it, transforming it, storing it, syncing it and visualizing it. This is difficult and time-consuming - requiring expertise in all areas.
-1self does most of that for you. You simply read the source data, convert it into 1self events and use our syncing hooks. Once the data is in 1self, visualizations come out of the box. As we build new visualizations, they automatically appear for the data you synchronize.
-For example, Facebook doesn’t give you any messaging stats. Creating a 1self silo connector would allow the visualization of messages sent and received over time.
+#Use cases
+1self is designed to significantly reduce the cost of understanding personal data. Here’s how.
 
-### Snapshotting connector
-Many apis don’t provide rich historical access. To build a historical view, you would need to: read the api data, store it, and visualize it. Then you re-trigger data collection.
-1self takes care of everything reading the data. You write code to read source data and hook into our snapshotting hooks. 1self stores the data and shows it back to users so that they can understand trends over time.
-For example, the twitter api will tell you the number of followers you have, but doesn’t let you get that information for points in the past. Build a 1self integration to grab that data and 1self will store the data and co-ordinate the snapshotting.
+## User Silo Connector
+Often, personal data resides in places that don’t provide good tools for understanding it. Building better personal data applications involves reading, transforming, storing, syncing and visualizing the data. Once data is visualized, users want to easily share the data. All this is difficult and time-consuming - requiring serious expertise across a wide technology stack.
 
-### 1self integrated app
-Whenever a user interacts with an application - be it web or native - data about them is being generated. This data is interesting to users, it creates a more engaging in-app experience - but application developers have precious little time to surface it. They must focus on the main features.
-1self is a scalable, robust backend that makes it trivial create an engaging user data experience. Simply describe user events and send them to our api. We store the data and provide visualizations and insights for the user. 1self makes it easy for you to give the interaction data to your users. Your users will engage with your app more and 1self can give users timely encouragements that remind them of your app.
-[1self noise](https://itunes.apple.com/us/app/noise-by-1self/id933101357?mt=8) is a sound meter. It uses 1self to visualize noise, as you experience it.
+Don’t build your own, let 1self do most of the work for you. You simply read the source data, convert it into 1self events and use our syncing hooks. Once the data is in 1self, visualizations come out of the box. As we build new visualizations, they automatically appear for the data. Users can share the visualizations with their friends.
 
-### Measure anything
-Until we’re in a world of ubiquitous sensors and personal data, there are aspects of ourselves that can only be measured manually. Building applications to collect data about ourselves takes a huge amount of time, knowledge and effort. Currently, building them is too hard - even for developers.
-1self lets you build manual collection quickly with cross-platform collection simple, reliable storage and beuatiful visualizations. Simply build an app that feeds measurements into 1self, then 1self takes care of everything else.
-Here at 1self, we created [temperature](http://temperature.1self.co) in an hour. It manually captures measureements from an off-the-shelf digital thermometer.
+For example, Facebook doesn’t give you any messaging statistics. You can’t understand how your messaging behaviour has changed over time. But connecting that data to 1self would allow it to be easily visualized.
 
-### Sensor capture
-The world around us is becoming instrumented with sensors. As a manufacturer or hacker of sensors, building a backend to capture, store and visualize that data is expensive and time consuming.
-1self let’s you concentrate on building better, more reliable sensors. Rather than building your own, use our platform to capture and visualize the sensor data. Sensors can be pre-loaded with the configuration required to write to our api. From that point on, users of the sensors can make sense of their data with insights and visualizations provided by the platform.
+To learn how to build a silo connector start with the following guides:</span>
+
+* [Hello, 1self - an introduction to the platform](/developer/#!/resources/hello1self)
+* [Integration Guide](/developer/#!/resources/integration_guide)
+
+##Snapshotting connector
+Many apis don’t provide rich historical access. To build a historical view, you need to periodically snapshot the data. The system must read, store and visualize the data; it must schedule the data collection.
+
+1self takes care of everything but reading the data. You write code to read source data and hook into our snapshotting endpoints. 1self stores the data and shows it back to users so that they can understand trends over time. Users can share their trends to canvas opinion and show off.
+
+For example, the twitter api provides a follower count - but no historical view. 1self makes it easy to build a snapshotting connector that periodically picks up data to provide a chronological perspective.
+
+To learn how to build a snapshotting connector start with the following guides:
+
+* [Hello, 1self - an introduction to the platform](/developer/#!/resources/hello1self)
+* [Integration Guide](/developer/#!/resources/integration_guide)
+
+# 1self integrated app
+As users interact with applications - web or native - data about them is generated. This data is interesting to users, it creates a more engaging in-app experience - but application developers have precious little time to surface it. Building a system to capture the data themselves is expensive.
+
+1self makes it trivial to show users their data - significantly reducing the cost of an engaging user data experience. Describe user events, send them to our api and embed our interactive visualizations. Using 1self, your users build a history with your app - making their experience stickier. Using our social features, your users share their experience with their networks - creating exposure for your app.
+
+For example, [1self noise](https://itunes.apple.com/us/app/noise-by-1self/id933101357?mt=8)&nbsp;shows users their noise data, as they collect it.
+
+To learn how to build a 1self integrated app start with the following guides:
+
+* [Hello, 1self - an introduction to the platform](/developer/#!/resources/hello1self)
+* [Integration Guide](/developer/#!/resources/integration_guide)
+
+# Manual collector
+Eventually we’ll live in a world of ubiquitous sensors and personal data. Until then, there are aspects of ourselves that can only be measured manually. Building personal data collection applications takes time, knowledge and effort. Building them is hard - even for developers. You need to describe the data, build the app, build the api, store the data and design the visualizations.
+
+1self lets you build manual collection apps quickly: it provides cross-platform collection, reliable storage and beautiful visualizations. 
+
+For example, 1self [temperature](http://temperature.1self.co)&nbsp;was created in an hour. It manually captures measurements from an off-the-shelf digital thermometer.
+
+To learn how to build a manual collector, start with the following guides:
+
+* [Hello, 1self - an introduction to the platform](/developer/#!/resources/hello1self)
+* [Integration Guide](/developer/#!/resources/integration_guide)
+
+# Sensor capture
+The world around us is becoming instrumented with sensors. These sensors will be used not only for machine to machine intelligence, but also to help people better understand their world. As a manufacturer - or hacker - of sensors, building a backend to capture, store and visualize that data is expensive and time consuming.
+
+1self let’s you concentrate on building better sensors. Rather than building your own, use our platform to capture and visualize the sensor data. Sensors can be pre-loaded with the configuration required to write to our api. Once sensor data is in 1self, users can understand it better through insights and visualizations provided by the platform. They can share their data using our social features.
