@@ -1,7 +1,7 @@
 ---
 layout: page
 title: APIs list
-permalink: /apis_list/
+permalink: apis_list/
 ---
 
 

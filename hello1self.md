@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Hello 1self
-permalink: /hello1self/
+permalink: hello1self/
 ---
 
 

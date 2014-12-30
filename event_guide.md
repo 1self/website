@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Event Guide
-permalink: /event_guide/
+permalink: event_guide/
 ---
 
 # About This Guide

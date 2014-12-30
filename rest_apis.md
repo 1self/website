@@ -1,7 +1,7 @@
 ---
 layout: page
 title: REST APIs
-permalink: /rest_apis/
+permalink: rest_apis/
 ---
 
 ### POST /v1/streams

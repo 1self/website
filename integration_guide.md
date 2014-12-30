@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Integration Guide
-permalink: /integration_guide/
+permalink: integration_guide/
 ---
 
 The event api is a REST api that lets you sent JSON representations of events to feed into 1self visualisations. Events are added to streams and streams are added to users. Visualizations aggregate and filter events from streams and users into beautiful, commentable presentations of useful information.

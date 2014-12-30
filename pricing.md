@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Pricing
-permalink: /pricing/
+permalink: pricing/
 ---
 
 # Pricing
