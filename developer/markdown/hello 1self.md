@@ -40,7 +40,7 @@ First, we create a stream to feed in the information about our users. To create 
     1 var logHelloWorld = function(){
     2     var xmlhttp = new XMLHttpRequest();
     3	 if(localStorage.streamid === undefined){
-    4	     xmlhttp.open("POST","https://api.1self.co/v1/streams", false);
+    4	     xmlhttp.open("POST","https://sandbox.1self.co/v1/streams", false);
     5         xmlhttp.setRequestHeader("Authorization", "hello1self:hello1self");
     6         xmlhttp.send();
     7         var response = JSON.parse(xmlhttp.response);
@@ -87,9 +87,9 @@ The action is: you wrote a hello world computer program. We set the object tags 
 
 Defining events for non-trivial actions requires a little thought. To learn more, have a look at the [event guide](http://www.1self.co/developer/#!/resources/event_guide).
 
-Now we can send the event to the api. We use an HTTP POST to the events resource. The URL for the events resource is: [/v1/streams/:streamid/events](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
+Now we can send the event to the api. We use an HTTP POST to the events resource. The URL for the events resource is: [/v1/streams/:streamid/events](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 
-	24 xmlhttp.open("POST", "https://api.1self.co/v1/streams/" 
+	24 xmlhttp.open("POST", "https://sandbox.1self.co/v1/streams/" 
 	25    					+ localStorage.streamid
 	26    					+ "/events"
 	27    					, false);
@@ -97,7 +97,7 @@ Now we can send the event to the api. We use an HTTP POST to the events resource
 	29     xmlhttp.setRequestHeader("Content-Type", "application/json");
 	30     xmlhttp.send(JSON.stringify(helloWorldEvent));
 
-On lines 24 to 27 we choose the POST method to and construct the resource URL. Ours is [/v1/streams/XSNJWEIXLCCDSQTV/events](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events). 
+On lines 24 to 27 we choose the POST method to and construct the resource URL. Ours is [/v1/streams/XSNJWEIXLCCDSQTV/events](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events). 
 
 We must prove that we may write to the stream. On line 28 we set the Authorization header to the write token from the stream creation response.
 
@@ -109,7 +109,7 @@ Line 30 encodes our event as JSON and makes the request. All being well, the ser
 
 With the events written, we want to visualize the number of lines of code. We specify which events to include, the measurement, the aggregation, how to treat time and the visualization type. We describe this in a URL, then pass it to a browser.
 
-	32 var visualizationUrl = "https://api.1self.co/v1/streams/" 
+	32 var visualizationUrl = "https://sandbox.1self.co/v1/streams/" 
 	33							+ localStorage.streamid
 	34							+"/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart";			
 	35 var iframe = document.getElementById("visualization");
@@ -117,41 +117,41 @@ With the events written, we want to visualize the number of lines of code. We sp
 
 On lines 32 - 34 the url is constructed. It’s hard to see it in code; here’s how it appears in memory:
 
-[/v1/streams/XSNJWEIXLCCDSQTV/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
+[/v1/streams/XSNJWEIXLCCDSQTV/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 
 The first part of the URL, up to and including events, we’ve seen before. It’s the stream events resource we wrote the event to. We specify the visualization as sub-resources.
 
 ## Object tags
 
-[computer,program,helloworld](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/write/sum(linesofcode)/daily/barchart](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
+[computer,program,helloworld](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/write/sum(linesofcode)/daily/barchart](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 
 The first resource is the object tags. We tell 1self to visualize events with computer, program and helloworld tags. They match the event we wrote to the stream.
 
 ## Action Tags
 
-[computer,program,helloworld](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/write](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/sum(linesofcode)/daily/barchart](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
+[computer,program,helloworld](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/write](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/sum(linesofcode)/daily/barchart](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 
 The second resource is the action tags. We tell 1self to visualize events with ‘write’ in the action tags. 1self uses the boolean operator *and *to filter the events. 1self will include events with ‘computer’,’program’,’helloworld’ object tags *and* with ‘write’ action tags.
 
 ## Aggregation Function
 
-[computer,program,helloworld/](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[write](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/sum(linesofcode)](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/daily/barchart](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
+[computer,program,helloworld/](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[write](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/sum(linesofcode)](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/daily/barchart](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 
 The third resource is the aggregation function. We specify sum(linesofcode) and 1self adds the linesofcode measurements in the event properties. 
 
 ## Time Bucket
 
-[computer,program,helloworld/write/](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[sum(linesofcode)](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/daily](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/barchart](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
+[computer,program,helloworld/write/](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[sum(linesofcode)](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/daily](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[/barchart](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 
 The fourth resource is the time bucket. Daily tells 1self to return a visualization showing sums of linesofcode *per day*. 
 
 ## Visualization Type
 
-[computer,program,helloworld/write/sum(linesofcode)/daily/](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[barchart](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
+[computer,program,helloworld/write/sum(linesofcode)/daily/](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)[barchart](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 
 Finally, we tell 1self to display lines of code per day *as a barchart*.
 
-The complete scheme for the visualization url is: `https://api.1self.co/`[v1/streams/:streamid/events/:objecttags/:actiontags/:aggregation/:timebucket/:visualization/](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
+The complete scheme for the visualization url is: `https://sandbox.1self.co/`[v1/streams/:streamid/events/:objecttags/:actiontags/:aggregation/:timebucket/:visualization/](https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 
 Next we give the visualization URL to the browser. Line 35 gets the iframe and line 36 sets the URL. The browser and 1self work together to allow interaction, login and sharing. All without needing to write any extra code.
 
