@@ -6994,6 +6994,7 @@ body {
 
 @font-face {
     font-family: helvetica;
+    src: url(fonts/HelveticaNeueLTCom-Lt.woff);
     src: url(fonts/HelveticaNeueLTCom-Lt.ttf);
 }
 
