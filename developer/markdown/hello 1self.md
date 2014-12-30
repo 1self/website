@@ -21,9 +21,7 @@ Here is the app, have a play. Set the number of ‘Hello,world’ lines of ‘he
 There are 3 code steps we must implement to integrate user information visualizations in an app. ‘Hello, 1self’ is no different - here’s what we need to do:
 
 1. Create a *stream*, a time-ordered container for events. 
-
 2. Write an *event*, 1self’s representation of human information, to the stream
-
 3. Create a *visualization*, a view of the events
 
 Step 1 & 2 involve calling REST endpoints and processing the results. In step 3 we’ll construct a visualization URL, according to a scheme, and give it to a browser to fetch and display. The browser and 1self take care of building the interactive visualization. Our app doesn’t have to worry about registration, login, navigation or sharing. We’ll get all of those by giving the browser a correctly defined URL.
@@ -31,7 +29,6 @@ Step 1 & 2 involve calling REST endpoints and processing the results. In step 3 
 Since we’re building a web app the language will be javascript. We’ll start by writing a function that carries out the 3 steps. Once the function is complete we’ll plug it into a simple web page using html and css. 
 
 `var logHelloWorld = function(){`
-
 `};`
 
 Great start! Now we’re going to make it do something.
@@ -41,27 +38,16 @@ Great start! Now we’re going to make it do something.
 First, we create a stream to feed in the information about our users. To create a stream we need an app key and app secret which we get from here <INSERT LINK>. Let’s create the stream using the app key and secret hello1self:hello1self.
 
 ` 1 var logHelloWorld = function(){`
-
 ` 2     var xmlhttp = new XMLHttpRequest();`
-
 ` 3	 if(localStorage.streamid === undefined){`
-
 ` 4	     xmlhttp.open("POST","https://api.1self.co/v1/streams", false);`
-
 ` 5         xmlhttp.setRequestHeader("Authorization", "hello1self:hello1self");`
-
 ` 6         xmlhttp.send();`
-
 ` 7         var response = JSON.parse(xmlhttp.response);`
-
 ` 8         localStorage.streamid = response.streamid;`
-
 ` 9         localStorage.readtoken = response.readToken;`
-
 `10         localStorage.writetoken = response.writeToken;`
-
 `11     }`
-
 `12 }`
 
 The crucial lines here are 4, 5, 6 and 7. Line 4 constructs a request to create the stream through the POST method on the streams resource. The request is secure as it’s over https. Line 5 sets the app key and app secret which is how the call is authorized. Line 6 sends the request and line 7 parses the result of that request. The result is a JSON response that looks like this:
@@ -85,29 +71,19 @@ Now we can add information about writing hello world programs .
 An event is 1self’s fundamental unit of information about a human. Your heart beat, how long you spend brushing your teeth and a sample of noise from your environment can all be represented as an event. Events are described by an action on an object taken by a human. Here’s how that looks for ‘hello, world".
 
 `15 var helloWorldEvent = {`
-
 `16                    "dateTime": new Date().toISOString(),`
-
 `17                    "objectTags": ["computer", "program", "helloworld"],`
-
 `18                    "actionTags": ["write"],`
-
 `19                    "properties": {`
-
 `20                        "linesofcode": parseInt(document.getElementById('linesofcode').value)`
-
 `21                    }`
-
 `22                };`
 
 There are 4 key elements to the event:
 
 1. *dateTime*, the time that the action took place, ISO formatted.
-
 2. *objectTags*, a set of tags describing the object involved in the action
-
 3. *actionTags*, a set of tags describing the action itself
-
 4. *properties*, a bag of key-value pairs that describe measurements, attributes and labels of the action.
 
 The action is: you wrote a hello world computer program. We set the object tags to ["computer", “program”, “helloworld”] and use the present tense of wrote, “write”, as the action tag. We’re interested in the number of lines of code so we add a property “linesofcode”. It takes it’s value from an HTML element.
@@ -117,17 +93,11 @@ Non-trivial actions can be tricky to define events for. To learn more, have a lo
 Now we can send the event to the api. We use an HTTP POST to the events resource. The URL for the events resource is: [/v1/streams/:streamid/events](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 
 `24 xmlhttp.open("POST", "https://api.1self.co/v1/streams/" `
-
 `25    					+ localStorage.streamid`
-
 `26    					+ "/events"`
-
 `27    					, false);`
-
 `28     xmlhttp.setRequestHeader("Authorization", localStorage.writetoken);`
-
 `29     xmlhttp.setRequestHeader("Content-Type", "application/json");`
-
 `30     xmlhttp.send(JSON.stringify(helloWorldEvent));`
 
 On lines 24 to 27 we choose the POST method to and construct the resource URL. Ours is [/v1/streams/XSNJWEIXLCCDSQTV/events](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events). 
@@ -143,15 +113,9 @@ Line 30 encodes our event as JSON and makes the request. All being well, the ser
 With the events written, we want to visualize the number of lines of code. We specify which events to include, the measurement, the aggregation, how to treat time and the visualization type. We describe this in a URL, then pass it to a browser.
 
 `32 var visualizationUrl = "https://api.1self.co/v1/streams/" `
-
 `33							+ localStorage.streamid`
-
-`34							+ "/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart";`
-
-`			`
-
+`34							+"/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart";`			
 `35 var iframe = document.getElementById("visualization");`
-
 `36 iframe.src = visualizationUrl;`
 
 On lines 32 - 34 the url is constructed. It’s hard to see it in code; here’s how it appears in memory:
@@ -197,13 +161,9 @@ Next we give the visualization URL to the browser. Line 35 gets the iframe and l
 With a complete function it’s time to plug in some html and CSS to create the app:
 
 `01 <html>`
-
 `02 <script>`
-
 `03 var logHelloWorld = function (){`
-
 `04     var xmlhttp = new XMLHttpRequest();`
-
 `05     if(localStorage.streamid === undefined){`
 
 `06         xmlhttp.open("POST","https://api-test.1self.co/v1/streams", false);`
