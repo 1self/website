@@ -200,7 +200,7 @@ First let’s turn the event we have created into a JSON representation ready to
 ```
 Before we can create an event we need a stream to write the event into. A stream is a logical grouping of events. It includes tokens for reading and writing events. Like events, streams are created by the apps that capture behaviour. Once a stream is created and has events in we can ask 1self to visualise that stream in a barchart.
 Let’s look at the method that creates a stream.
-POST [https://api.1self.co/v1/streams/](https://api.1self.co/v1/streams/)
+POST [https://sandbox.1self.co/v1/streams/](https://sandbox.1self.co/v1/streams/)
 Authorization: clientid:clientsecret
 The post doesn’t expect a request body. It does, however, need an clientid and clientsecret which you [get from here](http://www.1self.co/developer/#!/api). An application is a client of the api and the clientid uniquely identifies it. The clientsecret is used by the client to prove that it the application registered with 1self. The method call returns 3 pieces of information.
 <table>
@@ -225,12 +225,12 @@ This information comes back as a JSON object representing the stream
     "readToken": "51eb4902856e30a11dc5153e1e65cac7aab3390cf67d",
 }
 ```
-Now that we have all the details of the stream, a call can be made to the stream to persist the event. The stream is represented at the endpoint [https://api.1self.co/v1/streams/YBEBZPADSKPUDXBG](https://api.1self.co/v1/streams/YBEBZPADSKPUDXBG). On this stream, there is a sub resource ‘events’ which can be written to and read from, the address of which is [https://api.1self.co/v1/streams/YBEBZPADSKPUDXBG/events](https://api.1self.co/v1/streams/YBEBZPADSKPUDXBG).
+Now that we have all the details of the stream, a call can be made to the stream to persist the event. The stream is represented at the endpoint [https://sandbox.1self.co/v1/streams/YBEBZPADSKPUDXBG](https://sandbox.1self.co/v1/streams/YBEBZPADSKPUDXBG). On this stream, there is a sub resource ‘events’ which can be written to and read from, the address of which is [https://sandbox.1self.co/v1/streams/YBEBZPADSKPUDXBG/events](https://sandbox.1self.co/v1/streams/YBEBZPADSKPUDXBG).
 To make the post request we put the write token in the authorization header, set content-type to application/json and add the event in the body of the request
 <table>
   <tr>
     <td>POST</td>
-    <td>https://api.1self.co/v1/streams/YBEBZPADSKPUDXBG/events</td>
+    <td>https://sandbox.1self.co/v1/streams/YBEBZPADSKPUDXBG/events</td>
   </tr>
   <tr>
     <td>headers</td>
@@ -349,8 +349,8 @@ as well as the URL we need to give the readToken from the stream that we are goi
   </tr>
 </table>
 The URL must be formed from the following template:
-[https://api.1self.co/v1/streams/{streamid}/{objecttags}/{actiontags}/{aggregation}/{timerollup}/{visualization}?readToken={readToken}]()
+[https://sandbox.1self.co/v1/streams/{streamid}/{objecttags}/{actiontags}/{aggregation}/{timerollup}/{visualization}?readToken={readToken}]()
 WIth our set of data the URL, once filled in, looks like this:
-[https://api.1self.co/v1/streams/VWEWRPHUEBLMUVIG/teeth,oral,mouth/brush,clean/sum(duration)/daily/barchart?readToken=51eb4902856e30a11dc5153e1e65cac7aab3390cf67d](https://api.1self.co/v1/streams/VWEWRPHUEBLMUVIG/teeth,oral,mouth/brush,clean/sum(duration)/daily/barchart?readToken=51eb4902856e30a11dc5153e1e65cac7aab3390cf67d)
+[https://sandbox.1self.co/v1/streams/VWEWRPHUEBLMUVIG/teeth,oral,mouth/brush,clean/sum(duration)/daily/barchart?readToken=51eb4902856e30a11dc5153e1e65cac7aab3390cf67d](https://sandbox.1self.co/v1/streams/VWEWRPHUEBLMUVIG/teeth,oral,mouth/brush,clean/sum(duration)/daily/barchart?readToken=51eb4902856e30a11dc5153e1e65cac7aab3390cf67d)
 Nothing should be passed in the request body. The response will contain an html representation of the visualisation. This can be parsed by the client, however this endpoint is designed to be called by a browser. In the case of a native application, the native application should pass the generated url to a browser or web view and allow the browser to render it.
 The visualisation contains the start of a login, commenting and sharing flow that is handled by the browser.

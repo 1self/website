@@ -216,7 +216,7 @@ First let’s turn the event we have created into a JSON representation ready to
 
 <p>Before we can create an event we need a stream to write the event into. A stream is a logical grouping of events. It includes tokens for reading and writing events. Like events, streams are created by the apps that capture behaviour. Once a stream is created and has events in we can ask 1self to visualise that stream in a barchart. <br>
 Let’s look at the method that creates a stream. <br>
-POST <a href="https://api.1self.co/v1/streams/">https://api.1self.co/v1/streams/</a> <br>
+POST <a href="https://sandbox.1self.co/v1/streams/">https://sandbox.1self.co/v1/streams/</a> <br>
 Authorization: clientid:clientsecret <br>
 The post doesn’t expect a request body. It does, however, need an clientid and clientsecret which you <a href="http://www.1self.co/developer/#!/api">get from here</a>. An application is a client of the api and the clientid uniquely identifies it. The clientsecret is used by the client to prove that it the application registered with 1self. The method call returns 3 pieces of information.</p>
 
@@ -245,13 +245,13 @@ The post doesn’t expect a request body. It does, however, need an clientid and
     "<span class="hljs-attribute">readToken</span>": <span class="hljs-value"><span class="hljs-string">"51eb4902856e30a11dc5153e1e65cac7aab3390cf67d"</span></span>,
 }</code></pre>
 
-<p>Now that we have all the details of the stream, a call can be made to the stream to persist the event. The stream is represented at the endpoint <a href="https://api.1self.co/v1/streams/YBEBZPADSKPUDXBG">https://api.1self.co/v1/streams/YBEBZPADSKPUDXBG</a>. On this stream, there is a sub resource ‘events’ which can be written to and read from, the address of which is <a href="https://api.1self.co/v1/streams/YBEBZPADSKPUDXBG">https://api.1self.co/v1/streams/YBEBZPADSKPUDXBG/events</a>. <br>
+<p>Now that we have all the details of the stream, a call can be made to the stream to persist the event. The stream is represented at the endpoint <a href="https://sandbox.1self.co/v1/streams/YBEBZPADSKPUDXBG">https://sandbox.1self.co/v1/streams/YBEBZPADSKPUDXBG</a>. On this stream, there is a sub resource ‘events’ which can be written to and read from, the address of which is <a href="https://sandbox.1self.co/v1/streams/YBEBZPADSKPUDXBG">https://sandbox.1self.co/v1/streams/YBEBZPADSKPUDXBG/events</a>. <br>
 To make the post request we put the write token in the authorization header, set content-type to application/json and add the event in the body of the request</p>
 
 <br><br><br><br><table>
   <tbody><tr>
     <td>POST</td>
-    <td>https://api.1self.co/v1/streams/YBEBZPADSKPUDXBG/events</td>
+    <td>https://sandbox.1self.co/v1/streams/YBEBZPADSKPUDXBG/events</td>
   </tr>
   <tr>
     <td>headers</td>
@@ -382,8 +382,8 @@ The server will return a value of 200 to indicate that the POST was successful a
 </tbody></table>
 
 <p>The URL must be formed from the following template: <br>
-<a href="">https://api.1self.co/v1/streams/{streamid}/{objecttags}/{actiontags}/{aggregation}/{timerollup}/{visualization}?readToken={readToken}</a> <br>
+<a href="">https://sandbox.1self.co/v1/streams/{streamid}/{objecttags}/{actiontags}/{aggregation}/{timerollup}/{visualization}?readToken={readToken}</a> <br>
 WIth our set of data the URL, once filled in, looks like this: <br>
-<a href="https://api.1self.co/v1/streams/VWEWRPHUEBLMUVIG/teeth,oral,mouth/brush,clean/sum%28duration%29/daily/barchart?readToken=51eb4902856e30a11dc5153e1e65cac7aab3390cf67d">https://api.1self.co/v1/streams/VWEWRPHUEBLMUVIG/teeth,oral,mouth/brush,clean/sum(duration)/daily/barchart?readToken=51eb4902856e30a11dc5153e1e65cac7aab3390cf67d</a> <br>
+<a href="https://sandbox.1self.co/v1/streams/VWEWRPHUEBLMUVIG/teeth,oral,mouth/brush,clean/sum%28duration%29/daily/barchart?readToken=51eb4902856e30a11dc5153e1e65cac7aab3390cf67d">https://sandbox.1self.co/v1/streams/VWEWRPHUEBLMUVIG/teeth,oral,mouth/brush,clean/sum(duration)/daily/barchart?readToken=51eb4902856e30a11dc5153e1e65cac7aab3390cf67d</a> <br>
 Nothing should be passed in the request body. The response will contain an html representation of the visualisation. This can be parsed by the client, however this endpoint is designed to be called by a browser. In the case of a native application, the native application should pass the generated url to a browser or web view and allow the browser to render it. <br>
 The visualisation contains the start of a login, commenting and sharing flow that is handled by the browser.</p>
