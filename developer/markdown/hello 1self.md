@@ -85,7 +85,7 @@ There are 4 key elements to the event:
 
 The action is: you wrote a hello world computer program. We set the object tags to ["computer", “program”, “helloworld”] and use the present tense of wrote, “write”, as the action tag. We’re interested in the number of lines of code so we add a property “linesofcode”. It takes it’s value from an HTML element.
 
-Non-trivial actions can be tricky to define events for. To learn more, have a look at our event description guide. <INSERT LINK>
+Defining events for non-trivial actions requires a little thought. To learn more, have a look at the [event guide](http://www.1self.co/developer/#!/resources/event_guide).
 
 Now we can send the event to the api. We use an HTTP POST to the events resource. The URL for the events resource is: [/v1/streams/:streamid/events](https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events)
 

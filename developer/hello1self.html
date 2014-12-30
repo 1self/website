@@ -43,6 +43,8 @@
 
 <p>Great start! Now we’re going to make it do something.</p>
 
+
+
 <h1 id="step1-create-a-stream">Step1, Create a Stream</h1>
 
 <p>First, we create a stream to feed in the information about our users. To create a stream we need an app key and app secret which we get from here . Let’s create the stream using the app key and secret hello1self:hello1self.</p>
@@ -102,7 +104,7 @@
 
 <p>The action is: you wrote a hello world computer program. We set the object tags to [“computer”, “program”, “helloworld”] and use the present tense of wrote, “write”, as the action tag. We’re interested in the number of lines of code so we add a property “linesofcode”. It takes it’s value from an HTML element.</p>
 
-<p>Non-trivial actions can be tricky to define events for. To learn more, have a look at our event description guide. </p>
+<p>Defining events for non-trivial actions requires a little thought. To learn more, have a look at the <a href="http://www.1self.co/developer/#!/resources/event_guide">event guide</a>.</p>
 
 <p>Now we can send the event to the api. We use an HTTP POST to the events resource. The URL for the events resource is: <a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/v1/streams/:streamid/events</a></p>
 
@@ -122,8 +124,6 @@
 <p>All that’s left is the Content-Type header. On line 29 we tell the server the request is encoded in JSON.</p>
 
 <p>Line 30 encodes our event as JSON and makes the request. All being well, the server will respond with 200 OK. </p>
-
-
 
 <h1 id="step-3-visualize">Step 3, Visualize</h1>
 
@@ -264,6 +264,8 @@
 </code></pre>
 
 <p>The latest full listing, with comments, can also be found on Github here. </p>
+
+
 
 <h1 id="summary">Summary</h1>
 
