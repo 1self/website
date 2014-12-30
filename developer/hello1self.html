@@ -1,0 +1,374 @@
+<h1 id="introduction">Introduction</h1>
+
+<p>We’ve designed the 1self platform to create a simple, friction-free developer experience. Once you feed in human information you get beautiful, shareable, commentable visualizations of what the data represents. Let’s work through a simple example so that you can understand what is possible using the api.</p>
+
+
+
+<h1 id="the-example">The example</h1>
+
+<p>Every developer knows that the first thing you build in any new technology is ‘hello, world’. Since 1self is all about visualising human information we’re going to build ‘hello, 1self”:  a web app that lets developers visualise every ‘hello, world’ they write.</p>
+
+<p>If you want to jump straight into the commented code, without an explanation, <a href="https://github.com/QuantifiedDev/hello1self">you can find it here on Github</a>. </p>
+
+
+
+<h1 id="the-app">The app</h1>
+
+<p>Here is the app, have a play. Set the number of ‘Hello,world’ lines of ‘hello, world’ and click the log button. When you click log, the visualization shows the total number of lines of code. Make sure you come back to the app every time you write ‘hello, world’!</p>
+
+<p></p>
+
+
+
+<h1 id="code-overview">Code Overview</h1>
+
+<p>There are 3 code steps we must implement to integrate user information visualizations in an app. ‘Hello, 1self’ is no different - here’s what we need to do:</p>
+
+<ol>
+<li><p>Create a <em>stream</em>, a time-ordered container for events. </p></li>
+<li><p>Write an <em>event</em>, 1self’s representation of human information, to the stream</p></li>
+<li><p>Create a <em>visualization</em>, a view of the events</p></li>
+</ol>
+
+<p>Step 1 &amp; 2 involve calling REST endpoints and processing the results. In step 3 we’ll construct a visualization URL, according to a scheme, and give it to a browser to fetch and display. The browser and 1self take care of building the interactive visualization. Our app doesn’t have to worry about registration, login, navigation or sharing. We’ll get all of those by giving the browser a correctly defined URL.</p>
+
+<p>Since we’re building a web app the language will be javascript. We’ll start by writing a function that carries out the 3 steps. Once the function is complete we’ll plug it into a simple web page using html and css. </p>
+
+<p><code>var logHelloWorld = function(){</code></p>
+
+<p><code>};</code></p>
+
+<p>Great start! Now we’re going to make it do something.</p>
+
+
+
+<h1 id="step1-create-a-stream">Step1, Create a Stream</h1>
+
+<p>First, we create a stream to feed in the information about our users. To create a stream we need an app key and app secret which we get from here . Let’s create the stream using the app key and secret hello1self:hello1self.</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs avrasm"> <span class="hljs-number">1</span> var logHelloWorld = function(){
+ <span class="hljs-number">2</span>     var xmlhttp = new XMLHttpRequest()<span class="hljs-comment">;</span>
+ <span class="hljs-number">3</span>     if(localStorage<span class="hljs-preprocessor">.streamid</span> === undefined){
+ <span class="hljs-number">4</span>     xmlhttp<span class="hljs-preprocessor">.open</span>(<span class="hljs-string">"POST"</span>, <span class="hljs-string">"https://api.1self.co/v1/streams"</span>, false)<span class="hljs-comment">;</span>
+ <span class="hljs-number">5</span>     xmlhttp<span class="hljs-preprocessor">.setRequestHeader</span>(<span class="hljs-string">"Authorization"</span>, <span class="hljs-string">"hello1self:hello1self"</span>)<span class="hljs-comment">;</span>
+ <span class="hljs-number">6</span>     xmlhttp<span class="hljs-preprocessor">.send</span>()<span class="hljs-comment">;</span>
+ <span class="hljs-number">7</span>     var response = JSON<span class="hljs-preprocessor">.parse</span>(xmlhttp<span class="hljs-preprocessor">.response</span>)<span class="hljs-comment">;</span>
+ <span class="hljs-number">8</span>     localStorage<span class="hljs-preprocessor">.streamid</span> = response<span class="hljs-preprocessor">.streamid</span><span class="hljs-comment">;</span>
+ <span class="hljs-number">9</span>     localStorage<span class="hljs-preprocessor">.readtoken</span> = response<span class="hljs-preprocessor">.readToken</span><span class="hljs-comment">;</span>
+<span class="hljs-number">10</span>     localStorage<span class="hljs-preprocessor">.writetoken</span> = response<span class="hljs-preprocessor">.writeToken</span><span class="hljs-comment">;</span>
+<span class="hljs-number">11</span>     }
+<span class="hljs-number">12</span> }</code></pre>
+
+<p>The crucial lines here are 4, 5, 6 and 7. Line 4 constructs a request to create the stream through the POST method on the streams resource. The request is secure as it’s over https. Line 5 sets the app key and app secret which is how the call is authorized. Line 6 sends the request and line 7 parses the result of that request. The result is a JSON response that looks like this:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs autohotkey"><span class="hljs-escape">`{</span><span class="hljs-string">"streamid"</span>: <span class="hljs-string">"YBEBZPADSKPUDXBG"</span>,
+  <span class="hljs-string">"writeToken"</span>: <span class="hljs-string">"0d9a60e8001895a977c33eead02e32b18b1c6d2e2d5c"</span>,
+  <span class="hljs-string">"readToken"</span>: <span class="hljs-string">"51eb4902856e30a11dc5153e1e65cac7aab3390cf67d"</span>,
+}</code></pre>
+
+<p>Stream id identifies the stream uniquely. The tokens, writeToken and readToken, grant access to the the stream. Lines 8-10 saves the stream details to local storage to allow subsequent sessions to add events to the same stream.</p>
+
+<p>Now we can add information about writing hello world programs .</p>
+
+<h1 id="step-2-write-events">Step 2, Write Events</h1>
+
+<p>An event is 1self’s fundamental unit of information about a human. Your heart beat, how long you spend brushing your teeth and a sample of noise from your environment can all be represented as an event. Events are described by an action on an object taken by a human. Here’s how that looks for ‘hello, world”.</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs javascript"><span class="hljs-number">15</span> <span class="hljs-keyword">var</span> helloWorldEvent = {
+
+<span class="hljs-number">16</span>    <span class="hljs-string">"dateTime"</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().toISOString(),
+
+<span class="hljs-number">17</span>    <span class="hljs-string">"objectTags"</span>: [<span class="hljs-string">"computer"</span>, <span class="hljs-string">"program"</span>, <span class="hljs-string">"helloworld"</span>],
+
+<span class="hljs-number">18</span>    <span class="hljs-string">"actionTags"</span>: [<span class="hljs-string">"write"</span>],
+
+<span class="hljs-number">19</span>    <span class="hljs-string">"properties"</span>: {
+
+<span class="hljs-number">20</span>    <span class="hljs-string">"linesofcode"</span>: <span class="hljs-built_in">parseInt</span>(document.getElementById(<span class="hljs-string">'linesofcode'</span>).value)
+
+<span class="hljs-number">21</span>    }
+
+<span class="hljs-number">22</span> };
+</code></pre>
+
+<p>There are 4 key elements to the event:</p>
+
+<ol>
+<li><p><em>dateTime</em>, the time that the action took place, ISO formatted.</p></li>
+<li><p><em>objectTags</em>, a set of tags describing the object involved in the action</p></li>
+<li><p><em>actionTags</em>, a set of tags describing the action itself</p></li>
+<li><p><em>properties</em>, a bag of key-value pairs that describe measurements, attributes and labels of the action.</p></li>
+</ol>
+
+<p>The action is: you wrote a hello world computer program. We set the object tags to [“computer”, “program”, “helloworld”] and use the present tense of wrote, “write”, as the action tag. We’re interested in the number of lines of code so we add a property “linesofcode”. It takes it’s value from an HTML element.</p>
+
+<p>Non-trivial actions can be tricky to define events for. To learn more, have a look at our event description guide. </p>
+
+<p>Now we can send the event to the api. We use an HTTP POST to the events resource. The URL for the events resource is: <a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/v1/streams/:streamid/events</a></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs avrasm"><span class="hljs-number">24</span> xmlhttp<span class="hljs-preprocessor">.open</span>(<span class="hljs-string">"POST"</span>, <span class="hljs-string">"https://api.1self.co/v1/streams/"</span> 
+
+<span class="hljs-number">25</span>   + localStorage<span class="hljs-preprocessor">.streamid</span>
+
+<span class="hljs-number">26</span>   + <span class="hljs-string">"/events"</span>
+
+<span class="hljs-number">27</span>   , false)<span class="hljs-comment">;</span>
+
+<span class="hljs-number">28</span>   xmlhttp<span class="hljs-preprocessor">.setRequestHeader</span>(<span class="hljs-string">"Authorization"</span>, localStorage<span class="hljs-preprocessor">.writetoken</span>)<span class="hljs-comment">;</span>
+
+<span class="hljs-number">29</span>   xmlhttp<span class="hljs-preprocessor">.setRequestHeader</span>(<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"application/json"</span>)<span class="hljs-comment">;</span>
+
+<span class="hljs-number">30</span>   xmlhttp<span class="hljs-preprocessor">.send</span>(JSON<span class="hljs-preprocessor">.stringify</span>(helloWorldEvent))<span class="hljs-comment">;</span>
+</code></pre>
+
+<p>On lines 24 to 27 we choose the POST method to and construct the resource URL. Ours is <a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/v1/streams/XSNJWEIXLCCDSQTV/events</a>. </p>
+
+<p>We must prove that we may write to the stream. On line 28 we set the Authorization header to the write token from the stream creation response.</p>
+
+<p>All that’s left is the Content-Type header. On line 29 we tell the server the request is encoded in JSON.</p>
+
+<p>Line 30 encodes our event as JSON and makes the request. All being well, the server will respond with 200 OK. </p>
+
+<h1 id="step-3-visualize">Step 3, Visualize</h1>
+
+<p>With the events written, we want to visualize the number of lines of code. We specify which events to include, the measurement, the aggregation, how to treat time and the visualization type. We describe this in a URL, then pass it to a browser.</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs avrasm"><span class="hljs-number">32</span> var visualizationUrl = <span class="hljs-string">"https://api.1self.co/v1/streams/"</span> 
+
+<span class="hljs-number">33</span>   + localStorage<span class="hljs-preprocessor">.streamid</span>
+
+<span class="hljs-number">34</span>   + <span class="hljs-string">"/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart"</span><span class="hljs-comment">; </span>
+
+<span class="hljs-number">35</span> var iframe = document<span class="hljs-preprocessor">.getElementById</span>(<span class="hljs-string">"visualization"</span>)<span class="hljs-comment">;</span>
+
+<span class="hljs-number">36</span> iframe<span class="hljs-preprocessor">.src</span> = visualizationUrl<span class="hljs-comment">;</span></code></pre>
+
+<p>On lines 32 - 34 the url is constructed. It’s hard to see it in code; here’s how it appears in memory:</p>
+
+<p><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/v1/streams/XSNJWEIXLCCDSQTV/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart</a></p>
+
+<p>The first part of the URL, up to and including events, we’ve seen before. It’s the stream events resource we wrote the event to. We specify the visualization as sub-resources.</p>
+
+<h2 id="object-tags">Object tags</h2>
+
+<p><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/write/sum(linesofcode)/daily/barchart</a></p>
+
+<p>The first resource is the object tags. We tell 1self to visualize events with computer, program and helloworld tags. They match the event we wrote to the stream.</p>
+
+
+
+<h2 id="action-tags">Action Tags</h2>
+
+<p><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/write</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/sum(linesofcode)/daily/barchart</a></p>
+
+<p>The second resource is the action tags. We tell 1self to visualize events with ‘write’ in the action tags. 1self uses the boolean operator <em>and *to filter the events. 1self will include events with ‘computer’,’program’,’helloworld’ object tags *and</em> with ‘write’ action tags.</p>
+
+
+
+<h2 id="aggregation-function">Aggregation Function</h2>
+
+<p><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld/</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">write</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/sum(linesofcode)</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/daily/barchart</a></p>
+
+<p>The third resource is the aggregation function. We specify sum(linesofcode) and 1self adds the linesofcode measurements in the event properties. More details on the functions available are here. </p>
+
+
+
+<h2 id="time-bucket">Time Bucket</h2>
+
+<p><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld/write/</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">sum(linesofcode)</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/daily</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/barchart</a></p>
+
+<p>The fourth resource is the time bucket. Daily tells 1self to return a visualization showing sums of linesofcode <em>per day</em>. </p>
+
+
+
+<h2 id="visualization-type">Visualization Type</h2>
+
+<p><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld/write/sum(linesofcode)/daily/</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">barchart</a></p>
+
+<p>Finally, we tell 1self to display lines of code per day <em>as a barchart</em>.</p>
+
+<p>The complete scheme for the visualization url is: <code>https://api.1self.co/</code><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">v1/streams/:streamid/events/:objecttags/:actiontags/:aggregation/:timebucket/:visualization/</a></p>
+
+<p>Next we give the visualization URL to the browser. Line 35 gets the iframe and line 36 sets the URL. The browser and 1self work together to allow interaction, login and sharing. All without needing to write any extra code.</p>
+
+<p>With a complete function it’s time to plug in some html and CSS to create the app:</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs xml">01 <span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+02 <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="javascript">
+
+<span class="hljs-number">03</span>    <span class="hljs-keyword">var</span> logHelloWorld = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span>{</span>
+
+<span class="hljs-number">04</span>     <span class="hljs-keyword">var</span> xmlhttp = <span class="hljs-keyword">new</span> XMLHttpRequest();
+
+<span class="hljs-number">05</span>     <span class="hljs-keyword">if</span>(localStorage.streamid === <span class="hljs-literal">undefined</span>){
+
+<span class="hljs-number">06</span>         xmlhttp.open(<span class="hljs-string">"POST"</span>,<span class="hljs-string">"https://api-test.1self.co/v1/streams"</span>, <span class="hljs-literal">false</span>);
+
+<span class="hljs-number">07</span>         xmlhttp.setRequestHeader(<span class="hljs-string">"Authorization"</span>, <span class="hljs-string">"1selfnoise:12345678"</span>);
+
+<span class="hljs-number">08</span>         xmlhttp.send();
+
+<span class="hljs-number">09</span>         <span class="hljs-keyword">var</span> response = <span class="hljs-built_in">JSON</span>.parse(xmlhttp.response);
+
+<span class="hljs-number">10</span>         localStorage.streamid = response.streamid;
+
+<span class="hljs-number">11</span>         localStorage.readtoken = response.readToken;
+
+<span class="hljs-number">12</span>         localStorage.writetoken = response.writeToken;
+
+<span class="hljs-number">13</span>     }
+
+<span class="hljs-number">14</span>
+
+<span class="hljs-number">15</span>    <span class="hljs-keyword">var</span> helloWorldEvent = {
+
+<span class="hljs-number">16</span>        <span class="hljs-string">"dateTime"</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().toISOString(),
+
+<span class="hljs-number">17</span>        <span class="hljs-string">"objectTags"</span>: [<span class="hljs-string">"computer"</span>, <span class="hljs-string">"program"</span>, <span class="hljs-string">"helloworld"</span>],
+
+<span class="hljs-number">18</span>        <span class="hljs-string">"actionTags"</span>: [<span class="hljs-string">"write"</span>],
+
+<span class="hljs-number">19</span>        <span class="hljs-string">"properties"</span>: {
+
+<span class="hljs-number">20</span>            <span class="hljs-string">"linesofcode"</span>: <span class="hljs-built_in">parseInt</span>(document.getElementById(<span class="hljs-string">'linesofcode'</span>).value)
+
+<span class="hljs-number">21</span>        }
+
+<span class="hljs-number">22</span>    };
+
+<span class="hljs-number">23</span>
+
+<span class="hljs-number">24</span>    xmlhttp.open(<span class="hljs-string">"POST"</span>, <span class="hljs-string">"https://api-test.1self.co/v1/streams/"</span> 
+
+<span class="hljs-number">25</span>                      + localStorage.streamid
+
+<span class="hljs-number">26</span>                      + <span class="hljs-string">"/events"</span>
+
+<span class="hljs-number">27</span>                      , <span class="hljs-literal">false</span>);
+
+<span class="hljs-number">28</span>    xmlhttp.setRequestHeader(<span class="hljs-string">"Authorization"</span>, localStorage.writetoken);
+
+<span class="hljs-number">29</span>    xmlhttp.setRequestHeader(<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"application/json"</span>);
+
+<span class="hljs-number">30</span>    xmlhttp.send(<span class="hljs-built_in">JSON</span>.stringify(helloWorldEvent));
+
+<span class="hljs-number">31</span>
+
+<span class="hljs-number">32</span>    <span class="hljs-keyword">var</span> visualizationUrl = <span class="hljs-string">"https://api-test.1self.co/v1/streams/"</span> 
+
+<span class="hljs-number">33</span>                          + localStorage.streamid
+
+<span class="hljs-number">34</span>                          +  <span class="hljs-string">"/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart"</span>;
+
+<span class="hljs-number">35</span>          
+
+<span class="hljs-number">36</span>    <span class="hljs-keyword">var</span> iframe = document.getElementById(<span class="hljs-string">"visualization"</span>);
+
+<span class="hljs-number">37</span>    iframe.src = visualizationUrl;
+
+<span class="hljs-number">38</span>    }
+
+<span class="hljs-number">39</span> </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+40 <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span>&gt;</span><span class="css">
+
+41  <span class="hljs-tag">input</span><span class="hljs-rules">{
+
+<span class="hljs-rule">42      <span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">2</span>px solid grey</span></span>;
+
+<span class="hljs-rule">43      <span class="hljs-attribute">border-radius</span>:<span class="hljs-value"> <span class="hljs-number">8</span>px</span></span>;
+
+<span class="hljs-rule">44      <span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">30</span>px</span></span>;
+
+<span class="hljs-rule">45      <span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">200</span>px</span></span>;
+
+<span class="hljs-rule">46  }</span></span>
+
+47
+
+48  <span class="hljs-tag">h1</span><span class="hljs-rules">{
+
+<span class="hljs-rule">49      <span class="hljs-attribute">margin-top</span>:<span class="hljs-value"> <span class="hljs-number">100</span>px</span></span>;
+
+<span class="hljs-rule">50      <span class="hljs-attribute">font-family</span>:<span class="hljs-value"> helvetica
+
+<span class="hljs-number">51</span>  </span></span></span>}
+
+52
+
+53  <span class="hljs-tag">div</span><span class="hljs-rules">{
+
+<span class="hljs-rule">54      <span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
+
+<span class="hljs-rule">55  }</span></span>
+
+56
+
+57  <span class="hljs-tag">iframe</span><span class="hljs-rules">{
+
+<span class="hljs-rule">58      <span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">320</span></span></span>;
+
+<span class="hljs-rule">59      <span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">568</span></span></span>;
+
+<span class="hljs-rule">60      <span class="hljs-attribute">margin-top</span>:<span class="hljs-value"> <span class="hljs-number">50</span>px</span></span>;
+
+<span class="hljs-rule">61  }</span></span>
+
+62 </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+
+63 <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+64 <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+
+65  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>Hello, 1self<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+
+66  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"linesofcode"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"number"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"lines of hello, world code"</span>&gt;</span>
+
+67  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"button"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"log"</span> <span class="hljs-attribute">onclick</span>=<span class="hljs-value">"logHelloWorld()"</span>&gt;</span>
+
+68  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+69  <span class="hljs-tag">&lt;<span class="hljs-title">iframe</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"visualization"</span>&gt;</span>
+
+70  <span class="hljs-tag">&lt;/<span class="hljs-title">iframe</span>&gt;</span>
+
+71 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+72 <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+73 <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>
+
+<p>The latest full listing, with comments, can also be found on Github here. </p>
+
+<h1 id="summary">Summary</h1>
+
+<p>Any app can integrate 1self visualizations by calling 3 REST apis. We’ve walked through a complete example. We’ve added human actions to 1self and visualized in a few lines of code. Now you’re ready to add 1self to your app or write an integration to a 3rd party data source.</p>
+
+
+
+<h1 id="further-reading">Further reading</h1>
+
+<p>The detailed developer guide. </p>
+
+<p>Rest api documentation .</p>
+
+<p>Developer FAQ .</p>
+
+<p>Main FAQ </p>
+
+<blockquote>
+  <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
