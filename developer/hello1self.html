@@ -1,5 +1,6 @@
 <p>Hello 1self</p>
-<meta name="fragment" content="!">
+
+
 
 <h1 id="introduction">Introduction</h1>
 
@@ -42,51 +43,55 @@
 
 <p>Great start! Now we’re going to make it do something.</p>
 
+
+
 <h1 id="step1-create-a-stream">Step1, Create a Stream</h1>
 
 <p>First, we create a stream to feed in the information about our users. To create a stream we need an app key and app secret which we get from here . Let’s create the stream using the app key and secret hello1self:hello1self.</p>
 
-<p><code>1 var logHelloWorld = function(){</code> <br>
-<code>2     var xmlhttp = new XMLHttpRequest();</code> <br>
-<code>3  if(localStorage.streamid === undefined){</code> <br>
-<code>4      xmlhttp.open("POST","https://api.1self.co/v1/streams", false);</code> <br>
-<code>5         xmlhttp.setRequestHeader("Authorization", "hello1self:hello1self");</code> <br>
-<code>6         xmlhttp.send();</code> <br>
-<code>7         var response = JSON.parse(xmlhttp.response);</code> <br>
-<code>8         localStorage.streamid = response.streamid;</code> <br>
-<code>9         localStorage.readtoken = response.readToken;</code> <br>
-<code>10         localStorage.writetoken = response.writeToken;</code> <br>
-<code>11     }</code> <br>
-<code>12 }</code></p>
+<pre><code>1 var logHelloWorld = function(){
+2     var xmlhttp = new XMLHttpRequest();
+3    if(localStorage.streamid === undefined){
+4        xmlhttp.open("POST","https://api.1self.co/v1/streams", false);
+5         xmlhttp.setRequestHeader("Authorization", "hello1self:hello1self");
+6         xmlhttp.send();
+7         var response = JSON.parse(xmlhttp.response);
+8         localStorage.streamid = response.streamid;
+9         localStorage.readtoken = response.readToken;
+10         localStorage.writetoken = response.writeToken;
+11     
+12 }
+</code></pre>
 
 <p>The crucial lines here are 4, 5, 6 and 7. Line 4 constructs a request to create the stream through the POST method on the streams resource. The request is secure as it’s over https. Line 5 sets the app key and app secret which is how the call is authorized. Line 6 sends the request and line 7 parses the result of that request. The result is a JSON response that looks like this:</p>
 
-<p><code>{</code></p>
+<pre><code>{
+    "streamid": "YBEBZPADSKPUDXBG",
+    "writeToken": "0d9a60e8001895a977c33eead02e32b18b1c6d2e2d5c",
+    "readToken": "51eb4902856e30a11dc5153e1e65cac7aab3390cf67d",
 
-<p><code>"streamid": "YBEBZPADSKPUDXBG",</code></p>
-
-<p><code>"writeToken": "0d9a60e8001895a977c33eead02e32b18b1c6d2e2d5c",</code></p>
-
-<p><code>"readToken": "51eb4902856e30a11dc5153e1e65cac7aab3390cf67d",</code></p>
-
-<p><code>}</code></p>
+}
+</code></pre>
 
 <p>Stream id identifies the stream uniquely. The tokens, writeToken and readToken, grant access to the the stream. Lines 8-10 saves the stream details to local storage to allow subsequent sessions to add events to the same stream.</p>
 
 <p>Now we can add information about writing hello world programs .</p>
 
+
+
 <h1 id="step-2-write-events">Step 2, Write Events</h1>
 
 <p>An event is 1self’s fundamental unit of information about a human. Your heart beat, how long you spend brushing your teeth and a sample of noise from your environment can all be represented as an event. Events are described by an action on an object taken by a human. Here’s how that looks for ‘hello, world”.</p>
 
-<p><code>15 var helloWorldEvent = {</code> <br>
-<code>16                    "dateTime": new Date().toISOString(),</code> <br>
-<code>17                    "objectTags": ["computer", "program", "helloworld"],</code> <br>
-<code>18                    "actionTags": ["write"],</code> <br>
-<code>19                    "properties": {</code> <br>
-<code>20                        "linesofcode": parseInt(document.getElementById('linesofcode').value)</code> <br>
-<code>21                    }</code> <br>
-<code>22                };</code></p>
+<pre><code>15 var helloWorldEvent = {
+16                    "dateTime": new Date().toISOString(),
+17                    "objectTags": ["computer", "program", "helloworld"],
+18                    "actionTags": ["write"],
+19                    "properties": {
+20                        "linesofcode": parseInt(document.getElementById('linesofcode').value)
+21                    }
+22                };
+</code></pre>
 
 <p>There are 4 key elements to the event:</p>
 
@@ -99,17 +104,18 @@
 
 <p>The action is: you wrote a hello world computer program. We set the object tags to [“computer”, “program”, “helloworld”] and use the present tense of wrote, “write”, as the action tag. We’re interested in the number of lines of code so we add a property “linesofcode”. It takes it’s value from an HTML element.</p>
 
-<p>Non-trivial actions can be tricky to define events for. To learn more, have a look at our event description guide. </p>
+<p>Defining events for non-trivial actions requires a little thought. To learn more, have a look at the <a href="http://www.1self.co/developer/#!/resources/event_guide">event guide</a>.</p>
 
 <p>Now we can send the event to the api. We use an HTTP POST to the events resource. The URL for the events resource is: <a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/v1/streams/:streamid/events</a></p>
 
-<p><code>24 xmlhttp.open("POST", "https://api.1self.co/v1/streams/"</code> <br>
-<code>25                     + localStorage.streamid</code> <br>
-<code>26                     + "/events"</code> <br>
-<code>27                     , false);</code> <br>
-<code>28     xmlhttp.setRequestHeader("Authorization", localStorage.writetoken);</code> <br>
-<code>29     xmlhttp.setRequestHeader("Content-Type", "application/json");</code> <br>
-<code>30     xmlhttp.send(JSON.stringify(helloWorldEvent));</code></p>
+<pre><code>24 xmlhttp.open("POST", "https://api.1self.co/v1/streams/" 
+25                      + localStorage.streamid
+26                      + "/events"
+27                      , false);
+28     xmlhttp.setRequestHeader("Authorization", localStorage.writetoken);
+29     xmlhttp.setRequestHeader("Content-Type", "application/json");
+30     xmlhttp.send(JSON.stringify(helloWorldEvent));
+</code></pre>
 
 <p>On lines 24 to 27 we choose the POST method to and construct the resource URL. Ours is <a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/v1/streams/XSNJWEIXLCCDSQTV/events</a>. </p>
 
@@ -123,17 +129,20 @@
 
 <p>With the events written, we want to visualize the number of lines of code. We specify which events to include, the measurement, the aggregation, how to treat time and the visualization type. We describe this in a URL, then pass it to a browser.</p>
 
-<p><code>32 var visualizationUrl = "https://api.1self.co/v1/streams/"</code> <br>
-<code>33                         + localStorage.streamid</code> <br>
-<code>34                         +"/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart";</code> <br>
-<code>35 var iframe = document.getElementById("visualization");</code> <br>
-<code>36 iframe.src = visualizationUrl;</code></p>
+<pre><code>32 var visualizationUrl = "https://api.1self.co/v1/streams/" 
+33                          + localStorage.streamid
+34                          +"/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart";           
+35 var iframe = document.getElementById("visualization");
+36 iframe.src = visualizationUrl;
+</code></pre>
 
 <p>On lines 32 - 34 the url is constructed. It’s hard to see it in code; here’s how it appears in memory:</p>
 
 <p><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/v1/streams/XSNJWEIXLCCDSQTV/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart</a></p>
 
 <p>The first part of the URL, up to and including events, we’ve seen before. It’s the stream events resource we wrote the event to. We specify the visualization as sub-resources.</p>
+
+
 
 <h2 id="object-tags">Object tags</h2>
 
@@ -155,7 +164,7 @@
 
 <p><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld/</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">write</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/sum(linesofcode)</a><a href="https://api.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/daily/barchart</a></p>
 
-<p>The third resource is the aggregation function. We specify sum(linesofcode) and 1self adds the linesofcode measurements in the event properties. More details on the functions available are here. </p>
+<p>The third resource is the aggregation function. We specify sum(linesofcode) and 1self adds the linesofcode measurements in the event properties. </p>
 
 
 
@@ -179,81 +188,82 @@
 
 <p>With a complete function it’s time to plug in some html and CSS to create the app:</p>
 
-<p><code>01 &lt;html&gt;</code> <br>
-<code>02 &lt;script&gt;</code> <br>
-<code>03 var logHelloWorld = function (){</code> <br>
-<code>04     var xmlhttp = new XMLHttpRequest();</code> <br>
-<code>05     if(localStorage.streamid === undefined){</code> <br>
-<code>06         xmlhttp.open("POST","https://api-test.1self.co/v1/streams", false);</code> <br>
-<code>07         xmlhttp.setRequestHeader("Authorization", "1selfnoise:12345678");</code> <br>
-<code>08         xmlhttp.send();</code> <br>
-<code>09         var response = JSON.parse(xmlhttp.response);</code> <br>
-<code>10         localStorage.streamid = response.streamid;</code> <br>
-<code>11         localStorage.readtoken = response.readToken;</code> <br>
-<code>12         localStorage.writetoken = response.writeToken;</code> <br>
-<code>13     }</code> <br>
-<code>14</code> <br>
-<code>15    var helloWorldEvent = {</code> <br>
-<code>16        "dateTime": new Date().toISOString(),</code> <br>
-<code>17        "objectTags": ["computer", "program", "helloworld"],</code> <br>
-<code>18        "actionTags": ["write"],</code> <br>
-<code>19        "properties": {</code> <br>
-<code>20            "linesofcode": parseInt(document.getElementById('linesofcode').value)</code> <br>
-<code>21        }</code> <br>
-<code>22    };</code> <br>
-<code>23</code> <br>
-<code>24    xmlhttp.open("POST", "https://api-test.1self.co/v1/streams/"</code> <br>
-<code>25                     + localStorage.streamid</code> <br>
-<code>26                     + "/events"</code> <br>
-<code>27                     , false);</code> <br>
-<code>28    xmlhttp.setRequestHeader("Authorization", localStorage.writetoken);</code> <br>
-<code>29    xmlhttp.setRequestHeader("Content-Type", "application/json");</code> <br>
-<code>30    xmlhttp.send(JSON.stringify(helloWorldEvent));</code> <br>
-<code>31</code> <br>
-<code>32    var visualizationUrl = "https://api-test.1self.co/v1/streams/"</code> <br>
-<code>33                         + localStorage.streamid</code> <br>
-<code>34                         +  "/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart";</code> <br>
-<code>35</code> <br>
-<code>36    var iframe = document.getElementById("visualization");</code> <br>
-<code>37    iframe.src = visualizationUrl;</code> <br>
-<code>38    }</code> <br>
-<code>39 &lt;/script&gt;</code> <br>
-<code>40 &lt;style&gt;</code> <br>
-<code>41 input{</code> <br>
-<code>42     border: 2px solid grey;</code> <br>
-<code>43     border-radius: 8px;</code> <br>
-<code>44     height: 30px;</code> <br>
-<code>45     width: 200px;</code> <br>
-<code>46 }</code> <br>
-<code>47</code> <br>
-<code>48 h1{</code> <br>
-<code>49     margin-top: 100px;</code> <br>
-<code>50     font-family: helvetica</code> <br>
-<code>51 }</code> <br>
-<code>52</code> <br>
-<code>53 div{</code> <br>
-<code>54     text-align: center;</code> <br>
-<code>55 }</code> <br>
-<code>56</code> <br>
-<code>57 iframe{</code> <br>
-<code>58     width: 320;</code> <br>
-<code>59     height: 568;</code> <br>
-<code>60     margin-top: 50px;</code> <br>
-<code>61 }</code> <br>
-<code>62 &lt;/style&gt;</code> <br>
-<code>63 &lt;body&gt;</code> <br>
-<code>64 &lt;div&gt;</code> <br>
-<code>65 &lt;h1&gt;Hello, 1self&lt;/h1&gt;</code> <br>
-<code>66 &lt;input id="linesofcode" type="number" value="lines of hello, world code"&gt;</code> <br>
-<code>67 &lt;input type="button" value="log" onclick="logHelloWorld()"&gt;</code> <br>
-<code>68 &lt;div&gt;&lt;/div&gt;</code> <br>
-<code>69 &lt;iframe id="visualization"&gt;</code> <br>
-<code>70 &lt;/iframe&gt;</code> <br>
-<code>71 &lt;/div&gt;</code> <br>
-<code>72 &lt;/body&gt;</code> <br>
-<code>73 &lt;/html&gt;</code></p>
+<pre><code>01 &lt;html&gt;
+02 &lt;script&gt;
+03 var logHelloWorld = function (){
+04     var xmlhttp = new XMLHttpRequest();
+05     if(localStorage.streamid === undefined){
+06         xmlhttp.open("POST","https://api-test.1self.co/v1/streams", false);
+07         xmlhttp.setRequestHeader("Authorization", "1selfnoise:12345678");
+08         xmlhttp.send();
+09         var response = JSON.parse(xmlhttp.response);
+10         localStorage.streamid = response.streamid;
+11         localStorage.readtoken = response.readToken;
+12         localStorage.writetoken = response.writeToken;
+13     }
+14
+15    var helloWorldEvent = {
+16        "dateTime": new Date().toISOString(),
+17        "objectTags": ["computer", "program", "helloworld"],
+18        "actionTags": ["write"],
+19        "properties": {
+20            "linesofcode": parseInt(document.getElementById('linesofcode').value)
+21        }
+22    };
+23
+24    xmlhttp.open("POST", "https://api-test.1self.co/v1/streams/" 
+25                      + localStorage.streamid
+26                      + "/events"
+27                      , false);
+28    xmlhttp.setRequestHeader("Authorization", localStorage.writetoken);
+29    xmlhttp.setRequestHeader("Content-Type", "application/json");
+30    xmlhttp.send(JSON.stringify(helloWorldEvent));
+31
+32    var visualizationUrl = "https://api-test.1self.co/v1/streams/" 
+33                          + localStorage.streamid
+34                          +  "/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart";
+35          
+36    var iframe = document.getElementById("visualization");
+37    iframe.src = visualizationUrl;
+38    }
+39 &lt;/script&gt;
+40 &lt;style&gt;
+41  input{
+42      border: 2px solid grey;
+43      border-radius: 8px;
+44      height: 30px;
+45      width: 200px;
+46  }
+47
+48  h1{
+49      margin-top: 100px;
+50      font-family: helvetica
+51  }
+52
+53  div{
+54      text-align: center;
+55  }
+56
+57  iframe{
+58      width: 320;
+59      height: 568;
+60      margin-top: 50px;
+61  }
+62 &lt;/style&gt;
+63 &lt;body&gt;
+64 &lt;div&gt;
+65  &lt;h1&gt;Hello, 1self&lt;/h1&gt;
+66  &lt;input id="linesofcode" type="number" value="lines of hello, world code"&gt;
+67  &lt;input type="button" value="log" onclick="logHelloWorld()"&gt;
+68  &lt;div&gt;&lt;/div&gt;
+69  &lt;iframe id="visualization"&gt;
+70  &lt;/iframe&gt;
+71 &lt;/div&gt;
+72 &lt;/body&gt;
+73 &lt;/html&gt;
+</code></pre>
 
-<p>The latest full listing, with comments, can also be found on Github here. </p>
+<p>The latest full listing, with comments, <a href="https://github.com/QuantifiedDev/hello1self">can also be found on Github, here</a></p>
 
 <h1 id="summary">Summary</h1>
 
@@ -267,11 +277,3 @@
 <a href="http://www.1self.co/developer/#!/resources/rest_api">Rest api documentation</a>. <br>
 <a href="http://www.1self.co/developer/#!/resources/event_guide">Event Guide</a> <br>
 <a href="http://www.1self.co/developer/#!/faq">Developer FAQ</a></p>
-<p>The detailed developer guide. </p>
-
-<p>Rest api documentation .</p>
-
-<p>Developer FAQ .</p>
-
-<p>Main FAQ </p>
-

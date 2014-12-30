@@ -1,6 +1,6 @@
 # About This Guide
 
-This guide is for developers creating 1self integrations and applications. See the use cases for the 1self platform here. <<INSERT LINK>>. This guide explains the 1self metadata and conventions.
+This guide is for developers creating 1self integrations and applications. See the [use cases for the 1self platform here](http://www.1self.co/developer/#use-cases). This guide explains the 1self metadata and conventions.
 
 In this guide, ‘must’ means compulsory advice and ‘should’ means strong recommendation. When compulsory advice is ignored, no guarantees are made about 1self’s behaviour.
 
@@ -84,7 +84,7 @@ All metadata and values must be lowercase. They must contain only alphanumeric c
 
 Meta-data selection requires you to think. To create an event type you discover the appropriate metadata. You decide whether information should be an object tags or a label. When a tag adds information, you include it. Properties describe measurements and labels.
 
-To illustrate the thought process, let’s work through an example together. Imagine a sublime plugin that captures when a user writes a javascript 1self app like "Hello, 1self". We’re going to step through the thinking required to create a representative, well-formed, robust and linkable event. If, post walkthrough, you’re still not sure, please get in touch <<INSERT LINK>>
+To illustrate the thought process, let’s work through an example together. Imagine a sublime plugin that captures when a user writes a javascript 1self app like "Hello, 1self". We’re going to step through the thinking required to create a representative, well-formed, robust and linkable event. If, post walkthrough, you’re still not sure, [please get in touch](mailto:team@1self.co]
 
 ## OBJECT TAG DISCOVERY
 
@@ -596,11 +596,11 @@ We have completed an in-depth look at event meta-data discovery for the act of w
 
 If you are intimidated by the complexity, just trust your instincts. You can correct mistakes in the event metadata later. Start with a simple event, write you 1self app, then iterate from there. 
 
-As we worked this example, did you disagree with the decisions? For most events, there are multiple metadata representations. It may be useful to look at events in your domain. The event meta database can be found here <<INSERT LINK>>.
+As we worked this example, did you disagree with the decisions? For most events, there are multiple metadata representations. It may be useful to look at events in your domain. [Email us to find out about events already in your domain](mailto:team@1self.co)
 
 # Metadata patterns
 
-At 1self, through event metadata creation, we’ve found some patterns. You’re likely to find your events follow one of them. If not, you may have discovered a new pattern. We’d love to hear about it, so get in touch! <<LINK>>  
+At 1self, through event metadata creation, we’ve found some patterns. You’re likely to find your events follow one of them. If not, you may have discovered a new pattern. We’d love to hear about it, so [get in touch](mailto:team@1self.co)!
 
 ## 1. Self Pattern 
 
