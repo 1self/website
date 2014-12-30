@@ -81,7 +81,8 @@ q {
   quotes: "\201C" "\201D" "\2018" "\2019";
 }
 li {
-  list-style-type: disc
+  list-style-type: disc;
+  margin-left: 1em;
 }
 small {
   font-size: 80%;
@@ -7010,5 +7011,4 @@ body {
 
 .integration{
   margin-bottom: 1em;
-  margin-left: 1em;
 }
