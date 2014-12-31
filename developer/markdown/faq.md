@@ -1,10 +1,11 @@
-# 1self FAQ
+1self FAQ
+---------
 
 > **Will you sell my data?**
-Nope. Never. (Unless you want us to)
+> Nope. Never. (Unless you want us to)
 
 > **Is my data private?**
-Yes. All of your data is private by default. You can share your data and insights with your friends or the world if you choose to though.
+> Yes. All of your data is private by default. You can share your data and insights with your friends or the world if you choose to though.
 
 > **Is my data secure?**
 Yes. All data is transferred over secure protocols.
