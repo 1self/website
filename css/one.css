@@ -1120,6 +1120,14 @@ div.quest-content p {
 body {
     letter-spacing: 1px
 }
+.core-drawer-panel-custom{
+  top:0!important;
+  margin-top: 89px;
+  height: 90%;
+}
+p:last-child {
+   padding-bottom: 30px;
+}
 
 @media (max-width: 875px) {
     body .nav-right a.nav-link {
@@ -1313,7 +1321,12 @@ body {
     .signup-content .invite input[type="submit"] {
         width: 80px;
     }
-
+    .core-drawer-panel-custom{
+       margin-top: 62px; 
+    }
+    paper-item{
+    line-height: 11px;
+    }
 }
 
 @media (max-width: 575px) {
