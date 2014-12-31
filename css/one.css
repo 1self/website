@@ -1522,7 +1522,6 @@ nav {
     height: auto;
     width: 225px;
     background-color: #454B54;
-    display: block;
     position: absolute;
     right: 140px;
     z-index: 1000;
