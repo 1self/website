@@ -1523,6 +1523,7 @@ nav {
     width: 225px;
     background-color: #454B54;
     position: absolute;
+    display:none;
     right: 140px;
     z-index: 1000;
     top: 69px;
