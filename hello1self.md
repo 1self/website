@@ -82,7 +82,7 @@ Now we can add information about writing hello world programs .
 An event is 1self’s fundamental unit of information about a human. Your heart beat, how long you spend brushing your teeth and a sample of noise from your environment can all be represented as an event. Events are described by an action on an object taken by a human. Here’s how that looks for ‘hello, world".
 
 ```
- var helloWorldEvent = {
+	var helloWorldEvent = {
                     "dateTime": new Date().toISOString(),
                     "objectTags": ["computer", "program", "helloworld"],
                     "actionTags": ["write"],
@@ -172,6 +172,14 @@ The complete scheme for the visualization url is: `https://api.1self.co/`[v1/str
 Next we give the visualization URL to the browser. Line 35 gets the iframe and line 36 sets the URL. The browser and 1self work together to allow interaction, login and sharing. All without needing to write any extra code.
 
 With a complete function it’s time to plug in some html and CSS to create the app:
+
+```
+	class Hello
+	   def hello
+	     puts "Hello 1self"
+	   end
+	end
+```
 
 <script src="https://gist.github.com/anildigital/cbce13f33e6b978b6d06.js"></script>
 
