@@ -30,6 +30,7 @@ $(document).ready(function () {
 
     $('#loginButton').click(function(event){
         event.preventDefault();
+        $('#loginBox').css('top', $(document).scrollTop() + 70 + "px");
         $('#loginBox').show();
     });
 
