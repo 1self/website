@@ -7019,3 +7019,9 @@ table th, table td {
   vertical-align: top;
   border: 1px solid #C1C1C1;
 }
+
+@media (min-width: 641px) {
+  .content-container{
+    padding: 2em 1em 1em 2em;
+  }
+}
