@@ -7012,3 +7012,10 @@ body {
 .integration{
   margin-bottom: 1em;
 }
+
+table th, table td {
+  padding: 1em;
+  line-height: 20px;
+  vertical-align: top;
+  border: 1px solid #C1C1C1;
+}
