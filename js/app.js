@@ -67,7 +67,7 @@ var checkUserName = function(){
     $.get(setDasboardRedirectUrl).done(function() {
         $.get(url)
             .done(function(){
-                document.location.href = LOGIN_ENDPOINT + '/signup';
+                document.location.href = LOGIN_ENDPOINT + '/auth/github';
             })
             .error(function(){
                 $('#signinErrorMessage').html("Please enter a valid 1self username");
