@@ -59,7 +59,7 @@ function headerResize() {
 }
 
 var checkUserName = function(){
-    const LOGIN_ENDPOINT = "http://app.1self.co";
+    const LOGIN_ENDPOINT = "https://app.1self.co";
     var username = $('#oneselfUsername').val();
     var setDasboardRedirectUrl = "https://app.1self.co/signup";
     url = LOGIN_ENDPOINT + '/v1/user/' + username + "/exists";
