@@ -61,10 +61,10 @@ function headerResize() {
 var checkUserName = function(){
     const LOGIN_ENDPOINT = "http://api.1self.co";
     var username = $('#oneselfUsername').val();
-    var dasboardRedirectUrl = LOGIN_ENDPOINT + "/set_dashboard_redirect";
+    var setDasboardRedirectUrl = "https://app.1self.co/signup";
     url = LOGIN_ENDPOINT + '/v1/user/' + username + "/exists";
 
-    $.get(dasboardRedirectUrl).done(function() {
+    $.get(setDasboardRedirectUrl).done(function() {
         $.get(url)
             .done(function(){
                 document.location.href = LOGIN_ENDPOINT + '/auth/github';
