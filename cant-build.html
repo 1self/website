@@ -46,10 +46,34 @@
             <img src="images/link-dot.png" alt=""/>
           </span>
             </a>
+            <a class="nav-link nav-toggle" href="http://blog.1self.co" target="_blank">BLOG
+          <span>
+            <img src="images/link-dot.png" alt=""/>
+          </span>
+            </a>
+            <a class="button signupButton nav-toggle" id="loginButton" href="#">Log in</a>
             <a class="button signupButton nav-toggle" href="index.html#signup">SIGN UP</a>
         </nav>
     </header>
 </div>
+
+<div id="loginBox">
+  <div class="loginHeading">Log in
+    <div class="closeButton">X</div>
+  </div>
+
+  
+  <form id="signInForm">
+    <div for="oneselfUsername">Enter your 1self username:</div>
+    <input type="text" id="oneselfUsername" name="oneselfUsername" required />
+
+    <div id="signinErrorMessage"></div>
+
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+
 <div class="page-content">
     <div class="build-banner-white">
         <h2>Unleash the data!</h2>
@@ -106,7 +130,7 @@
             </div>
         </div>
     </div>
-    <a href="no-exploit.html" class="seperator next-page">
+    <a href="index.html#no-exploit" class="seperator next-page">
         <div class="grid">
             <div class="grid-row">
                 <div class="grid-cell text-right"><img src="images/next-btn_left.png"></div>
