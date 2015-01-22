@@ -7025,3 +7025,11 @@ table th, table td {
     padding: 2em 1em 1em 2em;
   }
 }
+
+h1, h2, h3, h4, h5, h6{
+    border-bottom: solid rgb(195, 195, 195);
+}
+
+h1{
+    border-width: 0.05em
+}
