@@ -61,19 +61,13 @@ function headerResize() {
 var checkUserName = function(){
     const LOGIN_ENDPOINT = "https://app.1self.co";
     var username = $('#oneselfUsername').val();
-    var setDasboardRedirectUrl = "https://app.1self.co/signup";
     url = LOGIN_ENDPOINT + '/v1/user/' + username + "/exists";
 
-    $.get(setDasboardRedirectUrl).done(function() {
-        $.get(url)
-            .done(function(){
-                document.location.href = LOGIN_ENDPOINT + '/auth/github';
-            })
-            .error(function(){
-                $('#signinErrorMessage').html("Please enter a valid 1self username");
-            });
-    }).error(function() {
-        $('#signinErrorMessage').html("Error occurred. Please check back later.");
-    });
-
+    $.get(url)
+        .done(function(){
+            document.location.href = LOGIN_ENDPOINT + '/auth/github/1self_website';
+        })
+        .error(function(){
+            $('#signinErrorMessage').html("Please enter a valid 1self username");
+        });
 };
