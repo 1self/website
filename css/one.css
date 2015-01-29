@@ -353,7 +353,7 @@ input[type='button']:hover {
     color: #ececec;
 }
 
-.invite input[type="email"] {
+.invite input[type="text"] {
     width: 200px;
     padding: 8px 11px 9px 10px;
     border: 1px solid #ffffff;
@@ -545,7 +545,7 @@ input[type='button']:hover {
     padding: 3em 1em;
 }
 
-.signup-content .invite input[type="email"] {
+.signup-content .invite input[type="text"] {
     border-color: #00A2D4;
 }
 
@@ -1369,7 +1369,7 @@ p:last-child {
         border-top: 1px solid #454b54;
     }
 
-    .signup-content .invite input[type="email"] {
+    .signup-content .invite input[type="text"] {
         width: 120px;
     }
 
@@ -1452,7 +1452,7 @@ p:last-child {
         width: 85px
     }
 
-    .invite form input[type="email"] {
+    .invite form input[type="text"] {
         width: 115px
     }
 
