@@ -56,7 +56,7 @@
           </span>
             </a>
             <a class="button signupButton nav-toggle" id="loginButton" href="#">Log in</a>
-            <a class="button signupButton nav-toggle" href="index.html#signup">Join</a>
+            <a class="button signupButton nav-toggle" id="joinButton" href="#">Join</a>
         </nav>
     </header>
 </div>
@@ -76,6 +76,38 @@
     <button type="submit">Login</button>
   </form>
 </div>
+
+
+<div id="joinBox">
+  <div class="joinHeading">Sign up
+    <div class="closeButton">X</div>
+  </div>
+
+  <form id="signupWaitListForm" style="display:none;">
+    Let us know your email and we'll let you know as soon as we've got new signup options.
+    <input type="text" class="oneselfEmailWaitQueue" name="oneSelfEmail" required /> <button type="submit">Send</button>
+    <div class="signup_go_back_link">
+      <a href="#" id="signup_go_back"><< Go back</a>
+    </div>
+  </form> 
+  
+  <form id="joinForm" style="display:block;">
+    <div for="oneselfUsername">
+      Choose your 1self username:  <input type="text" id="oneselfUsernameJoin" name="oneselfUsernameJoin" required />
+    </div>
+   
+    <div id="joinErrorMessage" class="errorMessage"></div>
+
+    <button >Join using GitHub</button>
+
+    <div class="join_waitlist_msg">
+      I don't want to sign up with Facebook or GitHub<br />
+      <a href="#" id="signupWaitListFormLink">Let me know when you have other sign up options.</a>
+    </div>
+  </form>
+  
+</div>
+
 
 <div class="page-content">
     <div class="banner center">
@@ -104,11 +136,8 @@
 
                 <h3>Hurry, early adopter places are limited!</h3>
 
-                <form action="https://QuantifiedDev.us8.list-manage.com/subscribe/post?u=6cba468ceea6fc41a7d7db50e&amp;id=4a6bbc5899"
-                      method="post" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                    <input type="text" name="username" id="mce-username" value="" placeholder="Choose your 1self username"/><input
-                        type="submit" value="Join 1self" onclick="cacheUsername()" class="join_username_btn" />
-                </form>
+                <input type="text" name="username" class="1s_username" id="mce-username" value="" placeholder="Choose your 1self username"/>
+                <input  type="submit" value="Join 1self" class="join_username_btn" />
 
                 <div class="red-dot-desktop"><img src="images/dot-yellow.png" alt=""/></div>
             </div>

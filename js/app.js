@@ -28,15 +28,49 @@ $(document).ready(function () {
         checkUserName();
     });
 
+    $("#joinForm").submit(function(event){
+        event.preventDefault();
+        checkUserNameValidity();
+    });
+    
+
     $('#loginButton').click(function(event){
         event.preventDefault();
         $('#loginBox').css('top', $(document).scrollTop() + 70 + "px");
         $('#loginBox').show();
     });
 
+    $('#joinButton').click(function(event){
+        event.preventDefault();
+        $('#joinBox').css('top', $(document).scrollTop() + 70 + "px");
+        $('#joinBox').show();
+    });
+
+    $(".join_username_btn").click(function(event){
+        event.preventDefault();       
+        var username = $(this).siblings(":text").val();
+        $('#joinBox').css('top', $(document).scrollTop() + 70 + "px");
+        $("#oneselfUsernameJoin").val(username);
+        $('#joinBox').show();
+        return false;
+    });
+
     $('.closeButton').click(function(event){
         event.preventDefault();
         $('#loginBox').hide();
+        $('#joinBox').hide();        
+    });
+
+    $("#signup_go_back").click(function(event) {
+        event.preventDefault();
+        $("#signupWaitListForm").hide();
+        $("#joinForm").show();
+    });
+
+    $("#signupWaitListFormLink").click(function(event){
+        event.preventDefault();
+        $("#signupWaitListForm").show();
+        $("#joinForm").hide();            
     });
 });
 
@@ -61,7 +95,7 @@ function headerResize() {
 var checkUserName = function(){
     const LOGIN_ENDPOINT = "https://app.1self.co";
     var username = $('#oneselfUsername').val();
-    url = LOGIN_ENDPOINT + '/v1/user/' + username + "/exists";
+    var url = LOGIN_ENDPOINT + '/v1/user/' + username + "/exists";
 
     $.get(url)
         .done(function(){
@@ -70,4 +104,26 @@ var checkUserName = function(){
         .error(function(){
             $('#signinErrorMessage').html("Please enter a valid 1self username");
         });
+};
+
+
+
+var checkUserNameValidity = function(){
+    const API_ENDPOINT = "http://localhost:5000";    
+    var username = $('#oneselfUsernameJoin').val();
+    $('#joinErrorMessage').html("");
+    var re = /^[a-zA-Z0-9_]*$/;
+    if (!re.test(username)) {
+        $('#joinErrorMessage').html("Username needs to be just letters, numbers or underscore.");
+    } else {
+        var url = API_ENDPOINT + '/v1/user/' + username + "/exists";
+        $.get(url)
+            .done(function(){
+                $('#joinErrorMessage').html("Ack. Sorry. That username is already taken!");
+            })
+            .error(function(){
+                document.location.href = API_ENDPOINT + '/auth/github/1self_website';               
+            });
+    }
+    
 };
