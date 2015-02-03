@@ -47,7 +47,7 @@ $(document).ready(function () {
     });
 
     $(".join_username_btn").click(function(event){
-        event.preventDefault();       
+        event.preventDefault();
         var username = $(this).siblings(":text").val();
         $('#joinBox').css('top', $(document).scrollTop() + 70 + "px");
         $("#oneselfUsernameJoin").val(username);

@@ -73,6 +73,36 @@
 </div>
 
 
+<div id="joinBox">
+  <div class="joinHeading">Sign up
+    <div class="closeButton">X</div>
+  </div>
+
+  <form id="signupWaitListForm" style="display:none;">
+    Let us know your email and we'll let you know as soon as we've got new signup options.
+    <input type="text" class="oneselfEmailWaitQueue" name="oneSelfEmail" required /> <button type="submit">Send</button>
+    <div class="signup_go_back_link">
+      <a href="#" id="signup_go_back"><< Go back</a>
+    </div>
+  </form> 
+  
+  <form id="joinForm" style="display:block;">
+    <div for="oneselfUsername">
+      Choose your 1self username:  <input type="text" id="oneselfUsernameJoin" name="oneselfUsernameJoin" required />
+    </div>
+   
+    <div id="joinErrorMessage" class="errorMessage"></div>
+
+    <button >Join using GitHub</button>
+
+    <div class="join_waitlist_msg">
+      I don't want to sign up with Facebook or GitHub<br />
+      <a href="#" id="signupWaitListFormLink">Let me know when you have other sign up options.</a>
+    </div>
+  </form>  
+</div>
+
+
 <div class="page-content">
 <div class="banner quest-banner">
     <h2>Privacy Policy</h2>
@@ -284,14 +314,9 @@
         <wbr/>
         live smarter
     </h1>
-    Claim your username. Join our beta
-    <form action="https://QuantifiedDev.us8.list-manage.com/subscribe/post?u=6cba468ceea6fc41a7d7db50e&amp;id=4a6bbc5899"
-          method="post" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-      <input type="text" name="username" id="mce-username" value="" placeholder="Choose your 1self username"/>
-      <input class="join_username_btn" type="submit"
-             value="Join 1self"
-             onclick="cacheUsername()"/>
-    </form>
+    <div style="margin-bottom:10px;">Claim your username. Join our beta </div>
+    <input type="text" name="username" class="1s_username" id="mce-username" value="" placeholder="Choose your 1self username"/>
+    <input  type="submit" value="Join 1self" class="join_username_btn" /> 
 </div>
 </div>
 <footer class="footer">
