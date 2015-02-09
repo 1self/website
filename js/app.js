@@ -122,7 +122,7 @@ var checkUserNameValidity = function(){
                 $('#joinErrorMessage').html("Ack. Sorry. That username is already taken!");
             })
             .error(function(){
-                document.location.href = API_ENDPOINT + '/auth/github/1self_website';               
+                document.location.href = API_ENDPOINT + '/signup?intent=website_signup&oneselfUsername=user123';
             });
     }
     
