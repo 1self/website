@@ -33,13 +33,7 @@ $(document).ready(function () {
         checkUserNameValidity();
     });
 
-
-    $('#loginButton').click(function(event){
-        event.preventDefault();
-        $('#loginBox').css('top', $(document).scrollTop() + 70 + "px");
-        $('#loginBox').show();
-    });
-
+    
     $('#joinButton').click(function(event){
         event.preventDefault();
         $('#joinBox').css('top', $(document).scrollTop() + 70 + "px");
