@@ -32,7 +32,7 @@ $(document).ready(function () {
         event.preventDefault();
         checkUserNameValidity();
     });
-    
+
 
     $('#loginButton').click(function(event){
         event.preventDefault();
@@ -58,7 +58,7 @@ $(document).ready(function () {
     $('.closeButton').click(function(event){
         event.preventDefault();
         $('#loginBox').hide();
-        $('#joinBox').hide();        
+        $('#joinBox').hide();
     });
 
     $("#signup_go_back").click(function(event) {
@@ -70,7 +70,7 @@ $(document).ready(function () {
     $("#signupWaitListFormLink").click(function(event){
         event.preventDefault();
         $("#signupWaitListForm").show();
-        $("#joinForm").hide();            
+        $("#joinForm").hide();
     });
 });
 
@@ -93,13 +93,13 @@ function headerResize() {
 }
 
 var checkUserName = function(){
-    const LOGIN_ENDPOINT = "https://app.1self.co";
+    const API_ENDPOINT = "http://localhost:5000";
     var username = $('#oneselfUsername').val();
-    var url = LOGIN_ENDPOINT + '/v1/user/' + username + "/exists";
+    var url = API_ENDPOINT + '/v1/user/' + username + "/exists";
 
     $.get(url)
         .done(function(){
-            document.location.href = LOGIN_ENDPOINT + '/auth/github/1self_website';
+            document.location.href = API_ENDPOINT + "/signup?intent=login&oneselfUsername=" + username;
         })
         .error(function(){
             $('#signinErrorMessage').html("Please enter a valid 1self username");
@@ -109,7 +109,7 @@ var checkUserName = function(){
 
 
 var checkUserNameValidity = function(){
-    const API_ENDPOINT = "http://localhost:5000";    
+    const API_ENDPOINT = "http://localhost:5000";
     var username = $('#oneselfUsernameJoin').val();
     $('#joinErrorMessage').html("");
     var re = /^[a-zA-Z0-9_]*$/;
@@ -122,8 +122,8 @@ var checkUserNameValidity = function(){
                 $('#joinErrorMessage').html("Ack. Sorry. That username is already taken!");
             })
             .error(function(){
-                document.location.href = API_ENDPOINT + '/signup?intent=website_signup&oneselfUsername=user123';
+                document.location.href = API_ENDPOINT + "/signup?intent=website_signup&oneselfUsername=" + username;
             });
     }
-    
+
 };
