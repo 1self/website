@@ -1,0 +1,35 @@
+.plugins {
+	min-width: 250px;
+	width: 10%;
+	margin-left: auto;
+	margin-right: auto
+}
+
+.plugin {
+	width: 46%;
+	padding-left: 2%;
+	padding-right: 1%
+}
+
+.instruction-container{
+	min-width: 250px;
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.instruction-container p{
+	text-align: left;
+}
+
+.download-logo{
+	max-width: 240px;
+	margin-bottom: 5%;
+}
+
+#intellij-download.button,
+#sublime-packagecontrol-lnk.button{
+	margin-top: 5%;
+	background-color: #f2ae1c;
+	border-color: rgba(48, 54, 62, 1);
+}
