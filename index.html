@@ -55,7 +55,7 @@
             <img src="images/link-dot.png" alt=""/>
           </span>
             </a>
-            <a class="button signupButton nav-toggle" id="loginButton" href="http://app-staging.1self.co/login">Log in</a>
+            <a class="button signupButton nav-toggle" id="loginButton" href="http://localhost:5000/login?auth=website.login">Log in</a>
             <a class="button signupButton nav-toggle" id="joinButton" href="#">Join</a>
         </nav>
     </header>
@@ -67,9 +67,10 @@
     <div class="closeButton">X</div>
   </div>
 
-  <form id="signupWaitListForm" style="display:none;">
+  <form action="https://QuantifiedDev.us8.list-manage.com/subscribe/post?u=6cba468ceea6fc41a7d7db50e&amp;id=4a6bbc5899" class="validate" id="signupWaitListForm" style="display:none;" method="post">
     Let us know your email and we'll let you know as soon as we've got new signup options.
-    <input type="text" class="oneselfEmailWaitQueue" name="oneSelfEmail" required /> <button type="submit">Send</button>
+    <input type="email" class="oneselfEmailWaitQueue" id="mce-EMAIL1" name="EMAIL" placeholder="you@email.com" required />
+      <button type="submit" onclick="cacheEmail1()">Send</button>
     <div class="signup_go_back_link">
       <a href="#" id="signup_go_back"><< Go back</a>
     </div>
