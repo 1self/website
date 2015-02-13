@@ -33,7 +33,7 @@ $(document).ready(function () {
         checkUserNameValidity();
     });
 
-    
+
     $('#joinButton').click(function(event){
         event.preventDefault();
         $('#joinBox').css('top', $(document).scrollTop() + 70 + "px");
@@ -87,7 +87,7 @@ function headerResize() {
 }
 
 var checkUserName = function(){
-    const API_ENDPOINT = "http://localhost:5000";
+    const API_ENDPOINT = "https://app-staging.1self.co";
     var username = $('#oneselfUsername').val();
     var url = API_ENDPOINT + '/v1/user/' + username + "/exists";
 
@@ -103,7 +103,7 @@ var checkUserName = function(){
 
 
 var checkUserNameValidity = function(){
-    const API_ENDPOINT = "http://localhost:5000";
+    const API_ENDPOINT = "https://app-staging.1self.co";
     var username = $('#oneselfUsernameJoin').val();
     $('#joinErrorMessage').html("");
     var re = /^[a-zA-Z0-9_]*$/;
