@@ -87,7 +87,7 @@ function headerResize() {
 }
 
 var checkUserName = function(){
-    const API_ENDPOINT = "https://app-staging.1self.co";
+    const API_ENDPOINT = "http://localhost:5000";
     var username = $('#oneselfUsername').val();
     var url = API_ENDPOINT + '/v1/user/' + username + "/exists";
 
@@ -103,7 +103,10 @@ var checkUserName = function(){
 
 
 var checkUserNameValidity = function(){
-    const API_ENDPOINT = "https://app-staging.1self.co";
+    const API_ENDPOINT = "http://localhost:5000";
+    var loc = document.location;
+    var redirectUrl = loc.protocol + '//' + loc.hostname + (loc.port ? ':' + loc.port: '');
+    redirectUrl += '/confirmation.html';
     var username = $('#oneselfUsernameJoin').val();
     $('#joinErrorMessage').html("");
     var re = /^[a-zA-Z0-9_]*$/;
@@ -116,7 +119,9 @@ var checkUserNameValidity = function(){
                 $('#joinErrorMessage').html("Ack. Sorry. That username is already taken!");
             })
             .error(function(){
-                document.location.href = API_ENDPOINT + "/signup?intent=website_signup&oneselfUsername=" + username;
+                var signupUrl = API_ENDPOINT + "/signup?intent=website_signup&oneselfUsername=" + username;
+                signupUrl += '&redirectUrl=' + redirectUrl;
+                document.location.href = signupUrl;
             });
     }
 
