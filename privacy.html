@@ -50,56 +50,40 @@
             <img src="images/link-dot.png" alt=""/>
           </span>
             </a>
-            <a class="button signupButton nav-toggle" id="loginButton" href="#">Log in</a>
+            <a class="button signupButton nav-toggle" id="loginButton" href="http://app-staging.1self.co/login">Log in</a>
             <a class="button signupButton nav-toggle" href="index.html#signup">Join</a>
         </nav>
     </header>
 </div>
 
-<div id="loginBox">
-  <div class="loginHeading">Log in
-    <div class="closeButton">X</div>
-  </div>
-
-  
-  <form id="signInForm">
-    <div for="oneselfUsername">Enter your 1self username:</div>
-    <input type="text" id="oneselfUsername" name="oneselfUsername" required />
-
-    <div id="signinErrorMessage"></div>
-
-    <button type="submit">Login</button>
-  </form>
-</div>
-
-
 <div id="joinBox">
-  <div class="joinHeading">Sign up
-    <div class="closeButton">X</div>
-  </div>
-
-  <form id="signupWaitListForm" style="display:none;">
-    Let us know your email and we'll let you know as soon as we've got new signup options.
-    <input type="text" class="oneselfEmailWaitQueue" name="oneSelfEmail" required /> <button type="submit">Send</button>
-    <div class="signup_go_back_link">
-      <a href="#" id="signup_go_back"><< Go back</a>
+    <div class="joinHeading">Sign up
+        <div class="closeButton">X</div>
     </div>
-  </form> 
-  
-  <form id="joinForm" style="display:block;">
-    <div for="oneselfUsername">
-      Choose your 1self username:  <input type="text" id="oneselfUsernameJoin" name="oneselfUsernameJoin" required />
-    </div>
-   
-    <div id="joinErrorMessage" class="errorMessage"></div>
 
-    <button >Join using GitHub</button>
+    <form action="https://QuantifiedDev.us8.list-manage.com/subscribe/post?u=6cba468ceea6fc41a7d7db50e&amp;id=4a6bbc5899" class="validate" id="signupWaitListForm" style="display:none;" method="post">
+        Let us know your email and we'll let you know as soon as we've got new signup options.
+        <input type="email" class="oneselfEmailWaitQueue" id="mce-EMAIL1" name="EMAIL" placeholder="you@email.com" required />
+        <button type="submit" onclick="cacheEmail1()">Send</button>
+        <div class="signup_go_back_link">
+            <a href="#" id="signup_go_back"><< Go back</a>
+        </div>
+    </form>
 
-    <div class="join_waitlist_msg">
-      I don't want to sign up with Facebook or GitHub<br />
-      <a href="#" id="signupWaitListFormLink">Let me know when you have other sign up options.</a>
-    </div>
-  </form>  
+    <form id="joinForm" style="display:block;">
+        <div for="oneselfUsername">
+            Choose your 1self username:  <input type="text" id="oneselfUsernameJoin" name="oneselfUsernameJoin" required />
+        </div>
+
+        <div id="joinErrorMessage" class="errorMessage"></div>
+
+        <button >Join using GitHub</button>
+
+        <div class="join_waitlist_msg">
+            I don't want to sign up with Facebook or GitHub<br />
+            <a href="#" id="signupWaitListFormLink">Let me know when you have other sign up options.</a>
+        </div>
+    </form>
 </div>
 
 
