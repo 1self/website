@@ -104,9 +104,7 @@ var checkUserName = function(){
 
 var checkUserNameValidity = function(){
     const API_ENDPOINT = "http://app-staging.1self.co";
-    var loc = document.location;
-    var redirectUrl = loc.protocol + '//' + loc.hostname + (loc.port ? ':' + loc.port: '');
-    redirectUrl += '/confirmation.html';
+    var redirectUrl = API_ENDPOINT + "/dashboard";
     var username = $('#oneselfUsernameJoin').val();
     $('#joinErrorMessage').html("");
     var re = /^[a-zA-Z0-9_]*$/;
