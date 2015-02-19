@@ -87,7 +87,7 @@ function headerResize() {
 }
 
 var checkUserName = function(){
-    const API_ENDPOINT = "http://app-staging.1self.co";
+    const API_ENDPOINT = "http://app.1self.co";
     var username = $('#oneselfUsername').val();
     var url = API_ENDPOINT + '/v1/user/' + username + "/exists";
 
@@ -103,7 +103,7 @@ var checkUserName = function(){
 
 
 var checkUserNameValidity = function(){
-    const API_ENDPOINT = "http://app-staging.1self.co";
+    const API_ENDPOINT = "http://app.1self.co";
     var redirectUrl = API_ENDPOINT + "/dashboard";
     var username = $('#oneselfUsernameJoin').val();
     $('#joinErrorMessage').html("");
