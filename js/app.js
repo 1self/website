@@ -87,7 +87,7 @@ function headerResize() {
 }
 
 var checkUserName = function(){
-    const API_ENDPOINT = "http://localhost:5000";
+    const API_ENDPOINT = "http://app-staging.1self.co";
     var username = $('#oneselfUsername').val();
     var url = API_ENDPOINT + '/v1/user/' + username + "/exists";
 
@@ -103,7 +103,7 @@ var checkUserName = function(){
 
 
 var checkUserNameValidity = function(){
-    const API_ENDPOINT = "http://localhost:5000";
+    const API_ENDPOINT = "http://app-staging.1self.co";
     var loc = document.location;
     var redirectUrl = loc.protocol + '//' + loc.hostname + (loc.port ? ':' + loc.port: '');
     redirectUrl += '/confirmation.html';
