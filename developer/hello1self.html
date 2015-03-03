@@ -43,13 +43,13 @@
 
 <h1 id="step1-create-a-stream">Step1, Create a Stream</h1>
 
-<p>First, we create a stream to feed in the information about our users. To create a stream we need an app key and app secret which we get from here . Let’s create the stream using the app key and secret hello1self:hello1self.</p>
+<p>First, we create a stream to feed in the information about our users. To create a stream we need an app id and app secret which we get from here . Let’s create the stream using the app id and secret app-id-xxx:app-secret-yyy.</p>
 
 <pre><code>1 var logHelloWorld = function(){
 2     var xmlhttp = new XMLHttpRequest();
 3    if(localStorage.streamid === undefined){
 4        xmlhttp.open("POST","https://sandbox.1self.co/v1/streams", false);
-5         xmlhttp.setRequestHeader("Authorization", "hello1self:hello1self");
+5         xmlhttp.setRequestHeader("Authorization", "app-id-xxx:app-secret-yyy");
 6         xmlhttp.send();
 7         var response = JSON.parse(xmlhttp.response);
 8         localStorage.streamid = response.streamid;
@@ -59,7 +59,7 @@
 12 }
 </code></pre>
 
-<p>The crucial lines here are 4, 5, 6 and 7. Line 4 constructs a request to create the stream through the POST method on the streams resource. The request is secure as it’s over https. Line 5 sets the app key and app secret which is how the call is authorized. Line 6 sends the request and line 7 parses the result of that request. The result is a JSON response that looks like this:</p>
+<p>The crucial lines here are 4, 5, 6 and 7. Line 4 constructs a request to create the stream through the POST method on the streams resource. The request is secure as it’s over https. Line 5 sets the app id and app secret which is how the call is authorized. Line 6 sends the request and line 7 parses the result of that request. The result is a JSON response that looks like this:</p>
 
 <pre><code>{
     "streamid": "YBEBZPADSKPUDXBG",
