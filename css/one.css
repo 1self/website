@@ -15,7 +15,7 @@ input[type='button'] {
     font-size: 1.2em;
     color: #fff;
     width: 200px;
-    border: 2px solid #ECECEC;
+    border: 1px solid #ECECEC;
     cursor: pointer;
     font-family: 'Raleway-Bold';
     text-transform: uppercase;
@@ -237,7 +237,8 @@ input[type='button']:hover {
 }
 
 .nav-right a.button.signupButton {
-    background-color: #f2ae1c
+    background-color: #f2ae1c;
+    border-radius: 100px;
 }
 
 /* ===[ Main content ]=== */
@@ -1654,4 +1655,26 @@ nav {
     color: #ffffff !important;
 }
 
+.authinput{
+    border-radius: 100px;
+    margin-bottom: 0.5em;
+    border-width: 1px;
+}
 
+.authserviceicon{
+    float: left;
+
+}
+
+.authservicetext{
+    float: clear;
+    
+}
+
+.signup-details{
+    margin-bottom: 0.7em;
+}
+
+#oneselfUsernameJoin{
+    border-radius: 100px;
+}
