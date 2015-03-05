@@ -14,7 +14,7 @@ input[type='button'] {
     padding: 12px 10px;
     font-size: 1.2em;
     color: #fff;
-    width: 200px;
+    width: 240px;
     border: 1px solid #ECECEC;
     cursor: pointer;
     font-family: 'Raleway-Bold';
@@ -369,7 +369,7 @@ input[type='button']:hover {
 }
 
 .invite input[type="text"] {
-    width: 200px;
+    width: 240px;
     padding: 8px 11px 9px 10px;
     border: 1px solid #ffffff;
     color: #333333;
@@ -1157,7 +1157,7 @@ p:last-child {
 
 #joinBox {
     height: auto;
-    width: 225px;
+    width: 280px;
     background-color: #454B54;
     position: absolute;
     display:none;
@@ -1668,13 +1668,30 @@ nav {
 
 .authservicetext{
     float: clear;
-    
+    font-family: 'Raleway-thin'
 }
 
 .signup-details{
-    margin-bottom: 0.7em;
+    margin-bottom: 0.3em;
 }
 
 #oneselfUsernameJoin{
     border-radius: 100px;
+}
+
+.githubbutton{
+    background-color: #384D8D;
+}
+
+#joinBox{
+    font-family: 'Raleway-thin'
+}
+
+.joinfooter{
+    margin-top: 2em;
+    font-size: 0.8em;
+}
+
+.oneselfUsername{
+    margin-top: 2em;
 }
