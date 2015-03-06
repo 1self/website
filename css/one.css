@@ -1663,12 +1663,15 @@ nav {
 
 .authserviceicon{
     float: left;
-
+    font-size: 1.2em;
+    margin-left: 0.3em;
 }
 
 .authservicetext{
-    float: clear;
-    font-family: 'Raleway-thin'
+    float: left;
+    font-family: 'Raleway-thin';
+    margin-left: 0.3em;
+    margin-top: 0.1em;
 }
 
 .signup-details{
@@ -1680,6 +1683,10 @@ nav {
 }
 
 .githubbutton{
+    background-color: #000;
+}
+
+.facebookbutton{
     background-color: #384D8D;
 }
 
@@ -1694,4 +1701,12 @@ nav {
 
 .oneselfUsername{
     margin-top: 2em;
+}
+
+.buttonclear{
+    float: clear;
+}
+
+.authservice-button{
+    border-color: #00b8e7;
 }
