@@ -28,9 +28,20 @@ $(document).ready(function () {
         checkUserName();
     });
 
+    var service = '';
+    $("#signup_with_github").click(function () {
+            ga('send', 'event', 'signup', 'signup_with_github');
+            service = 'github';
+        })
+    
+    $("#signup_with_facebook").click(function () {
+            ga('send', 'event', 'signup', 'signup_with_facebook');
+            service = 'facebook'
+        })
+
     $("#joinForm").submit(function(event){
         event.preventDefault();
-        checkUserNameValidity();
+        join(service);
     });
 
 
@@ -102,9 +113,9 @@ var checkUserName = function(){
 
 
 
-var checkUserNameValidity = function(){
+var join = function(service){
     const API_ENDPOINT = "http://app.1self.co";
-    var redirectUrl = API_ENDPOINT + "/dashboard";
+    var redirectUrl = API_ENDPOINT + "/timeline";
     var username = $('#oneselfUsernameJoin').val();
     $('#joinErrorMessage').html("");
     var re = /^[a-zA-Z0-9_]*$/;
@@ -117,8 +128,12 @@ var checkUserNameValidity = function(){
                 $('#joinErrorMessage').html("Ack. Sorry. That username is already taken!");
             })
             .error(function(){
-                var signupUrl = API_ENDPOINT + "/signup?intent=website_signup&oneselfUsername=" + username;
-                signupUrl += '&redirectUrl=' + redirectUrl;
+                var params = [
+                    'username=' + username,
+                    'service=' + service,
+                    'redirectUrl=' + redirectUrl
+                ];
+                var signupUrl = API_ENDPOINT + "/signup?" + params.join('&');
                 document.location.href = signupUrl;
             });
     }

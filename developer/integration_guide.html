@@ -382,7 +382,7 @@ The server will return a value of 200 to indicate that the POST was successful a
 </tbody></table>
 
 <p>The URL must be formed from the following template: <br>
-<a href="">https://sandbox.1self.co/v1/streams/{streamid}/{objecttags}/{actiontags}/{aggregation}/{timerollup}/{visualization}?readToken={readToken}</a> <br>
+<a href="">https://sandbox.1self.co/v1/streams/{streamid}/events/{objecttags}/{actiontags}/{aggregation}/{timerollup}/{visualization}?readToken={readToken}</a> <br>
 WIth our set of data the URL, once filled in, looks like this: <br>
 <a href="https://sandbox.1self.co/v1/streams/VWEWRPHUEBLMUVIG/teeth,oral,mouth/brush,clean/sum%28duration%29/daily/barchart?readToken=51eb4902856e30a11dc5153e1e65cac7aab3390cf67d">https://sandbox.1self.co/v1/streams/VWEWRPHUEBLMUVIG/teeth,oral,mouth/brush,clean/sum(duration)/daily/barchart?readToken=51eb4902856e30a11dc5153e1e65cac7aab3390cf67d</a> <br>
 Nothing should be passed in the request body. The response will contain an html representation of the visualisation. This can be parsed by the client, however this endpoint is designed to be called by a browser. In the case of a native application, the native application should pass the generated url to a browser or web view and allow the browser to render it. <br>
