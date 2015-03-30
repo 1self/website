@@ -1,3 +1,14 @@
+var getQueryParam = function (variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
+
 $(document).ready(function () {
     headerResize();
 
@@ -77,6 +88,16 @@ $(document).ready(function () {
         $("#signupWaitListForm").show();
         $("#joinForm").hide();
     });
+
+    var appId = getQueryParam("appid");
+    var streamid = getQueryParam("streamid");
+    var readToken = getQueryParam("readToken");
+
+    if (appId === "app-id-598358b6aacda229634d443c9539662b" && streamid !== false && readToken !== false) {
+        $("#landing-wrapper").show();
+        var url = "http://app.1self.co/v1/streams/"+ streamid +"/events/Computer,Software/Develop/sum(duration)/daily/barchart?readToken="+  readToken +"&bgColor=00a2d4";
+        $('#landing-frame').attr('src', url)
+    }
 });
 
 $(window).resize(function () {
