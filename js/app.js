@@ -97,6 +97,9 @@ $(document).ready(function () {
         $("#landing-wrapper").show();
         var url = "http://app.1self.co/v1/streams/"+ streamid +"/events/Computer,Software/Develop/sum(duration)/daily/barchart?readToken="+  readToken +"&bgColor=00a2d4";
         $('#landing-frame').attr('src', url)
+        var redirectUrl="/dashboard?streamid="+streamid+"&readToken="+readToken;
+        $("#loginButton").attr('href', redirectUrl)
+        window.redirectUrl = redirectUrl;
     }
 });
 
@@ -152,7 +155,7 @@ var join = function(service){
                 var params = [
                     'username=' + username,
                     'service=' + service,
-                    'redirectUrl=' + redirectUrl
+                    'redirectUrl=' + (typeof window.redirectUrl === 'undefined' ? redirectUrl : window.redirectUrl)
                 ];
                 var signupUrl = API_ENDPOINT + "/signup?" + params.join('&');
                 document.location.href = signupUrl;
