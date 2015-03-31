@@ -71,6 +71,13 @@ $(document).ready(function () {
         return false;
     });
 
+    $("#join_button").click(function(event){
+        event.preventDefault();
+        $('#joinBox').css('top', $(document).scrollTop() + 70 + "px");
+        $('#joinBox').show();
+        return false;
+    });
+
     $('.closeButton').click(function(event){
         event.preventDefault();
         $('#loginBox').hide();
@@ -97,6 +104,7 @@ $(document).ready(function () {
         $("#landing-wrapper").show();
         var url = "http://app.1self.co/v1/streams/"+ streamid +"/events/Computer,Software/Develop/sum(duration)/daily/barchart?readToken="+  readToken +"&bgColor=00a2d4";
         $('#landing-frame').attr('src', url)
+
         var redirectUrl="/dashboard?streamid="+streamid+"&readToken="+readToken;
         $("#loginButton").attr('href', redirectUrl)
         window.redirectUrl = redirectUrl;
