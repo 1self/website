@@ -164,7 +164,7 @@ var join = function(service){
                     'intent=website_signup',
                     'username=' + username,
                     'service=' + service,
-                    'redirectUrl=' + (typeof window.redirectUrl === 'undefined' ? redirectUrl : window.redirectUrl)
+                    'redirectUrl=' + (typeof window.redirectUrl === 'undefined' ? redirectUrl : encodeURIComponent(window.redirectUrl))
                 ];
                 var signupUrl = API_ENDPOINT + "/signup?" + params.join('&');
                 document.location.href = signupUrl;
