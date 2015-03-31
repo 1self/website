@@ -147,7 +147,7 @@ var checkUserName = function(){
 
 var join = function(service){
     const API_ENDPOINT = "http://app.1self.co";
-    var redirectUrl = API_ENDPOINT + "/timeline";
+    var redirectUrl = API_ENDPOINT + "/integrations";
     var username = $('#oneselfUsernameJoin').val();
     $('#joinErrorMessage').html("");
     var re = /^[a-zA-Z0-9_]*$/;
@@ -161,6 +161,7 @@ var join = function(service){
             })
             .error(function(){
                 var params = [
+                    'intent=website_signup',
                     'username=' + username,
                     'service=' + service,
                     'redirectUrl=' + (typeof window.redirectUrl === 'undefined' ? redirectUrl : window.redirectUrl)
