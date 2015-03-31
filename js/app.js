@@ -105,7 +105,7 @@ $(document).ready(function () {
         var url = "http://app.1self.co/v1/streams/"+ streamid +"/events/Computer,Software/Develop/sum(duration)/daily/barchart?readToken="+  readToken +"&bgColor=00a2d4";
         $('#landing-frame').attr('src', url)
 
-        var redirectUrl="/dashboard?streamid="+streamid+"&readToken="+readToken;
+        var redirectUrl="/dashboard?streamId="+streamid+"&readToken="+readToken;
         $("#loginButton").attr('href', redirectUrl)
         window.redirectUrl = redirectUrl;
     }
