@@ -105,8 +105,11 @@ $(document).ready(function () {
         var url = "https://app.1self.co/v1/streams/"+ streamid +"/events/Computer,Software/Develop/sum(duration)/daily/barchart?readToken="+  readToken +"&bgColor=00a2d4";
         $('#landing-frame').attr('src', url)
 
-        var redirectUrl="https://app.1self.co/dashboard?streamId="+streamid+"&readToken="+readToken;
-        $("#loginButton").attr('href', redirectUrl)
+        var redirectUrl="/dashboard?streamId="+streamid+"&readToken="+readToken;
+
+        var loginHref = "https://app.1self.co/login?intent=login&redirectUrl=" + encodeURIComponent(redirectUrl);
+
+        $("#loginButton").attr('href', loginHref)
         window.redirectUrl = redirectUrl;
     }
 });
