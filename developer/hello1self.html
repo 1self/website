@@ -1,3 +1,4 @@
+<a name="top" />
 <h1 id="hello-1self-introduction">Hello 1self - Introduction</h1>
 
 <p>We’ve designed the 1self platform to create a simple, friction-free developer experience. Once you feed in human information you get beautiful, shareable, commentable visualizations of what the data represents. Let’s work through a simple example so that you can understand what is possible using the api.</p>
@@ -102,7 +103,7 @@
 
 <p>Defining events for non-trivial actions requires a little thought. To learn more, have a look at the <a href="http://www.1self.co/developer/#!/resources/event_guide">event guide</a>.</p>
 
-<p>Now we can send the event to the api. We use an HTTP POST to the events resource. The URL for the events resource is: <a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/v1/streams/:streamid/events</a></p>
+<p>Now we can send the event to the api. We use an HTTP POST to the events resource. The URL for the events resource is: <a href="#">/v1/streams/:streamid/events</a></p>
 
 <pre><code>24 xmlhttp.open("POST", "https://sandbox.1self.co/v1/streams/" 
 25                      + localStorage.streamid
@@ -113,7 +114,7 @@
 30     xmlhttp.send(JSON.stringify(helloWorldEvent));
 </code></pre>
 
-<p>On lines 24 to 27 we choose the POST method to and construct the resource URL. Ours is <a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/v1/streams/XSNJWEIXLCCDSQTV/events</a>. </p>
+<p>On lines 24 to 27 we choose the POST method to and construct the resource URL. Ours is <a href="#">/v1/streams/XSNJWEIXLCCDSQTV/events</a>. </p>
 
 <p>We must prove that we may write to the stream. On line 28 we set the Authorization header to the write token from the stream creation response.</p>
 
@@ -136,7 +137,7 @@
 
 <p>On lines 32 - 34 the url is constructed. It’s hard to see it in code; here’s how it appears in memory:</p>
 
-<p><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/v1/streams/XSNJWEIXLCCDSQTV/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart</a></p>
+<p><a href="#">/v1/streams/XSNJWEIXLCCDSQTV/events/computer,program,helloworld/write/sum(linesofcode)/daily/barchart</a></p>
 
 <p>The first part of the URL, up to and including events, we’ve seen before. It’s the stream events resource we wrote the event to. We specify the visualization as sub-resources.</p>
 
@@ -144,7 +145,7 @@
 
 <h2 id="object-tags">Object tags</h2>
 
-<p><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld</a><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/write/sum(linesofcode)/daily/barchart</a></p>
+<p><a href="#">computer,program,helloworld</a>/write/sum(linesofcode)/daily/barchart</p>
 
 <p>The first resource is the object tags. We tell 1self to visualize events with computer, program and helloworld tags. They match the event we wrote to the stream.</p>
 
@@ -152,7 +153,7 @@
 
 <h2 id="action-tags">Action Tags</h2>
 
-<p><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld</a><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/write</a><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/sum(linesofcode)/daily/barchart</a></p>
+<p>computer,program,helloworld<a href="#">/write</a>/sum(linesofcode)/daily/barchart</p>
 
 <p>The second resource is the action tags. We tell 1self to visualize events with ‘write’ in the action tags. 1self uses the boolean operator <em>and *to filter the events. 1self will include events with ‘computer’,’program’,’helloworld’ object tags *and</em> with ‘write’ action tags.</p>
 
@@ -160,7 +161,7 @@
 
 <h2 id="aggregation-function">Aggregation Function</h2>
 
-<p><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld/</a><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">write</a><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/sum(linesofcode)</a><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/daily/barchart</a></p>
+<p>computer,program,helloworld/write<a href="#">/sum(linesofcode)</a>/daily/barchart</p>
 
 <p>The third resource is the aggregation function. We specify sum(linesofcode) and 1self adds the linesofcode measurements in the event properties. </p>
 
@@ -168,7 +169,7 @@
 
 <h2 id="time-bucket">Time Bucket</h2>
 
-<p><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld/write/</a><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">sum(linesofcode)</a><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/daily</a><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">/barchart</a></p>
+<p>computer,program,helloworld/write/sum(linesofcode)<a href="#">/daily</a>/barchart</p>
 
 <p>The fourth resource is the time bucket. Daily tells 1self to return a visualization showing sums of linesofcode <em>per day</em>. </p>
 
@@ -176,11 +177,11 @@
 
 <h2 id="visualization-type">Visualization Type</h2>
 
-<p><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">computer,program,helloworld/write/sum(linesofcode)/daily/</a><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">barchart</a></p>
+<p>computer,program,helloworld/write/sum(linesofcode)/daily/<a href="#">barchart</a></p>
 
 <p>Finally, we tell 1self to display lines of code per day <em>as a barchart</em>.</p>
 
-<p>The complete scheme for the visualization url is: <code>https://sandbox.1self.co/</code><a href="https://sandbox.1self.co/v1/streams/XSNJWEIXLCCDSQTV/events">v1/streams/:streamid/events/:objecttags/:actiontags/:aggregation/:timebucket/:visualization/</a></p>
+<p>The complete scheme for the visualization url is: <code>https://sandbox.1self.co/v1/streams/:streamid/events/:objecttags/:actiontags/:aggregation/:timebucket/:visualization/</code></p>
 
 <p>Next we give the visualization URL to the browser. Line 35 gets the iframe and line 36 sets the URL. The browser and 1self work together to allow interaction, login and sharing. All without needing to write any extra code.</p>
 
@@ -274,6 +275,5 @@
 <h1 id="further-reading">Further reading</h1>
 
 <p><a href="http://www.1self.co/developer/#!/resources/integration_guide">The detailed integration guide</a> <br>
-<a href="http://www.1self.co/developer/#!/resources/rest_api">Rest api documentation</a>. <br>
-<a href="http://www.1self.co/developer/#!/resources/event_guide">Event Guide</a> <br>
-<a href="http://www.1self.co/developer/#!/faq">Developer FAQ</a></p>
+<a href="http://www.1self.co/developer/#!/resources/rest_api">Rest api documentation</a> <br>
+<a href="http://www.1self.co/developer/#!/resources/event_guide">Event Guide</a>
