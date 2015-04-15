@@ -199,8 +199,8 @@ Host: sandbox.1self.co
 Authorization: 0cc82228d40e964df6c7c1d7f8ea530ad703fd2f175e
 
 {
-  "objectTags": "teeth,oral,mouth",
-  "actionTags": "brush,clean",
+  "objectTags": ["teeth","oral","mouth"],
+  "actionTags": ["brush","clean"],
   "properties": {
     "duration": 120,
     "pressureKgSqm": 0.15
