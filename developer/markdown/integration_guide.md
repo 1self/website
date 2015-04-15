@@ -187,8 +187,8 @@ Now we have decomposed our behaviour into an event, we can dive into the technic
 First let’s turn the event we have created into a JSON representation ready to send to the API:
 ```
 {
-	"objectTags": “teeth,oral,mouth”,
-	"actionTags": “brush,clean”,
+	"objectTags": [“teeth","oral","mouth”],
+	"actionTags": [“brush","clean”],
 	"properties": {
 		"duration": 120,
 		"pressureKgSqm": 0.15,
