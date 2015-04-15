@@ -234,6 +234,8 @@ input[type='button']:hover {
 
 .nav-right a.button.signupButton:hover {
     background-color: #FFB921;
+    text-decoration: none;
+    color: #fff;
 }
 
 .nav-right a.button.signupButton {

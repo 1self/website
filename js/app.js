@@ -1,3 +1,14 @@
+var getQueryParam = function (variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
+
 $(document).ready(function () {
     headerResize();
 
@@ -60,6 +71,13 @@ $(document).ready(function () {
         return false;
     });
 
+    $("#join_button").click(function(event){
+        event.preventDefault();
+        $('#joinBox').css('top', $(document).scrollTop() + 70 + "px");
+        $('#joinBox').show();
+        return false;
+    });
+
     $('.closeButton').click(function(event){
         event.preventDefault();
         $('#loginBox').hide();
@@ -77,6 +95,23 @@ $(document).ready(function () {
         $("#signupWaitListForm").show();
         $("#joinForm").hide();
     });
+
+    var appId = getQueryParam("appid");
+    var streamid = getQueryParam("streamid");
+    var readToken = getQueryParam("readToken");
+
+    if (appId === "app-id-598358b6aacda229634d443c9539662b" && streamid !== false && readToken !== false) {
+        $("#landing-wrapper").show();
+        var url = "https://app.1self.co/v1/streams/"+ streamid +"/events/Computer,Software/Develop/sum(duration)/daily/barchart?readToken="+  readToken +"&bgColor=00a2d4";
+        $('#landing-frame').attr('src', url)
+
+        var redirectUrl="/dashboard?streamId="+streamid+"&readToken="+readToken;
+
+        var loginHref = "https://app.1self.co/login?intent=login&redirectUrl=" + encodeURIComponent(redirectUrl);
+
+        $("#loginButton").attr('href', loginHref)
+        window.redirectUrl = redirectUrl;
+    }
 });
 
 $(window).resize(function () {
@@ -115,7 +150,7 @@ var checkUserName = function(){
 
 var join = function(service){
     const API_ENDPOINT = "http://app.1self.co";
-    var redirectUrl = API_ENDPOINT + "/timeline";
+    var redirectUrl = API_ENDPOINT + "/integrations";
     var username = $('#oneselfUsernameJoin').val();
     $('#joinErrorMessage').html("");
     var re = /^[a-zA-Z0-9_]*$/;
@@ -129,9 +164,10 @@ var join = function(service){
             })
             .error(function(){
                 var params = [
+                    'intent=website_signup',
                     'username=' + username,
                     'service=' + service,
-                    'redirectUrl=' + redirectUrl
+                    'redirectUrl=' + (typeof window.redirectUrl === 'undefined' ? redirectUrl : encodeURIComponent(window.redirectUrl))
                 ];
                 var signupUrl = API_ENDPOINT + "/signup?" + params.join('&');
                 document.location.href = signupUrl;
