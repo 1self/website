@@ -56,35 +56,53 @@
     </header>
 </div>
 
-<div id="joinBox">
-    <div class="joinHeading">Sign up
+    <!-- join Box ---------------------------------------------------------------- -->
+    <div id="joinBox">
+      <div class="joinHeading">Sign up
         <div class="closeButton">X</div>
-    </div>
-
-    <form action="https://QuantifiedDev.us8.list-manage.com/subscribe/post?u=6cba468ceea6fc41a7d7db50e&amp;id=4a6bbc5899" class="validate" id="signupWaitListForm" style="display:none;" method="post">
-        Let us know your email and we'll let you know as soon as we've got new signup options.
+      </div>
+      <form action="https://QuantifiedDev.us8.list-manage.com/subscribe/post?u=6cba468ceea6fc41a7d7db50e&amp;id=4a6bbc5899" class="validate" id="signupWaitListForm" style="display:none;" method="post">
+        Tell us your email and we'll tell you as soon as we've got new signup options.
         <input type="email" class="oneselfEmailWaitQueue" id="mce-EMAIL1" name="EMAIL" placeholder="you@email.com" required />
         <button type="submit" onclick="cacheEmail1()">Send</button>
         <div class="signup_go_back_link">
-            <a href="#" id="signup_go_back"><< Go back</a>
+          <a href="#" id="signup_go_back">&lt;&lt; Go back</a>
         </div>
-    </form>
-
-    <form id="joinForm" style="display:block;">
-        <div for="oneselfUsername">
-            Choose your 1self username:  <input type="text" id="oneselfUsernameJoin" name="oneselfUsernameJoin" required />
+      </form>
+      <form id="joinForm" style="display:block;">
+        <div class="oneselfUsername">
+          Choose your 1self username:  <input type="text" id="oneselfUsernameJoin" name="oneselfUsernameJoin" required />
         </div>
-
         <div id="joinErrorMessage" class="errorMessage"></div>
-
-        <button >Join using GitHub</button>
-
-        <div class="join_waitlist_msg">
-            I don't want to sign up with GitHub<br />
+        
+        <div class="row margin-top-five">
+          <div class="signup-details">Now choose a service*</div>
+          <input type="hidden" id="service" name="service">
+          <div class="row margin-top-five">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <button id="signup_with_github" class="btn btn-lg authservice-button githubbutton authinput" type="submit" value="github">
+              <div class="authserviceicon"><i class="fa fa-github-square"> </i></div>
+              <div class="authservicetext">Join using GitHub</div></button>
+              <div class='buttonclear'></div>
+            </div>
+          </div>
+          <div class="row margin-top-five">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <button  id="signup_with_facebook" class="btn btn-lg authservice-button facebookbutton authinput" type="submit" value="facebook">
+              <div class="authserviceicon"><i class="fa fa-facebook-square"></i></div>
+              <div class="authservicetext">Join using Facebook</div></button>
+              <div class='buttonclear'></div>
+            </div>
+          </div>
+          <div class="join_waitlist_msg">
+            I don't want to sign up with GitHub or Facebook
             <a href="#" id="signupWaitListFormLink">Let me know when you have other sign up options.</a>
+          </div>
+          <div class="joinfooter">* We'll use your email address to talk to you when important things happen. We'll never share it or use it to spam you.</div>
         </div>
-    </form>
-</div>
+      </form>
+    </div>
+    <!-- ------------------------------------------------------------------------ -->
 
 
 <div class="page-content">
@@ -100,7 +118,7 @@
     <h3>Why we store your data</h3>
 
     <p>1self provides you with a way to collect, compare, correlate and comment on your data so that you can live a
-        smarter life. This necessarily means bringing all the data that is silo'd in individual apps into a single
+        smarter life. This necessarily means bringing all the data that is siloed in individual apps into a single
         data store. We take all reasonable industry standard measures to ensure that this data stays secure and
         private only to you.
     </p>
@@ -125,23 +143,26 @@
         our site.
     </p>
 
-    <p>When you use our apps, plugins and integrations activity data is collected and send securely to 1self in the
+    <p>When you use our apps, plugins and integrations activity data is collected and sent securely to 1self in the
         form of events.
     </p>
 
 
     <h3>How do we use your information?</h3>
 
-    <p>We don't use the activity data sent to us. We may aggregate your data and anonymise it in order to provide
+    <p>We may aggregate your data and anonymise it in order to provide
         visualisations to the community. We will ensure that no identifiable information from your activities will
-        be used in these visualizations.
+        be used in these visualizations. We do not sell or give any data to 3rd parties.
+    </p>
+    <p>
+    Additionally we may use your data to:
     </p>
 
     <ul>
-        <li>To personalize user's experience and to allow us to deliver the type of content and product offerings in
+        <li>Personalize your experience and to allow us to deliver the type of content and product offerings in
             which you are most interested.
         </li>
-        <li>To send periodic emails regarding your order or other products and services.</li>
+        <li>Send you periodic emails regarding your account, data in your account or other products and services.</li>
     </ul>
 
     <h3>How do we protect visitor information?</h3>
@@ -156,29 +177,17 @@
         (SSL) technology.
     </p>
 
-    <p>We implement a variety of security measures enters, submits, or accesses their information to maintain the
-        safety of your personal information.
-    </p>
-
-    <p>All transactions are processed through a gateway provider and are not stored or processed on our servers.
-    </p>
-
     <h3>Do we use 'cookies'?</h3>
 
     <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive
         through your Web browser (if you allow) that enables the site's or service provider's systems to recognize
         your browser and capture and remember certain information. For instance, we use cookies to help us remember
-        and process the items in your shopping cart. They are also used to help us understand your preferences based
+        that you have logged in to the service. They are also used to help us understand your preferences based
         on previous or current site activity, which enables us to provide you with improved services. We also use
         cookies to help us compile aggregate data about site traffic and site interaction so that we can offer
         better site experiences and tools in the future.
     </p>
 
-    <p>We use cookies to:
-    </p>
-    <ul>
-        <li>Understand and save user's preferences for future visits.</li>
-    </ul>
     <p>You can choose to have your computer warn you each time a cookie is being sent, or you can choose to turn off
         all cookies. You do this through your browser (like Internet Explorer) settings. Each browser is a little
         different, so look at your browser's Help menu to learn the correct way to modify your cookies.</p>
@@ -189,9 +198,6 @@
     <p>If you disable cookies off, some features will be disabled It will turn off some of the features that make
         your site experience more efficient and some of our services will not function properly.</p>
 
-    <p>However, you can still place orders<br>
-        The ability to view visualizations of user's data.
-    </p>
 
 
     <h3>Third Party Disclosure</h3>
@@ -199,10 +205,6 @@
     <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information.
     </p>
 
-    <h3>Third party links</h3>
-
-    <p>We do not include or offer third party products or services on our website.
-    </p>
 
     <p>We have not enabled Google AdSense on our site but we may do so in the future.
     </p>
@@ -216,7 +218,7 @@
         must do to protect children's privacy and safety online.
     </p>
 
-    <p>We do not specifically market to children under 13.
+    <p>We do not market to children.
     </p>
 
     CAN SPAM Act
@@ -229,6 +231,7 @@
     </p>
     <ul>
         <li>Send information, respond to inquiries, and/or other requests or questions.</li>
+        <li>Send you periodic updates about your account or our services.</li>
     </ul>
     <p>To be accordance with CANSPAM we agree to the following:
     </p>
@@ -248,8 +251,7 @@
 
     <p>1self stores your personal activity data. 1self may grant access to this data to employees who require access
         to it in order to complete tasks relating to the operation of 1self. 1self won't share this data outside of
-        1self unless you choose to do so. 1self has a share feature that allows you to share visualizations of your
-        data, this is the only way that the data will be shared and only with your full permission.
+        1self unless you choose to permit it.
     </p>
 
     <p>Should you disclose personally identifiable information in comments, then share the visualization that those
@@ -258,17 +260,14 @@
 
     <h4>Password protection</h4>
 
-    <p>We use github for authorization and store no password in our system. Github provides 2 factor authentication.
-        You are responsible for maintaining the secrecy of your password and ensuring that your github account is
+    <p>We use 3rd parties such as Github and Facebook for authorization and store no password in our system. These 3rd party services provide 2 factor authentication.
+        You are responsible for maintaining the secrecy of your password and ensuring that your account is
         secure.
     </p>
 
-    <p>Should you disclose personally identifiable information in comments, then share the visualization that those
-        comments sit on, that information will become public.</p>
-
     <h4>Deleting your information</h4>
 
-    <p>You can make a request to have all your data deleted at any time. Email team@quantifieddev.org
+    <p>You can make a request to have all your data deleted at any time. Email team@1self.co, quoting your 1self username.
     </p>
 
     <h4>How we secure your data</h4>
