@@ -7,7 +7,7 @@ var getQueryParam = function (variable)
         if(pair[0] == variable){return pair[1];}
     }
     return(false);
-}
+};
 
 $(document).ready(function () {
     headerResize();
@@ -43,12 +43,12 @@ $(document).ready(function () {
     $("#signup_with_github").click(function () {
             ga('send', 'event', 'signup', 'signup_with_github');
             service = 'github';
-        })
+    });
     
     $("#signup_with_facebook").click(function () {
             ga('send', 'event', 'signup', 'signup_with_facebook');
-            service = 'facebook'
-        })
+            service = 'facebook';
+    });
 
     $("#joinForm").submit(function(event){
         event.preventDefault();
@@ -102,14 +102,15 @@ $(document).ready(function () {
 
     if (appId === "app-id-598358b6aacda229634d443c9539662b" && streamid !== false && readToken !== false) {
         $("#landing-wrapper").show();
+        $("#lnkLearnMore").attr('href', "#learn-more-landing");
         var url = "https://app.1self.co/v1/streams/"+ streamid +"/events/Computer,Software/Develop/sum(duration)/daily/barchart?readToken="+  readToken +"&bgColor=00a2d4";
-        $('#landing-frame').attr('src', url)
+        $('#landing-frame').attr('src', url);
 
         var redirectUrl="/dashboard?streamId="+streamid+"&readToken="+readToken;
 
         var loginHref = "https://app.1self.co/login?intent=login&redirectUrl=" + encodeURIComponent(redirectUrl);
 
-        $("#loginButton").attr('href', loginHref)
+        $("#loginButton").attr('href', loginHref);
         window.redirectUrl = redirectUrl;
     }
 });
