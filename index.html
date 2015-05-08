@@ -111,19 +111,29 @@
     <div id="landing-wrapper" style="display: none">
       <div class="page-content" style="padding-top: 59px;">
         <div class="banner center" style="padding-top: 10px">
-          <h1>Welcome to 1self</h1>
+          <h1 class="blue">Welcome to 1self</h1>
         </div>
         <div class="grid-reset-mobile signup-content">
           <div class="grid-row">
-            <div class="grid-cell content">
+            <div class="grid-cell content" id="sublime-content" style="display: none">
               <h2>Your coding activity data</h2>
               <p>This chart shows you your total active coding duration by day.</p>
               <p>Your data is private and secure. No detail of what you’ve coded or your filenames is sent to 1self.
               </p>
             </div>
+            <div class="grid-cell content" id="cyber-dojo-content" style="display: none">
+              <h2>Your dojo data</h2>
+
+
+              <p>Cyber-dojo uses 1self to let you to collect and visualise your dojo data.</p>
+
+              <p>This spinning globe shows dojos happening around the world on <wbr><a href="http://cyber-dojo.org/" target="_blank" class="blue">Cyber-Dojo.org</a></p>
+              <p>With 1self, you can <a href="#learn-more-landing" class="blue">do more with your data</a>.</p>
+
+            </div>
 
             <div class="grid-cell invite">
-              <iframe id="landing-frame" style="height: 460px" ></iframe>
+              <iframe id="landing-frame" style="height: 460px;" ></iframe>
               <div class="red-dot-desktop"><img src="images/dot-yellow.png" alt=""/></div>
             </div>
           </div>
@@ -132,7 +142,7 @@
           <div class="grid-row">
             <div class="grid-cell content">
               <h2>Do more with your data</h2>
-              <p>Join 1self to comment on your data, compare with others and join it with other sources like Github, Hacker News, Stack Overflow, Visual Studio, IntelliJ IDEA and more.
+              <p>Join 1self to comment on your data, compare with others and join it with your data from other sources like Github, Hacker News, Stack Overflow, Visual Studio, IntelliJ IDEA and more.
               </p>
               <div class="join-div">
                 <a id="join_button" href="" class="join-button">Join 1self</a>

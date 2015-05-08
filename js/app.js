@@ -99,19 +99,34 @@ $(document).ready(function () {
     var appId = getQueryParam("appid");
     var streamid = getQueryParam("streamid");
     var readToken = getQueryParam("readToken");
+    var url;
 
     if (appId === "app-id-598358b6aacda229634d443c9539662b" && streamid !== false && readToken !== false) {
         $("#landing-wrapper").show();
         $("#lnkLearnMore").attr('href', "#learn-more-landing");
-        var url = "https://app.1self.co/v1/streams/"+ streamid +"/events/Computer,Software/Develop/sum(duration)/daily/barchart?readToken="+  readToken +"&bgColor=00a2d4";
+
+        $('#sublime-content').show();
+
+        url = "https://app.1self.co/v1/streams/"+ streamid +"/events/Computer,Software/Develop/sum(duration)/daily/barchart?readToken="+  readToken +"&bgColor=00a2d4";
         $('#landing-frame').attr('src', url);
 
         var redirectUrl="/dashboard?streamId="+streamid+"&readToken="+readToken;
-
         var loginHref = "https://app.1self.co/login?intent=login&redirectUrl=" + encodeURIComponent(redirectUrl);
-
         $("#loginButton").attr('href', loginHref);
         window.redirectUrl = redirectUrl;
+
+    } else if (appId === "123") {
+        $("#landing-wrapper").show();
+        $("#lnkLearnMore").attr('href', "#learn-more-landing");
+
+        $('#cyber-dojo-content').show();
+
+        url = "https://app.1self.co/v1/apps/app-id-9bb5f1c77f0df722a9b1bc650a41988a";
+        url += "/events/cyber-dojo/create/.animatedglobe?token=591ea03f188deb7e2e80977a5b9ca55d9a640e18231ee097af6a65388cd78110&frameBodyColor=rgb(242,174,28)&circleColor=rgb(0,162,212)";
+        $('#landing-frame').attr('src', url);
+
+
+        // <iframe id="animatedglobe" src="https://app.1self.co/v1/apps/app-id-9bb5f1c77f0df722a9b1bc650a41988a/events/cyber-dojo/create/.animatedglobe?token=591ea03f188deb7e2e80977a5b9ca55d9a640e18231ee097af6a65388cd78110" width="100%" scrolling="no" frameborder="0"> </iframe> <script src="https://app.1self.co/js/iframeResizer.min.js"></script> <script> var win = document.getElementById("animatedglobe").contentWindow; document.getElementById("animatedglobe").onload = function() { iFrameResize({ resizedCallback: function(data) { data.iframe.style.height = data.height - 25 + "px"; } }); win.postMessage( window.location.toString(), "https://app.1self.co/v1/apps/app-id-9bb5f1c77f0df722a9b1bc650a41988a/events/cyber-dojo/create/.animatedglobe?token=591ea03f188deb7e2e80977a5b9ca55d9a640e18231ee097af6a65388cd78110" ); return false; } </script>
     }
 });
 
