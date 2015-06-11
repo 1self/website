@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="chart.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/d3/d3.min.js"></script>
+</head>
+
+<body>
+    <script>
+    function getQSParam() {
+        var vars = [],
+            hash;
+        var q = document.URL.split('?')[1];
+        if (q != undefined) {
+            q = q.split('&');
+            for (var i = 0; i < q.length; i++) {
+                hash = q[i].split('=');
+                vars.push(hash[1]);
+                vars[hash[0]] = hash[1];
+            }
+        }
+        return vars;
+    }
+
+    var lineColour = '#' + getQSParam()['lineColour'];
+    var dataSrc = 'http://app-staging.1self.co' + getQSParam()['dataSrc'];
+
+    console.log('lineColour', lineColour);
+
+    function getData(dataSrc, callback) {
+
+        var apiURL = dataSrc;
+        var jqxhr = $.getJSON(apiURL,
+                function() {
+                    console.log("accessed api for chart data");
+                })
+            .done(function(data) {
+
+                console.log('chart data', data);
+                callback(data);
+            })
+            .fail(function(data) {
+                console.log('error getting chart data', data);
+
+            });
+    }
+
+    console.log('in chart.html');
+
+    getData(dataSrc, function (data) {
+      drawSparkLine(data, null, 150, 80);
+    });
+
+    /*----------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------*/
+
+    function drawSparkLine(chartData, appendToElement, width, height) {
+
+      console.log('in drawSparkLine', chartData);
+
+        //Create format currency function to format the axes and points
+        // var formatCurrency = d3.format("$,.0f");
+
+        //Add a quarter-year property to each object in the dataset
+        // for (var i in dataset) {
+        //     dataset[i].QYear = dataset[i].Quarter + " " + dataset[i].Year;
+        // }
+
+        var dataset = chartData.data;
+
+        //Append an SVG to the document body
+        var svg = d3.select("body").append("svg")
+            .attr("width", width + "px")
+            .attr("height", height + "px")
+            .append("g");
+
+        var x = d3.scale.ordinal()
+            .domain(dataset.map(function(d) {
+                return d.date;
+            }))
+            .rangeRoundBands([0, width], .04);
+
+        var y = d3.scale.linear()
+            .domain([0, d3.max(dataset, function(d) {
+                return d.value;
+            })])
+            .range([height, 0]);
+
+        //Draw the line graph
+        var line = d3.svg.line()
+            .interpolate("basis")
+            .x(function(d) {
+                return x(d.date);
+            })
+            .y(function(d) {
+                return y(d.value);
+            })
+
+        //Append a path to the SVG
+        svg.append("path")
+            .attr("d", line(dataset))
+            .attr("class", "linePath")
+            .attr("fill", "none")
+            .attr("stroke", lineColour)
+            .attr("stroke-width", 3);
+    }
+    </script>
+</body>
+
+</html>

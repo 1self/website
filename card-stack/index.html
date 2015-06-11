@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="card-stack.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="swing.min.js"></script>
+    <script src="classList.js"></script>
+    <script src="utils.js"></script>
+    <script src="card-stack.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Raleway:300" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="header">
+        <img src="img/header.png">
+    </div>
+    <!-- <div class="left-nav">
+        <img src="img/left-nav.png">
+    </div> -->
+    <div id="viewport">
+        <ul class="stack">
+            <div class="stackBase"><div><p>Helloooo?</p><p><img class="spyImg" src="img/spy.gif"></p><p>No cards right now.<br />Come back in a bit.</p></div></div>
+        </ul>
+        <div class="buttonsRow">
+            <input type="button" class="cardButton prevButton" onclick="stack.throwInLast();" value="&lt; Previous">
+            <input type="button" class="cardButton nextButton" onclick="stack.throwOutNext();" value="Next &gt;">
+        </div>
+    </div>
+</body>
+
+</html>

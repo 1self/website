@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="chart.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/d3/d3.min.js"></script>
+</head>
+
+<body>
+    <script>
+    function getQSParam() {
+        var vars = [],
+            hash;
+        var q = document.URL.split('?')[1];
+        if (q != undefined) {
+            q = q.split('&');
+            for (var i = 0; i < q.length; i++) {
+                hash = q[i].split('=');
+                vars.push(hash[1]);
+                vars[hash[0]] = hash[1];
+            }
+        }
+    }
+
+    var lineColour = '#' + getQSParam('lineColour');
+
+    var dataset = [{
+        "Year": 2003,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 3410,
+        "Revenue": 1475,
+        "Operating Income": 4,
+        "QEndDate": "3/31/2003",
+        "StockClose": 14.14
+    }, {
+        "Year": 2003,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 3507,
+        "Revenue": 1545,
+        "Operating Income": 9,
+        "QEndDate": "6/30/2003",
+        "StockClose": 19.06
+    }, {
+        "Year": 2003,
+        "Quarter": "Q3",
+        "OperatingCashFlow": 3396,
+        "Revenue": 1715,
+        "Operating Income": 31,
+        "QEndDate": "9/30/2003",
+        "StockClose": 20.72
+    }, {
+        "Year": 2003,
+        "Quarter": "Q4",
+        "OperatingCashFlow": 3724,
+        "Revenue": 2006,
+        "Operating Income": 74,
+        "QEndDate": "12/31/2003",
+        "StockClose": 21.37
+    }, {
+        "Year": 2004,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 3158,
+        "Revenue": 1909,
+        "Operating Income": 52,
+        "QEndDate": "3/31/2004",
+        "StockClose": 27.04
+    }, {
+        "Year": 2004,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 3120,
+        "Revenue": 2014,
+        "Operating Income": 72,
+        "QEndDate": "6/30/2004",
+        "StockClose": 32.54
+    }, {
+        "Year": 2004,
+        "Quarter": "Q3",
+        "OperatingCashFlow": 2969,
+        "Revenue": 2350,
+        "Operating Income": 128,
+        "QEndDate": "9/30/2004",
+        "StockClose": 38.75
+    }, {
+        "Year": 2004,
+        "Quarter": "Q4",
+        "OperatingCashFlow": 2475,
+        "Revenue": 3490,
+        "Operating Income": 403,
+        "QEndDate": "12/31/2004",
+        "StockClose": 64.4
+    }, {
+        "Year": 2005,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 2254,
+        "Revenue": 3243,
+        "Operating Income": 402,
+        "QEndDate": "3/31/2005",
+        "StockClose": 41.67
+    }, {
+        "Year": 2005,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 3094,
+        "Revenue": 3520,
+        "Operating Income": 427,
+        "QEndDate": "6/30/2005",
+        "StockClose": 36.81
+    }, {
+        "Year": 2005,
+        "Quarter": "Q3",
+        "OperatingCashFlow": 3491,
+        "Revenue": 3678,
+        "Operating Income": 418,
+        "QEndDate": "9/30/2005",
+        "StockClose": 53.61
+    }, {
+        "Year": 2005,
+        "Quarter": "Q4",
+        "OperatingCashFlow": 4150,
+        "Revenue": 5749,
+        "Operating Income": 750,
+        "QEndDate": "12/30/2005",
+        "StockClose": 71.89
+    }, {
+        "Year": 2006,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 6346,
+        "Revenue": 4359,
+        "Operating Income": 529,
+        "QEndDate": "3/31/2006",
+        "StockClose": 62.72
+    }, {
+        "Year": 2006,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 8013,
+        "Revenue": 4370,
+        "Operating Income": 566,
+        "QEndDate": "6/30/2006",
+        "StockClose": 57.27
+    }, {
+        "Year": 2006,
+        "Quarter": "Q3",
+        "OperatingCashFlow": 6392,
+        "Revenue": 4837,
+        "Operating Income": 608,
+        "QEndDate": "9/29/2006",
+        "StockClose": 76.98
+    }, {
+        "Year": 2006,
+        "Quarter": "Q4",
+        "OperatingCashFlow": 7159,
+        "Revenue": 7115,
+        "Operating Income": 1322,
+        "QEndDate": "12/29/2006",
+        "StockClose": 84.84
+    }, {
+        "Year": 2007,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 7095,
+        "Revenue": 5264,
+        "Operating Income": 986,
+        "QEndDate": "3/30/2007",
+        "StockClose": 92.91
+    }, {
+        "Year": 2007,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 7118,
+        "Revenue": 5410,
+        "Operating Income": 1041,
+        "QEndDate": "6/29/2007",
+        "StockClose": 122.04
+    }, {
+        "Year": 2007,
+        "Quarter": "Q3",
+        "OperatingCashFlow": 9352,
+        "Revenue": 6217,
+        "Operating Income": 1060,
+        "QEndDate": "9/28/2007",
+        "StockClose": 153.47
+    }, {
+        "Year": 2007,
+        "Quarter": "Q4",
+        "OperatingCashFlow": 9162,
+        "Revenue": 9608,
+        "Operating Income": 2126,
+        "QEndDate": "12/31/2007",
+        "StockClose": 198.08
+    }, {
+        "Year": 2008,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 9070,
+        "Revenue": 7512,
+        "Operating Income": 1315,
+        "QEndDate": "3/31/2008",
+        "StockClose": 143.5
+    }, {
+        "Year": 2008,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 9373,
+        "Revenue": 7464,
+        "Operating Income": 1392,
+        "QEndDate": "6/30/2008",
+        "StockClose": 167.44
+    }, {
+        "Year": 2008,
+        "Quarter": "Q3",
+        "OperatingCashFlow": 11875,
+        "Revenue": 7895,
+        "Operating Income": 1442,
+        "QEndDate": "9/30/2008",
+        "StockClose": 113.66
+    }, {
+        "Year": 2008,
+        "Quarter": "Q4",
+        "OperatingCashFlow": 7236,
+        "Revenue": 10167,
+        "Operating Income": 2126,
+        "QEndDate": "12/31/2008",
+        "StockClose": 85.35
+    }, {
+        "Year": 2009,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 4466,
+        "Revenue": 8183,
+        "Operating Income": 1667,
+        "QEndDate": "3/31/2009",
+        "StockClose": 105.12
+    }, {
+        "Year": 2009,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 5605,
+        "Revenue": 8337,
+        "Operating Income": 1672,
+        "QEndDate": "6/30/2009",
+        "StockClose": 142.43
+    }, {
+        "Year": 2009,
+        "Quarter": "Q3",
+        "OperatingCashFlow": 5263,
+        "Revenue": 16238,
+        "Operating Income": 6275,
+        "QEndDate": "9/30/2009",
+        "StockClose": 185.35
+    }, {
+        "Year": 2009,
+        "Quarter": "Q4",
+        "OperatingCashFlow": 7609,
+        "Revenue": 15683,
+        "Operating Income": 4725,
+        "QEndDate": "12/31/2009",
+        "StockClose": 210.73
+    }, {
+        "Year": 2010,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 10018,
+        "Revenue": 13499,
+        "Operating Income": 3979,
+        "QEndDate": "3/31/2010",
+        "StockClose": 235
+    }, {
+        "Year": 2010,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 9705,
+        "Revenue": 15700,
+        "Operating Income": 4234,
+        "QEndDate": "6/30/2010",
+        "StockClose": 251.53
+    }, {
+        "Year": 2010,
+        "Quarter": "Q3",
+        "OperatingCashFlow": 11261,
+        "Revenue": 20343,
+        "Operating Income": 5447,
+        "QEndDate": "9/30/2010",
+        "StockClose": 283.75
+    }, {
+        "Year": 2010,
+        "Quarter": "Q4",
+        "OperatingCashFlow": 10734,
+        "Revenue": 26741,
+        "Operating Income": 7827,
+        "QEndDate": "12/31/2010",
+        "StockClose": 322.56
+    }, {
+        "Year": 2011,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 15978,
+        "Revenue": 24667,
+        "Operating Income": 7874,
+        "QEndDate": "3/31/2011",
+        "StockClose": 348.51
+    }, {
+        "Year": 2011,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 12091,
+        "Revenue": 28571,
+        "Operating Income": 9379,
+        "QEndDate": "6/30/2011",
+        "StockClose": 335.67
+    }, {
+        "Year": 2011,
+        "Quarter": "Q3",
+        "OperatingCashFlow": 9815,
+        "Revenue": 28270,
+        "Operating Income": 8710,
+        "QEndDate": "9/30/2011",
+        "StockClose": 381.32
+    }, {
+        "Year": 2011,
+        "Quarter": "Q4",
+        "OperatingCashFlow": 10310,
+        "Revenue": 46333,
+        "Operating Income": 17340,
+        "QEndDate": "12/30/2011",
+        "StockClose": 405
+    }, {
+        "Year": 2012,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 10121,
+        "Revenue": 39186,
+        "Operating Income": 15384,
+        "QEndDate": "3/30/2012",
+        "StockClose": 599.55
+    }, {
+        "Year": 2012,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 7945,
+        "Revenue": 35023,
+        "Operating Income": 11573,
+        "QEndDate": "6/29/2012",
+        "StockClose": 584
+    }, {
+        "Year": 2012,
+        "Quarter": "Q3",
+        "OperatingCashFlow": 10746,
+        "Revenue": 35966,
+        "Operating Income": 10944,
+        "QEndDate": "9/28/2012",
+        "StockClose": 667.1
+    }, {
+        "Year": 2012,
+        "Quarter": "Q4",
+        "OperatingCashFlow": 16154,
+        "Revenue": 54512,
+        "Operating Income": 17210,
+        "QEndDate": "12/31/2012",
+        "StockClose": 532.17
+    }, {
+        "Year": 2013,
+        "Quarter": "Q1",
+        "OperatingCashFlow": 12053,
+        "Revenue": 43603,
+        "Operating Income": 12558,
+        "QEndDate": "3/28/2013",
+        "StockClose": 442.66
+    }, {
+        "Year": 2013,
+        "Quarter": "Q2",
+        "OperatingCashFlow": 11248,
+        "Revenue": 35323,
+        "Operating Income": 9201,
+        "QEndDate": "6/28/2013",
+        "StockClose": 396.53
+    }];
+
+
+    /*----------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------*/
+
+
+    var width = 150,
+        height = 80;
+
+    //Create format currency function to format the axes and points
+    var formatCurrency = d3.format("$,.0f");
+
+    //Add a quarter-year property to each object in the dataset
+    for (var i in dataset) {
+        dataset[i].QYear = dataset[i].Quarter + " " + dataset[i].Year;
+    }
+
+    //Append an SVG to the document body
+    var svg = d3.select("body").append("svg")
+        .attr("width", width + "px")
+        .attr("height", height + "px")
+        .append("g");
+
+    var x = d3.scale.ordinal()
+        .domain(dataset.map(function(d) {
+            return d.QYear;
+        }))
+        .rangeRoundBands([0, width], .04);
+
+    var y = d3.scale.linear()
+        .domain([0, d3.max(dataset, function(d) {
+            return d.StockClose;
+        })])
+        .range([height, 0]);
+
+    //Draw the line graph
+    var line = d3.svg.line()
+        .interpolate("basis")
+        .x(function(d) {
+            return x(d.QYear);
+        })
+        .y(function(d) {
+            return y(d.StockClose);
+        })
+
+    //Append a path to the SVG
+    svg.append("path")
+        .attr("d", line(dataset))
+        .attr("class", "linePath")
+        .attr("fill", "none")
+        .attr("stroke", lineColour)
+        .attr("stroke-width", 3);
+    </script>
+</body>
+
+</html>
