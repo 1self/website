@@ -169,7 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var buildStack = function(stack) {
         getCards(function(cardsArray) {
-            console.log('returned cardsArray', cardsArray);
             if (cardsArray.length === 0) {
                 $('.buttonsRow').hide();
             } else {
@@ -177,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 $('.stackBase div').empty();
                 $('.stackBase div').text('All done');
                 cardsArray.reverse();
+                var lastLi = null;
                 cardsArray.forEach(function(element, index, array) {
                     var colourIndex = index;
                     var li = document.createElement('li');
@@ -187,15 +187,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                     $(li).attr('id', 'card_' + index);
                     $('.stack').append(li);
-                    stack.inCards.push(li);
                     stack.createCard(li);
+                    lastLi = li;
                 });
+                markCardUnique($('.stack li:last')[0], 'topOfMain');
+                deckComplete();
             }
         });
     };
 
     stack = gajus.Swing.Stack();
 
+    
     function bringToTop(cardEl) {
         var $cardEl = $(cardEl);
         var cardElId = $cardEl.attr('id');
@@ -204,51 +207,80 @@ document.addEventListener('DOMContentLoaded', function() {
         $cardUl.append(cardEl);
     }
 
-    stack.throwOutNext = function() {
-        // alert('throw out');?
-        if (stack.inCards.length > 0) {
-            var cardLi = stack.inCards.pop();
-            bringToTop(cardLi);
-            var card = stack.getCard(cardLi);
-            cardLi.thrownY = getRandomInt(-100, 100);
-            cardLi.thrownX = 1;
-            card.throwOut(cardLi.thrownX, cardLi.thrownY);
+    function moveToLast(arr, idx) {
+        var lastIdx = arr.length -1;
+        var len = arr.length;
+        var val = null;
+        if (idx !== lastIdx) {
+            val = arr[idx];
+            for (var i = idx; i < len; ++i) {
+                arr[i] = arr[i+1];
+            }
+            arr[lastIdx] = val;
         }
-        console.log('inside stack.throwOutNext', stack.inCards);
-    };
+    }
 
     stack.throwInLast = function() {
-        // alert('throw in');
-        console.log('inside stack.throwInLast');
-        if (stack.outCards.length > 0) {
-            var cardLi = stack.outCards.pop();
-            var card = stack.getCard(cardLi);
-            bringToTop(cardLi);
-            card.throwIn(cardLi.thrownX, cardLi.thrownY);
-        }
-    };
-    stack.outCards = [];
-    stack.inCards = [];
+        var cardLi = $('.stack .topOfDiscard')[0];
+        bringToTop(cardLi);
+        var val = '#' + cardLi.id;
+        var idx = discardPile.indexOf(val);
+        var card = stack.getCard(cardLi);
+        card.throwIn(cardLi.thrownX, cardLi.thrownY);
+    }
+
+    stack.throwOutNext = function() {
+        var cardLi = $('.stack .topOfMain')[0];
+        bringToTop(cardLi);
+        var card = stack.getCard(cardLi);
+        cardLi.thrownY = getRandomInt(-100, 100);
+        cardLi.thrownX = 1;
+        card.throwOut(cardLi.thrownX, cardLi.thrownY);
+    }
+
     window.stack = stack;
     buildStack(stack);
-    console.log(stack);
+
+    function markCardUnique(cardEl, label) {
+        $('.stack li').removeClass(label);
+        if (cardEl !== undefined) {
+            console.log('marking card', cardEl.id, label, cardEl);
+            $(cardEl).addClass(label);
+        }
+    }
+    
+    var discardPile = [];
+    var $cardList = null;
+
+    function deckComplete() {
+        $cardList = $('.stack li');
+        $cardList.on('mousedown', function(e) {
+            var id = '#' + this.id;
+            var idx = discardPile.indexOf(id);
+            if (idx > -1) {
+                moveToLast(discardPile, idx);
+                markCardUnique($(id), 'topOfDiscard');
+            }
+        });
+    }
 
     stack.on('throwout', function(e) {
-        stack.outCards.push(e.target);
-        console.log(e.target.innerText || e.target.textContent, 'has been thrown out of the stack to the', e.throwDirection == 1 ? 'right' : 'left', 'direction.');
+        markCardUnique($('.stack .topOfMain')[0], 'topOfMain');
+        markCardUnique(e.target, 'topOfDiscard');
+        discardPile.push('#' + e.target.id);
+        var cardsOnDiscard = discardPile.length;
+        markCardUnique($cardList[$cardList.length - 1 - cardsOnDiscard], 'topOfMain');
         e.target.classList.remove('in-deck');
-        if (stack.inCards.length > 0) {
-            console.log('render card', stack.inCards[stack.inCards.length - 1]);
-            renderThumbnailMedia(stack.inCards[stack.inCards.length - 1]);
-        }
+        console.log('thrown out', e.target.id, discardPile);
     });
 
     stack.on('throwin', function(e) {
-        console.log('inside throwin');
-        stack.inCards.push(e.target);
-        console.log(e.target.innerText || e.target.textContent, 'has been thrown into the stack from the', e.throwDirection == 1 ? 'right' : 'left', 'direction.');
-        console.log("stack after throwin", stack);
+        discardPile.pop();
+        var cardEl = $(discardPile[discardPile.length -1])[0];
+        markCardUnique(e.target, 'topOfMain');
+        markCardUnique(cardEl, 'topOfDiscard');
 
         e.target.classList.add('in-deck');
+        console.log('thrown in', e.target.id, discardPile);
     });
 });

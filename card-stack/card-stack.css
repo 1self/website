@@ -89,7 +89,8 @@ input {
     text-align: center;
     font-size: 30px;
     height: 200px;
-    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
     display: table;
 }
 
@@ -129,7 +130,7 @@ input {
 }
 
 .cardBackContainer {
-  z-index: 999;
+  /*z-index: 999;*/
   background-color: white;
   position: absolute;
   height: 300px;
