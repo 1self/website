@@ -16,6 +16,10 @@ function htmlDecode(value) {
     return $('<div/>').html(value).text();
 }
 
+function stripHash(stringToStrip) {
+    return stringToStrip.replace('#', '');
+}
+
 function stripAtDetail(stringToStrip) {
     stringArr = stringToStrip.split(' at ');
     return stringArr[0];
@@ -45,7 +49,10 @@ $.getJSON('https://api-staging.1self.co/v1/users/ed/cards',
 $(function() {
     var stack;
 
-    var colourArray = ['#dd2649', '#00a2d4', '#e93d31', '#f2ae1c', '#61b346', '#cf4b9a', '#367ec0', '#00ad87'];
+    var getColour = function(idx) {
+        var colourArray = ['#dd2649', '#00a2d4', '#e93d31', '#f2ae1c', '#61b346', '#cf4b9a', '#367ec0', '#00ad87'];
+        return colourArray[idx % colourArray.length];
+    };
 
     var dateRangetext = function(startRange, endRange) {
         var rangeText;
@@ -103,7 +110,7 @@ $(function() {
     });
 
 
-        var colour = colourArray[colourIndex];
+        var colour = getColour(colourIndex);
         var supplantObject = {
             headerText: '',
             cardNavText: '',
@@ -145,7 +152,13 @@ $(function() {
 
         if (cardData.thumbnailMedia) {
             console.log('rendering thumbnailMedia', cardData);
-            $(cardLi).find('.cardMedia').append('<iframe class="thumbnailFrame" src="' + cardData.thumbnailMedia + '?lineColour=' + colourArray[cardData.colourIndex] + '" scrolling="no"></iframe>');
+            var $cardMedia = $(cardLi).find('.cardMedia');
+            $cardMedia.empty();
+            var iFrameHtml = '<iframe class="thumbnailFrame" src="' + cardData.thumbnailMedia;
+            iFrameHtml += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
+            iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
+            iFrameHtml += 'scrolling="no"></iframe>';
+            $cardMedia.append(iFrameHtml);
         }
     };
 
@@ -158,7 +171,7 @@ $(function() {
                 var li = document.createElement('li');
                 li.innerHTML = buildCardHtml(element, colourIndex);
                 $(li).css({
-                    'border-color': colourArray[colourIndex],
+                    'border-color': getColour(colourIndex),
                     'overflow': 'hidden'
                 });
                 $(li).attr('id', 'card_' + index);
