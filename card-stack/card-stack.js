@@ -151,13 +151,13 @@ $(function() {
 
 
         var html = '<input id="hidCard_{{id}}" class="cardData" type="hidden" value="{{inputValue}}" /><div class="cardContainer cardContainer-front">{{cardContent}}</div><div class="cardContainer cardContainer-back">test{{cardNav}}</div>'.supplant({
-        id: cardData.id,
-        inputValue: encodeURIComponent(JSON.stringify(cardData)),
-        cardNav: navTemplate.supplant({
-            colour: colour,
-            action: 'close'
-        })
-    });
+            id: cardData.id,
+            inputValue: encodeURIComponent(JSON.stringify(cardData)),
+            cardNav: navTemplate.supplant({
+                colour: colour,
+                action: 'close'
+            })
+        });
 
 
         switch (cardData.type) {
