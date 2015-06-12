@@ -1,3 +1,12 @@
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Raleway Light'), local('Raleway-Light'), url(fonts/raleway.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
 html, body, ul, li {
   margin: 0;
   padding: 0; }
@@ -220,6 +229,26 @@ input {
 .flip {
 }
 
+.cardBack-1 {
+  position: relative;
+  left: 0px;
+  -webkit-transition: left 0.4s ease-in;
+}
+
+.cardBack-2 {
+  position: relative;
+  left: 300px;
+  -webkit-transition: left 0.4s ease-in;
+}
+    
+.slideOutLeft {
+  left: -300px;
+}
+
+.slideInLeft {
+  left: 0px;
+}
+
 .cardContainer {
   backface-visibility: hidden;
 }
@@ -234,6 +263,7 @@ input {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 1px 1px 1px rgba(0, 0, 0, 0.2);
   border: 10px solid red;
   box-sizing: border-box;
+  overflow: hidden;
   cursor: default; }
 
 #viewport {

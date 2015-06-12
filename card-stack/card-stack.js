@@ -17,26 +17,37 @@ function stripAtDetail(stringToStrip) {
     return stringArr[0];
 }
 
+function slideLeft() {
+    $('.cardBack-1').addClass('slideOutLeft');
+    $('.cardBack-2').addClass('slideInLeft');
+}
+
 var deferred = $.Deferred();
 
+var offline = true;
 
+
+if (offline) {
+    var data = [{"id":"55795df83049b6306d2543db","type":"date","generatedDate":"2015-06-11T10:07:52.837Z"},{"id":"55795df83049b6306d2543dc","type":"top10","thumbnailMedia":"chart.html","startRange":"2015-06-10","endRange":"2015-06-10","objectTags":["computer","git","github","software","source control"],"actionTags":["commit"],"position":48,"properties":{"line-additions":104},"generatedDate":"2015-06-11T10:07:52.880Z","chart":"/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum/line-additions/.json"},{"id":"55795df83049b6306d2543dd","type":"top10","thumbnailMedia":"chart.html","startRange":"2015-06-10","endRange":"2015-06-10","objectTags":["computer","git","github","software","source control"],"actionTags":["commit"],"position":44,"properties":{"line-changes":196},"generatedDate":"2015-06-11T10:07:52.894Z","chart":"/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum/line-changes/.json"},{"id":"55795df83049b6306d2543de","type":"top10","thumbnailMedia":"chart.html","startRange":"2015-06-10","endRange":"2015-06-10","objectTags":["computer","git","github","software","source control"],"actionTags":["commit"],"position":29,"properties":{"line-deletions":92},"generatedDate":"2015-06-11T10:07:52.907Z","chart":"/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum/line-deletions/.json"},{"id":"55795df83049b6306d2543df","type":"top10","thumbnailMedia":"chart.html","startRange":"2015-06-10","endRange":"2015-06-10","objectTags":["computer","control","software","source"],"actionTags":["github","push"],"position":21,"properties":{"pushId":2072678999},"generatedDate":"2015-06-11T10:07:52.913Z","chart":"/v1/users/ed/rollups/day/computer,control,software,source/github,push/sum/pushId/.json"},{"id":"55795df83049b6306d2543e0","type":"top10","thumbnailMedia":"chart.html","startRange":"2015-06-10","endRange":"2015-06-10","objectTags":["computer","git","github","software","source control"],"actionTags":["commit"],"position":24,"properties":{"pushId":4145353520},"generatedDate":"2015-06-11T10:07:52.926Z","chart":"/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum/pushId/.json"},{"id":"55795df83049b6306d2543e1","type":"top10","thumbnailMedia":"chart.html","startRange":"2015-06-10","endRange":"2015-06-10","objectTags":["computer","git","github","software","source control"],"actionTags":["commit"],"position":31,"properties":{"file-changes":14},"generatedDate":"2015-06-11T10:07:52.939Z","chart":"/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum/file-changes/.json"}];
+    deferred.resolve(data);
+} else {
 // Get the ajax requests out of the way early because they
 // are typically longest to complete
-$.getJSON('https://api-staging.1self.co/v1/users/ed/cards',
-        function() {
-            console.log("accessed api for cards");
+    $.getJSON('https://api-staging.1self.co/v1/users/ed/cards',
+            function() {
+                console.log("accessed api for cards");
+            })
+        .done(function(data) {
+
+            console.log('card data', data);
+            window.cardData = data;
+            deferred.resolve(data);
         })
-    .done(function(data) {
+        .fail(function(data) {
+            console.log('error getting cards', data);
 
-        console.log('card data', data);
-        window.cardData = data;
-        deferred.resolve(data);
-    })
-    .fail(function(data) {
-        console.log('error getting cards', data);
-
-    });
-
+        });
+}
 
 $(function() {
     var stack;
@@ -124,6 +135,11 @@ $(function() {
       , '  </div>'
     ].join('');
 
+    var cardBackContentTemplate = [
+        '<div class="cardBack-1"><input type="button" value="slide left" onclick="slideLeft()"></div>'
+      , '<div class="cardBack-2"><input type="button" value="slide left" onclick="slideLeft()"></div>'
+    ].join('');
+
     
     var buildCardHtml = function(cardData, colourIndex) {
 
@@ -150,14 +166,21 @@ $(function() {
         };
 
 
-        var html = '<input id="hidCard_{{id}}" class="cardData" type="hidden" value="{{inputValue}}" /><div class="cardContainer cardContainer-front">{{cardContent}}</div><div class="cardContainer cardContainer-back">test{{cardNav}}</div>'.supplant({
-            id: cardData.id,
-            inputValue: encodeURIComponent(JSON.stringify(cardData)),
-            cardNav: navTemplate.supplant({
-                colour: colour,
-                action: 'close'
-            })
-        });
+        var html = '<input id="hidCard_{{id}}" class="cardData" type="hidden" value="{{inputValue}}" />';
+            html += '<div class="cardContainer cardContainer-front">{{cardContent}}</div>';
+            html += '<div class="cardContainer cardContainer-back">';
+            html += '  {{cardBackContent}}';
+            html += '{{cardNav}}</div>';
+
+            html = html.supplant({
+                id: cardData.id,
+                inputValue: encodeURIComponent(JSON.stringify(cardData)),
+                cardBackContent: cardBackContentTemplate,
+                cardNav: navTemplate.supplant({
+                    colour: colour,
+                    action: 'close'
+                })
+            });
 
 
         switch (cardData.type) {
