@@ -120,7 +120,7 @@ $(function() {
     
     var navTemplate = [
         '  <div class="nav-toggle" style="background-color: {{colour}};">'
-      , '    <div class="icon"><img src="img/{{action}}-icon.png" /></div>'
+      , '    <div class="icon icon-{{action}}"><img src="img/{{action}}-icon.png" /></div>'
       , '  </div>'
     ].join('');
 
