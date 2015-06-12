@@ -44,7 +44,6 @@ input {
   border-radius: 5px;
   border: 1px solid #454b54;
   position: relative;
-  display: none;
   }
 
 .cardButton {
@@ -183,12 +182,11 @@ input {
 }
 
 #viewport {
-  float: left;
   width: 100%;
   height: 718px;
   background: #f2ae1c;
   padding-top: 50px;
-  position: relative; }
+  }
   #viewport .stack {
     width: 300px;
     height: 400px;
