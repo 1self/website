@@ -223,6 +223,7 @@ $(function() {
                 $('.stack').append(li);
                 stack.createCard(li);
                 lastLi = li;
+                renderThumbnailMedia(li);
             });
             markCardUnique($('.stack li:last')[0], 'topOfMain');
 
@@ -306,7 +307,6 @@ $(function() {
         discardPile.push('#' + e.target.id);
         var cardsOnDiscard = discardPile.length;
         markCardUnique($cardList[$cardList.length - 1 - cardsOnDiscard], 'topOfMain');
-        renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
         e.target.classList.remove('in-deck');
         console.log('thrown out', e.target.id, discardPile);
     });
