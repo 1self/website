@@ -16,6 +16,11 @@ function htmlDecode(value) {
     return $('<div/>').html(value).text();
 }
 
+function stripAtDetail(stringToStrip) {
+    stringArr = stringToStrip.split(' at ');
+    return stringArr[0];
+}
+
 var deferred = $.Deferred();
 
 
@@ -49,7 +54,7 @@ $(function() {
         if (startRange === endRange) {
             // single moment
             startRange = moment(startRange);
-            rangeText = startRange.fromNow(); //'Yesterday';
+            rangeText = startRange.calendar(); //'Yesterday';
         } else {
             // range of time
             startRange = moment(startRange);
@@ -108,7 +113,7 @@ $(function() {
 
         switch (cardData.type) {
             case 'date':
-                var dateNow = generatedDate.fromNow();
+                var dateNow = stripAtDetail(generatedDate.calendar());
                     
                 html = cardHtml(html, supplantObject, {
                         cardContent: '<div class="cardFullText" style="background-color: {{colour}};"><p>{{dateNow}}</p></div>'.supplant({dateNow: dateNow, colour: colour})
