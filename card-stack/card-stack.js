@@ -22,6 +22,11 @@ function slideLeft() {
     $('.cardBack-2').addClass('slideInLeft');
 }
 
+function slideRight() {
+    $('.cardBack-1').removeClass('slideOutLeft');
+    $('.cardBack-2').removeClass('slideInLeft');
+}
+
 var deferred = $.Deferred();
 
 var offline = true;
@@ -136,8 +141,15 @@ $(function() {
     ].join('');
 
     var cardBackContentTemplate = [
-        '<div class="cardBack-1"><input type="button" value="slide left" onclick="slideLeft()"></div>'
-      , '<div class="cardBack-2"><input type="button" value="slide left" onclick="slideLeft()"></div>'
+      , '<div class="cardBack-1">'
+      , '  <div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
+      , '  <div class="cardBackMain"><p>big chart goes here</p></div>'
+      , '  <div class="cardBackAction" onclick="slideLeft()"><p>Explore &gt;</p></div>'
+      , '</div>'
+      , '<div class="cardBack-2">'
+      , '  <div class="cardHeader" style="background-color: {{colour}};"><p class="backButton" onclick="slideRight()">{{headerText2}}</p></div>'
+      , '  here is some more card info'
+      , '</div>'
     ].join('');
 
     
@@ -175,7 +187,11 @@ $(function() {
             html = html.supplant({
                 id: cardData.id,
                 inputValue: encodeURIComponent(JSON.stringify(cardData)),
-                cardBackContent: cardBackContentTemplate,
+                cardBackContent: cardBackContentTemplate.supplant({
+                    colour: colour,
+                    headerText: 'testy',
+                    headerText2: '&lt; back'
+                }),
                 cardNav: navTemplate.supplant({
                     colour: colour,
                     action: 'close'

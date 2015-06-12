@@ -230,15 +230,34 @@ input {
 }
 
 .cardBack-1 {
-  position: relative;
+  width: 100%;
+  position: absolute;
   left: 0px;
   -webkit-transition: left 0.4s ease-in;
 }
 
 .cardBack-2 {
-  position: relative;
+  width: 100%;
+  position: absolute;
   left: 300px;
   -webkit-transition: left 0.4s ease-in;
+}
+
+.cardBackMain {
+  height: 270px;
+  background-color: #e7e9ee;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.cardBackAction {
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.backButton {
+  cursor: pointer;
 }
     
 .slideOutLeft {
