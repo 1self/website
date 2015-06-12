@@ -1,11 +1,3 @@
-function toggleOverlay(navElement, colourIndex) {
-    var overlayContainer = $(navElement).parent().parent();
-    overlayContainer.toggleClass("nav-open nav-open-" + colourIndex);
-    var cardBackContainer = overlayContainer.children('.cardBackContainer');
-    cardBackContainer.toggleClass("hide fadeIn");
-    console.log(cardBackContainer);
-}
-
 function htmlEncode(value) {
     //create a in-memory div, set it's inner text(which jQuery automatically encodes)
     //then grab the encoded contents back out.  The div never exists on the page.
@@ -119,12 +111,17 @@ $(function() {
 
     var htmlTemplate = [
         '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
-      , '<div class="cardBackContainer hide">test</div>'
       , '{{cardContent}}'
-      , '<div class="cardNav" style="background-color: {{colour}};"><p>{{cardNavText}}</p>'
-      , '<div class="nav-toggle" style="background-color: {{colour}};" onclick="toggleOverlay(this, {{colourIndex}});">'
-      , '<div class="icon"><img src="img/more-icon.png"></div></div>'
+      , '<div class="cardNav" style="background-color: {{colour}};">'
+      , '  <p>{{cardNavText}}</p>'
+      , '  {{navButton}}'
       , '</div>'
+    ].join('');
+    
+    var navTemplate = [
+        '  <div class="nav-toggle" style="background-color: {{colour}};">'
+      , '    <div class="icon"><img src="img/{{action}}-icon.png" /></div>'
+      , '  </div>'
     ].join('');
 
     
@@ -132,18 +129,17 @@ $(function() {
 
         function cardHtml(template, supplantObject, overrides) {
             return template.supplant({
-                cardContent: htmlTemplate.supplant($.extend({}, supplantObject, overrides))
+                cardContent: htmlTemplate.supplant($.extend({
+                    navButton: navTemplate.supplant({
+                        colour: overrides.colour || supplantObject.colour,
+                        action: "more"
+                    })
+                }, supplantObject, overrides))
             });
         }
 
         var generatedDate = moment(cardData.generatedDate);
         cardData.colourIndex = colourIndex;
-
-        var html = '<input id="hidCard_{{id}}" class="cardData" type="hidden" value="{{inputValue}}" /><div class="cardContainer">{{cardContent}}</div>'.supplant({
-        id: cardData.id,
-        inputValue: encodeURIComponent(JSON.stringify(cardData)),
-    });
-
 
         var colour = getColour(colourIndex);
         var supplantObject = {
@@ -152,6 +148,17 @@ $(function() {
             colour: colour,
             colourIndex: colourIndex,
         };
+
+
+        var html = '<input id="hidCard_{{id}}" class="cardData" type="hidden" value="{{inputValue}}" /><div class="cardContainer cardContainer-front">{{cardContent}}</div><div class="cardContainer cardContainer-back">test{{cardNav}}</div>'.supplant({
+        id: cardData.id,
+        inputValue: encodeURIComponent(JSON.stringify(cardData)),
+        cardNav: navTemplate.supplant({
+            colour: colour,
+            action: 'close'
+        })
+    });
+
 
         switch (cardData.type) {
             case 'date':
@@ -208,9 +215,9 @@ $(function() {
                 var colourIndex = index;
                 var li = document.createElement('li');
                 li.innerHTML = buildCardHtml(element, colourIndex);
-                $(li).css({
-                    'border-color': getColour(colourIndex),
-                    'overflow': 'hidden'
+                var $card = $(li).find('.cardContainer');
+                $card.css({
+                    'border-color': getColour(colourIndex)
                 });
                 $(li).attr('id', 'card_' + index);
                 $('.stack').append(li);
@@ -218,7 +225,23 @@ $(function() {
                 lastLi = li;
             });
             markCardUnique($('.stack li:last')[0], 'topOfMain');
-            deckComplete();
+
+            $cardList = $('.stack li');
+
+            $cardList.on('mousedown', function(e) {
+                var id = '#' + this.id;
+                var idx = discardPile.indexOf(id);
+                if (idx > -1) {
+                    moveToLast(discardPile, idx);
+                    markCardUnique($(id), 'topOfDiscard');
+                }
+            });
+
+            $('.nav-toggle').on('click', function(e) {
+                var $container = $(this).parents('.cardContainer');
+                $container.toggleClass('flip');
+                $container.siblings().toggleClass('flip');
+            });
         });
     };
 
@@ -277,18 +300,6 @@ $(function() {
     var discardPile = [];
     var $cardList = null;
 
-    function deckComplete() {
-        $cardList = $('.stack li');
-        $cardList.on('mousedown', function(e) {
-            var id = '#' + this.id;
-            var idx = discardPile.indexOf(id);
-            if (idx > -1) {
-                moveToLast(discardPile, idx);
-                markCardUnique($(id), 'topOfDiscard');
-            }
-        });
-    }
-    
     stack.on('throwout', function(e) {
         markCardUnique($('.stack .topOfMain')[0], 'topOfMain');
         markCardUnique(e.target, 'topOfDiscard');
@@ -309,4 +320,5 @@ $(function() {
         e.target.classList.add('in-deck');
         console.log('thrown in', e.target.id, discardPile);
     });
+
 });

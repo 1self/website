@@ -181,6 +181,10 @@ input {
   width: 30%;
 }
 
+.stack li {
+  position: relative;
+  list-style: none;
+}
 .stack {
   width: 300px;
   height: 400px;
@@ -191,10 +195,37 @@ input {
   left: 42%;*/
   margin: auto;
   border-radius: 10px; }
-.stack li {
+
+.cardContainer {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+}
+
+.cardContainer-front.flip, .cardContainer-back {
+  -webkit-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+  -moz-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+  -o-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+  -ms-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+  transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+}
+
+.cardContainer-front, .cardContainer-back.flip {
+  -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  -moz-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  -o-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  -ms-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.flip {
+}
+
+.cardContainer {
+  backface-visibility: hidden;
+}
+.stack .cardContainer {
   width: 300px;
   height: 400px;
-  list-style: none;
   background: #fff;
   border-radius: 5px;
   position: absolute;
@@ -204,13 +235,6 @@ input {
   border: 10px solid red;
   box-sizing: border-box;
   cursor: default; }
-
-.stack li.in-deck:nth-child(3) {
-  top: 2px;
-  transform: translate(2px, 2px) rotate(0.4deg); }
-.stack li.in-deck:nth-child(2) {
-  top: 4px;
-  transform: translate(-4px, -2px) rotate(-1deg); }
 
 #viewport {
   width: 100%;
