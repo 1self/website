@@ -213,15 +213,17 @@ $(function() {
         var val = '#' + cardLi.id;
         var idx = discardPile.indexOf(val);
         var card = stack.getCard(cardLi);
-        card.throwIn(1, 100);
-    }
+        card.throwIn(cardLi.thrownX, cardLi.thrownY);
+    };
 
     stack.throwOutNext = function() {
         var cardLi = $('.stack .topOfMain')[0];
         bringToTop(cardLi);
         var card = stack.getCard(cardLi);
-        card.throwOut(1, 100);
-    }
+        cardLi.thrownY = getRandomInt(-100, 100);
+        cardLi.thrownX = 1;
+        card.throwOut(cardLi.thrownX, cardLi.thrownY);
+    };
 
     window.stack = stack;
     buildStack(stack);
