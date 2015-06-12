@@ -72,6 +72,41 @@ $(function() {
         return rangeText;
     };
 
+    var displayTags = function(tagArray) {
+        var returnString = '';
+
+        for (var i in tagArray) {
+            returnString += tagArray[i] + " ";
+        }
+
+        return returnString;
+    };
+
+    var createCardText = function(cardData, type) {
+        if (!cardData.cardText) {
+            var cardText = '';
+            switch (cardData.type) {
+                case 'top10':
+                    switch (cardData.position) {
+                        case (0):
+                            cardText += "Highest";
+                            break;
+                        case (1):
+                            cardText += (cardData.position + 1) + "nd highest";
+                            break;
+                        case (2):
+                            cardText += (cardData.position + 1) + "rd highest";
+                            break;
+                        default:
+                            cardText += (cardData.position + 1) + "th highest";
+                    }
+                    cardText += " <i>" + displayTags(cardData.actionTags) + "</i> on <i>" + displayTags(cardData.objectTags) + '</i>';
+                    break;
+            }
+            cardData.cardText = cardText;
+        }
+    };
+
     String.prototype.supplant = function (o) {
         return this.replace(
             /\{\{([^{}]*)\}\}/g,
@@ -104,7 +139,7 @@ $(function() {
         var generatedDate = moment(cardData.generatedDate);
         cardData.colourIndex = colourIndex;
 
-        var html = '<input id="hidCard_{{id}}" class="cardData" type="hidden" value="{{inputValue}} /><div class="cardContainer">{{cardContent}}</div>'.supplant({
+        var html = '<input id="hidCard_{{id}}" class="cardData" type="hidden" value="{{inputValue}}" /><div class="cardContainer">{{cardContent}}</div>'.supplant({
         id: cardData.id,
         inputValue: encodeURIComponent(JSON.stringify(cardData)),
     });
@@ -127,6 +162,7 @@ $(function() {
                     });
                 break;
             case 'top10':
+                createCardText(cardData);
                 html = cardHtml(html, supplantObject, {
                         headerText: dateRangetext(cardData.startRange, cardData.endRange),
                         cardContent: '<div class="cardMedia"></div><div class="cardText"><p>{{data}}</p></div>'.supplant({data: cardData.cardText || 'undefined'})
@@ -146,9 +182,11 @@ $(function() {
     };
 
     var renderThumbnailMedia = function(cardLi) {
+        console.log('renderThumbnailMedia', cardLi);
         var cardData = $(cardLi).find('.cardData');
         cardData = decodeURIComponent(cardData.val());
         cardData = JSON.parse(cardData);
+        console.log('cardDataJSON', cardData);
 
         if (cardData.thumbnailMedia) {
             console.log('rendering thumbnailMedia', cardData);
@@ -257,6 +295,7 @@ $(function() {
         discardPile.push('#' + e.target.id);
         var cardsOnDiscard = discardPile.length;
         markCardUnique($cardList[$cardList.length - 1 - cardsOnDiscard], 'topOfMain');
+        renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
         e.target.classList.remove('in-deck');
         console.log('thrown out', e.target.id, discardPile);
     });
