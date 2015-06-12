@@ -288,6 +288,12 @@ fieldset {
     background-repeat: no-repeat
 }
 
+.nav-toggle .icon-close {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
 .nav-toggle .icon img {
     margin: 10px 0 0 10px
 }

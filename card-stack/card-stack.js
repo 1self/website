@@ -131,7 +131,7 @@ $(function() {
     
     var navTemplate = [
         '  <div class="nav-toggle" style="background-color: {{colour}};">'
-      , '    <div class="icon"><img src="img/{{action}}-icon.png" /></div>'
+      , '    <div class="icon icon-{{action}}"><img src="img/{{action}}-icon.png" /></div>'
       , '  </div>'
     ].join('');
 
@@ -251,8 +251,9 @@ $(function() {
             markCardUnique($('.stack li:last')[0], 'topOfMain');
 
             $cardList = $('.stack li');
+            var $stack = $('.stack');
 
-            $cardList.on('mousedown', function(e) {
+            $stack.on('mouseup', 'li', function(e) {
                 var id = '#' + this.id;
                 var idx = discardPile.indexOf(id);
                 if (idx > -1) {
@@ -261,7 +262,7 @@ $(function() {
                 }
             });
 
-            $('.nav-toggle').on('click', function(e) {
+            $stack.on('mouseup', '.nav-toggle', function(e) {
                 var $container = $(this).parents('.cardContainer');
                 $container.toggleClass('flip');
                 $container.siblings().toggleClass('flip');
