@@ -17,14 +17,16 @@ function stripAtDetail(stringToStrip) {
     return stringArr[0];
 }
 
-function slideLeft() {
-    $('.cardBack-1').addClass('slideOutLeft');
-    $('.cardBack-2').addClass('slideInLeft');
+function slideLeft(eventElement) {
+    var $cardBackContainer = $(eventElement).parent().parent();
+    $cardBackContainer.find('.cardBack-1').addClass('slideOutLeft');
+    $cardBackContainer.find('.cardBack-2').addClass('slideInLeft');
 }
 
-function slideRight() {
-    $('.cardBack-1').removeClass('slideOutLeft');
-    $('.cardBack-2').removeClass('slideInLeft');
+function slideRight(eventElement) {
+    var $cardBackContainer = $(eventElement).parent().parent().parent();
+    $cardBackContainer.find('.cardBack-1').removeClass('slideOutLeft');
+    $cardBackContainer.find('.cardBack-2').removeClass('slideInLeft');
 }
 
 var deferred = $.Deferred();
@@ -144,10 +146,10 @@ $(function() {
       , '<div class="cardBack-1">'
       , '  <div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
       , '  <div class="cardBackMain"><p>big chart goes here</p></div>'
-      , '  <div class="cardBackAction" onclick="slideLeft()"><p>Explore &gt;</p></div>'
+      , '  <div class="cardBackAction" onclick="slideLeft(this)"><p>Explore &gt;</p></div>'
       , '</div>'
       , '<div class="cardBack-2">'
-      , '  <div class="cardHeader" style="background-color: {{colour}};"><p class="backButton" onclick="slideRight()">{{headerText2}}</p></div>'
+      , '  <div class="cardHeader" style="background-color: {{colour}};"><p class="backButton" onclick="slideRight(this)">{{headerText2}}</p></div>'
       , '  here is some more card info'
       , '</div>'
     ].join('');
@@ -232,10 +234,10 @@ $(function() {
         var cardData = $(cardLi).find('.cardData');
         cardData = decodeURIComponent(cardData.val());
         cardData = JSON.parse(cardData);
-        console.log('cardDataJSON', cardData);
+        // console.log('cardDataJSON', cardData);
 
         if (cardData.thumbnailMedia) {
-            console.log('rendering thumbnailMedia', cardData);
+            // console.log('rendering thumbnailMedia', cardData);
             var $cardMedia = $(cardLi).find('.cardMedia');
             $cardMedia.empty();
             var iFrameHtml = '<iframe class="thumbnailFrame" src="' + cardData.thumbnailMedia;
@@ -245,6 +247,9 @@ $(function() {
             $cardMedia.append(iFrameHtml);
         }
     };
+    
+    var discardPile = [];
+    var $cardList = null;
 
     var buildStack = function(stack) {
         deferred.done(function(cardsArray) {
@@ -337,9 +342,6 @@ $(function() {
             $(cardEl).addClass(label);
         }
     }
-    
-    var discardPile = [];
-    var $cardList = null;
 
     stack.on('throwout', function(e) {
         markCardUnique($('.stack .topOfMain')[0], 'topOfMain');

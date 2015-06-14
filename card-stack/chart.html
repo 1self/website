@@ -29,7 +29,6 @@
     var dataSrc = 'http://app-staging.1self.co' + getQSParam()['dataSrc'];
     var offline = true;
 
-    console.log('lineColour', lineColour);
 
     function getData(dataSrc, callback) {
 
@@ -55,7 +54,7 @@
         }
     }
 
-    console.log('in chart.html');
+    // console.log('in chart.html');
 
     getData(dataSrc, function (data) {
       drawSparkLine(data, null, 150, 80);
@@ -72,7 +71,7 @@
 
     function drawSparkLine(chartData, appendToElement, width, height) {
 
-      console.log('in drawSparkLine', chartData);
+      // console.log('in drawSparkLine', chartData);
 
         //Create format currency function to format the axes and points
         // var formatCurrency = d3.format("$,.0f");
