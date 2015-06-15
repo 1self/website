@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="chart.css">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/d3/d3.min.js"></script>
+    <script src="utils.js"></script>
 </head>
 
 <body>
@@ -119,6 +120,25 @@
             .attr("stroke", lineColour)
             .attr("stroke-width", 3);
     }
+
+
+    </script>
+    <div class="center-cropped" >
+    </div>
+
+    <script>
+    var kittens = ['http://images4.fanpop.com/image/photos/16100000/Cute-Kitten-kittens-16123796-1280-800.jpg'
+    ,'https://d8kyhhndkm363.cloudfront.net/8/263246/kittens8.jpg'
+    ,'http://i.telegraph.co.uk/multimedia/archive/02830/cat_2830677b.jpg'
+    ,'http://t2.gstatic.com/images?q=tbn:ANd9GcQAELDz8GS4mIfKaNo1nWi3sG4w4b84FBxF6KfeO4EDgQYp_wwYEQ'
+    ,'http://sussle.org/imager/cbb1ee8720943f710058cd92ce376958.jpg/850'
+    ,'http://www.funkidslive.com/wp-content/uploads/2014/06/cutest-kitten-hat-ever-13727-1238540322-17.jpg'
+    ,'https://missswedishkiwi.files.wordpress.com/2015/05/kitten3.jpg'];
+
+    var imageUrl = kittens[getRandomInt(0, kittens.length - 1)];
+    console.log('imageUrl', imageUrl);
+
+    $('.center-cropped').css('background-image', 'url("' + imageUrl + '")');
     </script>
 </body>
 
