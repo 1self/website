@@ -40,12 +40,42 @@ input {
   background-color: rgb(48, 54, 62);
 }
 
-.left-nav {
+.body {
+  position: relative;
+  background: #f2ae1c;
+}
+
+.body .left-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: auto;
   width: 220px;
   background-color: gray;
-  height: 100%;
-  float: left;
 }
+
+@media (max-width: 561px) {
+  .body, .body .left-nav {
+    position: static;
+  }
+
+  .body .left-nav, .body #viewport {
+    width: 100%;
+  }
+  
+  .body #viewport {
+    margin: 0;
+  }
+}
+
+@media (min-width: 562px) {
+  .body #viewport {
+    margin-left: 230px;
+    width: 320px;
+  }
+}
+
 
 .buttonsRow {
   width: 300px;
