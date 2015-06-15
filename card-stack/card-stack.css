@@ -69,19 +69,21 @@ input {
 }
 
 .cardHeader {
-    line-height: 18px;
     text-align: center;
     font-size: 18px;
     height: 40px;
     color: #ffffff;
     width: 100%;
     display: table;
+    padding-bottom: 5px;
+    /* padding-top: 40px; */
 }
 
 .cardHeader p {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  /* margin-top: 22px; */
 }
 
 .cardMedia {
@@ -231,6 +233,7 @@ input {
 
 .cardBack-1 {
   width: 100%;
+  height: 380px;
   position: absolute;
   left: 0px;
   -webkit-transition: left 0.4s ease-in;
@@ -244,16 +247,24 @@ input {
 }
 
 .cardBackMain {
-  height: 270px;
+  height: 295px;
   background-color: #e7e9ee;
   padding-left: 10px;
   padding-right: 10px;
+  /* top: -10px; */
+  position: relative;
 }
 
 .cardBackAction {
   padding-left: 10px;
   padding-right: 10px;
   cursor: pointer;
+  height: 40px;
+}
+
+.actionText {
+  line-height: 16px;
+  font-size: 16px;
 }
 
 .backButton {

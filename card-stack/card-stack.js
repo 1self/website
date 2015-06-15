@@ -145,12 +145,12 @@ $(function() {
     var cardBackContentTemplate = [
       , '<div class="cardBack-1">'
       , '  <div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
-      , '  <div class="cardBackMain"><p>big chart goes here</p></div>'
-      , '  <div class="cardBackAction" onclick="slideLeft(this)"><p>Explore &gt;</p></div>'
+      , '  <div class="cardBackMain">big chart goes here</div>'
+      , '  <div class="cardBackAction" onclick="slideLeft(this)"><p class="actionText">Explore &gt;</p></div>'
       , '</div>'
       , '<div class="cardBack-2">'
       , '  <div class="cardHeader" style="background-color: {{colour}};"><p class="backButton" onclick="slideRight(this)">{{headerText2}}</p></div>'
-      , '  here is some more card info'
+      , '  <div class="cardBackMain">Next bit of info goes here</div>'
       , '</div>'
     ].join('');
 
