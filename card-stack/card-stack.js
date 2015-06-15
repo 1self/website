@@ -31,7 +31,7 @@ function slideRight(eventElement) {
 
 var deferred = $.Deferred();
 
-var offline = true;
+var offline = false;
 
 
 if (offline) {
