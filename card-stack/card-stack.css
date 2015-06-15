@@ -11,6 +11,10 @@ html, body, ul, li {
   margin: 0;
   padding: 0; }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background: #646e7a;
     font-family: 'Raleway', sans-serif
@@ -298,7 +302,7 @@ input {
 
 #viewport {
   width: 100%;
-  min-height: 718px;
+  height: 100%;
   background: #f2ae1c;
   padding-top: 50px;
   }
