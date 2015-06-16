@@ -5,20 +5,26 @@ body {
 }
 
 svg {
-    background-color: transparent;
+    /* background-color: transparent; */
     /*border-style: solid;
     border-width: 1px;
     border-color: pink;*/
     /* margin: -8px; */
-    position: absolute;
-    top: 0px;
+    /* position: absolute; */
+    /* top: 0px; */
+    margin: auto;
 }
 
 .center-cropped {
   width: 280px;
-  height: 90px;
+  height: 300px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.5;
+}
+
+.mainContainer {
+	height: 100%;
+	width: 100%;
 }
