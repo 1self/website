@@ -16,12 +16,11 @@
 
     <script>
 
-    var lineColour = '#' + getQSParam()['lineColour'];
-    var dataSrc = 'http://app-staging.1self.co' + getQSParam()['dataSrc'];
+    var lineColour = '#' + getQSParam().lineColour;
+    var dataSrc = 'http://app-staging.1self.co' + getQSParam().dataSrc;
     var offline = true;
 
     $('.mainContainer').ready(function () {
-        // console.log('is vis', $('.mainContainer').is(':visible'));
         getData(dataSrc, function (data) {
           drawSparkLine(data, null, 280, 100);
         });
@@ -91,8 +90,8 @@
 
         var dataset = chartData.data;
 
-        width = $('body').width();
-        height = $('body').height();
+        width = $('body').width() - 10;
+        height = $('body').height() - 10;
 
         // console.log($('.mainContainer'));
         // console.log($(window).height());
@@ -109,7 +108,7 @@
             .domain(dataset.map(function(d) {
                 return d.date;
             }))
-            .rangeRoundBands([0, width], 0.04);
+            .rangeRoundPoints([0, width], 0.04);
 
         var y = d3.scale.linear()
             .domain([0, d3.max(dataset, function(d) {
