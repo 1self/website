@@ -244,7 +244,7 @@ fieldset {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    margin: 10px;
+    margin: 8px;
     position: absolute;
     cursor: pointer;
     box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);

@@ -10,7 +10,9 @@
 </head>
 
 <body>
-    <div class="mainContainer"></div>
+    <div class="outerContainer">
+        <div class="mainContainer"></div>
+    </div>
 
     <script>
 
@@ -21,7 +23,7 @@
     $('.mainContainer').ready(function () {
         console.log('is vis', $('.mainContainer').is(':visible'));
         getData(dataSrc, function (data) {
-          drawSparkLine(data, null, 280, 80);
+          drawSparkLine(data, null, 280, 100);
         });
     });
 
@@ -90,11 +92,12 @@
         var dataset = chartData.data;
 
         width = $('body').width();
-        // height = $('body').height();
+        height = $('body').height();
 
         console.log($('.mainContainer'));
-        console.log($('.mainContainer').width());
-        console.log($('.mainContainer').height());
+        console.log($(window).height());
+        console.log($(document).height());
+        console.log($('body').height());
 
         //Append an SVG to the document body
         var svg = d3.select(".mainContainer").append("svg")

@@ -1,7 +1,12 @@
+html {
+	height: 100%;
+}
+
 body {
     background-color: transparent;
     margin: 0 0 0 0;
     overflow: hidden;
+    height: 100%;
 }
 
 svg {
@@ -13,6 +18,7 @@ svg {
     /* position: absolute; */
     /* top: 0px; */
     margin: auto;
+    /* padding: 3%; */
 }
 
 .center-cropped {
@@ -24,7 +30,19 @@ svg {
   opacity: 0.5;
 }
 
+.outerContainer {
+
+  display: table;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+}
 .mainContainer {
+	display: table-cell;
+/*
 	height: 100%;
-	width: 100%;
+	width: 100%;*/
+	height: 100%;
+	vertical-align: middle;
 }
