@@ -46,6 +46,7 @@ input {
   position: relative;
   background: #f2ae1c;
   height: 100%;
+  overflow: hidden;
 }
 
 .body .left-nav {

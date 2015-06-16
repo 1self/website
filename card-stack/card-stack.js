@@ -283,7 +283,7 @@ $(function() {
                 }
             });
 
-            $stack.on('mouseup', '.nav-toggle', function(e) {
+            $stack.on('click', '.nav-toggle', function(e) {
                 var $container = $(this).parents('.cardContainer');
                 $container.toggleClass('flip');
                 $container.siblings().toggleClass('flip');
