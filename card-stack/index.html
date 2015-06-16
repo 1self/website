@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" /> 
+    <meta name="apple-touch-fullscreen" content="yes" />
     <link rel="stylesheet" href="card-stack.css">
     <link rel="stylesheet" href="main.css">
     <script src="swing.min.js"></script>
     <script src="classList.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/hammerjs/hammer.js"></script>
+    <script src="bower_components/jquery-hammerjs/jquery.hammer.js"></script>
+
     <script src="bower_components/moment/min/moment.min.js"></script>
     <script src="utils.js"></script>
 </head>
@@ -15,17 +20,21 @@
 <body>
     <!-- <div class="header">
         <img src="img/header.png">
-    </div>
-    <div class="left-nav">
-        <img src="img/left-nav.png">
-    </div> -->
-    <div id="viewport">
-        <ul class="stack">
-        </ul>
-        <div class="buttonsRow">
-            <input type="button" class="cardButton prevButton" onclick="stack.throwInLast();" value="&lt; Previous">
-            <input type="button" class="cardButton nextButton" onclick="stack.throwOutNext();" value="Next &gt;">
-        </div>
+    </div>-->
+    <div class="body">
+      <div id="viewport">
+          <ul class="stack">
+          </ul>
+          <div class="buttonsRow">
+              <input type="button" class="cardButton prevButton" onclick="stack.throwInLast();" value="&lt; Previous">
+              <input type="button" class="cardButton nextButton" onclick="stack.throwOutNext();" value="Next &gt;">
+          </div>
+      </div>
+      <!--
+      <div class="left-nav">
+          <img src="img/left-nav.png">
+      </div>
+      -->
     </div>
     <script src="card-stack.js"></script>
 </body>
