@@ -230,7 +230,7 @@ $(function() {
     };
 
     var renderThumbnailMedia = function(cardLi) {
-        console.log('renderThumbnailMedia', cardLi);
+        // console.log('renderThumbnailMedia', cardLi);
         var cardData = $(cardLi).find('.cardData');
         cardData = decodeURIComponent(cardData.val());
         cardData = JSON.parse(cardData);
@@ -291,7 +291,15 @@ $(function() {
         });
     };
 
-    stack = gajus.Swing.Stack();
+    var stackConfig = {
+        throwOutConfidence: function (offset, element) {
+            console.log('offset and element', offset, element.offsetWidth);
+            console.log(Math.min(Math.abs(offset + 75) / element.offsetWidth, 1));
+            return Math.min(Math.abs(offset + 75) / element.offsetWidth, 1);
+        }
+    };
+
+    stack = gajus.Swing.Stack(stackConfig);
 
     function bringToTop(cardEl) {
         var $cardEl = $(cardEl);
@@ -338,7 +346,7 @@ $(function() {
     function markCardUnique(cardEl, label) {
         $('.stack li').removeClass(label);
         if (cardEl !== undefined) {
-            console.log('marking card', cardEl.id, label, cardEl);
+            // console.log('marking card', cardEl.id, label, cardEl);
             $(cardEl).addClass(label);
         }
     }
