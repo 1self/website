@@ -38,7 +38,7 @@ function slideRight(eventElement) {
 
 var deferred = $.Deferred();
 
-var offline = true;
+var offline = false;
 
 if (offline) {
     var data = [ /*{"id":"55795df83049b6306d2543db","type":"date","generatedDate":"2015-06-11T10:07:52.837Z"},*/ {
@@ -130,7 +130,7 @@ if (offline) {
 } else {
     // Get the ajax requests out of the way early because they
     // are typically longest to complete
-    $.getJSON('https://api-staging.1self.co/v1/users/ed/cards',
+    $.getJSON('https://api-staging.1self.co/v1/users/martin/cards',
             function() {
                 console.log("accessed api for cards");
             })
@@ -179,34 +179,7 @@ $(function() {
             returnString += tagArray[i] + " ";
         }
 
-        return returnString;
-    };
-
-    var createCardText = function(cardData, type) {
-        if (!cardData.cardText) {
-            var cardText = '';
-
-            var comparisonText = "Lowest";
-            if (type === "top10") {
-                comparisonText = "Highest";
-            }
-
-            switch (cardData.position) {
-                case (0):
-                    cardText += comparisonText;
-                    break;
-                case (1):
-                    cardText += (cardData.position + 1) + ("nd " + comparisonText).toLowerCase();
-                    break;
-                case (2):
-                    cardText += (cardData.position + 1) + ("rd " + comparisonText).toLowerCase();
-                    break;
-                default:
-                    cardText += (cardData.position + 1) + ("th " + comparisonText).toLowerCase();
-            }
-            cardText += " <i>" + displayTags(cardData.actionTags) + "</i> on <i>" + displayTags(cardData.objectTags) + '</i>';
-            cardData.cardText = cardText;
-        }
+        return returnString.trim();
     };
 
     String.prototype.supplant = function(o) {
@@ -217,6 +190,109 @@ $(function() {
                 return typeof r === 'string' || typeof r === 'number' ? r : a;
             }
         );
+    };
+
+    var createComparitorText = function(position, type) {
+        var comparitorText = '';
+
+        comparitorText = (type === "top10" ? "most" : "fewest");
+
+        var positionText = '';
+
+        if (position > 0) {
+            position = (position + 1) + '';
+            if (position.charAt(position.length - 1) === '1')
+                positionText = position + "st ";
+            
+            else if (position.charAt(position.length - 1) === '2')
+                positionText = position + "nd ";
+            
+            else if (position.charAt(position.length - 1) === '3')
+                positionText = position + "rd ";
+            
+            else
+                positionText = position + "th ";
+        }
+
+        comparitorText = positionText + comparitorText;
+    
+        return comparitorText;
+    };
+
+    var pluralise = function(stringArray) {
+        var toReturn = [];
+        for (var i in stringArray) {
+            var plural;
+            if (stringArray[i] === "push")
+                plural = "es";
+            else
+                plural = "s";
+            toReturn.push(stringArray[i] + plural);
+        }
+        return toReturn;
+    };
+
+    var pastParticiple = function(stringArray) {
+        var toReturn = [];
+        for (var i in stringArray) {
+            var pp;
+            if (stringArray[i] === "commit")
+                pp = "ted";
+            else
+                pp = "s";
+            toReturn.push(stringArray[i] + pp);
+        }
+        return toReturn;
+    };
+
+    var unhyphenate = function(toUnhyphenate) {
+        return toUnhyphenate.replace('-', ' ');
+    };
+
+    var createCardText = function(cardData) {
+        if (!cardData.cardText) {
+            var cardText = '';
+
+            if (cardData.type === "top10" || cardData.type === "bottom10") {
+                var template1 = '{{eventDate}}: your {{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: your [fewest] [commit]s in [a day] [ever]
+                var template2 = '{{eventDate}}: your {{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [most] [commit]ted [file changes] in [a day] [ever]
+                var template3 = '{{eventDate}}: your {{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [fewest] [music track] [listen]s in [a day] [ever]
+                var template4 = '{{eventDate}}: your {{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
+
+                var supplantObject = {
+                    eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
+                    comparitor: createComparitorText(cardData.position, cardData.type),
+                    eventPeriod: "a day",
+                    comparisonPeriod: "ever"
+                };
+
+                if (cardData.actionTags[0] === "commit" || cardData.actionTags[1] === "push") {
+                    if (cardData.properties.sum['#']) {
+                        supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
+                        cardText = template1.supplant(supplantObject);
+                    } else {
+                        supplantObject.action_pp = displayTags(pastParticiple(cardData.actionTags));
+                        supplantObject.property = unhyphenate(Object.keys(cardData.properties.sum)[0]);
+                        cardText = template2.supplant(supplantObject);
+                    }
+                } else if (cardData.actionTags[0] === "listen") {
+                    if (cardData.properties.sum['#']) {
+                        supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
+                        supplantObject.objects = displayTags(cardData.objectTags);
+                        cardText = template3.supplant(supplantObject);
+                    } else {
+                        supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
+                        supplantObject.property = unhyphenate(Object.keys(cardData.properties.sum)[0]);
+                        cardText = template4.supplant(supplantObject);
+                    }
+                }
+
+                cardText = cardText.supplant(supplantObject);
+            }
+
+            if (cardText === '') cardText = "Couldn't create friendly message";
+            cardData.cardText = cardText;
+        }
     };
 
     // var htmlTemplate = [
@@ -347,7 +423,7 @@ $(function() {
                         }),
                         cardNavText: "",
                         colour: colour,
-                        headerText: dateRangetext(cardData.startRange, cardData.endRange),
+                        headerText: 'Top 10',
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-front'
@@ -370,7 +446,6 @@ $(function() {
                 ].join('');
 
                 html = html.supplant({
-                    headerText: dateRangetext(cardData.startRange, cardData.endRange),
                     cardFrontContent: frontContent.supplant({
                         data: cardData.cardText || 'undefined',
                         flipButton: flipButtonTemplate.supplant({
@@ -379,7 +454,7 @@ $(function() {
                         }),
                         cardNavText: "",
                         colour: colour,
-                        headerText: dateRangetext(cardData.startRange, cardData.endRange),
+                        headerText: 'Bottom 10',
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-front'
