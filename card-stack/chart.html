@@ -87,7 +87,7 @@
         // for (var i in dataset) {
         //     dataset[i].QYear = dataset[i].Quarter + " " + dataset[i].Year;
         // }
-
+// debugger;
         var dataset = chartData.data;
 
         width = $('body').width() - 10;
@@ -119,12 +119,8 @@
         //Draw the line graph
         var line = d3.svg.line()
             .interpolate("basis")
-            .x(function(d) {
-                return x(d.date);
-            })
-            .y(function(d) {
-                return y(d.value);
-            });
+            .x(function(d) { return x(d.date); })
+            .y(function(d) { return y(d.value); });
 
         //Append a path to the SVG
         svg.append("path")
@@ -133,6 +129,17 @@
             .attr("fill", "none")
             .attr("stroke", lineColour)
             .attr("stroke-width", 3);
+
+        // var pathContainers = svg.selectAll('g.line')
+        // .data(dataset);
+
+        // // add circles
+        // pathContainers.selectAll('circle')
+        // .data(function (d) { return d; })
+        // .enter().append('circle')
+        // .attr('cx', function (d) { return x(d.x); })
+        // .attr('cy', function (d) { return y(d.y); })
+        // .attr('r', 3); 
     }
 
 
