@@ -130,7 +130,11 @@ if (offline) {
 } else {
     // Get the ajax requests out of the way early because they
     // are typically longest to complete
-    $.getJSON('https://api-staging.1self.co/v1/users/martin/cards',
+     
+    var username = getQSParam().user;
+    if (!username) username = "ed";
+
+    $.getJSON('https://api-staging.1self.co/v1/users/' + username + '/cards',
             function() {
                 console.log("accessed api for cards");
             })
@@ -201,7 +205,10 @@ $(function() {
 
         if (position > 0) {
             position = (position + 1) + '';
-            if (position.charAt(position.length - 1) === '1')
+            if (position.length > 1 && (position.substring(position.length - 2) === '11' || position.substring(position.length - 2) === '12' || position.substring(position.length - 2) === '13'))
+                positionText = position + "th ";
+
+            else if (position.charAt(position.length - 1) === '1')
                 positionText = position + "st ";
             
             else if (position.charAt(position.length - 1) === '2')
@@ -254,10 +261,10 @@ $(function() {
             var cardText = '';
 
             if (cardData.type === "top10" || cardData.type === "bottom10") {
-                var template1 = '{{eventDate}}: your {{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: your [fewest] [commit]s in [a day] [ever]
-                var template2 = '{{eventDate}}: your {{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [most] [commit]ted [file changes] in [a day] [ever]
-                var template3 = '{{eventDate}}: your {{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [fewest] [music track] [listen]s in [a day] [ever]
-                var template4 = '{{eventDate}}: your {{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
+                var template1 = '<b>{{eventDate}}</b><br>Your {{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: your [fewest] [commit]s in [a day] [ever]
+                var template2 = '<b>{{eventDate}}</b><br>Your {{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [most] [commit]ted [file changes] in [a day] [ever]
+                var template3 = '<b>{{eventDate}}</b><br>Your {{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [fewest] [music track] [listen]s in [a day] [ever]
+                var template4 = '<b>{{eventDate}}</b><br>Your {{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
 
                 var supplantObject = {
                     eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
@@ -423,7 +430,7 @@ $(function() {
                         }),
                         cardNavText: "",
                         colour: colour,
-                        headerText: 'Top 10',
+                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' of xxx',
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-front'
@@ -454,7 +461,7 @@ $(function() {
                         }),
                         cardNavText: "",
                         colour: colour,
-                        headerText: 'Bottom 10',
+                        headerText: 'Bottom 10: ' + createComparitorText(cardData.position, cardData.type) + ' of xxx',
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-front'

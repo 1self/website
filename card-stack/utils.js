@@ -17,6 +17,21 @@ function tryParseJSON (jsonString){
     return false;
 }
 
+function getQSParam() {
+    var vars = [],
+        hash;
+    var q = document.URL.split('?')[1];
+    if (q != undefined) {
+        q = q.split('&');
+        for (var i = 0; i < q.length; i++) {
+            hash = q[i].split('=');
+            vars.push(hash[1]);
+            vars[hash[0]] = hash[1];
+        }
+    }
+    return vars;
+}
+
 function formatDateString(newRandTime) {
     // var formattedDate = "" + newRandTime.getFullYear() + prependZero(newRandTime.getMonth() + 1) + prependZero(newRandTime.getDate()) 
     //                         + prependZero(newRandTime.getHours()) + prependZero(newRandTime.getMinutes()) + prependZero(newRandTime.getSeconds())
