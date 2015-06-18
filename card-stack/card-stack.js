@@ -255,10 +255,11 @@ $(function() {
         , '  <div class="cardHeader" style="background-color: {{colour}};"><p class="backButton" onclick="slideRight(this)">{{headerText2}}</p></div>'
         , '  <div class="cardBackMain">Next bit of info goes here</div>'
         , '</div>'
+        , '{{shareContainer}}'
     ].join('');
 
     var shareContainerTemplate = [
-        , '<div class="share-container hide" style="background-color: {{colour}};">'
+        , '<div class="share-container {{shareContainerClasses}} hide" style="background-color: {{colour}};">'
         , '  <div class="social-share-button"><div class="innerButton">Share to Twitter</div></div>'
         , '  <div class="social-share-button"><div class="innerButton">Share to Facebook</div></div>'
         , '</div>'
@@ -302,7 +303,11 @@ $(function() {
             cardBackContent: cardBackContentTemplate.supplant({
                 colour: colour,
                 headerText: 'testy',
-                headerText2: '&lt; back'
+                headerText2: '&lt; back',
+                shareContainer: shareContainerTemplate.supplant({
+                    colour: colour,
+                    shareContainerClasses: 'share-container-back'
+                })
             }),
             cardNav: flipButtonTemplate.supplant({
                 colour: colour,
@@ -346,7 +351,8 @@ $(function() {
                         colour: colour,
                         headerText: dateRangetext(cardData.startRange, cardData.endRange),
                         shareContainer: shareContainerTemplate.supplant({
-                            colour: colour
+                            colour: colour,
+                            shareContainerClasses: 'share-container-front'
                         })
                     })
                 });
@@ -377,7 +383,8 @@ $(function() {
                         colour: colour,
                         headerText: dateRangetext(cardData.startRange, cardData.endRange),
                         shareContainer: shareContainerTemplate.supplant({
-                            colour: colour
+                            colour: colour,
+                            shareContainerClasses: 'share-container-front'
                         })
                     })
                 });
