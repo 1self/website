@@ -30,7 +30,6 @@ function slideRight(eventElement) {
 }
 
 // $('.cardBack-2').ready(function() {
-//     // debugger;
 //     var $cardBacks = $('.cardBack-2');
 //     for (var i in $cardBacks) { 
 //         $cardBacks[i].position().left = $('.stack').width() + $('.stack').position().left;
@@ -40,7 +39,6 @@ function slideRight(eventElement) {
 var deferred = $.Deferred();
 
 var offline = true;
-
 
 if (offline) {
     var data = [ /*{"id":"55795df83049b6306d2543db","type":"date","generatedDate":"2015-06-11T10:07:52.837Z"},*/ {
@@ -419,13 +417,12 @@ $(function() {
         var numberOfCardsToShow = 10;
         var skip = 0;
         deferred.done(function(cardsArray) {
-            // cardsArray.reverse();
+            if (numberOfCardsToShow > cardsArray.length) {
+                numberOfCardsToShow = cardsArray.length;
+            }
             var lastLi = null;
             for (var i = numberOfCardsToShow + skip - 1; i >= skip; i--) {
-            // cardsArray.some(function(element, index, array) {
                 var element = cardsArray[i];
-                // if (i === numberOfCardsToShow) return true; // exit loop;
-                // var colourIndex = i;
                 var li = document.createElement('li');
                 li.innerHTML = buildCardHtml(element, i);
                 var $card = $(li).find('.cardContainer');
@@ -437,10 +434,9 @@ $(function() {
                 $('.stack').append(li);
                 stack.createCard(li);
                 lastLi = li;
-                if (i === numberOfCardsToShow - 1) {
+                if (i === skip) {
                     renderThumbnailMedia(li);
                 }
-                // return false; // continues "some" loop;
             }
             markCardUnique($('.stack li:last')[0], 'topOfMain');
 
