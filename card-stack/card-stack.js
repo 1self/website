@@ -287,7 +287,7 @@ $(function() {
 
     // TODO: add cards from big list
     // Fix manual dragging
-    // Sort out artist name problem
+    // Sort out charts
 
     var createCardText = function(cardData) {
         if (!cardData.cardText) {
@@ -334,18 +334,6 @@ $(function() {
             cardData.cardText = cardText;
         }
     };
-
-    // var htmlTemplate = [
-    //     , '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
-    //     , '{{cardContent}}'
-    //     , '<div class="share-container hide" style="background-color: {{colour}};">'
-    //     ,    'test test'
-    //     , '</div>'
-    //     , '<div class="cardNav" style="background-color: {{colour}};" here="there">'
-    //     , '  <p>{{cardNavText}}</p>'
-    //     , '  {{flipButton}}'
-    //     , '</div>'
-    // ].join('');
 
     var flipButtonTemplate = [
         , '  <div class="share-button" style="background-color: {{colour}};">'
@@ -463,7 +451,7 @@ $(function() {
                         }),
                         cardNavText: "",
                         colour: colour,
-                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' of xxx',
+                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' out of xxx',
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-front'
