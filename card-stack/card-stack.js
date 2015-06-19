@@ -285,9 +285,10 @@ $(function() {
         return returnString;
     };
 
-    // TODO: add cards from big list
+    // TODO: 
+    // add cards from big list
     // Fix manual dragging
-    // Sort out charts
+    // put profile image on
 
     var createCardText = function(cardData) {
         if (!cardData.cardText) {
@@ -495,14 +496,11 @@ $(function() {
     };
 
     var renderThumbnailMedia = function(cardLi) {
-        // console.log('renderThumbnailMedia', cardLi);
         var cardData = $(cardLi).find('.cardData');
         cardData = decodeURIComponent(cardData.val());
         cardData = JSON.parse(cardData);
-        // console.log('cardDataJSON', cardData);
 
         if (cardData.thumbnailMedia) {
-            // console.log('rendering thumbnailMedia', cardData);
             var $cardMedia = $(cardLi).find('.cardMedia');
             $cardMedia.empty();
             var iFrameHtml = '<iframe class="thumbnailFrame" src="' + cardData.thumbnailMedia;
@@ -559,13 +557,13 @@ $(function() {
                 }
             });
 
-            $stack.on('click', '.flip-toggle', function(e) {
+            $stack.on('mouseup', '.flip-toggle', function(e) {
                 var $container = $(this).parents('.cardContainer');
                 $container.toggleClass('flip');
                 $container.siblings().toggleClass('flip');
             });
 
-            $stack.on('click', '.share-button', function(e) {
+            $stack.on('mouseup', '.share-button', function(e) {
                 var $container = $(this).parents('.cardContainer');
                 $container.find('.share-container').toggleClass('hide');
             });
@@ -574,9 +572,9 @@ $(function() {
 
     var stackConfig = {
         throwOutConfidence: function(offset, element) {
-            console.log('offset and element', offset, element.offsetWidth);
-            console.log(Math.min(Math.abs(offset + 150) / element.offsetWidth, 1));
-            return Math.min(Math.abs(offset + 150) / element.offsetWidth, 1);
+            // console.log('offset and element', offset, element.offsetWidth);
+            // console.log(Math.min(Math.abs(offset + 150) / element.offsetWidth, 1));
+            return Math.min(Math.abs(offset + 180) / element.offsetWidth, 1);
         }
     };
 
@@ -627,7 +625,6 @@ $(function() {
     function markCardUnique(cardEl, label) {
         $('.stack li').removeClass(label);
         if (cardEl !== undefined) {
-            // console.log('marking card', cardEl.id, label, cardEl);
             $(cardEl).addClass(label);
         }
     }
@@ -636,6 +633,8 @@ $(function() {
         markCardUnique($('.stack .topOfMain')[0], 'topOfMain');
         markCardUnique(e.target, 'topOfDiscard');
         discardPile.push('#' + e.target.id);
+        e.target.thrownX = 1;
+        e.target.thrownY = 78;
         var cardsOnDiscard = discardPile.length;
         markCardUnique($cardList[$cardList.length - 1 - cardsOnDiscard], 'topOfMain');
         renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
