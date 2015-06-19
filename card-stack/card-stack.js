@@ -588,6 +588,9 @@ $(function() {
                 var $container = $(this).parents('.cardContainer');
                 $container.find('.share-container').toggleClass('hide');
             });
+
+            $('.bottom-of-stack-container h1').text('All done');
+            $('.bottom-of-stack-container p').text('Come back for more cards later');
         });
     };
 
