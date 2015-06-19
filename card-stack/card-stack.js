@@ -38,99 +38,145 @@ function slideRight(eventElement) {
 
 var deferred = $.Deferred();
 
-var offline = false;
+var offline = true;
 
 if (offline) {
-    var data = [ /*{"id":"55795df83049b6306d2543db","type":"date","generatedDate":"2015-06-11T10:07:52.837Z"},*/ {
-        "id": "55795df83049b6306d2543dc",
-        "type": "top10",
-        "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-10",
-        "endRange": "2015-06-10",
-        "objectTags": ["computer", "git", "github", "software", "source control"],
-        "actionTags": ["commit"],
-        "position": 48,
-        "properties": {
-            "line-additions": 104
-        },
-        "generatedDate": "2015-06-11T10:07:52.880Z",
-        "chart": "/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum/line-additions/.json"
+    var data = [{
+        "id": "5583f43eb26623452263a188",
+        "type": "date",
+        "generatedDate": "2015-06-19T10:51:42.884Z"
     }, {
-        "id": "55795df83049b6306d2543dd",
+        "id": "5583f448b26623452263a225",
         "type": "top10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-10",
-        "endRange": "2015-06-10",
-        "objectTags": ["computer", "git", "github", "software", "source control"],
-        "actionTags": ["commit"],
-        "position": 44,
+        "startRange": "2015-06-18",
+        "endRange": "2015-06-18",
+        "objectTags": [
+            "computer",
+            "control",
+            "software",
+            "source"
+        ],
+        "actionTags": [
+            "github",
+            "push"
+        ],
+        "position": 28,
         "properties": {
-            "line-changes": 196
+            "sum": {
+                "commits": 5
+            }
         },
-        "generatedDate": "2015-06-11T10:07:52.894Z",
-        "chart": "/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum/line-changes/.json"
+        "generatedDate": "2015-06-19T10:51:52.258Z",
+        "chart": "/v1/users/ed/rollups/day/computer,control,software,source/github,push/sum.commits/.json"
     }, {
-        "id": "55795df83049b6306d2543de",
-        "type": "top10",
+        "id": "5583f448b26623452263a228",
+        "type": "bottom10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-10",
-        "endRange": "2015-06-10",
-        "objectTags": ["computer", "git", "github", "software", "source control"],
-        "actionTags": ["commit"],
-        "position": 29,
+        "startRange": "2015-06-18",
+        "endRange": "2015-06-18",
+        "objectTags": [
+            "computer",
+            "git",
+            "github",
+            "software",
+            "source control"
+        ],
+        "actionTags": [
+            "commit"
+        ],
+        "position": 20,
         "properties": {
-            "line-deletions": 92
+            "sum": {
+                "author-email": {
+                    "ed^sykes@gmail^com": {
+                        "file-types": {
+                            "js": {
+                                "line-additions": 68
+                            }
+                        }
+                    }
+                }
+            }
         },
-        "generatedDate": "2015-06-11T10:07:52.907Z",
-        "chart": "/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum/line-deletions/.json"
+        "generatedDate": "2015-06-19T10:51:52.449Z",
+        "chart": "/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum.author-email.ed^sykes@gmail^com.file-types.js.line-additions/.json"
     }, {
-        "id": "55795df83049b6306d2543df",
-        "type": "top10",
+        "id": "5583f449b26623452263a23b",
+        "type": "bottom10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-10",
-        "endRange": "2015-06-10",
-        "objectTags": ["computer", "control", "software", "source"],
-        "actionTags": ["github", "push"],
-        "position": 21,
+        "startRange": "2015-06-18",
+        "endRange": "2015-06-18",
+        "objectTags": [
+            "computer",
+            "control",
+            "software",
+            "source"
+        ],
+        "actionTags": [
+            "github",
+            "push"
+        ],
+        "position": 0,
         "properties": {
-            "pushId": 2072678999
+            "sum": {
+                "repo": {
+                    "1self/api": {
+                        "commits": 1
+                    }
+                }
+            }
         },
-        "generatedDate": "2015-06-11T10:07:52.913Z",
-        "chart": "/v1/users/ed/rollups/day/computer,control,software,source/github,push/sum/pushId/.json"
+        "generatedDate": "2015-06-19T10:51:53.656Z",
+        "chart": "/v1/users/ed/rollups/day/computer,control,software,source/github,push/sum.repo.1self/api.commits/.json"
     }, {
-        "id": "55795df83049b6306d2543e0",
+        "id": "5583f448b26623452263a224",
         "type": "top10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-10",
-        "endRange": "2015-06-10",
-        "objectTags": ["computer", "git", "github", "software", "source control"],
-        "actionTags": ["commit"],
-        "position": 24,
+        "startRange": "2015-06-18",
+        "endRange": "2015-06-18",
+        "objectTags": [
+            "music"
+        ],
+        "actionTags": [
+            "listen"
+        ],
+        "position": 0,
         "properties": {
-            "pushId": 4145353520
+            "sum": {
+                "album-name": {
+                    "__count__": null
+                }
+            }
         },
-        "generatedDate": "2015-06-11T10:07:52.926Z",
-        "chart": "/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum/pushId/.json"
+        "generatedDate": "2015-06-19T10:51:52.240Z",
+        "chart": "/v1/users/ed/rollups/day/music/listen/sum.album-name..__count__/.json"
     }, {
-        "id": "55795df83049b6306d2543e1",
+        "id": "5583f449b26623452263a23a",
         "type": "top10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-10",
-        "endRange": "2015-06-10",
-        "objectTags": ["computer", "git", "github", "software", "source control"],
-        "actionTags": ["commit"],
-        "position": 31,
+        "startRange": "2015-06-18",
+        "endRange": "2015-06-18",
+        "objectTags": [
+            "music"
+        ],
+        "actionTags": [
+            "listen"
+        ],
+        "position": 15,
         "properties": {
-            "file-changes": 14
+            "sum": {
+                "__count__": 16
+            }
         },
-        "generatedDate": "2015-06-11T10:07:52.939Z",
-        "chart": "/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum/file-changes/.json"
+        "generatedDate": "2015-06-19T10:51:53.653Z",
+        "chart": "/v1/users/ed/rollups/day/music/listen/sum.__count__/.json"
     }];
     deferred.resolve(data);
 } else {
     // Get the ajax requests out of the way early because they
     // are typically longest to complete
-     
+
     var username = getQSParam().user;
     if (!username) username = "ed";
 
@@ -210,19 +256,19 @@ $(function() {
 
             else if (position.charAt(position.length - 1) === '1')
                 positionText = position + "st ";
-            
+
             else if (position.charAt(position.length - 1) === '2')
                 positionText = position + "nd ";
-            
+
             else if (position.charAt(position.length - 1) === '3')
                 positionText = position + "rd ";
-            
+
             else
                 positionText = position + "th ";
         }
 
         comparitorText = positionText + comparitorText;
-    
+
         return comparitorText;
     };
 
@@ -253,7 +299,7 @@ $(function() {
     };
 
     var unhyphenate = function(toUnhyphenate) {
-        return toUnhyphenate.replace('-', ' ');
+        return toUnhyphenate.replace(/\^/g, '.').replace('-', ' ');
     };
 
     // "properties": {
@@ -268,15 +314,16 @@ $(function() {
 
 
     var buildPropertiesText = function(propertiesObject) {
+        // debugger;
         var returnString = '';
         var objectKey = Object.keys(propertiesObject)[0];
         var counter = 0;
 
-        while (objectKey && objectKey !== "#" && counter < 3) {
+        while (objectKey && objectKey !== "__count__") {
             returnString += unhyphenate(objectKey);
             propertiesObject = propertiesObject[objectKey];
             objectKey = Object.keys(propertiesObject)[0];
-            if (objectKey && objectKey !== "#") {
+            if (objectKey && objectKey !== "__count__") {
                 returnString += ": ";
             }
             counter++;
@@ -287,18 +334,18 @@ $(function() {
 
     // TODO: 
     // add cards from big list
-    // Fix manual dragging
     // put profile image on
+    // do back of card
 
     var createCardText = function(cardData) {
         if (!cardData.cardText) {
             var cardText = '';
 
             if (cardData.type === "top10" || cardData.type === "bottom10") {
-                var template1 = '<b>{{eventDate}}</b><br>Your {{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: your [fewest] [commit]s in [a day] [ever]
-                var template2 = '<b>{{eventDate}}</b><br>Your {{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [most] [commit]ted [file changes] in [a day] [ever]
-                var template3 = '<b>{{eventDate}}</b><br>Your {{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [fewest] [music track] [listen]s in [a day] [ever]
-                var template4 = '<b>{{eventDate}}</b><br>Your {{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
+                var template1 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: your [fewest] [commit]s in [a day] [ever]
+                var template2 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [most] [commit]ted [file changes] in [a day] [ever]
+                var template3 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [fewest] [music track] [listen]s in [a day] [ever]
+                var template4 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
 
                 var supplantObject = {
                     eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
@@ -308,7 +355,7 @@ $(function() {
                 };
 
                 if (cardData.actionTags[0] === "commit" || cardData.actionTags[1] === "push") {
-                    if (cardData.properties.sum['#']) {
+                    if (cardData.properties.sum['__count__']) {
                         supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
                         cardText = template1.supplant(supplantObject);
                     } else {
@@ -317,7 +364,7 @@ $(function() {
                         cardText = template2.supplant(supplantObject);
                     }
                 } else if (cardData.actionTags[0] === "listen") {
-                    if (cardData.properties.sum['#']) {
+                    if (cardData.properties.sum['__count__']) {
                         supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
                         supplantObject.objects = displayTags(cardData.objectTags);
                         cardText = template3.supplant(supplantObject);
@@ -336,37 +383,14 @@ $(function() {
         }
     };
 
-    var flipButtonTemplate = [
-        , '  <div class="share-button" style="background-color: {{colour}};">'
-        , '    <div class="icon-button"><i class="fa fa-share-alt fa-2x"></i></div>'
-        , '  </div>'
-        , '  <div class="flip-toggle" style="background-color: {{colour}};">'
-        , '    <div class="icon-button icon-{{action}}"><img src="img/{{action}}-icon.png" /></div>'
-        , '  </div>'
-    ].join('');
+    var flipButtonTemplate = [, '  <div class="share-button" style="background-color: {{colour}};">', '    <div class="icon-button"><i class="fa fa-share-alt fa-2x"></i></div>', '  </div>', '  <div class="flip-toggle" style="background-color: {{colour}};">', '    <div class="icon-button icon-{{action}}"><img src="img/{{action}}-icon.png" /></div>', '  </div>'].join('');
 
     // var shareButtonTemplate = [
     // ].join('');
 
-    var cardBackContentTemplate = [
-        , '<div class="cardBack-1">'
-        , '  <div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
-        , '  <div class="cardBackMain">big chart goes here</div>'
-        , '  <div class="cardBackAction" onclick="slideLeft(this)"><div class="actionText">Explore &gt;</div></div>'
-        , '</div>'
-        , '<div class="cardBack-2">'
-        , '  <div class="cardHeader" style="background-color: {{colour}};"><p class="backButton" onclick="slideRight(this)">{{headerText2}}</p></div>'
-        , '  <div class="cardBackMain">Next bit of info goes here</div>'
-        , '</div>'
-        , '{{shareContainer}}'
-    ].join('');
+    var cardBackContentTemplate = [, '<div class="cardBack-1">', '  <div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '  <div class="cardBackMain">big chart goes here</div>', '  <div class="cardBackAction" onclick="slideLeft(this)"><div class="actionText">Explore &gt;</div></div>', '</div>', '<div class="cardBack-2">', '  <div class="cardHeader" style="background-color: {{colour}};"><p class="backButton" onclick="slideRight(this)">{{headerText2}}</p></div>', '  <div class="cardBackMain">Next bit of info goes here</div>', '</div>', '{{shareContainer}}'].join('');
 
-    var shareContainerTemplate = [
-        , '<div class="share-container {{shareContainerClasses}} hide" style="background-color: {{colour}};">'
-        , '  <div class="social-share-button"><div class="innerButton">Share to Twitter</div></div>'
-        , '  <div class="social-share-button"><div class="innerButton">Share to Facebook</div></div>'
-        , '</div>'
-    ].join('');
+    var shareContainerTemplate = [, '<div class="share-container {{shareContainerClasses}} hide" style="background-color: {{colour}};">', '  <div class="social-share-button"><div class="innerButton">Share to Twitter</div></div>', '  <div class="social-share-button"><div class="innerButton">Share to Facebook</div></div>', '</div>'].join('');
 
 
     var buildCardHtml = function(cardData, colourIndex) {
@@ -433,15 +457,7 @@ $(function() {
 
                 createCardText(cardData);
 
-                var frontContent = [
-                    , '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
-                    , '<div class="cardContentContainer"><div class="cardMedia"></div><div class="cardText"><p>{{data}}</p></div></div>'
-                    , '{{shareContainer}}'
-                    , '<div class="cardNav" style="background-color: {{colour}};">'
-                    , '  <p>{{cardNavText}}</p>'
-                    , '  {{flipButton}}'
-                    , '</div>'
-                ].join('');
+                var frontContent = [, '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '<div class="cardContentContainer"><div class="cardMedia"></div><div class="cardText"><p>{{data}}</p></div></div>', '{{shareContainer}}', '<div class="cardNav" style="background-color: {{colour}};">', '  <p>{{cardNavText}}</p>', '  {{flipButton}}', '</div>'].join('');
 
                 html = html.supplant({
                     cardFrontContent: frontContent.supplant({
@@ -464,15 +480,7 @@ $(function() {
 
                 createCardText(cardData);
 
-                var frontContent = [
-                    , '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
-                    , '<div class="cardContentContainer"><div class="cardMedia"></div><div class="cardText"><p>{{data}}</p></div></div>'
-                    , '{{shareContainer}}'
-                    , '<div class="cardNav" style="background-color: {{colour}};">'
-                    , '  <p>{{cardNavText}}</p>'
-                    , '  {{flipButton}}'
-                    , '</div>'
-                ].join('');
+                var frontContent = [, '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '<div class="cardContentContainer"><div class="cardMedia"></div><div class="cardText"><p>{{data}}</p></div></div>', '{{shareContainer}}', '<div class="cardNav" style="background-color: {{colour}};">', '  <p>{{cardNavText}}</p>', '  {{flipButton}}', '</div>'].join('');
 
                 html = html.supplant({
                     cardFrontContent: frontContent.supplant({
@@ -516,6 +524,28 @@ $(function() {
     var addedCardsCount = 0;
     var cardsArrayGlobal;
 
+    var addToStack = function(stack, cardData, cardIndex, renderThumbnail) {
+        var element = cardData;
+        var i = cardIndex;
+        var li = document.createElement('li');
+        li.innerHTML = buildCardHtml(element, i);
+        var $card = $(li).find('.cardContainer');
+        $card.css({
+            'border-color': getColour(i)
+        });
+        $(li).attr('id', 'card_' + (i + addedCardsCount));
+        $(li).attr('cardId', element.id);
+        // $('.stack').prepend(li);
+        // $(li).prependTo('.stack');
+        $('.bottom-of-stack-container').after(li);
+        stack.createCard(li);
+        // lastLi = li;
+        if (renderThumbnail) {
+            renderThumbnailMedia(li);
+        }
+        addedCardsCount++;
+    };
+
     var buildStack = function(stack) {
         var numberOfCardsToShow = 10;
         var skip = 0;
@@ -524,25 +554,16 @@ $(function() {
             if (numberOfCardsToShow > cardsArray.length) {
                 numberOfCardsToShow = cardsArray.length;
             }
-            var lastLi = null;
+            // var lastLi = null;
+
             for (var i = numberOfCardsToShow + skip - 1; i >= skip; i--) {
-                var element = cardsArray[i];
-                var li = document.createElement('li');
-                li.innerHTML = buildCardHtml(element, i);
-                var $card = $(li).find('.cardContainer');
-                $card.css({
-                    'border-color': getColour(i)
-                });
-                $(li).attr('id', 'card_' + i);
-                $(li).attr('cardId', element.id);
-                $('.stack').append(li);
-                stack.createCard(li);
-                lastLi = li;
-                if (i === skip) {
-                    renderThumbnailMedia(li);
-                }
-                addedCardsCount++;
+                addToStack(stack, cardsArray[i], i, (i === skip));
             }
+// debugger;
+            // for (var i = 0; i < numberOfCardsToShow; i++) {
+            //     addToStack(stack, cardsArray[i], i, (i === 0));
+            // }
+
             markCardUnique($('.stack li:last')[0], 'topOfMain');
 
             $cardList = $('.stack li');
@@ -630,6 +651,7 @@ $(function() {
     }
 
     stack.on('throwout', function(e) {
+        // debugger;
         markCardUnique($('.stack .topOfMain')[0], 'topOfMain');
         markCardUnique(e.target, 'topOfDiscard');
         discardPile.push('#' + e.target.id);
@@ -640,6 +662,8 @@ $(function() {
         renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
         e.target.classList.remove('in-deck');
         console.log('thrown out', e.target.id, discardPile);
+        // addToStack(stack, cardDataGlobal, addedCardsCount, false);
+        // $cardList = $('.stack li');
     });
 
     stack.on('throwin', function(e) {
