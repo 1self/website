@@ -38,7 +38,7 @@ function slideRight(eventElement) {
 
 var deferred = $.Deferred();
 
-var offline = true;
+var offline = false;
 
 if (offline) {
     var data = [{
@@ -533,11 +533,11 @@ $(function() {
         $card.css({
             'border-color': getColour(i)
         });
-        $(li).attr('id', 'card_' + (i + addedCardsCount));
+        $(li).attr('id', 'card_' + addedCardsCount);
         $(li).attr('cardId', element.id);
-        // $('.stack').prepend(li);
+        $('.stack').append(li);
         // $(li).prependTo('.stack');
-        $('.bottom-of-stack-container').after(li);
+        // $('.bottom-of-stack-container').after(li);
         stack.createCard(li);
         // lastLi = li;
         if (renderThumbnail) {
