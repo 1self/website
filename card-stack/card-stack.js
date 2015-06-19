@@ -256,6 +256,39 @@ $(function() {
         return toUnhyphenate.replace('-', ' ');
     };
 
+    // "properties": {
+    //     "sum": {
+    //         "artist-name": {
+    //             "John Talabot": {
+    //                 "#": 1
+    //             }
+    //         }
+    //     }
+    // }
+
+
+    var buildPropertiesText = function(propertiesObject) {
+        var returnString = '';
+        var objectKey = Object.keys(propertiesObject)[0];
+        var counter = 0;
+
+        while (objectKey && objectKey !== "#" && counter < 3) {
+            returnString += unhyphenate(objectKey);
+            propertiesObject = propertiesObject[objectKey];
+            objectKey = Object.keys(propertiesObject)[0];
+            if (objectKey && objectKey !== "#") {
+                returnString += ": ";
+            }
+            counter++;
+        }
+
+        return returnString;
+    };
+
+    // TODO: add cards from big list
+    // Fix manual dragging
+    // Sort out artist name problem
+
     var createCardText = function(cardData) {
         if (!cardData.cardText) {
             var cardText = '';
@@ -279,7 +312,7 @@ $(function() {
                         cardText = template1.supplant(supplantObject);
                     } else {
                         supplantObject.action_pp = displayTags(pastParticiple(cardData.actionTags));
-                        supplantObject.property = unhyphenate(Object.keys(cardData.properties.sum)[0]);
+                        supplantObject.property = buildPropertiesText(cardData.properties.sum);
                         cardText = template2.supplant(supplantObject);
                     }
                 } else if (cardData.actionTags[0] === "listen") {
@@ -289,7 +322,7 @@ $(function() {
                         cardText = template3.supplant(supplantObject);
                     } else {
                         supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
-                        supplantObject.property = unhyphenate(Object.keys(cardData.properties.sum)[0]);
+                        supplantObject.property = buildPropertiesText(cardData.properties.sum);
                         cardText = template4.supplant(supplantObject);
                     }
                 }
@@ -494,11 +527,14 @@ $(function() {
 
     var discardPile = [];
     var $cardList = null;
+    var addedCardsCount = 0;
+    var cardsArrayGlobal;
 
     var buildStack = function(stack) {
         var numberOfCardsToShow = 10;
         var skip = 0;
         deferred.done(function(cardsArray) {
+            cardsArrayGlobal = cardsArray;
             if (numberOfCardsToShow > cardsArray.length) {
                 numberOfCardsToShow = cardsArray.length;
             }
@@ -519,6 +555,7 @@ $(function() {
                 if (i === skip) {
                     renderThumbnailMedia(li);
                 }
+                addedCardsCount++;
             }
             markCardUnique($('.stack li:last')[0], 'topOfMain');
 
