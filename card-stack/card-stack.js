@@ -388,7 +388,22 @@ $(function() {
     // var shareButtonTemplate = [
     // ].join('');
 
-    var cardBackContentTemplate = [, '<div class="cardBack-1">', '  <div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '  <div class="cardBackMain">big chart goes here</div>', '  <div class="cardBackAction" onclick="slideLeft(this)"><div class="actionText">Explore &gt;</div></div>', '</div>', '<div class="cardBack-2">', '  <div class="cardHeader" style="background-color: {{colour}};"><p class="backButton" onclick="slideRight(this)">{{headerText2}}</p></div>', '  <div class="cardBackMain">Next bit of info goes here</div>', '</div>', '{{shareContainer}}'].join('');
+    var cardBackContentTemplate = [
+        , '<div class="cardBack-1">'
+        , '  <div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
+        , '  <div class="cardBackMain">'
+        , '    <iframe class="mainChartFrame" src="{{mainChartSrc}}" scrolling="no"></iframe>'
+        , '  </div>'
+        , '  <!--div class="cardBackAction" onclick="slideLeft(this)"><div class="actionText">Explore &gt;</div></div-->'
+        , '</div>'
+        , '<div class="cardBack-2">'
+        , '  <div class="cardHeader" style="background-color: {{colour}};"><p class="backButton" onclick="slideRight(this)">{{headerText2}}</p></div>'
+        , '  <div class="cardBackMain">Next bit of info goes here</div>'
+        , '</div>'
+        , '{{shareContainer}}'].join('');
+
+
+
 
     var shareContainerTemplate = [, '<div class="share-container {{shareContainerClasses}} hide" style="background-color: {{colour}};">', '  <div class="social-share-button"><div class="innerButton">Share to Twitter</div></div>', '  <div class="social-share-button"><div class="innerButton">Share to Facebook</div></div>', '</div>'].join('');
 
@@ -427,15 +442,6 @@ $(function() {
         html = html.supplant({
             id: cardData.id,
             inputValue: encodeURIComponent(JSON.stringify(cardData)),
-            cardBackContent: cardBackContentTemplate.supplant({
-                colour: colour,
-                headerText: 'testy',
-                headerText2: '&lt; back',
-                shareContainer: shareContainerTemplate.supplant({
-                    colour: colour,
-                    shareContainerClasses: 'share-container-back'
-                })
-            }),
             cardNav: flipButtonTemplate.supplant({
                 colour: colour,
                 action: 'close'
@@ -473,6 +479,16 @@ $(function() {
                             colour: colour,
                             shareContainerClasses: 'share-container-front'
                         })
+                    }),
+                    cardBackContent: cardBackContentTemplate.supplant({
+                        colour: colour,
+                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' out of xxx',
+                        headerText2: '&lt; back',
+                        shareContainer: shareContainerTemplate.supplant({
+                            colour: colour,
+                            shareContainerClasses: 'share-container-back'
+                        }),
+                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&dataSrc=' + cardData.chart
                     })
                 });
                 break;
@@ -496,6 +512,16 @@ $(function() {
                             colour: colour,
                             shareContainerClasses: 'share-container-front'
                         })
+                    }),
+                    cardBackContent: cardBackContentTemplate.supplant({
+                        colour: colour,
+                        headerText: 'Bottom 10: ' + createComparitorText(cardData.position, cardData.type) + ' of xxx',
+                        headerText2: '&lt; back',
+                        shareContainer: shareContainerTemplate.supplant({
+                            colour: colour,
+                            shareContainerClasses: 'share-container-back'
+                        }),
+                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&dataSrc=' + cardData.chart
                     })
                 });
                 break;

@@ -272,6 +272,15 @@ h1 {
   padding: 0;
 }
 
+.mainChartFrame {
+  height: 100%;
+  width: 100%;
+  border-style: none;
+  border-width: 0px;
+  border-color: black;
+  padding: 0;
+}
+
 .prevButton {
   float: left;
 }
