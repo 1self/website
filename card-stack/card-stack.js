@@ -391,15 +391,17 @@ $(function() {
     var cardBackContentTemplate = [
         , '<div class="cardBack-1">'
         , '  <div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
-        , '  <div class="cardBackMain">'
-        , '    <iframe class="mainChartFrame" src="{{mainChartSrc}}" scrolling="no"></iframe>'
-        , '  </div>'
-        , '  <!--div class="cardBackAction" onclick="slideLeft(this)"><div class="actionText">Explore &gt;</div></div-->'
+        , '    <div class="cardBackMain">'
+        , '      <div class="cardBackMedia">'
+        , '        <iframe class="mainChartFrame" src="{{mainChartSrc}}" scrolling="no"></iframe>'
+        , '      </div>'
+        , '    </div>'
+        , '    <!--div class="cardBackAction" onclick="slideLeft(this)"><div class="actionText">Explore &gt;</div></div-->'
         , '</div>'
-        , '<div class="cardBack-2">'
+        , '<!--div class="cardBack-2">'
         , '  <div class="cardHeader" style="background-color: {{colour}};"><p class="backButton" onclick="slideRight(this)">{{headerText2}}</p></div>'
         , '  <div class="cardBackMain">Next bit of info goes here</div>'
-        , '</div>'
+        , '</div-->'
         , '{{shareContainer}}'].join('');
 
 

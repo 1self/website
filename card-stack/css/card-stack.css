@@ -369,9 +369,15 @@ h1 {
   background-color: #E7E9EE;
   padding-left: 10px;
   padding-right: 10px;
-  /* top: -10px; */
   /* position: relative; */
   margin-bottom: -85px;
+}
+
+.cardBackMedia {
+  padding-bottom: 45px;
+  width: 100%;
+  height: 100%;
+  display: table;
 }
 
 .cardBackAction {
