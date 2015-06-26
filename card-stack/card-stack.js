@@ -44,13 +44,13 @@ if (offline) {
     var data = [{
         "id": "5584077cedd7cc047e86fe2e",
         "type": "date",
-        "generatedDate": "2015-06-19T12:13:48.706Z"
+        "generatedDate": "2015-06-25T12:13:48.706Z"
     }, {
         "id": "5584077dedd7cc047e86fe34",
-        "type": "bottom10",
+        "type": "top10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-18",
-        "endRange": "2015-06-18",
+        "startRange": "2015-06-25",
+        "endRange": "2015-06-25",
         "objectTags": [
             "music"
         ],
@@ -61,7 +61,9 @@ if (offline) {
         "properties": {
             "sum": {
                 "album-name": {
-                    "__count__": null
+                    "The Inevitable End": {
+                        "__count__": 10
+                    }
                 }
             }
         },
@@ -71,19 +73,21 @@ if (offline) {
         "id": "5584077dedd7cc047e86fe30",
         "type": "top10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-18",
-        "endRange": "2015-06-18",
+        "startRange": "2015-06-25",
+        "endRange": "2015-06-25",
         "objectTags": [
             "music"
         ],
         "actionTags": [
             "listen"
         ],
-        "position": 0,
+        "position": 2,
         "properties": {
             "sum": {
-                "album-name": {
-                    "__count__": null
+                "artist-name": {
+                    "Daft Punk": {
+                        "__count__": 1
+                    }
                 }
             }
         },
@@ -93,8 +97,8 @@ if (offline) {
         "id": "5584077dedd7cc047e86fe35",
         "type": "bottom10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-18",
-        "endRange": "2015-06-18",
+        "startRange": "2015-06-25",
+        "endRange": "2015-06-25",
         "objectTags": [
             "computer",
             "control",
@@ -140,8 +144,8 @@ if (offline) {
         "id": "5584077dedd7cc047e86fe3a",
         "type": "bottom10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-18",
-        "endRange": "2015-06-18",
+        "startRange": "2015-06-25",
+        "endRange": "2015-06-25",
         "objectTags": [
             "computer",
             "control",
@@ -166,10 +170,10 @@ if (offline) {
         "chart": "/v1/users/ed/rollups/day/computer,control,software,source/github,push/sum.repo.1self/api.__count__/.json"
     }, {
         "id": "5584077dedd7cc047e86fe32",
-        "type": "bottom10",
+        "type": "top10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-18",
-        "endRange": "2015-06-18",
+        "startRange": "2015-06-25",
+        "endRange": "2015-06-25",
         "objectTags": [
             "computer",
             "control",
@@ -196,8 +200,8 @@ if (offline) {
         "id": "5584077dedd7cc047e86fe37",
         "type": "bottom10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-18",
-        "endRange": "2015-06-18",
+        "startRange": "2015-06-25",
+        "endRange": "2015-06-25",
         "objectTags": [
             "computer",
             "git",
@@ -208,7 +212,7 @@ if (offline) {
         "actionTags": [
             "commit"
         ],
-        "position": 43,
+        "position": 8,
         "properties": {
             "sum": {
                 "__count__": 5
@@ -220,8 +224,8 @@ if (offline) {
         "id": "5584077dedd7cc047e86fe3c",
         "type": "bottom10",
         "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-18",
-        "endRange": "2015-06-18",
+        "startRange": "2015-06-25",
+        "endRange": "2015-06-25",
         "objectTags": [
             "computer",
             "git",
@@ -232,7 +236,7 @@ if (offline) {
         "actionTags": [
             "commit"
         ],
-        "position": 43,
+        "position": 6,
         "properties": {
             "sum": {
                 "author-email": {
