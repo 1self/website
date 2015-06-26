@@ -320,7 +320,7 @@ $(function() {
         var counter = 0;
 
         while (objectKey && objectKey !== "__count__") {
-            returnString += unhyphenate(objectKey);
+            returnString += '<span class="property-text" style="color: {{colour}}">' + unhyphenate(objectKey) + '</span>';
             propertiesObject = propertiesObject[objectKey];
             objectKey = Object.keys(propertiesObject)[0];
             if (objectKey && objectKey !== "__count__") {
@@ -337,7 +337,7 @@ $(function() {
     // put profile image on
     // do back of card
 
-    var createCardText = function(cardData) {
+    var createCardText = function(cardData, colour) {
         if (!cardData.cardText) {
             var cardText = '';
 
@@ -351,7 +351,8 @@ $(function() {
                     eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
                     comparitor: createComparitorText(cardData.position, cardData.type),
                     eventPeriod: "a day",
-                    comparisonPeriod: "ever"
+                    comparisonPeriod: "ever",
+                    colour: colour
                 };
 
                 if (cardData.actionTags[0] === "commit" || cardData.actionTags[1] === "push") {
@@ -383,7 +384,16 @@ $(function() {
         }
     };
 
-    var flipButtonTemplate = [, '  <div class="share-button" style="background-color: {{colour}};">', '    <div class="icon-button"><i class="fa fa-share-alt fa-2x"></i></div>', '  </div>', '  <div class="flip-toggle" style="background-color: {{colour}};">', '    <div class="icon-button icon-{{action}}"><img src="img/{{action}}-icon.png" /></div>', '  </div>'].join('');
+    var flipButtonTemplate = [
+        , '  <div class="avatar-button">'
+        , '    <!--div class="icon-button"><i class="fa fa-share-alt fa-2x"></i></div-->'
+        , '  </div>'
+        , '  <div class="share-button" style="background-color: {{colour}};">'
+        , '    <div class="icon-button"><i class="fa fa-share-alt fa-2x"></i></div>'
+        , '  </div>'
+        , '  <div class="flip-toggle" style="background-color: {{colour}};">'
+        , '    <div class="icon-button icon-{{action}}"><img src="img/{{action}}-icon.png" /></div>'
+        , '  </div>'].join('');
 
     // var shareButtonTemplate = [
     // ].join('');
@@ -463,7 +473,7 @@ $(function() {
                 break;
             case 'top10':
 
-                createCardText(cardData);
+                createCardText(cardData, colour);
 
                 var frontContent = [, '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '<div class="cardContentContainer"><div class="cardMedia"></div><div class="cardText"><p>{{data}}</p></div></div>', '{{shareContainer}}', '<div class="cardNav" style="background-color: {{colour}};">', '  <p>{{cardNavText}}</p>', '  {{flipButton}}', '</div>'].join('');
 
@@ -496,7 +506,7 @@ $(function() {
                 break;
             case 'bottom10':
 
-                createCardText(cardData);
+                createCardText(cardData, colour);
 
                 var frontContent = [, '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '<div class="cardContentContainer"><div class="cardMedia"></div><div class="cardText"><p>{{data}}</p></div></div>', '{{shareContainer}}', '<div class="cardNav" style="background-color: {{colour}};">', '  <p>{{cardNavText}}</p>', '  {{flipButton}}', '</div>'].join('');
 

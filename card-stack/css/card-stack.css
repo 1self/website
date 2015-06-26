@@ -42,6 +42,9 @@ h1 {
     margin: 0.67em 0
 }
 
+.property-text {
+}
+
 .header {
   height: 64px;
   background-color: rgb(48, 54, 62);
@@ -374,7 +377,7 @@ h1 {
 }
 
 .cardBackMedia {
-  padding-bottom: 45px;
+  padding-bottom: 85px;
   width: 100%;
   height: 100%;
   display: table;
