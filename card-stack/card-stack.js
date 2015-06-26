@@ -38,16 +38,60 @@ function slideRight(eventElement) {
 
 var deferred = $.Deferred();
 
-var offline = false;
+var offline = true;
 
 if (offline) {
     var data = [{
-        "id": "5583f43eb26623452263a188",
+        "id": "5584077cedd7cc047e86fe2e",
         "type": "date",
-        "generatedDate": "2015-06-19T10:51:42.884Z"
+        "generatedDate": "2015-06-19T12:13:48.706Z"
     }, {
-        "id": "5583f448b26623452263a225",
+        "id": "5584077dedd7cc047e86fe34",
+        "type": "bottom10",
+        "thumbnailMedia": "chart.html",
+        "startRange": "2015-06-18",
+        "endRange": "2015-06-18",
+        "objectTags": [
+            "music"
+        ],
+        "actionTags": [
+            "listen"
+        ],
+        "position": 0,
+        "properties": {
+            "sum": {
+                "album-name": {
+                    "__count__": null
+                }
+            }
+        },
+        "generatedDate": "2015-06-19T12:13:49.256Z",
+        "chart": "/v1/users/ed/rollups/day/music/listen/sum.album-name..__count__/.json"
+    }, {
+        "id": "5584077dedd7cc047e86fe30",
         "type": "top10",
+        "thumbnailMedia": "chart.html",
+        "startRange": "2015-06-18",
+        "endRange": "2015-06-18",
+        "objectTags": [
+            "music"
+        ],
+        "actionTags": [
+            "listen"
+        ],
+        "position": 0,
+        "properties": {
+            "sum": {
+                "album-name": {
+                    "__count__": null
+                }
+            }
+        },
+        "generatedDate": "2015-06-19T12:13:49.017Z",
+        "chart": "/v1/users/ed/rollups/day/music/listen/sum.album-name..__count__/.json"
+    }, {
+        "id": "5584077dedd7cc047e86fe35",
+        "type": "bottom10",
         "thumbnailMedia": "chart.html",
         "startRange": "2015-06-18",
         "endRange": "2015-06-18",
@@ -67,42 +111,61 @@ if (offline) {
                 "commits": 5
             }
         },
-        "generatedDate": "2015-06-19T10:51:52.258Z",
+        "generatedDate": "2015-06-19T12:13:49.301Z",
         "chart": "/v1/users/ed/rollups/day/computer,control,software,source/github,push/sum.commits/.json"
     }, {
-        "id": "5583f448b26623452263a228",
+        "id": "5584077dedd7cc047e86fe39",
+        "type": "top10",
+        "thumbnailMedia": "chart.html",
+        "startRange": "2015-06-25",
+        "endRange": "2015-06-25",
+        "objectTags": [
+            "computer",
+            "control",
+            "software",
+            "source"
+        ],
+        "actionTags": [
+            "commit"
+        ],
+        "position": 1,
+        "properties": {
+            "sum": {
+                "__count__": 5
+            }
+        },
+        "generatedDate": "2015-06-19T12:13:49.626Z",
+        "chart": "/v1/users/ed/rollups/day/computer,control,software,source/github,push/sum.__count__/.json"
+    }, {
+        "id": "5584077dedd7cc047e86fe3a",
         "type": "bottom10",
         "thumbnailMedia": "chart.html",
         "startRange": "2015-06-18",
         "endRange": "2015-06-18",
         "objectTags": [
             "computer",
-            "git",
-            "github",
+            "control",
             "software",
-            "source control"
+            "source"
         ],
         "actionTags": [
-            "commit"
+            "github",
+            "push"
         ],
-        "position": 20,
+        "position": 0,
         "properties": {
             "sum": {
-                "author-email": {
-                    "ed^sykes@gmail^com": {
-                        "file-types": {
-                            "js": {
-                                "line-additions": 68
-                            }
-                        }
+                "repo": {
+                    "1self/api": {
+                        "__count__": 1
                     }
                 }
             }
         },
-        "generatedDate": "2015-06-19T10:51:52.449Z",
-        "chart": "/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum.author-email.ed^sykes@gmail^com.file-types.js.line-additions/.json"
+        "generatedDate": "2015-06-19T12:13:49.630Z",
+        "chart": "/v1/users/ed/rollups/day/computer,control,software,source/github,push/sum.repo.1self/api.__count__/.json"
     }, {
-        "id": "5583f449b26623452263a23b",
+        "id": "5584077dedd7cc047e86fe32",
         "type": "bottom10",
         "thumbnailMedia": "chart.html",
         "startRange": "2015-06-18",
@@ -127,51 +190,62 @@ if (offline) {
                 }
             }
         },
-        "generatedDate": "2015-06-19T10:51:53.656Z",
+        "generatedDate": "2015-06-19T12:13:49.036Z",
         "chart": "/v1/users/ed/rollups/day/computer,control,software,source/github,push/sum.repo.1self/api.commits/.json"
     }, {
-        "id": "5583f448b26623452263a224",
-        "type": "top10",
+        "id": "5584077dedd7cc047e86fe37",
+        "type": "bottom10",
         "thumbnailMedia": "chart.html",
         "startRange": "2015-06-18",
         "endRange": "2015-06-18",
         "objectTags": [
-            "music"
+            "computer",
+            "git",
+            "github",
+            "software",
+            "source control"
         ],
         "actionTags": [
-            "listen"
+            "commit"
         ],
-        "position": 0,
+        "position": 43,
         "properties": {
             "sum": {
-                "album-name": {
-                    "__count__": null
+                "__count__": 5
+            }
+        },
+        "generatedDate": "2015-06-19T12:13:49.528Z",
+        "chart": "/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum.__count__/.json"
+    }, {
+        "id": "5584077dedd7cc047e86fe3c",
+        "type": "bottom10",
+        "thumbnailMedia": "chart.html",
+        "startRange": "2015-06-18",
+        "endRange": "2015-06-18",
+        "objectTags": [
+            "computer",
+            "git",
+            "github",
+            "software",
+            "source control"
+        ],
+        "actionTags": [
+            "commit"
+        ],
+        "position": 43,
+        "properties": {
+            "sum": {
+                "author-email": {
+                    "ed^sykes@gmail^com": {
+                        "__count__": 5
+                    }
                 }
             }
         },
-        "generatedDate": "2015-06-19T10:51:52.240Z",
-        "chart": "/v1/users/ed/rollups/day/music/listen/sum.album-name..__count__/.json"
-    }, {
-        "id": "5583f449b26623452263a23a",
-        "type": "top10",
-        "thumbnailMedia": "chart.html",
-        "startRange": "2015-06-18",
-        "endRange": "2015-06-18",
-        "objectTags": [
-            "music"
-        ],
-        "actionTags": [
-            "listen"
-        ],
-        "position": 15,
-        "properties": {
-            "sum": {
-                "__count__": 16
-            }
-        },
-        "generatedDate": "2015-06-19T10:51:53.653Z",
-        "chart": "/v1/users/ed/rollups/day/music/listen/sum.__count__/.json"
+        "generatedDate": "2015-06-19T12:13:49.862Z",
+        "chart": "/v1/users/ed/rollups/day/computer,git,github,software,source control/commit/sum.author-email.ed^sykes@gmail^com.__count__/.json"
     }];
+
     deferred.resolve(data);
 } else {
     // Get the ajax requests out of the way early because they
@@ -486,7 +560,7 @@ $(function() {
                         }),
                         cardNavText: "",
                         colour: colour,
-                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' out of xxx',
+                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' out of 126',
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-front'
