@@ -470,7 +470,9 @@ $(function() {
         , '    <div class="icon-button"><i class="fa fa-share-alt fa-2x"></i></div>'
         , '  </div>'
         , '  <div class="flip-toggle" style="background-color: {{colour}};">'
-        , '    <div class="icon-button icon-{{action}}"><img src="img/{{action}}-icon.png" /></div>'
+        , '    <div class="icon-button"><i class="fa fa-angle-double-{{action}} fa-2x"></i></div>'
+
+        , '    <!--div class="icon-button icon-{{action}}"><img src="img/{{action}}-icon.png" /></div-->'
         , '  </div>'].join('');
 
     // var shareButtonTemplate = [
@@ -505,7 +507,7 @@ $(function() {
         //         cardContent: htmlTemplate.supplant($.extend({
         //             flipButton: flipButtonTemplate.supplant({
         //                 colour: overrides.colour || supplantObject.colour,
-        //                 action: "more"
+        //                 action: "right"
         //             })
         //         }, supplantObject, overrides))
         //     });
@@ -534,7 +536,7 @@ $(function() {
             inputValue: encodeURIComponent(JSON.stringify(cardData)),
             cardNav: flipButtonTemplate.supplant({
                 colour: colour,
-                action: 'close'
+                action: 'left'
             })
         });
 
@@ -560,7 +562,7 @@ $(function() {
                         data: cardData.cardText || 'undefined',
                         flipButton: flipButtonTemplate.supplant({
                             colour: colour,
-                            action: "more"
+                            action: "right"
                         }),
                         cardNavText: "",
                         colour: colour,
@@ -593,7 +595,7 @@ $(function() {
                         data: cardData.cardText || 'undefined',
                         flipButton: flipButtonTemplate.supplant({
                             colour: colour,
-                            action: "more"
+                            action: "right"
                         }),
                         cardNavText: "",
                         colour: colour,

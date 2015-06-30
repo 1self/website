@@ -179,7 +179,8 @@ input {
     -webkit-transition-timing-function: swing;
     transition-timing-function: swing;
     right: 0px;
-    bottom: 0px
+    bottom: 0px;
+    display: table;
 }
 
 .share-button {
@@ -264,6 +265,17 @@ input {
 }
 
 .share-button .icon-button i {
+    color: white;
+    font-size: 28px;
+}
+
+.flip-toggle .icon-button {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.flip-toggle .icon-button i {
     color: white;
     font-size: 28px;
 }
