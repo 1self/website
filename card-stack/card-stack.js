@@ -660,21 +660,20 @@ $(function() {
     var cardsArrayGlobal;
 
     var addToStack = function(stack, cardData, cardIndex, renderThumbnail) {
-        var element = cardData;
-        var i = cardIndex;
         var li = document.createElement('li');
-        li.innerHTML = buildCardHtml(element, i);
+        li.innerHTML = buildCardHtml(cardData, cardIndex);
         var $card = $(li).find('.cardContainer');
         $card.css({
-            'border-color': getColour(i)
+            'border-color': getColour(cardIndex)
         });
         $(li).attr('id', 'card_' + addedCardsCount);
-        $(li).attr('cardId', element.id);
+        $(li).attr('cardId', cardData.id);
+        $(li).attr('cardIndex', cardIndex);
+
         $('.stack').append(li);
-        // $(li).prependTo('.stack');
-        // $('.bottom-of-stack-container').after(li);
+
         stack.createCard(li);
-        // lastLi = li;
+
         if (renderThumbnail) {
             renderThumbnailMedia(li);
         }
@@ -689,15 +688,10 @@ $(function() {
             if (numberOfCardsToShow > cardsArray.length) {
                 numberOfCardsToShow = cardsArray.length;
             }
-            // var lastLi = null;
 
             for (var i = numberOfCardsToShow + skip - 1; i >= skip; i--) {
                 addToStack(stack, cardsArray[i], i, (i === skip));
             }
-// debugger;
-            // for (var i = 0; i < numberOfCardsToShow; i++) {
-            //     addToStack(stack, cardsArray[i], i, (i === 0));
-            // }
 
             markCardUnique($('.stack li:last')[0], 'topOfMain');
 
@@ -791,6 +785,18 @@ $(function() {
         }
     }
 
+    var sendGAEvent = function(eventAction, eventLabel, eventValue) {
+        var gaObj = {};
+        gaObj.eventCategory = 'card-stack';
+        gaObj.eventAction = eventAction;
+        gaObj.eventLabel = eventLabel;
+        gaObj.eventValue = eventValue;
+
+        console.log(gaObj);
+
+        ga('send', 'event', gaObj);
+    };
+
     stack.on('throwout', function(e) {
         // debugger;
         markCardUnique($('.stack .topOfMain')[0], 'topOfMain');
@@ -805,7 +811,8 @@ $(function() {
         console.log('thrown out', e.target.id, discardPile);
         console.log('thrown out', e.target, e.target.getAttribute('cardId'), e.target.getAttribute('cardid'));
         console.log('ga',ga);
-        ga('send', 'event', { eventCategory: 'card-stack', eventAction: 'throw-out', eventLabel: e.target.cardId, eventValue: 10});
+        sendGAEvent('throw-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), 10);
+        
         // addToStack(stack, cardDataGlobal, addedCardsCount, false);
         // $cardList = $('.stack li');
     });
