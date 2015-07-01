@@ -483,7 +483,7 @@ $(function() {
         , '  <div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
         , '    <div class="cardBackMain">'
         , '      <div class="cardBackMedia">'
-        , '        <iframe class="mainChartFrame" src="{{mainChartSrc}}" scrolling="no"></iframe>'
+        , '        <!--iframe class="mainChartFrame" src="{{mainChartSrc}}" scrolling="no"></iframe-->'
         , '      </div>'
         , '    </div>'
         , '    <!--div class="cardBackAction" onclick="slideLeft(this)"><div class="actionText">Explore &gt;</div></div-->'
@@ -637,6 +637,23 @@ $(function() {
         }
     };
 
+    var renderMainMedia = function(cardLi) {
+        console.log('rendering main media');
+        var cardData = $(cardLi).find('.cardData');
+        cardData = decodeURIComponent(cardData.val());
+        cardData = JSON.parse(cardData);
+
+        if (cardData.thumbnailMedia) {
+            var $cardMedia = $(cardLi).find('.cardBackMedia');
+            $cardMedia.empty();
+            var iFrameHtml = '<iframe class="mainChartFrame" src="' + cardData.thumbnailMedia;
+            iFrameHtml += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
+            iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
+            iFrameHtml += 'scrolling="no"></iframe>';
+            $cardMedia.append(iFrameHtml);
+        }
+    };
+
     var discardPile = [];
     var $cardList = null;
     var addedCardsCount = 0;
@@ -698,6 +715,9 @@ $(function() {
 
             $stack.on('mouseup', '.flip-toggle', function(e) {
                 var $container = $(this).parents('.cardContainer');
+                if (!$container.hasClass('flip')) {
+                    renderMainMedia($(this).parents('li'));
+                }
                 $container.toggleClass('flip');
                 $container.siblings().toggleClass('flip');
             });
