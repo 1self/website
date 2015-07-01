@@ -792,6 +792,7 @@ $(function() {
             });
 
             $('.bottom-of-stack-container h1').text('All done');
+            $('.bottom-of-stack-container h1').after('<i class="fa fa-thumbs-o-up fa-4x"></i>');
             $('.bottom-of-stack-container p').text('Come back for more cards later');
         });
     };
