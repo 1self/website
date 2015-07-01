@@ -97,7 +97,10 @@
 
         var y = d3.scale.linear()
             .domain([0, d3.max(dataset, function(d) {
-                return d.value;
+                if (isNaN(d.value))
+                    return 0;
+                else
+                    return d.value;
             })])
             .range([height, 0]);
 
@@ -105,7 +108,7 @@
         var line = d3.svg.line()
             .interpolate("basis")
             .x(function(d) { return x(d.date); })
-            .y(function(d) { return y(d.value); });
+            .y(function(d) { return ((isNaN(d.value)) ? (y(0)) : (y(d.value))); });
 
         //Append a path to the SVG
         svg.append("path")
