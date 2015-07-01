@@ -282,6 +282,18 @@ $(function() {
         return colourArray[idx % colourArray.length];
     };
 
+    var sendGAEvent = function(eventAction, eventLabel, eventValue) {
+        var gaObj = {};
+        gaObj.eventCategory = 'card-stack';
+        gaObj.eventAction = eventAction;
+        gaObj.eventLabel = eventLabel;
+        gaObj.eventValue = eventValue;
+
+        console.log('gaObj', gaObj);
+
+        ga('send', 'event', gaObj);
+    };
+
     var dateRangetext = function(startRange, endRange) {
         var rangeText;
         var now = moment();
@@ -497,7 +509,12 @@ $(function() {
 
 
 
-    var shareContainerTemplate = [, '<div class="share-container {{shareContainerClasses}} hide" style="background-color: {{colour}};">', '  <div class="social-share-button"><div class="innerButton">Share to Twitter</div></div>', '  <div class="social-share-button"><div class="innerButton">Share to Facebook</div></div>', '</div>'].join('');
+    var shareContainerTemplate = [
+        , '<div class="share-container {{shareContainerClasses}} hide" style="background-color: {{colour}};">'
+        , '  <div class="social-share-button"><div id="shareToTwitter" class="innerButton">Share to Twitter</div></div>'
+        , '  <div class="social-share-button"><div id="shareToFacebook" class="innerButton">Share to Facebook</div></div>'
+        , '  <div class="social-share-button"><div id="shareToLink" class="innerButton">Get shareable link</div></div>'
+        , '</div>'].join('');
 
 
     var buildCardHtml = function(cardData, colourIndex) {
@@ -738,6 +755,42 @@ $(function() {
                 $container.find('.share-container').toggleClass('hide');
             });
 
+            $stack.on('mouseup', '#shareToTwitter', function(e) {
+                var $container = $(this).parents('.cardContainer');
+                var $li = $(this).parents('li');
+
+                var sharePaneAction = 'share-to-twitter-';
+                sharePaneAction += ($container.hasClass('flip') ? 'back' : 'front');
+                sharePaneAction += '-' + $li.attr('cardIndex');
+
+                sendGAEvent(sharePaneAction, $li.attr('cardId'), $li.attr('cardIndex'));
+                
+            });
+
+            $stack.on('mouseup', '#shareToFacebook', function(e) {
+                var $container = $(this).parents('.cardContainer');
+                var $li = $(this).parents('li');
+
+                var sharePaneAction = 'share-to-facebook-';
+                sharePaneAction += ($container.hasClass('flip') ? 'back' : 'front');
+                sharePaneAction += '-' + $li.attr('cardIndex');
+
+                sendGAEvent(sharePaneAction, $li.attr('cardId'), $li.attr('cardIndex'));
+                
+            });
+
+            $stack.on('mouseup', '#shareToLink', function(e) {
+                var $container = $(this).parents('.cardContainer');
+                var $li = $(this).parents('li');
+
+                var sharePaneAction = 'share-to-link-';
+                sharePaneAction += ($container.hasClass('flip') ? 'back' : 'front');
+                sharePaneAction += '-' + $li.attr('cardIndex');
+
+                sendGAEvent(sharePaneAction, $li.attr('cardId'), $li.attr('cardIndex'));
+                
+            });
+
             $('.bottom-of-stack-container h1').text('All done');
             $('.bottom-of-stack-container p').text('Come back for more cards later');
         });
@@ -803,18 +856,6 @@ $(function() {
             $(cardEl).addClass(label);
         }
     }
-
-    var sendGAEvent = function(eventAction, eventLabel, eventValue) {
-        var gaObj = {};
-        gaObj.eventCategory = 'card-stack';
-        gaObj.eventAction = eventAction;
-        gaObj.eventLabel = eventLabel;
-        gaObj.eventValue = eventValue;
-
-        console.log(gaObj);
-
-        ga('send', 'event', gaObj);
-    };
 
     stack.on('throwout', function(e) {
         // debugger;
