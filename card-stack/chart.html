@@ -37,11 +37,11 @@
             var apiURL = dataSrc;
             var jqxhr = $.getJSON(apiURL,
                     function() {
-                        console.log("accessed api for chart data");
+                        // console.log("accessed api for chart data");
                     })
                 .done(function(data) {
 
-                    console.log('chart data', data);
+                    // console.log('chart data', data);
                     callback(data);
                 })
                 .fail(function(data) {
@@ -77,11 +77,6 @@
 
         width = $('body').width() - 10;
         height = $('body').height() - 10;
-
-        // console.log($('.mainContainer'));
-        // console.log($(window).height());
-        // console.log($(document).height());
-        // console.log($('body').height());
 
         //Append an SVG to the document body
         var svg = d3.select(".mainContainer").append("svg")
@@ -145,7 +140,6 @@
     // ,'https://missswedishkiwi.files.wordpress.com/2015/05/kitten3.jpg'];
 
     // var imageUrl = kittens[getRandomInt(0, kittens.length - 1)];
-    // // console.log('imageUrl', imageUrl);
 
     // $('.center-cropped').css('background-image', 'url("' + imageUrl + '")');
     </script>

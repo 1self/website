@@ -709,15 +709,32 @@ $(function() {
 
             $stack.on('mouseup', '.flip-toggle', function(e) {
                 var $container = $(this).parents('.cardContainer');
-                if (!$container.hasClass('flip')) {
-                    renderMainMedia($(this).parents('li'));
+                var $li = $(this).parents('li');
+
+                if ($container.hasClass('flip')) {
+                    // flipped to front
+                    sendGAEvent('flipped-to-front-' + $li.attr('cardIndex'), $li.attr('cardId'), $li.attr('cardIndex'));
+                } else {
+                    // flipped to back
+                    renderMainMedia($li);
+                    sendGAEvent('flipped-to-back-' + $li.attr('cardIndex'), $li.attr('cardId'), $li.attr('cardIndex'));
                 }
+
                 $container.toggleClass('flip');
                 $container.siblings().toggleClass('flip');
             });
 
             $stack.on('mouseup', '.share-button', function(e) {
                 var $container = $(this).parents('.cardContainer');
+                var $li = $(this).parents('li');
+
+                var sharePaneAction = ($container.find('.share-container').hasClass('hide') ? 'open' : 'close');
+                sharePaneAction += '-share-pane-';
+                sharePaneAction += ($container.hasClass('flip') ? 'back' : 'front');
+                sharePaneAction += '-' + $li.attr('cardIndex');
+
+                sendGAEvent(sharePaneAction, $li.attr('cardId'), $li.attr('cardIndex'));
+                
                 $container.find('.share-container').toggleClass('hide');
             });
 
@@ -764,6 +781,7 @@ $(function() {
         var idx = discardPile.indexOf(val);
         var card = stack.getCard(cardLi);
         card.throwIn(cardLi.thrownX, cardLi.thrownY);
+        sendGAEvent('button-thrown-in-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));
     };
 
     stack.throwOutNext = function() {
@@ -773,6 +791,7 @@ $(function() {
         cardLi.thrownY = getRandomInt(-100, 100);
         cardLi.thrownX = 1;
         card.throwOut(cardLi.thrownX, cardLi.thrownY);
+        sendGAEvent('button-thrown-out-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));
     };
 
     window.stack = stack;
@@ -809,9 +828,8 @@ $(function() {
         renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
         e.target.classList.remove('in-deck');
         console.log('thrown out', e.target.id, discardPile);
-        console.log('thrown out', e.target, e.target.getAttribute('cardId'), e.target.getAttribute('cardid'));
-        console.log('ga',ga);
-        sendGAEvent('throw-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), 10);
+        
+        sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
         
         // addToStack(stack, cardDataGlobal, addedCardsCount, false);
         // $cardList = $('.stack li');
@@ -825,6 +843,8 @@ $(function() {
 
         e.target.classList.add('in-deck');
         console.log('thrown in', e.target.id, discardPile);
+
+        sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
     });
 
 });
