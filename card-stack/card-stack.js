@@ -783,6 +783,8 @@ $(function() {
         renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
         e.target.classList.remove('in-deck');
         console.log('thrown out', e.target.id, discardPile);
+        console.log('thrown out', e.target, e.target.getAttribute('cardId'), e.target.getAttribute('cardid'));
+        ga('send', 'event', { eventCategory: 'card-stack', eventAction: 'throw-out', eventLabel: e.target.cardId, eventValue: 10});
         // addToStack(stack, cardDataGlobal, addedCardsCount, false);
         // $cardList = $('.stack li');
     });
