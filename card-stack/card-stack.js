@@ -41,11 +41,11 @@ var deferred = $.Deferred();
 var offline = true;
 
 if (offline) {
-    var data = [{
+    var data = [/*{
         "id": "5584077cedd7cc047e86fe2e",
         "type": "date",
         "generatedDate": "2015-06-25T12:13:48.706Z"
-    }, {
+    }, */{
         "id": "5584077dedd7cc047e86fe34",
         "type": "top10",
         "thumbnailMedia": "chart.html",

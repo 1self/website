@@ -17,20 +17,29 @@
     <script>
 
     var lineColour = '#' + getQSParam().lineColour;
+    var vhlt = getQSParam().vhlt === "true";
+    var hhlt = getQSParam().hhlt === "true";
+    var vaxis = getQSParam().vaxis === "true";
+    var haxis = getQSParam().haxis === "true";
     var dataSrc = 'http://app-staging.1self.co' + getQSParam().dataSrc;
-    var offline = false;
+    var offline = true;
 
     $('.mainContainer').ready(function () {
         getData(dataSrc, function (data) {
-          drawSparkLine(data, null, 280, 100);
+          drawSparkLine(data, null);
         });
     });
 
 
     function getData(dataSrc, callback) {
+        var custom_sort = function(a, b) {
+            return new Date(a.date).getTime() - new Date(b.date).getTime();
+        };
 
         if (offline) {
             var data = {"data":[{"date":"2015-06-10","value":2},{"date":"2015-06-08","value":3},{"date":"2015-05-07","value":3},{"date":"2015-06-09","value":6},{"date":"2015-06-04","value":3},{"date":"2015-05-20","value":3},{"date":"2015-05-15","value":1},{"date":"2015-05-11","value":3},{"date":"2015-05-06","value":7},{"date":"2015-05-05","value":13},{"date":"2015-05-04","value":7},{"date":"2015-05-02","value":1},{"date":"2015-04-30","value":3}],"property":"pushId"};
+
+            data.data.sort(custom_sort);
 
             callback(data);
         } else {
@@ -42,6 +51,7 @@
                 .done(function(data) {
 
                     // console.log('chart data', data);
+                    data.data.sort(custom_sort);
                     callback(data);
                 })
                 .fail(function(data) {
@@ -51,97 +61,241 @@
         }
     }
 
+    function getColour(givenColour, offset) {
+        var colourArray = ['#dd2649', '#00a2d4', '#e93d31', '#f2ae1c', '#61b346', '#cf4b9a', '#367ec0', '#00ad87'];
+        var idx = 0;
+        for (var i in colourArray) {
+            if (colourArray[i] === givenColour) {
+                idx = i;
+                break;
+            }
+        }
+        return colourArray[(idx + offset) % colourArray.length];
+    }
 
-    /*----------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------
-    ----------------------------------------------------------------------------------------------------------*/
+    function drawSparkLine(chartData, appendToElement) {
 
-    function drawSparkLine(chartData, appendToElement, width, height) {
-
-      // console.log('in drawSparkLine', chartData);
-
-        //Create format currency function to format the axes and points
-        // var formatCurrency = d3.format("$,.0f");
-
-        //Add a quarter-year property to each object in the dataset
-        // for (var i in dataset) {
-        //     dataset[i].QYear = dataset[i].Quarter + " " + dataset[i].Year;
-        // }
-// debugger;
         var dataset = chartData.data;
 
-        width = $('body').width() - 10;
-        height = $('body').height() - 10;
+        var width = $('body').width() - 10;
+        var height = $('body').height() - 10;
 
-        //Append an SVG to the document body
-        var svg = d3.select(".mainContainer").append("svg")
-            .attr("width", width + "px")
-            .attr("height", height + "px")
-            .append("g");
+        // var chartWidth = width - 40;
+        // var chartHeight = height;
 
-        var x = d3.scale.ordinal()
-            .domain(dataset.map(function(d) {
-                return d.date;
-            }))
-            .rangeRoundPoints([0, width], 0.04);
+        // Set the dimensions of the canvas / graph
+        var margin = {top: 30, right: 20, bottom: 30, left: 50};
+        
+        width = width - margin.left - margin.right;
+        height = height - margin.top - margin.bottom;
 
-        var y = d3.scale.linear()
-            .domain([0, d3.max(dataset, function(d) {
-                if (isNaN(d.value))
-                    return 0;
-                else
-                    return d.value;
-            })])
-            .range([height, 0]);
+        // Parse the date / time
+        var parseDate = d3.time.format("%Y-%m-%d").parse,
+            formatDate = d3.time.format("%d-%b"),
+            bisectDate = d3.bisector(function(d) { return d.date; }).left;
 
-        //Draw the line graph
-        var line = d3.svg.line()
-            .interpolate("basis")
+        // Set the ranges
+        var x = d3.time.scale().range([0, width]);
+        var y = d3.scale.linear().range([height, 0]);
+
+        console.log('x',x);
+        console.log('y',y);
+
+        // Define the axes
+        var xAxis = d3.svg.axis().scale(x)
+            .orient("bottom").ticks(5);
+
+        var yAxis = d3.svg.axis().scale(y)
+            .orient("left").ticks(5);
+
+        // Define the line
+        var valueline = d3.svg.line()
+            .interpolate("linear")
             .x(function(d) { return x(d.date); })
-            .y(function(d) { return ((isNaN(d.value)) ? (y(0)) : (y(d.value))); });
+            .y(function(d) { return y(d.value); });
 
-        //Append a path to the SVG
-        svg.append("path")
-            .attr("d", line(dataset))
-            .attr("class", "linePath")
-            .attr("fill", "none")
-            .attr("stroke", lineColour)
-            .attr("stroke-width", 3);
+        // setup x 
+        var xMap = function(d) { return x(d.date);}; // data -> display
 
-        // var pathContainers = svg.selectAll('g.line')
-        // .data(dataset);
+        // setup y
+        var yMap = function(d) { return y(d.value);}; // data -> display
 
-        // // add circles
-        // pathContainers.selectAll('circle')
-        // .data(function (d) { return d; })
-        // .enter().append('circle')
-        // .attr('cx', function (d) { return x(d.x); })
-        // .attr('cy', function (d) { return y(d.y); })
-        // .attr('r', 3); 
+            
+        // Adds the svg canvas
+        var svg = d3.select(".mainContainer")
+            .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+                .attr("transform", 
+                      "translate(" + margin.left + "," + margin.top + ")");
+
+        var lineSvg = svg.append("g")
+            .style("display", "none");
+
+        var focus = svg.append("g") 
+            .style("display", "none");
+
+        var data = chartData.data;
+
+        console.log(chartData);
+
+        // Get the data
+        // d3.csv("atad.csv", function(error, data) {
+            data.forEach(function(d) {
+                d.date = parseDate(d.date);
+                d.value = +d.value;
+            });
+
+            // Scale the range of the data
+            x.domain(d3.extent(data, function(d) { return d.date; }));
+            y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+            // Add the valueline path.
+            lineSvg.append("path")
+                .attr("class", "line")
+                .attr("d", valueline(data))
+                .attr("stroke", lineColour);
+
+            // draw dots
+            svg.selectAll(".dot")
+                  .data(data)
+                .enter().append("circle")
+                  .attr("class", "dot")
+                  .attr("r", 3.5)
+                  .attr("cx", xMap)
+                  .attr("cy", yMap)
+                  .style("fill", lineColour);
+
+            // Add the X Axis
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+            // Add the Y Axis
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis);
+
+           // append the x line
+            focus.append("line")
+                .attr("class", "x")
+                .style("stroke", getColour(lineColour, 1))
+                .style("stroke-dasharray", "4,2")
+                .style("opacity", 0.5)
+                .style("stroke-width", 2);
+                // .attr("y1", 0)
+                // .attr("y2", height);
+
+            // append the y line
+            focus.append("line")
+                .attr("class", "y")
+                .style("stroke", getColour(lineColour, 1))
+                .style("stroke-dasharray", "4,2")
+                .style("opacity", 0.5)
+                .style("stroke-width", 2)
+                .attr("x1", width)
+                .attr("x2", width);
+
+            // append the circle at the intersection
+            focus.append("circle")
+                .attr("class", "y")
+                .style("fill", "none")
+                .style("stroke", getColour(lineColour, 1))
+                .style("stroke-width", 2)
+                .attr("r", 4);
+
+            // place the value at the intersection
+            focus.append("text")
+                .attr("class", "y1")
+                .style("stroke", "#e7e9ee")
+                .style("stroke-width", "3.5px")
+                .style("opacity", 0.8)
+                .attr("dx", 8)
+                .attr("dy", "-.3em");
+            focus.append("text")
+                .attr("class", "y2")
+                .attr("dx", 8)
+                .attr("dy", "-.3em");
+
+            // place the date at the intersection
+            focus.append("text")
+                .attr("class", "y3")
+                .style("stroke", "#e7e9ee")
+                .style("stroke-width", "3.5px")
+                .style("opacity", 0.8)
+                .attr("dx", 8)
+                .attr("dy", "1em");
+            focus.append("text")
+                .attr("class", "y4")
+                .attr("dx", 8)
+                .attr("dy", "1em");
+            
+            // append the rectangle to capture mouse
+            svg.append("rect")
+                .attr("width", width)
+                .attr("height", height)
+                .style("fill", "none")
+                .style("pointer-events", "all")
+                .on("mouseover", function() { focus.style("display", null); })
+                .on("mouseout", function() { focus.style("display", "none"); })
+                .on("mousemove", mousemove);
+
+            function mousemove() {
+                var x0 = x.invert(d3.mouse(this)[0]),
+                    i = bisectDate(data, x0, 1),
+                    d0 = data[i - 1],
+                    d1 = data[i],
+                    d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+                focus.select("circle.y")
+                    .attr("transform",
+                          "translate(" + x(d.date) + "," +
+                                         y(d.value) + ")");
+
+                focus.select("text.y1")
+                    .attr("transform",
+                          "translate(" + x(d.date) + "," +
+                                         y(d.value) + ")")
+                    .text(d.value);
+
+                focus.select("text.y2")
+                    .attr("transform",
+                          "translate(" + x(d.date) + "," +
+                                         y(d.value) + ")")
+                    .text(d.value);
+
+                focus.select("text.y3")
+                    .attr("transform",
+                          "translate(" + x(d.date) + "," +
+                                         y(d.value) + ")")
+                    .text(formatDate(d.date));
+
+                focus.select("text.y4")
+                    .attr("transform",
+                          "translate(" + x(d.date) + "," +
+                                         y(d.value) + ")")
+                    .text(formatDate(d.date));
+
+                focus.select(".x")
+                    .attr("transform",
+                          "translate(" + x(d.date) + "," +
+                                         y(d.value) + ")")
+                               .attr("y2", height - y(d.value));
+
+                focus.select(".y")
+                    .attr("transform",
+                          "translate(" + width * -1 + "," +
+                                         y(d.value) + ")")
+                               .attr("x2", width + width);
+            }
+
+        // });
+ 
     }
 
 
-    </script>
-    <!-- <div class="center-cropped" >
-    </div> -->
-
-    <script>
-    // var kittens = ['http://images4.fanpop.com/image/photos/16100000/Cute-Kitten-kittens-16123796-1280-800.jpg'
-    // ,'https://d8kyhhndkm363.cloudfront.net/8/263246/kittens8.jpg'
-    // ,'http://i.telegraph.co.uk/multimedia/archive/02830/cat_2830677b.jpg'
-    // ,'http://t2.gstatic.com/images?q=tbn:ANd9GcQAELDz8GS4mIfKaNo1nWi3sG4w4b84FBxF6KfeO4EDgQYp_wwYEQ'
-    // ,'http://sussle.org/imager/cbb1ee8720943f710058cd92ce376958.jpg/850'
-    // ,'http://www.funkidslive.com/wp-content/uploads/2014/06/cutest-kitten-hat-ever-13727-1238540322-17.jpg'
-    // ,'https://missswedishkiwi.files.wordpress.com/2015/05/kitten3.jpg'];
-
-    // var imageUrl = kittens[getRandomInt(0, kittens.length - 1)];
-
-    // $('.center-cropped').css('background-image', 'url("' + imageUrl + '")');
     </script>
 </body>
 

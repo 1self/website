@@ -7,18 +7,29 @@ body {
     margin: 0 0 0 0;
     overflow: hidden;
     height: 100%;
+    font: 12px Arial;
 }
 
+path { 
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #454b54;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.dot {
+    /*stroke: #000;*/
+}
+
+/*
 svg {
-    /* background-color: transparent; */
-    /*border-style: solid;
-    border-width: 1px;
-    border-color: pink;*/
-    /* margin: -8px; */
-    /* position: absolute; */
-    /* top: 0px; */
     margin: auto;
-    /* padding: 3%; */
 }
 
 .center-cropped {
@@ -40,9 +51,6 @@ svg {
 }
 .mainContainer {
 	display: table-cell;
-/*
-	height: 100%;
-	width: 100%;*/
 	height: 100%;
 	vertical-align: middle;
-}
+}*/
