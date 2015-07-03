@@ -37,7 +37,7 @@
         };
 
         if (offline) {
-            var data = {"data":[{"date":"2015-06-10","value":2},{"date":"2015-06-08","value":3},{"date":"2015-05-07","value":3},{"date":"2015-06-09","value":6},{"date":"2015-06-04","value":3},{"date":"2015-05-20","value":3},{"date":"2015-05-15","value":1},{"date":"2015-05-11","value":3},{"date":"2015-05-06","value":7},{"date":"2015-05-05","value":13},{"date":"2015-05-04","value":7},{"date":"2015-05-02","value":1},{"date":"2015-04-30","value":3}],"property":"pushId"};
+            var data = {"data":[{"date":"2015-06-10","value":2, "highlight": true},{"date":"2015-06-08","value":3},{"date":"2015-05-07","value":3},{"date":"2015-06-09","value":6},{"date":"2015-06-04","value":3},{"date":"2015-05-20","value":3},{"date":"2015-05-15","value":1},{"date":"2015-05-11","value":3},{"date":"2015-05-06","value":7},{"date":"2015-05-05","value":13, "highlight": true},{"date":"2015-05-04","value":7},{"date":"2015-05-02","value":1},{"date":"2015-04-30","value":3}],"property":"pushId"};
 
             data.data.sort(custom_sort);
 
@@ -77,14 +77,15 @@
 
         var dataset = chartData.data;
 
-        var width = $('body').width() - 10;
-        var height = $('body').height() - 10;
+        var width = $('body').width();
+        var height = $('body').height();
 
         // var chartWidth = width - 40;
         // var chartHeight = height;
 
         // Set the dimensions of the canvas / graph
-        var margin = {top: 30, right: 20, bottom: 30, left: 50};
+        var margin = {top: 10, right: 60, bottom: 10, left: 10};
+        // var margin = {top: 30, right: 20, bottom: 30, left: 50};
         
         width = width - margin.left - margin.right;
         height = height - margin.top - margin.bottom;
@@ -98,9 +99,6 @@
         var x = d3.time.scale().range([0, width]);
         var y = d3.scale.linear().range([height, 0]);
 
-        console.log('x',x);
-        console.log('y',y);
-
         // Define the axes
         var xAxis = d3.svg.axis().scale(x)
             .orient("bottom").ticks(5);
@@ -110,7 +108,6 @@
 
         // Define the line
         var valueline = d3.svg.line()
-            .interpolate("linear")
             .x(function(d) { return x(d.date); })
             .y(function(d) { return y(d.value); });
 
@@ -144,7 +141,7 @@
         // d3.csv("atad.csv", function(error, data) {
             data.forEach(function(d) {
                 d.date = parseDate(d.date);
-                d.value = +d.value;
+                // d.value = +d.value;
             });
 
             // Scale the range of the data
@@ -159,24 +156,36 @@
 
             // draw dots
             svg.selectAll(".dot")
-                  .data(data)
+                .data(data)
                 .enter().append("circle")
-                  .attr("class", "dot")
-                  .attr("r", 3.5)
-                  .attr("cx", xMap)
-                  .attr("cy", yMap)
-                  .style("fill", lineColour);
+                .attr("class", "dot")
+                .attr("r", 3.5)
+                .attr("cx", xMap)
+                .attr("cy", yMap)
+                .style("fill", function(d) { return d.highlight ? getColour(lineColour, 1) : lineColour; } );
 
-            // Add the X Axis
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
+            svg.selectAll(".lolly-stick")
+                .data(data)
+                .enter().append("line")
+                .attr("class", "lolly-stick")
+                .style("stroke", function(d) { return d.highlight ? getColour(lineColour, 1) : lineColour; } )
+                .attr("y2", function(d) { return height - y(d.value); })
+                .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.value) + ")"; });
 
-            // Add the Y Axis
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis);
+            if (haxis) {
+                // Add the X Axis
+                svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis);
+            }
+
+            if (vaxis) {
+                // Add the Y Axis
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis);
+            }
 
            // append the x line
             focus.append("line")
