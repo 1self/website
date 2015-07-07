@@ -88,6 +88,20 @@
         return dataset;
     }
 
+    function addRankings(dataset) {
+
+        var ranking_sort = function(a, b) {
+            return a.value - b.value;
+        };
+
+        dataset.sort(ranking_sort);
+
+        for (var i = 0; i < dataset.length; i++) {
+            dataset[i].rankDesc = i;
+            dataset[i].rankAsc = dataset.length - 1 - i;
+        }
+    }
+
 
     function getData(dataSrc, callback) {
         var custom_sort = function(a, b) {
@@ -97,6 +111,7 @@
         if (offline) {
             var data = {"data":[{"date":"2015-06-10","value":2},{"date":"2015-06-08","value":3},{"date":"2015-05-07","value":3},{"date":"2015-06-09","value":6},{"date":"2015-06-04","value":3},{"date":"2015-05-20","value":3},{"date":"2015-05-15","value":1},{"date":"2015-05-11","value":3},{"date":"2015-05-06","value":7},{"date":"2015-05-05","value":13},{"date":"2015-05-04","value":7},{"date":"2015-05-02","value":1},{"date":"2015-04-30","value":3}],"property":"pushId"};
 
+            addRankings(data.data);
             data.data.sort(custom_sort);
             dataset = stripNullValuesAndHighlight(data.data);
 
@@ -112,6 +127,7 @@
                 .done(function(data) {
 
                     // console.log('chart data', data);
+                    addRankings(data.data);
                     data.data.sort(custom_sort);
                     dataset = stripNullValuesAndHighlight(data.data);
                     callback(dataset);
@@ -234,7 +250,17 @@
             .attr("y2", function(d) { return height - y(d.value); })
             .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.value) + ")"; } );
 
-        // add highlight text (value)
+        var rankText = function(d) {
+            var returnText;
+            if (highlightCondition === "top10") {
+                returnText = d.rankAsc + 1;
+            } else if (highlightCondition === "bottom10") {
+                returnText = d.rankDesc + 1;
+            }
+            return ordinal_suffix_of(returnText);
+        };
+
+        // add highlight text (rank)
         svg.selectAll(".highlight-text")
             .data(data)
             .enter().append("text")
@@ -242,9 +268,9 @@
             .attr("dx", 8)
             .attr("dy", "-.3em")
             .attr("transform", function(d) { return "translate(" + (width + 5) + "," + y(d.value) + ")"; } )
-            .text(function(d) { return d.value; } );
+            .text(rankText);
 
-        // add highlight text (date)
+        // add highlight text (value)
         svg.selectAll(".highlight-text")
             .data(data)
             .enter().append("text")
@@ -252,7 +278,7 @@
             .attr("dx", 8)
             .attr("dy", "1em")
             .attr("transform", function(d) { return "translate(" + (width + 5) + "," + y(d.value) + ")"; } )
-            .text(function(d) { return formatDate(d.date); } );
+            .text(function(d) { return d.value; } );
 
         // add highlight horizontal line
         svg.selectAll(".highlight-text")
