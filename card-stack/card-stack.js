@@ -438,10 +438,11 @@ $(function() {
             var cardText = '';
 
             if (cardData.type === "top10" || cardData.type === "bottom10") {
-                var template1 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: your [fewest] [commit]s in [a day] [ever]
-                var template2 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [most] [commit]ted [file changes] in [a day] [ever]
-                var template3 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [fewest] [music track] [listen]s in [a day] [ever]
+                var template1 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: your [6th] [fewest] [commit]s in [a day] [ever]
+                var template2 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [most] [commit]ted [file changes] in [a day] [ever]
+                var template3 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [music track] [listen]s in [a day] [ever]
                 var template4 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
+                var template5 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
 
                 var supplantObject = {
                     eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
@@ -452,7 +453,7 @@ $(function() {
                 };
 
                 if (cardData.actionTags[0] === "commit" || cardData.actionTags[1] === "push") {
-                    if (cardData.properties.sum['__count__']) {
+                    if (cardData.properties.sum.__count__) {
                         supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
                         cardText = template1.supplant(supplantObject);
                     } else {
@@ -461,7 +462,7 @@ $(function() {
                         cardText = template2.supplant(supplantObject);
                     }
                 } else if (cardData.actionTags[0] === "listen") {
-                    if (cardData.properties.sum['__count__']) {
+                    if (cardData.properties.sum.__count__) {
                         supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
                         supplantObject.objects = displayTags(cardData.objectTags);
                         cardText = template3.supplant(supplantObject);
@@ -470,6 +471,10 @@ $(function() {
                         supplantObject.property = buildPropertiesText(cardData.properties.sum);
                         cardText = template4.supplant(supplantObject);
                     }
+                } else if (cardData.actionTags[0] === "use") {
+                    supplantObject.property = buildPropertiesText(cardData.properties.sum);
+                    supplantObject.objects = displayTags(cardData.objectTags);
+                    cardText = template5.supplant(supplantObject);
                 }
 
                 cardText = cardText.supplant(supplantObject);
