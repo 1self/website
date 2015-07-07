@@ -597,7 +597,7 @@ $(function() {
                             colour: colour,
                             shareContainerClasses: 'share-container-back'
                         }),
-                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&dataSrc=' + cardData.chart
+                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&highlightCondition=top&dataSrc=' + cardData.chart
                     })
                 });
                 break;
@@ -630,7 +630,7 @@ $(function() {
                             colour: colour,
                             shareContainerClasses: 'share-container-back'
                         }),
-                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&dataSrc=' + cardData.chart
+                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&highlightCondition=bottom&dataSrc=' + cardData.chart
                     })
                 });
                 break;
@@ -648,6 +648,7 @@ $(function() {
             $cardMedia.empty();
             var iFrameHtml = '<iframe class="thumbnailFrame" src="' + cardData.thumbnailMedia;
             iFrameHtml += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
+            iFrameHtml += '&highlightCondition=' + cardData.type;
             iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
             iFrameHtml += 'scrolling="no"></iframe>';
             $cardMedia.append(iFrameHtml);

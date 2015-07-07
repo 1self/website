@@ -26,6 +26,8 @@
     var dataSrc = 'http://app-staging.1self.co' + getQSParam().dataSrc;
     var offline = false;
 
+    console.log('highlightCondition',highlightCondition, window.location);
+
     $('.mainContainer').ready(function () {
         getData(dataSrc, function (data) {
           drawSparkLine(data, null);
@@ -65,12 +67,12 @@
             }
         }
 
-        if (lowestIndex >= 0) {
+        if (lowestIndex >= 0 && highlightCondition === "bottom10") {
             updatedArray[lowestIndex].highlight = true;
             highlightArray.push(updatedArray[lowestIndex]);
         }
 
-        if (highestIndex >= 0) {
+        if (highestIndex >= 0 && highlightCondition === "top10") {
             updatedArray[highestIndex].highlight = true;
             highlightArray.push(updatedArray[lowestIndex]);
         }
@@ -217,14 +219,14 @@
             .attr("r", 3.5)
             .attr("cx", xMap)
             .attr("cy", yMap)
-            .style("fill", function(d) { return d.highlight ? getColour(lineColour, 1) : lineColour; } );
+            .style("fill", function(d) { return d.highlight ? lineColour : '#a9b2bd'; } );
 
         // add vertical lines down from scatter points
         svg.selectAll(".lolly-stick")
             .data(data)
             .enter().append("line")
             .attr("class", "lolly-stick")
-            .style("stroke", function(d) { return d.highlight ? getColour(lineColour, 1) : lineColour; } )
+            .style("stroke", function(d) { return d.highlight ? lineColour : '#a9b2bd'; } )
             .attr("y2", function(d) { return height - y(d.value); })
             .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.value) + ")"; } );
 
@@ -253,7 +255,7 @@
             .data(data)
             .enter().append("line")
             .style("display", function(d) { return d.highlight ? "block" : "none"; } )
-            .style("stroke", getColour(lineColour, 1))
+            .style("stroke", lineColour)
             .style("stroke-dasharray", "4,2")
             .style("stroke-width", 2)
             .attr("x1", function(d) { return x(d.date); })
