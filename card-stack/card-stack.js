@@ -29,6 +29,12 @@ function slideRight(eventElement) {
     $cardBackContainer.find('.cardBack-2').removeClass('slideInLeft');
 }
 
+function getHighlightDates(cardData) {
+    if (cardData.startRange === cardData.endRange) {
+        return cardData.startRange;
+    }
+}
+
 // $('.cardBack-2').ready(function() {
 //     var $cardBacks = $('.cardBack-2');
 //     for (var i in $cardBacks) { 
@@ -596,8 +602,8 @@ $(function() {
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-back'
-                        }),
-                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&highlightCondition=top&dataSrc=' + cardData.chart
+                        })/*,
+                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&highlightCondition=top&dataSrc=' + cardData.chart*/
                     })
                 });
                 break;
@@ -629,8 +635,8 @@ $(function() {
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-back'
-                        }),
-                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&highlightCondition=bottom&dataSrc=' + cardData.chart
+                        })/*,
+                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&highlightCondition=bottom&dataSrc=' + cardData.chart*/
                     })
                 });
                 break;
@@ -649,6 +655,7 @@ $(function() {
             var iFrameHtml = '<iframe class="thumbnailFrame" src="' + cardData.thumbnailMedia;
             iFrameHtml += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
             iFrameHtml += '&highlightCondition=' + cardData.type;
+            iFrameHtml += '&highlightDates=' + getHighlightDates(cardData);
             iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
             iFrameHtml += 'scrolling="no"></iframe>';
             $cardMedia.append(iFrameHtml);
@@ -666,6 +673,9 @@ $(function() {
             $cardMedia.empty();
             var iFrameHtml = '<iframe class="mainChartFrame" src="' + cardData.thumbnailMedia;
             iFrameHtml += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
+            iFrameHtml += '&highlightCondition=' + cardData.type;
+            iFrameHtml += '&highlightDates=' + getHighlightDates(cardData);
+            iFrameHtml += '&vaxis=true&haxis=true';
             iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
             iFrameHtml += 'scrolling="no"></iframe>';
             $cardMedia.append(iFrameHtml);

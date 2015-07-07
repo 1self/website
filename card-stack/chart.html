@@ -26,8 +26,6 @@
     var dataSrc = 'http://app-staging.1self.co' + getQSParam().dataSrc;
     var offline = false;
 
-    console.log('highlightCondition',highlightCondition, window.location);
-
     $('.mainContainer').ready(function () {
         getData(dataSrc, function (data) {
           drawSparkLine(data, null);
@@ -45,7 +43,7 @@
         var dataset = {};
 
         if (highlightDates) {
-            // highlightDatesArray = highlightDates.split(',')
+            highlightDatesArray = highlightDates.split(',');
         }
 
         for (var i = 0; i < dataArray.length; i++) {
@@ -63,6 +61,12 @@
                     // console.log('values',j,highestValue,updatedArray[j].value);
                     highestValue = updatedArray[j].value;
                     highestIndex = j;
+                }
+
+                for (var k = 0; k < highlightDatesArray.length; k++) {
+                    if (highlightDatesArray[k] === updatedArray[j].date) {
+                        updatedArray[j].highlight = true;
+                    }
                 }
             }
         }
@@ -146,7 +150,7 @@
 
         // Set the dimensions of the canvas / graph
         var margin = {top: 20, right: 60, bottom: 20, left: 10};
-        // var margin = {top: 30, right: 20, bottom: 30, left: 50};
+        if (vaxis) margin.left += 20;
         
         width = width - margin.left - margin.right;
         height = height - margin.top - margin.bottom;
