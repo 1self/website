@@ -21,14 +21,66 @@
     var hhlt = getQSParam().hhlt === "true";
     var vaxis = getQSParam().vaxis === "true";
     var haxis = getQSParam().haxis === "true";
+    var highlightDates = getQSParam().highlightDates;
+    var highlightCondition = getQSParam().highlightCondition;
     var dataSrc = 'http://app-staging.1self.co' + getQSParam().dataSrc;
-    var offline = true;
+    var offline = false;
 
     $('.mainContainer').ready(function () {
         getData(dataSrc, function (data) {
           drawSparkLine(data, null);
         });
     });
+
+    function stripNullValuesAndHighlight(dataArray) {
+        var updatedArray = [];
+        var highlightArray = [];
+        var highlightDatesArray = [];
+        var lowestValue;
+        var lowestIndex = -1;
+        var highestValue;
+        var highestIndex = -1;
+        var dataset = {};
+
+        if (highlightDates) {
+            // highlightDatesArray = highlightDates.split(',')
+        }
+
+        for (var i = 0; i < dataArray.length; i++) {
+            if (!isNaN(dataArray[i].value)) {
+                updatedArray.push(dataArray[i]);
+
+                var j = updatedArray.length - 1;
+                if (j === 0 || updatedArray[j].value <= lowestValue) {
+                    // console.log('low values',j,lowestValue,updatedArray[j].value);
+                    lowestValue = updatedArray[j].value;
+                    lowestIndex = j;
+                }
+
+                if (j === 0 || updatedArray[j].value >= highestValue) {
+                    // console.log('values',j,highestValue,updatedArray[j].value);
+                    highestValue = updatedArray[j].value;
+                    highestIndex = j;
+                }
+            }
+        }
+
+        if (lowestIndex >= 0) {
+            updatedArray[lowestIndex].highlight = true;
+            highlightArray.push(updatedArray[lowestIndex]);
+        }
+
+        if (highestIndex >= 0) {
+            updatedArray[highestIndex].highlight = true;
+            highlightArray.push(updatedArray[lowestIndex]);
+        }
+
+        dataset.allData = updatedArray;
+        dataset.highlightedData = highlightArray;
+
+        console.log('dataset',dataset);
+        return dataset;
+    }
 
 
     function getData(dataSrc, callback) {
@@ -37,13 +89,16 @@
         };
 
         if (offline) {
-            var data = {"data":[{"date":"2015-06-10","value":2, "highlight": true},{"date":"2015-06-08","value":3},{"date":"2015-05-07","value":3},{"date":"2015-06-09","value":6},{"date":"2015-06-04","value":3},{"date":"2015-05-20","value":3},{"date":"2015-05-15","value":1},{"date":"2015-05-11","value":3},{"date":"2015-05-06","value":7},{"date":"2015-05-05","value":13, "highlight": true},{"date":"2015-05-04","value":7},{"date":"2015-05-02","value":1},{"date":"2015-04-30","value":3}],"property":"pushId"};
+            var data = {"data":[{"date":"2015-06-10","value":2},{"date":"2015-06-08","value":3},{"date":"2015-05-07","value":3},{"date":"2015-06-09","value":6},{"date":"2015-06-04","value":3},{"date":"2015-05-20","value":3},{"date":"2015-05-15","value":1},{"date":"2015-05-11","value":3},{"date":"2015-05-06","value":7},{"date":"2015-05-05","value":13},{"date":"2015-05-04","value":7},{"date":"2015-05-02","value":1},{"date":"2015-04-30","value":3}],"property":"pushId"};
 
             data.data.sort(custom_sort);
+            dataset = stripNullValuesAndHighlight(data.data);
 
-            callback(data);
+
+            callback(dataset);
         } else {
             var apiURL = dataSrc;
+            // alert(apiURL);
             var jqxhr = $.getJSON(apiURL,
                     function() {
                         // console.log("accessed api for chart data");
@@ -52,7 +107,8 @@
 
                     // console.log('chart data', data);
                     data.data.sort(custom_sort);
-                    callback(data);
+                    dataset = stripNullValuesAndHighlight(data.data);
+                    callback(dataset);
                 })
                 .fail(function(data) {
                     console.log('error getting chart data', data);
@@ -75,7 +131,10 @@
 
     function drawSparkLine(chartData, appendToElement) {
 
-        var dataset = chartData.data;
+        var data = chartData.allData;
+        var highlightData = chartData.highlightedData;
+
+        console.log(chartData);
 
         var width = $('body').width();
         var height = $('body').height();
@@ -84,7 +143,7 @@
         // var chartHeight = height;
 
         // Set the dimensions of the canvas / graph
-        var margin = {top: 10, right: 60, bottom: 10, left: 10};
+        var margin = {top: 20, right: 60, bottom: 20, left: 10};
         // var margin = {top: 30, right: 20, bottom: 30, left: 50};
         
         width = width - margin.left - margin.right;
@@ -106,6 +165,12 @@
         var yAxis = d3.svg.axis().scale(y)
             .orient("left").ticks(5);
 
+        data.forEach(function(d) {
+            d.date = parseDate(d.date);
+            // d.value = isNaN(d.value) ? 0 : d.value;
+            // d.value = +d.value;
+        });
+
         // Define the line
         var valueline = d3.svg.line()
             .x(function(d) { return x(d.date); })
@@ -115,7 +180,7 @@
         var xMap = function(d) { return x(d.date);}; // data -> display
 
         // setup y
-        var yMap = function(d) { return y(d.value);}; // data -> display
+        var yMap = function(d) { return y(d.value); }; // data -> display
 
             
         // Adds the svg canvas
@@ -133,174 +198,209 @@
         var focus = svg.append("g") 
             .style("display", "none");
 
-        var data = chartData.data;
 
-        console.log(chartData);
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.date; }));
+        y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
-        // Get the data
-        // d3.csv("atad.csv", function(error, data) {
-            data.forEach(function(d) {
-                d.date = parseDate(d.date);
-                // d.value = +d.value;
-            });
+        // Add the valueline path.
+        lineSvg.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data))
+            .attr("stroke", lineColour);
 
-            // Scale the range of the data
-            x.domain(d3.extent(data, function(d) { return d.date; }));
-            y.domain([0, d3.max(data, function(d) { return d.value; })]);
+        // draw dots
+        svg.selectAll(".dot")
+            .data(data)
+            .enter().append("circle")
+            .attr("class", "dot")
+            .attr("r", 3.5)
+            .attr("cx", xMap)
+            .attr("cy", yMap)
+            .style("fill", function(d) { return d.highlight ? getColour(lineColour, 1) : lineColour; } );
 
-            // Add the valueline path.
-            lineSvg.append("path")
-                .attr("class", "line")
-                .attr("d", valueline(data))
-                .attr("stroke", lineColour);
+        // add vertical lines down from scatter points
+        svg.selectAll(".lolly-stick")
+            .data(data)
+            .enter().append("line")
+            .attr("class", "lolly-stick")
+            .style("stroke", function(d) { return d.highlight ? getColour(lineColour, 1) : lineColour; } )
+            .attr("y2", function(d) { return height - y(d.value); })
+            .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.value) + ")"; } );
 
-            // draw dots
-            svg.selectAll(".dot")
-                .data(data)
-                .enter().append("circle")
-                .attr("class", "dot")
-                .attr("r", 3.5)
-                .attr("cx", xMap)
-                .attr("cy", yMap)
-                .style("fill", function(d) { return d.highlight ? getColour(lineColour, 1) : lineColour; } );
+        // add highlight text (value)
+        svg.selectAll(".highlight-text")
+            .data(data)
+            .enter().append("text")
+            // .style("stroke", "pink")
+            // .style("stroke-width", "3.5px")
+            .style("opacity", 0.8)
+            .style("display", function(d) { return d.highlight ? "block" : "none"; } )
+            .attr("dx", 8)
+            .attr("dy", "-.3em")
+            .attr("transform", function(d) { return "translate(" + (width + 5) + "," + y(d.value) + ")"; } )
+            .text(function(d) { return d.value; } );
 
-            svg.selectAll(".lolly-stick")
-                .data(data)
-                .enter().append("line")
-                .attr("class", "lolly-stick")
-                .style("stroke", function(d) { return d.highlight ? getColour(lineColour, 1) : lineColour; } )
-                .attr("y2", function(d) { return height - y(d.value); })
-                .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.value) + ")"; });
+        // add highlight text (date)
+        svg.selectAll(".highlight-text")
+            .data(data)
+            .enter().append("text")
+            // .style("stroke", "pink")
+            // .style("stroke-width", "3.5px")
+            .style("opacity", 0.8)
+            .style("display", function(d) { return d.highlight ? "block" : "none"; } )
+            .attr("dx", 8)
+            .attr("dy", "1em")
+            .attr("transform", function(d) { return "translate(" + (width + 5) + "," + y(d.value) + ")"; } )
+            .text(function(d) { return formatDate(d.date); } );
 
-            if (haxis) {
-                // Add the X Axis
-                svg.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis);
-            }
 
-            if (vaxis) {
-                // Add the Y Axis
-                svg.append("g")
-                    .attr("class", "y axis")
-                    .call(yAxis);
-            }
+        // focus.append("text")
+        //     .attr("class", "y2")
+        //     .attr("dx", 8)
+        //     .attr("dy", "-.3em");
 
-           // append the x line
-            focus.append("line")
-                .attr("class", "x")
-                .style("stroke", getColour(lineColour, 1))
-                .style("stroke-dasharray", "4,2")
-                .style("opacity", 0.5)
-                .style("stroke-width", 2);
-                // .attr("y1", 0)
-                // .attr("y2", height);
+        // place the date at the intersection
+        focus.append("text")
+            .attr("class", "y3")
+            .style("stroke", "#e7e9ee")
+            .style("stroke-width", "3.5px")
+            .style("opacity", 0.8)
+            .attr("dx", 8)
+            .attr("dy", "1em");
+        focus.append("text")
+            .attr("class", "y4")
+            .attr("dx", 8)
+            .attr("dy", "1em");
 
-            // append the y line
-            focus.append("line")
-                .attr("class", "y")
-                .style("stroke", getColour(lineColour, 1))
-                .style("stroke-dasharray", "4,2")
-                .style("opacity", 0.5)
-                .style("stroke-width", 2)
-                .attr("x1", width)
-                .attr("x2", width);
+        if (haxis) {
+            // Add the X Axis
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+        }
 
-            // append the circle at the intersection
-            focus.append("circle")
-                .attr("class", "y")
-                .style("fill", "none")
-                .style("stroke", getColour(lineColour, 1))
-                .style("stroke-width", 2)
-                .attr("r", 4);
+        if (vaxis) {
+            // Add the Y Axis
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis);
+        }
 
-            // place the value at the intersection
-            focus.append("text")
-                .attr("class", "y1")
-                .style("stroke", "#e7e9ee")
-                .style("stroke-width", "3.5px")
-                .style("opacity", 0.8)
-                .attr("dx", 8)
-                .attr("dy", "-.3em");
-            focus.append("text")
-                .attr("class", "y2")
-                .attr("dx", 8)
-                .attr("dy", "-.3em");
+       // append the x line
+        focus.append("line")
+            .attr("class", "x")
+            .style("stroke", getColour(lineColour, 1))
+            .style("stroke-dasharray", "4,2")
+            .style("opacity", 0.5)
+            .style("stroke-width", 2);
+            // .attr("y1", 0)
+            // .attr("y2", height);
 
-            // place the date at the intersection
-            focus.append("text")
-                .attr("class", "y3")
-                .style("stroke", "#e7e9ee")
-                .style("stroke-width", "3.5px")
-                .style("opacity", 0.8)
-                .attr("dx", 8)
-                .attr("dy", "1em");
-            focus.append("text")
-                .attr("class", "y4")
-                .attr("dx", 8)
-                .attr("dy", "1em");
-            
-            // append the rectangle to capture mouse
-            svg.append("rect")
-                .attr("width", width)
-                .attr("height", height)
-                .style("fill", "none")
-                .style("pointer-events", "all")
-                .on("mouseover", function() { focus.style("display", null); })
-                .on("mouseout", function() { focus.style("display", "none"); })
-                .on("mousemove", mousemove);
+        // append the y line
+        focus.append("line")
+            .attr("class", "y")
+            .style("stroke", getColour(lineColour, 1))
+            .style("stroke-dasharray", "4,2")
+            .style("opacity", 0.5)
+            .style("stroke-width", 2)
+            .attr("x1", width)
+            .attr("x2", width);
 
-            function mousemove() {
-                var x0 = x.invert(d3.mouse(this)[0]),
-                    i = bisectDate(data, x0, 1),
-                    d0 = data[i - 1],
-                    d1 = data[i],
-                    d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+        // append the circle at the intersection
+        focus.append("circle")
+            .attr("class", "y")
+            .style("fill", "none")
+            .style("stroke", getColour(lineColour, 1))
+            .style("stroke-width", 2)
+            .attr("r", 4);
 
-                focus.select("circle.y")
-                    .attr("transform",
-                          "translate(" + x(d.date) + "," +
-                                         y(d.value) + ")");
+        // place the value at the intersection
+        focus.append("text")
+            .attr("class", "y1")
+            .style("stroke", "#e7e9ee")
+            .style("stroke-width", "3.5px")
+            .style("opacity", 0.8)
+            .attr("dx", 8)
+            .attr("dy", "-.3em");
+        focus.append("text")
+            .attr("class", "y2")
+            .attr("dx", 8)
+            .attr("dy", "-.3em");
 
-                focus.select("text.y1")
-                    .attr("transform",
-                          "translate(" + x(d.date) + "," +
-                                         y(d.value) + ")")
-                    .text(d.value);
+        // place the date at the intersection
+        focus.append("text")
+            .attr("class", "y3")
+            .style("stroke", "#e7e9ee")
+            .style("stroke-width", "3.5px")
+            .style("opacity", 0.8)
+            .attr("dx", 8)
+            .attr("dy", "1em");
+        focus.append("text")
+            .attr("class", "y4")
+            .attr("dx", 8)
+            .attr("dy", "1em");
+        
+        // append the rectangle to capture mouse
+        svg.append("rect")
+            .attr("width", width)
+            .attr("height", height)
+            .style("fill", "none")
+            .style("pointer-events", "all")
+            .on("mouseover", function() { focus.style("display", null); })
+            .on("mouseout", function() { focus.style("display", "none"); })
+            .on("mousemove", mousemove);
 
-                focus.select("text.y2")
-                    .attr("transform",
-                          "translate(" + x(d.date) + "," +
-                                         y(d.value) + ")")
-                    .text(d.value);
+        function mousemove() {
+            var x0 = x.invert(d3.mouse(this)[0]),
+                i = bisectDate(data, x0, 1),
+                d0 = data[i - 1],
+                d1 = data[i],
+                d = x0 - d0.date > d1.date - x0 ? d1 : d0;
 
-                focus.select("text.y3")
-                    .attr("transform",
-                          "translate(" + x(d.date) + "," +
-                                         y(d.value) + ")")
-                    .text(formatDate(d.date));
+            focus.select("circle.y")
+                .attr("transform",
+                      "translate(" + x(d.date) + "," +
+                                     y(d.value) + ")");
 
-                focus.select("text.y4")
-                    .attr("transform",
-                          "translate(" + x(d.date) + "," +
-                                         y(d.value) + ")")
-                    .text(formatDate(d.date));
+            focus.select("text.y1")
+                .attr("transform",
+                      "translate(" + x(d.date) + "," +
+                                     y(d.value) + ")")
+                .text(d.value);
 
-                focus.select(".x")
-                    .attr("transform",
-                          "translate(" + x(d.date) + "," +
-                                         y(d.value) + ")")
-                               .attr("y2", height - y(d.value));
+            focus.select("text.y2")
+                .attr("transform",
+                      "translate(" + x(d.date) + "," +
+                                     y(d.value) + ")")
+                .text(d.value);
 
-                focus.select(".y")
-                    .attr("transform",
-                          "translate(" + width * -1 + "," +
-                                         y(d.value) + ")")
-                               .attr("x2", width + width);
-            }
+            focus.select("text.y3")
+                .attr("transform",
+                      "translate(" + x(d.date) + "," +
+                                     y(d.value) + ")")
+                .text(formatDate(d.date));
 
-        // });
+            focus.select("text.y4")
+                .attr("transform",
+                      "translate(" + x(d.date) + "," +
+                                     y(d.value) + ")")
+                .text(formatDate(d.date));
+
+            focus.select(".x")
+                .attr("transform",
+                      "translate(" + x(d.date) + "," +
+                                     y(d.value) + ")")
+                           .attr("y2", height - y(d.value));
+
+            focus.select(".y")
+                .attr("transform",
+                      "translate(" + width * -1 + "," +
+                                     y(d.value) + ")")
+                           .attr("x2", width + width);
+        }
+
  
     }
 
