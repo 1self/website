@@ -343,27 +343,7 @@ $(function() {
 
         comparitorText = (type === "top10" ? "most" : "fewest");
 
-        var positionText = '';
-
-        if (position > 0) {
-            position = (position + 1) + '';
-            if (position.length > 1 && (position.substring(position.length - 2) === '11' || position.substring(position.length - 2) === '12' || position.substring(position.length - 2) === '13'))
-                positionText = position + "th ";
-
-            else if (position.charAt(position.length - 1) === '1')
-                positionText = position + "st ";
-
-            else if (position.charAt(position.length - 1) === '2')
-                positionText = position + "nd ";
-
-            else if (position.charAt(position.length - 1) === '3')
-                positionText = position + "rd ";
-
-            else
-                positionText = position + "th ";
-        }
-
-        comparitorText = positionText + comparitorText;
+        comparitorText = ordinal_suffix_of(position + 1) + ' ' + comparitorText;
 
         return comparitorText;
     };
