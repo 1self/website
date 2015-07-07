@@ -232,9 +232,6 @@
         svg.selectAll(".highlight-text")
             .data(data)
             .enter().append("text")
-            // .style("stroke", "pink")
-            // .style("stroke-width", "3.5px")
-            .style("opacity", 0.8)
             .style("display", function(d) { return d.highlight ? "block" : "none"; } )
             .attr("dx", 8)
             .attr("dy", "-.3em")
@@ -245,20 +242,24 @@
         svg.selectAll(".highlight-text")
             .data(data)
             .enter().append("text")
-            // .style("stroke", "pink")
-            // .style("stroke-width", "3.5px")
-            .style("opacity", 0.8)
             .style("display", function(d) { return d.highlight ? "block" : "none"; } )
             .attr("dx", 8)
             .attr("dy", "1em")
             .attr("transform", function(d) { return "translate(" + (width + 5) + "," + y(d.value) + ")"; } )
             .text(function(d) { return formatDate(d.date); } );
 
+        // add highlight horizontal line
+        svg.selectAll(".highlight-text")
+            .data(data)
+            .enter().append("line")
+            .style("display", function(d) { return d.highlight ? "block" : "none"; } )
+            .style("stroke", getColour(lineColour, 1))
+            .style("stroke-dasharray", "4,2")
+            .style("stroke-width", 2)
+            .attr("x1", function(d) { return x(d.date); })
+            .attr("x2", width + 10)
+            .attr("transform", function(d) { return "translate(0," + y(d.value) + ")"; } );
 
-        // focus.append("text")
-        //     .attr("class", "y2")
-        //     .attr("dx", 8)
-        //     .attr("dy", "-.3em");
 
         // place the date at the intersection
         focus.append("text")
