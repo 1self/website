@@ -268,10 +268,11 @@
                 highlightObj.rankAsc = d.rankAsc;
                 highlightObj.date = d.date;
                 highlightObj.psn = y(d.value);
+                highlightObj.newPsn = y(d.value);
                 highlightTextElements.push(highlightObj);
-                return "highlight-text-active d-rank";
+                return "highlight-text-active";
             } else {
-                return "highlight-text-hidden d-rank";
+                return "highlight-text-hidden";
             }
         };
 
@@ -292,9 +293,18 @@
             }
             if (overlap) {
                 if (top.psn <= diffCheck) {
-                    bottom.psn = top.psn + diffCheck + padding;
+                    bottom.newPsn = top.psn + diffCheck + padding;
                 } else {
-                    top.psn = bottom.psn - diffCheck - padding;
+                    top.newPsn = bottom.psn - diffCheck - padding;
+                }
+            }
+        };
+
+        var repositionLabel = function(label) {
+            console.log(label, label.getAttribute('rankAsc'));//.prop('rankAsc'));
+            for (var i = 0; i < highlightTextElements.length; i++) {
+                if (label.getAttribute('rankAsc') === highlightTextElements[i].rankAsc + '') {
+                    label.setAttribute('transform', 'translate(0,' + highlightTextElements[i].newPsn + ')');
                 }
             }
         };
@@ -307,56 +317,72 @@
             .attr("rankAsc", function(d) { return d.rankAsc; } )
             .attr("dx", width + 13)
             .attr("dy", "-.3em")
-            // .attr("transform", function(d) { return "translate(" + 0 + "," + y(d.value) + ")"; } )
             .text(rankText);
 
-        console.log('highlightTextElements',highlightTextElements);
-        console.log('highlightTextElements',highlightTextElements[0].psn,highlightTextElements[1].psn);
+        // console.log('highlightTextElements',highlightTextElements);
+        // console.log('highlightTextElements',highlightTextElements[0].psn,highlightTextElements[1].psn);
 
         updateOverlaps();
 
-        console.log('highlightTextElements',highlightTextElements[0].psn,highlightTextElements[1].psn);
+        console.log('highlightTextElements',highlightTextElements[0].newPsn,highlightTextElements[1].newPsn);
 
         // add highlight text (value)
         svg.selectAll(".highlight-text")
             .data(data)
             .enter().append("text")
-            .attr("class", function(d) { return d.highlight ? "highlight-text-active d-value" : "highlight-text-hidden d-value"; } )
+            .attr("class", function(d) { return d.highlight ? "highlight-text-active" : "highlight-text-hidden"; } )
             .attr("rankAsc", function(d) { return d.rankAsc; } )
             .attr("dx", width + 13)
             .attr("dy", "1em")
-            // .attr("transform", function(d) { return "translate(" + 0 + "," + y(d.value) + ")"; } )
             .text(function(d) { return d.value; } );
-
-        var repositionLabel = function(label) {
-            console.log(label, label.getAttribute('rankAsc'));//.prop('rankAsc'));
-            for (var i = 0; i < highlightTextElements.length; i++) {
-                if (label.getAttribute('rankAsc') === highlightTextElements[i].rankAsc + '') {
-                    label.setAttribute('transform', 'translate(0,' + highlightTextElements[i].psn + ')');
-                }
-            }
-        };
 
         svg.selectAll(".highlight-text-active")
             .each( function() { repositionLabel(this); } );
-            // .data(highlightTextElements)
-            // .attr("transform", function(d) { return "translate(" + 0 + "," + d.psn + ")"; } );
-
-        // svg.selectAll(".highlight-text-active d-value")
-        //     .data(highlightTextElements)
-        //     .attr("transform", function(d) { return "translate(" + 0 + "," + d.psn + ")"; } );
 
         // add highlight horizontal line
         svg.selectAll(".highlight-text")
-            .data(data)
+            .data(highlightTextElements)
             .enter().append("line")
-            .style("display", function(d) { return d.highlight ? "block" : "none"; } )
             .style("stroke", lineColour)
-            .style("stroke-dasharray", "4,2")
+            // .style("stroke-dasharray", "4,2")
             .style("stroke-width", 2)
             .attr("x1", function(d) { return x(d.date); })
-            .attr("x2", width + 10)
-            .attr("transform", function(d) { return "translate(0," + y(d.value) + ")"; } );
+            .attr("x2", function(d) { return d.psn === d.newPsn ? width + 10 : width + 6; } )
+            .attr("transform", function(d) { return "translate(0," + d.psn + ")"; } );
+
+        // add highlight horizontal line
+        svg.selectAll(".highlight-text")
+            .data(highlightTextElements)
+            .enter().append("line")
+            .style("stroke", lineColour)
+            // .style("stroke-dasharray", "4,2")
+            .style("stroke-width", 2)
+            .attr("x1", width + 6)
+            .attr("x2", width + 10 )
+            .attr("transform", function(d) { return "translate(0," + d.newPsn + ")"; } );
+
+        // add highlight horizontal line
+        svg.selectAll(".highlight-text")
+            .data(highlightTextElements)
+            .enter().append("line")
+            .style("stroke", lineColour)
+            // .style("stroke-dasharray", "4,2")
+            .style("stroke-width", 2)
+            .attr("y1", function(d) { return d.newPsn; } )
+            .attr("y2", function(d) { return d.psn; } )
+            .attr("transform", "translate(" + (width + 6) + ",0)");
+
+        // add highlight horizontal line
+        // svg.selectAll(".highlight-text")
+        //     .data(data)
+        //     .enter().append("line")
+        //     .style("display", function(d) { return d.highlight ? "block" : "none"; } )
+        //     .style("stroke", lineColour)
+        //     // .style("stroke-dasharray", "4,2")
+        //     .style("stroke-width", 2)
+        //     .attr("x1", function(d) { return x(d.date); })
+        //     .attr("x2", width + 10)
+        //     .attr("transform", function(d) { return "translate(0," + y(d.value) + ")"; } );
 
 
         // place the date at the intersection
