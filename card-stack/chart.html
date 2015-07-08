@@ -25,7 +25,7 @@
     var highlightCondition = getQSParam().highlightCondition;
     var displayTooltips = getQSParam().displayTooltips === "true";
     var dataSrc = 'http://app-staging.1self.co' + getQSParam().dataSrc;
-    var offline = true;
+    var offline = false;
 
     $('.mainContainer').ready(function () {
         getData(dataSrc, function (data) {
@@ -33,57 +33,48 @@
         });
     });
 
-    function stripNullValuesAndHighlight(dataArray) {
+    function stripNullValues(dataArray) {
         var updatedArray = [];
-        var highlightArray = [];
-        var highlightDatesArray = [];
         var lowestValue;
         var lowestIndex = -1;
         var highestValue;
         var highestIndex = -1;
         var dataset = {};
 
-        if (highlightDates) {
-            highlightDatesArray = highlightDates.split(',');
-        }
-
         for (var i = 0; i < dataArray.length; i++) {
             if (!isNaN(dataArray[i].value)) {
                 updatedArray.push(dataArray[i]);
 
-                var j = updatedArray.length - 1;
-                if (j === 0 || updatedArray[j].value <= lowestValue) {
-                    // console.log('low values',j,lowestValue,updatedArray[j].value);
-                    lowestValue = updatedArray[j].value;
-                    lowestIndex = j;
-                }
+                // var j = updatedArray.length - 1;
+                // if (j === 0 || updatedArray[j].value <= lowestValue) {
+                //     // console.log('low values',j,lowestValue,updatedArray[j].value);
+                //     lowestValue = updatedArray[j].value;
+                //     lowestIndex = j;
+                // }
 
-                if (j === 0 || updatedArray[j].value >= highestValue) {
-                    // console.log('values',j,highestValue,updatedArray[j].value);
-                    highestValue = updatedArray[j].value;
-                    highestIndex = j;
-                }
+                // if (j === 0 || updatedArray[j].value >= highestValue) {
+                //     // console.log('values',j,highestValue,updatedArray[j].value);
+                //     highestValue = updatedArray[j].value;
+                //     highestIndex = j;
+                // }
 
-                for (var k = 0; k < highlightDatesArray.length; k++) {
-                    if (highlightDatesArray[k] === updatedArray[j].date) {
-                        updatedArray[j].highlight = true;
-                    }
-                }
+                // for (var k = 0; k < highlightDatesArray.length; k++) {
+                //     if (highlightDatesArray[k] === updatedArray[j].date) {
+                //         updatedArray[j].highlight = true;
+                //     }
+                // }
             }
         }
 
-        if (lowestIndex >= 0 && highlightCondition === "bottom10") {
-            updatedArray[lowestIndex].highlight = true;
-            highlightArray.push(updatedArray[lowestIndex]);
-        }
+        // if (lowestIndex >= 0 && highlightCondition === "bottom10") {
+        //     updatedArray[lowestIndex].highlight = true;
+        // }
 
-        if (highestIndex >= 0 && highlightCondition === "top10") {
-            updatedArray[highestIndex].highlight = true;
-            highlightArray.push(updatedArray[lowestIndex]);
-        }
+        // if (highestIndex >= 0 && highlightCondition === "top10") {
+        //     updatedArray[highestIndex].highlight = true;
+        // }
 
         dataset.allData = updatedArray;
-        dataset.highlightedData = highlightArray;
 
         return dataset;
     }
@@ -97,25 +88,49 @@
         dataset.sort(ranking_sort);
 
         for (var i = 0; i < dataset.length; i++) {
-            dataset[i].rankDesc = i;
-            dataset[i].rankAsc = dataset.length - 1 - i;
+            dataset[i].rankAsc = i;
+            dataset[i].rankDesc = dataset.length - 1 - i;
         }
+    }
+
+    function highlightData(dataArray) {
+        var highlightDatesArray = [];
+
+        if (highlightDates) {
+            highlightDatesArray = highlightDates.split(',');
+        }
+
+        for (var i = 0; i < dataArray.length; i++) {
+            if (highlightCondition === "bottom10" && dataArray[i].rankAsc === 0) {
+                dataArray[i].highlight = true;
+            } else if (highlightCondition === "top10" && dataArray[i].rankDesc === 0) {
+                dataArray[i].highlight = true;
+            }
+
+            for (var k = 0; k < highlightDatesArray.length; k++) {
+                if (highlightDatesArray[k] === dataArray[i].date) {
+                    dataArray[i].highlight = true;
+                }
+            }
+        }
+
     }
 
 
     function getData(dataSrc, callback) {
-        var custom_sort = function(a, b) {
+        var sort_by_date = function(a, b) {
             return new Date(a.date).getTime() - new Date(b.date).getTime();
         };
 
         if (offline) {
             var data = {"data":[{"date":"2015-06-10","value":2},{"date":"2015-06-08","value":3},{"date":"2015-05-07","value":3},{"date":"2015-06-09","value":6},{"date":"2015-06-04","value":3},{"date":"2015-05-20","value":3},{"date":"2015-05-15","value":1},{"date":"2015-05-11","value":3},{"date":"2015-05-06","value":7},{"date":"2015-05-05","value":13},{"date":"2015-05-04","value":7},{"date":"2015-05-02","value":1},{"date":"2015-04-30","value":3}],"property":"pushId"};
 
-            addRankings(data.data);
-            data.data.sort(custom_sort);
             highlightDates = "2015-06-10";
-            dataset = stripNullValuesAndHighlight(data.data);
-
+            dataset = stripNullValues(data.data);
+            dataset.allData.sort(sort_by_date);
+            addRankings(dataset.allData);
+            dataset.allData.sort(sort_by_date);
+            highlightData(dataset.allData);
 
             callback(dataset);
         } else {
@@ -128,9 +143,11 @@
                 .done(function(data) {
 
                     // console.log('chart data', data);
-                    addRankings(data.data);
-                    data.data.sort(custom_sort);
-                    dataset = stripNullValuesAndHighlight(data.data);
+                    dataset = stripNullValues(data.data);
+                    dataset.allData.sort(sort_by_date);
+                    addRankings(dataset.allData);
+                    dataset.allData.sort(sort_by_date);
+                    highlightData(dataset.allData);
                     callback(dataset);
                 })
                 .fail(function(data) {
@@ -155,7 +172,6 @@
     function drawSparkLine(chartData, appendToElement) {
 
         var data = chartData.allData;
-        var highlightData = chartData.highlightedData;
 
         console.log(chartData);
 
@@ -227,9 +243,9 @@
 
         var rankText = function(d) {
             var returnText;
-            if (highlightCondition === "top10") {
+            if (highlightCondition === "bottom10") {
                 returnText = d.rankAsc + 1;
-            } else if (highlightCondition === "bottom10") {
+            } else if (highlightCondition === "top10") {
                 returnText = d.rankDesc + 1;
             }
             return ordinal_suffix_of(returnText);
