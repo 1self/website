@@ -220,36 +220,6 @@
         var focus = svg.append("g") 
             .style("display", "none");
 
-
-        // Scale the range of the data
-        x.domain(d3.extent(data, function(d) { return d.date; }));
-        y.domain([0, d3.max(data, function(d) { return d.value; })]);
-
-        // Add the valueline path.
-        lineSvg.append("path")
-            .attr("class", "line")
-            .attr("d", valueline(data))
-            .attr("stroke", lineColour);
-
-        // draw dots
-        svg.selectAll(".dot")
-            .data(data)
-            .enter().append("circle")
-            .attr("class", "dot")
-            .attr("r", 3.5)
-            .attr("cx", xMap)
-            .attr("cy", yMap)
-            .style("fill", function(d) { return d.highlight ? lineColour : '#a9b2bd'; } );
-
-        // add vertical lines down from scatter points
-        svg.selectAll(".lolly-stick")
-            .data(data)
-            .enter().append("line")
-            .attr("class", "lolly-stick")
-            .style("stroke", function(d) { return d.highlight ? lineColour : '#a9b2bd'; } )
-            .attr("y2", function(d) { return height - y(d.value); })
-            .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.value) + ")"; } );
-
         var rankText = function(d) {
             var returnText;
             if (highlightCondition === "top10") {
@@ -309,6 +279,36 @@
             }
         };
 
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.date; }));
+        y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+        // Add the valueline path.
+        lineSvg.append("path")
+            .attr("class", "line")
+            .attr("d", valueline(data))
+            .attr("stroke", lineColour);
+
+        // draw dots
+        svg.selectAll(".dot")
+            .data(data)
+            .enter().append("circle")
+            .attr("class", "dot")
+            .attr("r", 3.5)
+            .attr("cx", xMap)
+            .attr("cy", yMap)
+            .style("fill", function(d) { return d.highlight ? lineColour : '#a9b2bd'; } );
+
+        // add vertical lines down from scatter points
+        svg.selectAll(".lolly-stick")
+            .data(data)
+            .enter().append("line")
+            .attr("class", "lolly-stick")
+            .style("stroke", function(d) { return d.highlight ? lineColour : '#a9b2bd'; } )
+            .attr("y2", function(d) { return height - y(d.value); })
+            .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.value) + ")"; } );
+
         // add highlight text (rank)
         svg.selectAll(".highlight-text")
             .data(data)
@@ -319,12 +319,8 @@
             .attr("dy", "-.3em")
             .text(rankText);
 
-        // console.log('highlightTextElements',highlightTextElements);
-        // console.log('highlightTextElements',highlightTextElements[0].psn,highlightTextElements[1].psn);
-
+        // Update position of highlight labels if necessary
         updateOverlaps();
-
-        console.log('highlightTextElements',highlightTextElements[0].newPsn,highlightTextElements[1].newPsn);
 
         // add highlight text (value)
         svg.selectAll(".highlight-text")
@@ -336,6 +332,7 @@
             .attr("dy", "1em")
             .text(function(d) { return d.value; } );
 
+        // position labels as per updated position
         svg.selectAll(".highlight-text-active")
             .each( function() { repositionLabel(this); } );
 
@@ -344,7 +341,7 @@
             .data(highlightTextElements)
             .enter().append("line")
             .style("stroke", lineColour)
-            // .style("stroke-dasharray", "4,2")
+            .style("stroke-dasharray", "4,2")
             .style("stroke-width", 2)
             .attr("x1", function(d) { return x(d.date); })
             .attr("x2", function(d) { return d.psn === d.newPsn ? width + 10 : width + 6; } )
@@ -366,6 +363,7 @@
             .data(highlightTextElements)
             .enter().append("line")
             .style("stroke", lineColour)
+            .style("stroke-dasharray", "4,2")
             .style("stroke-width", 2)
             .attr("y1", function(d) { return d.newPsn; } )
             .attr("y2", function(d) { return d.psn; } )
