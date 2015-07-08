@@ -643,6 +643,7 @@ $(function() {
             iFrameHtml += '&highlightDates=' + getHighlightDates(cardData);
             iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
             iFrameHtml += 'scrolling="no"></iframe>';
+            iFrameHtml += '<div class="clickable-overlay"></div>';
             $cardMedia.append(iFrameHtml);
         }
     };
@@ -721,7 +722,7 @@ $(function() {
                 }
             });
 
-            $stack.on('mouseup', '.flip-toggle', function(e) {
+            $stack.on('mouseup', '.clickable-overlay, .flip-toggle', function(e) {
                 var $container = $(this).parents('.cardContainer');
                 var $li = $(this).parents('li');
 
