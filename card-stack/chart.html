@@ -302,7 +302,6 @@
         };
 
         var repositionLabel = function(label) {
-            console.log(label, label.getAttribute('rankAsc'));//.prop('rankAsc'));
             for (var i = 0; i < highlightTextElements.length; i++) {
                 if (label.getAttribute('rankAsc') === highlightTextElements[i].rankAsc + '') {
                     label.setAttribute('transform', 'translate(0,' + highlightTextElements[i].newPsn + ')');
@@ -482,25 +481,25 @@
                 .attr("transform",
                       "translate(" + x(d.date) + "," +
                                      y(d.value) + ")")
-                .text(d.value);
+                .text(rankText(d));
 
             focus.select("text.y2")
                 .attr("transform",
                       "translate(" + x(d.date) + "," +
                                      y(d.value) + ")")
-                .text(d.value);
+                .text(rankText(d));
 
             focus.select("text.y3")
                 .attr("transform",
                       "translate(" + x(d.date) + "," +
                                      y(d.value) + ")")
-                .text(formatDate(d.date));
+                .text(d.value);
 
             focus.select("text.y4")
                 .attr("transform",
                       "translate(" + x(d.date) + "," +
                                      y(d.value) + ")")
-                .text(formatDate(d.date));
+                .text(d.value);
 
             focus.select(".x")
                 .attr("transform",
