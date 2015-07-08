@@ -44,7 +44,7 @@ function getHighlightDates(cardData) {
 
 var deferred = $.Deferred();
 
-var offline = false;
+var offline = true;
 
 if (offline) {
     var data = [/*{
@@ -343,7 +343,8 @@ $(function() {
 
         comparitorText = (type === "top10" ? "most" : "fewest");
 
-        comparitorText = ordinal_suffix_of(position + 1) + ' ' + comparitorText;
+        if (position > 0)
+            comparitorText = ordinal_suffix_of(position + 1) + ' ' + comparitorText;
 
         return comparitorText;
     };
@@ -574,7 +575,7 @@ $(function() {
                         }),
                         cardNavText: "",
                         colour: colour,
-                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' out of 126',
+                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf,
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-front'
@@ -582,7 +583,7 @@ $(function() {
                     }),
                     cardBackContent: cardBackContentTemplate.supplant({
                         colour: colour,
-                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' out of xxx',
+                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf,
                         headerText2: '&lt; back',
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
@@ -607,7 +608,7 @@ $(function() {
                         }),
                         cardNavText: "",
                         colour: colour,
-                        headerText: 'Bottom 10: ' + createComparitorText(cardData.position, cardData.type) + ' of xxx',
+                        headerText: 'Bottom 10: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf,
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-front'
@@ -615,7 +616,7 @@ $(function() {
                     }),
                     cardBackContent: cardBackContentTemplate.supplant({
                         colour: colour,
-                        headerText: 'Bottom 10: ' + createComparitorText(cardData.position, cardData.type) + ' of xxx',
+                        headerText: 'Bottom 10: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf,
                         headerText2: '&lt; back',
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
