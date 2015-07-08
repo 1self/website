@@ -44,7 +44,7 @@ function getHighlightDates(cardData) {
 
 var deferred = $.Deferred();
 
-var offline = false;
+var offline = true;
 
 if (offline) {
     var data = [/*{
