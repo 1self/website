@@ -661,6 +661,7 @@ $(function() {
             iFrameHtml += '&highlightCondition=' + cardData.type;
             iFrameHtml += '&highlightDates=' + getHighlightDates(cardData);
             iFrameHtml += '&vaxis=true&haxis=true';
+            iFrameHtml += '&displayTooltips=true';
             iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
             iFrameHtml += 'scrolling="no"></iframe>';
             $cardMedia.append(iFrameHtml);
