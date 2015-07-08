@@ -37,6 +37,13 @@ path {
     opacity: 0.5
 }
 
+.highlight-text-active {
+  display: block;
+}
+
+.highlight-text-hidden {
+  display: none;
+}
 /*
 svg {
     margin: auto;
