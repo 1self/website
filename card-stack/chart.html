@@ -166,7 +166,7 @@
 
         // Set the dimensions of the canvas / graph
         var margin = {top: 20, right: 60, bottom: 20, left: 10};
-        if (vaxis) margin.left += 20;
+        if (vaxis) margin.left -= 0;
         
         width = width - margin.left - margin.right;
         height = height - margin.top - margin.bottom;
@@ -181,11 +181,16 @@
         var y = d3.scale.linear().range([height, 0]);
 
         // Define the axes
-        var xAxis = d3.svg.axis().scale(x)
-            .orient("bottom").ticks(5);
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+            .ticks(5);
 
-        var yAxis = d3.svg.axis().scale(y)
-            .orient("left").ticks(5);
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("right")
+            .ticks(5)
+            .tickSize(width);
 
         data.forEach(function(d) {
             d.date = parseDate(d.date);
@@ -284,6 +289,37 @@
         x.domain(d3.extent(data, function(d) { return d.date; }));
         y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
+        // add vertical lines down from scatter points
+        svg.selectAll(".lolly-stick")
+            .data(data)
+            .enter().append("line")
+            .attr("class", "lolly-stick")
+            .style("stroke", function(d) { return d.highlight ? lineColour : '#a9b2bd'; } )
+            .attr("y2", function(d) { return height - y(d.value); })
+            .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.value) + ")"; } );
+
+        if (haxis) {
+            // Add the X Axis
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+        }
+
+        if (vaxis) {
+            // Add the Y Axis
+            var gy = svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis);
+
+            gy.selectAll("g").filter(function(d) { return d; })
+                .classed("minor", true);
+
+            gy.selectAll("text")
+                .attr("x", 4)
+                .attr("dy", -4);
+        }
+
         // Add the valueline path.
         lineSvg.append("path")
             .attr("class", "line")
@@ -299,15 +335,6 @@
             .attr("cx", xMap)
             .attr("cy", yMap)
             .style("fill", function(d) { return d.highlight ? lineColour : '#a9b2bd'; } );
-
-        // add vertical lines down from scatter points
-        svg.selectAll(".lolly-stick")
-            .data(data)
-            .enter().append("line")
-            .attr("class", "lolly-stick")
-            .style("stroke", function(d) { return d.highlight ? lineColour : '#a9b2bd'; } )
-            .attr("y2", function(d) { return height - y(d.value); })
-            .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.value) + ")"; } );
 
         // add highlight text (rank)
         svg.selectAll(".highlight-text")
@@ -381,21 +408,6 @@
             .attr("class", "y4")
             .attr("dx", 8)
             .attr("dy", "1em");
-
-        if (haxis) {
-            // Add the X Axis
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
-        }
-
-        if (vaxis) {
-            // Add the Y Axis
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis);
-        }
 
        // append the x line
         focus.append("line")

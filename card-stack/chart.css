@@ -14,13 +14,27 @@ path {
     stroke-width: 2;
     fill: none;
 }
-
+/*
 .axis path,
 .axis line {
     fill: none;
-    stroke: #454b54;
+    stroke: white; #454b54;
     stroke-width: 1;
     shape-rendering: crispEdges;
+}
+*/
+.axis path {
+  display: none;
+}
+
+.axis line {
+  shape-rendering: crispEdges;
+  stroke: #000;
+}
+
+.axis .minor line {
+  stroke: #777;
+  stroke-dasharray: 2,2;
 }
 
 .dot {
