@@ -269,24 +269,29 @@
         };
 
         var updateOverlaps = function() {
-            var top, bottom, overlap, difference = highlightTextElements[1].psn - highlightTextElements[0].psn;
+            var top, bottom, overlap, difference;
             var diffCheck = 38;
             var padding = 0;
 
-            if (difference < diffCheck && difference > 0) {
-                overlap = true;
-                top = highlightTextElements[0];
-                bottom = highlightTextElements[1];
-            } else if (difference <= 0 && difference > -diffCheck) {
-                overlap = true;
-                top = highlightTextElements[1];
-                bottom = highlightTextElements[0];
-            }
-            if (overlap) {
-                if (top.psn <= diffCheck) {
-                    bottom.newPsn = top.psn + diffCheck + padding;
-                } else {
-                    top.newPsn = bottom.psn - diffCheck - padding;
+            if (highlightTextElements.length > 1) {
+                difference = highlightTextElements[1].psn - highlightTextElements[0].psn;
+
+
+                if (difference < diffCheck && difference > 0) {
+                    overlap = true;
+                    top = highlightTextElements[0];
+                    bottom = highlightTextElements[1];
+                } else if (difference <= 0 && difference > -diffCheck) {
+                    overlap = true;
+                    top = highlightTextElements[1];
+                    bottom = highlightTextElements[0];
+                }
+                if (overlap) {
+                    if (top.psn <= diffCheck) {
+                        bottom.newPsn = top.psn + diffCheck + padding;
+                    } else {
+                        top.newPsn = bottom.psn - diffCheck - padding;
+                    }
                 }
             }
         };
