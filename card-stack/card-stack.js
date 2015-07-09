@@ -35,6 +35,22 @@ function getHighlightDates(cardData) {
     }
 }
 
+$('.prevButton').on('mousedown', function() { 
+    $(this).removeClass('standard-shadow'); 
+});
+
+$('.prevButton').on('mouseup', function() { 
+    $(this).addClass('standard-shadow'); 
+});
+
+$('.nextButton').on('mousedown', function() { 
+    $(this).removeClass('standard-shadow'); 
+});
+
+$('.nextButton').on('mouseup', function() { 
+    $(this).addClass('standard-shadow'); 
+});
+
 // $('.cardBack-2').ready(function() {
 //     var $cardBacks = $('.cardBack-2');
 //     for (var i in $cardBacks) { 
@@ -262,9 +278,21 @@ if (offline) {
     // are typically longest to complete
 
     var username = getQSParam().user;
+    var minStdDev = getQSParam().minStdDev;
+    var maxStdDev = getQSParam().maxStdDev;
+
+    console.log('minStdDev',minStdDev);
+
     if (!username) username = "ed";
 
-    $.getJSON('https://api-staging.1self.co/v1/users/' + username + '/cards',
+    var url = 'https://api-staging.1self.co/v1/users/';
+    url += username + '/cards';
+    url += minStdDev ? '?minStdDev=' + minStdDev : '?minStdDev=' + "2";
+    url += maxStdDev ? '&maxStdDev=' + maxStdDev : '';
+
+    console.log(url);
+
+    $.getJSON(url,
             function() {
                 console.log("accessed api for cards");
             })
@@ -419,11 +447,12 @@ $(function() {
             var cardText = '';
 
             if (cardData.type === "top10" || cardData.type === "bottom10") {
-                var template1 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: your [6th] [fewest] [commit]s in [a day] [ever]
-                var template2 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [most] [commit]ted [file changes] in [a day] [ever]
-                var template3 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [music track] [listen]s in [a day] [ever]
-                var template4 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
-                var template5 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: your [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
+                var template1 = '<b>{{eventDate}}:</b><br>{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: [6th] [fewest] [commit]s in [a day] [ever]
+                var template2 = '<b>{{eventDate}}:</b><br>{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [most] [commit]ted [file changes] in [a day] [ever]
+                var template3 = '<b>{{eventDate}}:</b><br>{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [music track] [listen]s in [a day] [ever]
+                var template4 = '<b>{{eventDate}}:</b><br>{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
+                var template5 = '<b>{{eventDate}}:</b><br>{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
+                var template6 = '<b>{{eventDate}}:</b>{{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}}'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
 
                 var supplantObject = {
                     eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
@@ -450,7 +479,7 @@ $(function() {
                     } else {
                         supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
                         supplantObject.property = buildPropertiesText(cardData.properties.sum);
-                        cardText = template4.supplant(supplantObject);
+                        cardText = template6.supplant(supplantObject);
                     }
                 } else if (cardData.actionTags[0] === "use") {
                     supplantObject.property = buildPropertiesText(cardData.properties.sum);
@@ -467,13 +496,13 @@ $(function() {
     };
 
     var flipButtonTemplate = [
-        , '  <div class="avatar-button">'
+        , '  <div class="avatar-button standard-shadow">'
         , '    <!--div class="icon-button"><i class="fa fa-share-alt fa-2x"></i></div-->'
         , '  </div>'
-        , '  <div class="share-button" style="background-color: {{colour}};">'
+        , '  <div class="share-button standard-shadow" style="background-color: {{colour}};">'
         , '    <div class="icon-button"><i class="fa fa-share-alt fa-2x"></i></div>'
         , '  </div>'
-        , '  <div class="flip-toggle" style="background-color: {{colour}};">'
+        , '  <div class="flip-toggle standard-shadow" style="background-color: {{colour}};">'
         , '    <div class="icon-button"><i class="fa fa-angle-double-{{action}} fa-2x"></i></div>'
 
         , '    <!--div class="icon-button icon-{{action}}"><img src="img/{{action}}-icon.png" /></div-->'
@@ -503,9 +532,9 @@ $(function() {
 
     var shareContainerTemplate = [
         , '<div class="share-container {{shareContainerClasses}} hide" style="background-color: {{colour}};">'
-        , '  <div class="social-share-button"><div id="shareToTwitter" class="innerButton">Share to Twitter</div></div>'
-        , '  <div class="social-share-button"><div id="shareToFacebook" class="innerButton">Share to Facebook</div></div>'
-        , '  <div class="social-share-button"><div id="shareToLink" class="innerButton">Get shareable link</div></div>'
+        , '  <div class="social-share-button standard-shadow"><div id="shareToTwitter" class="innerButton">Share to Twitter</div></div>'
+        , '  <div class="social-share-button standard-shadow"><div id="shareToFacebook" class="innerButton">Share to Facebook</div></div>'
+        , '  <div class="social-share-button standard-shadow"><div id="shareToLink" class="innerButton">Get shareable link</div></div>'
         , '</div>'].join('');
 
 
@@ -535,8 +564,8 @@ $(function() {
 
 
         var html = '<input id="hidCard_{{id}}" class="cardData" type="hidden" value="{{inputValue}}" />';
-        html += '<div class="cardContainer cardContainer-front">{{cardFrontContent}}</div>';
-        html += '<div class="cardContainer cardContainer-back">';
+        html += '<div class="cardContainer cardContainer-front standard-shadow">{{cardFrontContent}}</div>';
+        html += '<div class="cardContainer cardContainer-back standard-shadow">';
         html += '  {{cardBackContent}}';
         html += '{{cardNav}}</div>';
 
@@ -564,7 +593,7 @@ $(function() {
 
                 createCardText(cardData, colour);
 
-                var frontContent = [, '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '<div class="cardContentContainer"><div class="cardMedia"></div><div class="cardText"><p>{{data}}</p></div></div>', '{{shareContainer}}', '<div class="cardNav" style="background-color: {{colour}};">', '  <p>{{cardNavText}}</p>', '  {{flipButton}}', '</div>'].join('');
+                var frontContent = [, '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '<div class="cardContentContainer"><div class="cardMedia standard-shadow"></div><div class="cardText"><p>{{data}}</p></div></div>', '{{shareContainer}}', '<div class="cardNav" style="background-color: {{colour}};">', '  <p>{{cardNavText}}</p>', '  {{flipButton}}', '</div>'].join('');
 
                 html = html.supplant({
                     cardFrontContent: frontContent.supplant({
@@ -597,7 +626,7 @@ $(function() {
 
                 createCardText(cardData, colour);
 
-                var frontContent = [, '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '<div class="cardContentContainer"><div class="cardMedia"></div><div class="cardText"><p>{{data}}</p></div></div>', '{{shareContainer}}', '<div class="cardNav" style="background-color: {{colour}};">', '  <p>{{cardNavText}}</p>', '  {{flipButton}}', '</div>'].join('');
+                var frontContent = [, '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '<div class="cardContentContainer"><div class="cardMedia standard-shadow"></div><div class="cardText"><p>{{data}}</p></div></div>', '{{shareContainer}}', '<div class="cardNav" style="background-color: {{colour}};">', '  <p>{{cardNavText}}</p>', '  {{flipButton}}', '</div>'].join('');
 
                 html = html.supplant({
                     cardFrontContent: frontContent.supplant({
@@ -723,6 +752,14 @@ $(function() {
                 }
             });
 
+            $stack.on('mousedown', '.flip-toggle', function(e) {
+                $('.flip-toggle').removeClass('standard-shadow');
+            });
+
+            $stack.on('mouseup', '.flip-toggle', function(e) {
+                $('.flip-toggle').addClass('standard-shadow');
+            });
+
             $stack.on('mouseup', '.clickable-overlay, .flip-toggle', function(e) {
                 var $container = $(this).parents('.cardContainer');
                 var $li = $(this).parents('li');
@@ -740,7 +777,12 @@ $(function() {
                 $container.siblings().toggleClass('flip');
             });
 
+            $stack.on('mousedown', '.share-button', function(e) {
+                $('.share-button').removeClass('standard-shadow');
+            });
+
             $stack.on('mouseup', '.share-button', function(e) {
+                $('.share-button').addClass('standard-shadow');
                 var $container = $(this).parents('.cardContainer');
                 var $li = $(this).parents('li');
 
@@ -754,7 +796,12 @@ $(function() {
                 $container.find('.share-container').toggleClass('hide');
             });
 
+            $stack.on('mousedown', '#shareToTwitter', function(e) {
+                $('#shareToTwitter').parents('.social-share-button').removeClass('standard-shadow');
+            });
+
             $stack.on('mouseup', '#shareToTwitter', function(e) {
+                $('#shareToTwitter').parents('.social-share-button').addClass('standard-shadow');
                 var $container = $(this).parents('.cardContainer');
                 var $li = $(this).parents('li');
 
@@ -766,7 +813,14 @@ $(function() {
                 
             });
 
+            $stack.on('mousedown', '#shareToFacebook', function(e) {
+                console.log($('#shareToFacebook').parent().attr('class'));
+                $('#shareToFacebook').parent('div').toggleClass('standard-shadow');
+                console.log($('#shareToFacebook').parent().attr('class'));
+            });
+
             $stack.on('mouseup', '#shareToFacebook', function(e) {
+                $('#shareToFacebook').parent('div').addClass('standard-shadow');
                 var $container = $(this).parents('.cardContainer');
                 var $li = $(this).parents('li');
 
@@ -778,7 +832,12 @@ $(function() {
                 
             });
 
+            $stack.on('mousedown', '#shareToLink', function(e) {
+                $('#shareToLink').parents('.social-share-button').removeClass('standard-shadow');
+            });
+
             $stack.on('mouseup', '#shareToLink', function(e) {
+                $('#shareToLink').parents('.social-share-button').addClass('standard-shadow');
                 var $container = $(this).parents('.cardContainer');
                 var $li = $(this).parents('li');
 
