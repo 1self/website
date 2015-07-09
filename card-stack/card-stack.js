@@ -566,17 +566,6 @@ $(function() {
 
     var buildCardHtml = function(cardData, colourIndex) {
 
-        // function cardHtml(template, supplantObject, overrides) {
-        //     return template.supplant({
-        //         cardContent: htmlTemplate.supplant($.extend({
-        //             flipButton: flipButtonTemplate.supplant({
-        //                 colour: overrides.colour || supplantObject.colour,
-        //                 action: "right"
-        //             })
-        //         }, supplantObject, overrides))
-        //     });
-        // }
-
         var generatedDate = moment(cardData.generatedDate);
         cardData.colourIndex = colourIndex;
 
@@ -587,7 +576,6 @@ $(function() {
             colour: colour,
             colourIndex: colourIndex,
         };
-
 
         var html = '<input id="hidCard_{{id}}" class="cardData" type="hidden" value="{{inputValue}}" />';
         html += '<div class="cardContainer cardContainer-front standard-shadow">{{cardFrontContent}}</div>';
@@ -617,9 +605,34 @@ $(function() {
                 break;
             case 'top10':
 
+                var dataSourceIconUrl;
+                if (cardData.actionTags[0] === "use")
+                    dataSourceIconUrl = 'img/rescuetimeicon.svg';
+                else if (cardData.actionTags[0] === "listen")
+                    dataSourceIconUrl = 'img/lastfm.svg';
+                else
+                    dataSourceIconUrl = 'img/githubicon.svg';
+
                 createCardText(cardData, colour);
 
-                var frontContent = [, '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '<div class="cardContentContainer"><div class="cardMedia standard-shadow"></div><div class="cardText"><p>{{data}}</p></div></div>', '{{shareContainer}}', '<div class="cardNav" style="background-color: {{colour}};">', '  <p>{{cardNavText}}</p>', '  {{flipButton}}', '</div>'].join('');
+                var frontContent = [
+                    , '<div class="cardHeader" style="background-color: {{colour}};">'
+                    , '  <p>{{headerText}}</p>'
+                    , '</div>'
+                    , '<div class="cardContentContainer">'
+                    , '  <div class="cardMedia" style="border-bottom-color: {{colour}};"></div>'
+                    , '  <div class="cardText">'
+                    , '    <div class="glance-row">'
+                    , '      <div class="glance-blob-cell"><div class="glance-blob glance-blob-left standard-shadow" style="background-color: {{colour}};"><p>{{position}}</p></div></div><div class="glance-blob-cell"><div class="glance-blob glance-blob-right standard-shadow" style="background-image:url({{dataSourceIconUrl}});"></div></div>'
+                    , '    </div>'
+                    , '    <div class="main-text-row"><p>{{data}}</p></div>'
+                    , '  </div>'
+                    , '</div>'
+                    , '{{shareContainer}}'
+                    , '<div class="cardNav" style="background-color: {{colour}};">'
+                    , '  <p>{{cardNavText}}</p>'
+                    , '  {{flipButton}}'
+                    , '</div>'].join('');
 
                 html = html.supplant({
                     cardFrontContent: frontContent.supplant({
@@ -634,7 +647,9 @@ $(function() {
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-front'
-                        })
+                        }),
+                        dataSourceIconUrl: dataSourceIconUrl,
+                        position: cardData.position + 1
                     }),
                     cardBackContent: cardBackContentTemplate.supplant({
                         colour: colour,
@@ -643,8 +658,7 @@ $(function() {
                         shareContainer: shareContainerTemplate.supplant({
                             colour: colour,
                             shareContainerClasses: 'share-container-back'
-                        })/*,
-                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&highlightCondition=top&dataSrc=' + cardData.chart*/
+                        })
                     })
                 });
                 break;

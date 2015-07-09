@@ -179,6 +179,8 @@ h1 {
   height: 35%;
   background-color: #fff; /*e7e9ee;*/
   position: relative;
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
 }
 
 .standard-shadow {
@@ -238,8 +240,45 @@ h1 {
   font-size: 50px;
 }
 
+.glance-row {
+  width: 100%;
+}
+
+.glance-blob-cell {
+  width: 50%;
+  float: left;
+ /* height: 50px;
+  display: table-cell;
+  vertical-align: middle;*/
+}
+
+.glance-blob {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: table;
+  color: white;
+}
+
+.glance-blob-left {
+  margin-left: auto;
+  margin-right: 5px;
+}
+.glance-blob p {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.glance-blob-right {
+  margin-right: auto;
+  margin-left: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
 .cardBackContainer {
-  /*z-index: 999;*/
   background-color: white;
   position: absolute;
   height: 300px;
