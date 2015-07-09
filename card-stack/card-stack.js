@@ -592,110 +592,79 @@ $(function() {
             })
         });
 
-        switch (cardData.type) {
-            case 'date':
-                var dateNow = stripAtDetail(generatedDate.calendar());
+        if (cardData.type === "date") {
+            var dateNow = stripAtDetail(generatedDate.calendar());
 
-                html = html.supplant({
-                    cardFrontContent: '<div class="cardFullText" style="background-color: {{colour}};"><p>{{dateNow}}</p></div>'.supplant({
-                        dateNow: dateNow,
-                        colour: colour
-                    })
-                });
-                break;
-            case 'top10':
+            html = html.supplant({
+                cardFrontContent: '<div class="cardFullText" style="background-color: {{colour}};"><p>{{dateNow}}</p></div>'.supplant({
+                    dateNow: dateNow,
+                    colour: colour
+                })
+            });
 
-                var dataSourceIconUrl;
-                if (cardData.actionTags[0] === "use")
-                    dataSourceIconUrl = 'img/rescuetimeicon.svg';
-                else if (cardData.actionTags[0] === "listen")
-                    dataSourceIconUrl = 'img/lastfm.svg';
-                else
-                    dataSourceIconUrl = 'img/githubicon.svg';
+        } else if (cardData.type === "top10" || cardData.type === "bottom10") {
 
-                createCardText(cardData, colour);
+            var dataSourceIconUrl;
+            if (cardData.actionTags[0] === "use")
+                dataSourceIconUrl = 'img/rescuetimeicon.svg';
+            else if (cardData.actionTags[0] === "listen")
+                dataSourceIconUrl = 'img/lastfm.svg';
+            else
+                dataSourceIconUrl = 'img/githubicon.svg';
 
-                var frontContent = [
-                    , '<div class="cardHeader" style="background-color: {{colour}};">'
-                    , '  <p>{{headerText}}</p>'
-                    , '</div>'
-                    , '<div class="cardContentContainer">'
-                    , '  <div class="cardMedia" style="border-bottom-color: {{colour}};"></div>'
-                    , '  <div class="cardText">'
-                    , '    <div class="glance-row">'
-                    , '      <div class="glance-blob-cell"><div class="glance-blob glance-blob-left standard-shadow" style="background-color: {{colour}};"><p>{{position}}</p></div></div><div class="glance-blob-cell"><div class="glance-blob glance-blob-right standard-shadow" style="background-image:url({{dataSourceIconUrl}});"></div></div>'
-                    , '    </div>'
-                    , '    <div class="main-text-row"><p>{{data}}</p></div>'
-                    , '  </div>'
-                    , '</div>'
-                    , '{{shareContainer}}'
-                    , '<div class="cardNav" style="background-color: {{colour}};">'
-                    , '  <p>{{cardNavText}}</p>'
-                    , '  {{flipButton}}'
-                    , '</div>'].join('');
+            createCardText(cardData, colour);
 
-                html = html.supplant({
-                    cardFrontContent: frontContent.supplant({
-                        data: cardData.cardText || 'undefined',
-                        flipButton: flipButtonTemplate.supplant({
-                            colour: colour,
-                            action: "right"
-                        }),
-                        cardNavText: "",
+            var headerText = cardData.type === "top10" ? "Top" : "Bottom";
+            headerText += ' 10: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf;
+
+            var frontContent = [
+                , '<div class="cardHeader" style="background-color: {{colour}};">'
+                , '  <p>{{headerText}}</p>'
+                , '</div>'
+                , '<div class="cardContentContainer">'
+                , '  <div class="cardMedia" style="border-bottom-color: {{colour}};"></div>'
+                , '  <div class="cardText">'
+                , '    <div class="glance-row">'
+                , '      <div class="glance-blob-cell"><div class="glance-blob glance-blob-left standard-shadow" style="background-color: {{colour}};"><p>{{position}}</p></div></div><div class="glance-blob-cell"><div class="glance-blob glance-blob-right standard-shadow" style="background-image:url({{dataSourceIconUrl}});"></div></div>'
+                , '    </div>'
+                , '    <div class="main-text-row"><p>{{data}}</p></div>'
+                , '  </div>'
+                , '</div>'
+                , '{{shareContainer}}'
+                , '<div class="cardNav" style="background-color: {{colour}};">'
+                , '  <p>{{cardNavText}}</p>'
+                , '  {{flipButton}}'
+                , '</div>'].join('');
+
+            html = html.supplant({
+                cardFrontContent: frontContent.supplant({
+                    data: cardData.cardText || 'undefined',
+                    flipButton: flipButtonTemplate.supplant({
                         colour: colour,
-                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf,
-                        shareContainer: shareContainerTemplate.supplant({
-                            colour: colour,
-                            shareContainerClasses: 'share-container-front'
-                        }),
-                        dataSourceIconUrl: dataSourceIconUrl,
-                        position: cardData.position + 1
+                        action: "right"
                     }),
-                    cardBackContent: cardBackContentTemplate.supplant({
+                    cardNavText: "",
+                    colour: colour,
+                    headerText: headerText,
+                    shareContainer: shareContainerTemplate.supplant({
                         colour: colour,
-                        headerText: 'Top 10: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf,
-                        headerText2: '&lt; back',
-                        shareContainer: shareContainerTemplate.supplant({
-                            colour: colour,
-                            shareContainerClasses: 'share-container-back'
-                        })
-                    })
-                });
-                break;
-            case 'bottom10':
-
-                createCardText(cardData, colour);
-
-                var frontContent = [, '<div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>', '<div class="cardContentContainer"><div class="cardMedia standard-shadow"></div><div class="cardText"><p>{{data}}</p></div></div>', '{{shareContainer}}', '<div class="cardNav" style="background-color: {{colour}};">', '  <p>{{cardNavText}}</p>', '  {{flipButton}}', '</div>'].join('');
-
-                html = html.supplant({
-                    cardFrontContent: frontContent.supplant({
-                        data: cardData.cardText || 'undefined',
-                        flipButton: flipButtonTemplate.supplant({
-                            colour: colour,
-                            action: "right"
-                        }),
-                        cardNavText: "",
-                        colour: colour,
-                        headerText: 'Bottom 10: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf,
-                        shareContainer: shareContainerTemplate.supplant({
-                            colour: colour,
-                            shareContainerClasses: 'share-container-front'
-                        })
+                        shareContainerClasses: 'share-container-front'
                     }),
-                    cardBackContent: cardBackContentTemplate.supplant({
+                    dataSourceIconUrl: dataSourceIconUrl,
+                    position: cardData.position + 1
+                }),
+                cardBackContent: cardBackContentTemplate.supplant({
+                    colour: colour,
+                    headerText: headerText,
+                    headerText2: '&lt; back',
+                    shareContainer: shareContainerTemplate.supplant({
                         colour: colour,
-                        headerText: 'Bottom 10: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf,
-                        headerText2: '&lt; back',
-                        shareContainer: shareContainerTemplate.supplant({
-                            colour: colour,
-                            shareContainerClasses: 'share-container-back'
-                        })/*,
-                        mainChartSrc: cardData.thumbnailMedia + '?lineColour=' + stripHash(getColour(cardData.colourIndex)) + '&highlightCondition=bottom&dataSrc=' + cardData.chart*/
+                        shareContainerClasses: 'share-container-back'
                     })
-                });
-                break;
+                })
+            });
         }
+
         return html;
     };
 
