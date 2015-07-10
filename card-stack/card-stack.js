@@ -52,6 +52,28 @@ $('.nextButton').on('mouseup', function() {
     $(this).addClass('standard-shadow'); 
 });
 
+$(document).keydown(function (e) {
+    var keyCode = e.keyCode || e.which,
+    arrow = {left: 37, up: 38, right: 39, down: 40 };
+
+    switch (keyCode) {
+        case arrow.left:
+            $('.prevButton').trigger('click');
+        break;
+        case arrow.right:
+            $('.nextButton').trigger('click');
+        break;
+        // case arrow.down:
+        //     $('.flip-toggle').trigger('mouseup');
+        // break;
+        default: return; // allow other keys to be handled
+    }
+    e.preventDefault();
+    // prevent default action (eg. page moving up/down)
+    // but consider accessibility (eg. user may want to use keys to choose a radio button)
+});
+
+
 // $('.cardBack-2').ready(function() {
 //     var $cardBacks = $('.cardBack-2');
 //     for (var i in $cardBacks) { 
