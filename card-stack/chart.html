@@ -25,7 +25,7 @@
     var highlightCondition = getQSParam().highlightCondition;
     var displayTooltips = getQSParam().displayTooltips === "true";
     var dataSrc = 'http://app-staging.1self.co' + getQSParam().dataSrc;
-    var offline = false;
+    var offline = true;
 
     $('.mainContainer').ready(function () {
         getData(dataSrc, function (data) {
@@ -102,14 +102,14 @@
 
         for (var i = 0; i < dataArray.length; i++) {
             if (highlightCondition === "bottom10" && dataArray[i].rankAsc === 0) {
-                dataArray[i].highlight = true;
+                dataArray[i].highlight = "bottom10";
             } else if (highlightCondition === "top10" && dataArray[i].rankDesc === 0) {
-                dataArray[i].highlight = true;
+                dataArray[i].highlight = "top10";
             }
 
             for (var k = 0; k < highlightDatesArray.length; k++) {
                 if (highlightDatesArray[k] === dataArray[i].date) {
-                    dataArray[i].highlight = true;
+                    dataArray[i].highlight = "date";
                 }
             }
         }
@@ -261,6 +261,7 @@
                 highlightObj.date = d.date;
                 highlightObj.psn = y(d.value);
                 highlightObj.newPsn = y(d.value);
+                highlightObj.highlight = d.highlight;
                 highlightTextElements.push(highlightObj);
                 return "highlight-text-active";
             } else {
@@ -371,6 +372,7 @@
             .attr("r", 3.5)
             .attr("cx", xMap)
             .attr("cy", yMap)
+            .style("display", function(d) { return d.highlight === "date" ? "none" : "block" ; } )
             .style("fill", function(d) { return d.highlight ? lineColour : '#a9b2bd'; } );
 
         // add highlight text (rank)
@@ -432,6 +434,29 @@
             .attr("y1", function(d) { return d.newPsn; } )
             .attr("y2", function(d) { return d.psn; } )
             .attr("transform", "translate(" + (width + 6) + ",0)");
+
+        // draw main highlight inner dot
+        svg.selectAll(".highlight-text")
+            .data(highlightTextElements)
+            .enter().append("circle")
+            .attr("class", "dot")
+            .attr("r", 3.5)
+            .attr("cx", xMap)
+            .attr("cy", yMap)
+            .style("fill", lineColour)
+            .style("display", function(d) { return d.highlight === "date" ? "block" : "none" ; } );
+
+        // draw main highlight outer circle
+        svg.selectAll(".highlight-text")
+            .data(highlightTextElements)
+            .enter().append("circle")
+            .attr("class", "dot")
+            .attr("r", 6)
+            .attr("cx", xMap)
+            .attr("cy", yMap)
+            .style("stroke", lineColour)
+            .style("fill", "none")
+            .style("display", function(d) { return d.highlight === "date" ? "block" : "none" ; } );
 
         // place the date at the intersection
         focus.append("text")

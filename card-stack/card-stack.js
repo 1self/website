@@ -83,7 +83,7 @@ $(document).keydown(function (e) {
 
 var deferred = $.Deferred();
 
-var offline = false;
+var offline = true;
 
 if (offline) {
     var data = [/*{
@@ -791,7 +791,7 @@ $(function() {
     };
 
     var buildStack = function(stack) {
-        var numberOfCardsToShow = 10;
+        var numberOfCardsToShow = 20;
         var skip = 0;
         deferred.done(function(cardsArray) {
             cardsArrayGlobal = cardsArray;
