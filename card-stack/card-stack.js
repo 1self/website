@@ -83,7 +83,7 @@ $(document).keydown(function (e) {
 
 var deferred = $.Deferred();
 
-var offline = true;
+var offline = false;
 
 if (offline) {
     var data = [/*{

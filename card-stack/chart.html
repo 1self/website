@@ -25,7 +25,7 @@
     var highlightCondition = getQSParam().highlightCondition;
     var displayTooltips = getQSParam().displayTooltips === "true";
     var dataSrc = 'http://app-staging.1self.co' + getQSParam().dataSrc;
-    var offline = true;
+    var offline = false;
 
     $('.mainContainer').ready(function () {
         getData(dataSrc, function (data) {
