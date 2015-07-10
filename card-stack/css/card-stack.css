@@ -280,6 +280,12 @@ h1 {
   background-repeat: no-repeat;
 }
 
+.ordinal-suffix {
+  font-size: 0.4em;
+  line-height: 0.4em;
+  vertical-align: super;  
+}
+
 .cardBackContainer {
   background-color: white;
   position: absolute;

@@ -373,7 +373,7 @@ $(function() {
         comparitorText = (type === "top10" ? "most" : "fewest");
 
         if (position > 0)
-            comparitorText = ordinal_suffix_of(position + 1) + ' ' + comparitorText;
+            comparitorText = ordinal_suffix_of(position + 1, true) + ' ' + comparitorText;
 
         return comparitorText;
     };
@@ -671,7 +671,7 @@ $(function() {
                         shareContainerClasses: 'share-container-front'
                     }),
                     dataSourceIconUrl: dataSourceIconUrl,
-                    position: cardData.position + 1
+                    position: ordinal_suffix_of(cardData.position + 1, true)
                 }),
                 cardBackContent: cardBackContentTemplate.supplant({
                     colour: colour,

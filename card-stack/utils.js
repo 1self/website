@@ -91,17 +91,17 @@ function getEncodedEmailArrayString(emailArray) {
     return returnString;
 }
 
-function ordinal_suffix_of(i) {
+function ordinal_suffix_of(i, superscriptSuffixInHtml) {
     var j = i % 10,
         k = i % 100;
     if (j == 1 && k != 11) {
-        return i + "st";
+        return i + (superscriptSuffixInHtml ? '<span class="ordinal-suffix">st</span>' : "st");
     }
     if (j == 2 && k != 12) {
-        return i + "nd";
+        return i + (superscriptSuffixInHtml ? '<span class="ordinal-suffix">nd</span>' : "nd");
     }
     if (j == 3 && k != 13) {
-        return i + "rd";
+        return i + (superscriptSuffixInHtml ? '<span class="ordinal-suffix">rd</span>' : "rd");
     }
-    return i + "th";
+    return i + (superscriptSuffixInHtml ? '<span class="ordinal-suffix">th</span>' : "th");
 }
