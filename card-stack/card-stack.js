@@ -425,6 +425,8 @@ $(function() {
             return "album";
         else if (propertyText.indexOf('percent') >= 0)
             return propertyText.replace('percent', '').trim();
+        else if (propertyText.indexOf('duration') >= 0)
+            return propertyText.replace('duration', '').trim();
         else
             return propertyText;
     };
@@ -434,6 +436,14 @@ $(function() {
             return "computer use";
         else
             return objTagsString;
+    };
+
+    var setPrecision = function(numberToSet) {
+        var returnString = numberToSet.toPrecision(3) + '';
+        while (returnString.indexOf('.') >= 0 && (returnString.charAt(returnString.length - 1) === '0' || returnString.charAt(returnString.length - 1) === '.')) {
+            returnString = returnString.substring(0, returnString.length - 1);
+        }
+        return returnString;
     };
 
     var buildPropertiesTextAndGetValue = function(propertiesObject) {
@@ -459,7 +469,8 @@ $(function() {
 
             objectKey = Object.keys(propertiesObject)[0];
             if (propertyText !== "") {
-                returnString += '<span class="property-text" style="color: {{colour}}">' + propertyText + '</span>';
+                // returnString += '<span class="property-text" style="color: {{colour}}">' + propertyText + '</span>';
+                returnString += propertyText;
                 if (objectKey && objectKey !== "__count__") {
                     returnString += ": ";
                 }
@@ -476,9 +487,12 @@ $(function() {
         }
 
         if (isDuration)
-            returnObj.value = moment.duration(returnObj.value, "seconds").humanize();
+            if (returnObj.value < 60)
+                returnObj.value = setPrecision(returnObj.value) + " seconds";
+            else
+                returnObj.value = moment.duration(returnObj.value, "seconds").humanize();
         else if (isPercent)
-            returnObj.value += '%';
+            returnObj.value = setPrecision(returnObj.value) + '%';
 
         return returnObj;
     };
