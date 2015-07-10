@@ -14,6 +14,7 @@ function stripHash(stringToStrip) {
 
 function stripAtDetail(stringToStrip) {
     stringArr = stringToStrip.split(' at ');
+    stringArr[0] = stringArr[0].replace('Last ', '');
     return stringArr[0];
 }
 
@@ -422,8 +423,17 @@ $(function() {
             return "";
         else if (propertyText === "album-name")
             return "album";
+        else if (propertyText.indexOf('percent') >= 0)
+            return propertyText.replace('percent', '').trim();
         else
             return propertyText;
+    };
+
+    var customFormatObjTags = function(objTagsString) {
+        if (objTagsString === "computer desktop") 
+            return "computer use";
+        else
+            return objTagsString;
     };
 
     var buildPropertiesTextAndGetValue = function(propertiesObject) {
@@ -433,11 +443,20 @@ $(function() {
         var prevObjectKey;
         var counter = 0;
         var returnObj = {};
+        var isDuration = false;
+        var isPercent = false;
 
         while (objectKey && objectKey !== "__count__") {
             var propertyText = unhyphenate(customFormatProperty(objectKey));
             propertiesObject = propertiesObject[objectKey];
             prevObjectKey = objectKey;
+
+            if (objectKey.indexOf('duration') >= 0) {
+                isDuration = true;
+            } else if (objectKey.indexOf('percent') >= 0) {
+                isPercent = true;
+            }
+
             objectKey = Object.keys(propertiesObject)[0];
             if (propertyText !== "") {
                 returnString += '<span class="property-text" style="color: {{colour}}">' + propertyText + '</span>';
@@ -456,13 +475,12 @@ $(function() {
             returnObj.value = propertiesObject;
         }
 
+        if (isDuration)
+            returnObj.value = moment.duration(returnObj.value, "seconds").humanize();
+        else if (isPercent)
+            returnObj.value += '%';
+
         return returnObj;
-    };
-
-    var getDataValue = function(propertiesObject) {
-        var objectKey = Object.keys(propertiesObject)[0];
-
-
     };
 
     var createCardText = function(cardData, colour) {
@@ -470,12 +488,13 @@ $(function() {
             var cardText = '';
 
             if (cardData.type === "top10" || cardData.type === "bottom10") {
-                var template1 = '<b>{{eventDate}}:</b><br>{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: [6th] [fewest] [commit]s in [a day] [ever]
-                var template2 = '<b>{{eventDate}}:</b><br>{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [most] [commit]ted [file changes] in [a day] [ever]
-                var template3 = '<b>{{eventDate}}:</b><br>{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [music track] [listen]s in [a day] [ever]
-                var template4 = '<b>{{eventDate}}:</b><br>{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
-                var template5 = '<b>{{eventDate}}:</b><br>{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
-                var template6 = '<b>{{eventDate}}:</b> {{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}}'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
+                var template1 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: [6th] [fewest] [commit]s in [a day] [ever]
+                var template2 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [most] [commit]ted [file changes] in [a day] [ever]
+                var template3 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [music track] [listen]s in [a day] [ever]
+                var template4 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
+                var template5 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
+                var template6 = '<b>{{eventDate}}</b><br>{{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}}'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
+                var template7 = '<b>{{eventDate}}</b><br>{{value}} {{property}} {{objects}}<br>Your {{comparitor}} in {{eventPeriod}}'; // [Yesterday]: [1.2] [RescueTime] [business percent]<br>Your [6th] [fewest] in [a day]
 
                 var supplantObject = {
                     eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
@@ -509,8 +528,9 @@ $(function() {
                     }
                 } else if (cardData.actionTags[0] === "use") {
                     supplantObject.property = propertiesObj.propertiesText;
-                    supplantObject.objects = displayTags(cardData.objectTags);
-                    cardText = template5.supplant(supplantObject);
+                    supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
+                    supplantObject.value = propertiesObj.value;
+                    cardText = template7.supplant(supplantObject);
                 }
 
                 cardText = cardText.supplant(supplantObject);
@@ -625,7 +645,7 @@ $(function() {
                 , '  <div class="cardMedia" style="border-bottom-color: {{colour}};"></div>'
                 , '  <div class="cardText">'
                 , '    <div class="glance-row">'
-                , '      <div class="glance-blob-cell"><div class="glance-blob glance-blob-left standard-shadow" style="background-color: {{colour}};"><p>{{position}}</p></div></div><div class="glance-blob-cell"><div class="glance-blob glance-blob-right standard-shadow" style="background-image:url({{dataSourceIconUrl}});"></div></div>'
+                , '      <div class="glance-blob-cell"><div class="glance-blob glance-blob-left" style="background-color:{{colour}};border-color:{{colour}}"><p>{{position}}</p></div></div><div class="glance-blob-cell"><div class="glance-blob glance-blob-right" style="background-image:url({{dataSourceIconUrl}});border-color:{{colour}}"></div></div>'
                 , '    </div>'
                 , '    <div class="main-text-row"><p>{{data}}</p></div>'
                 , '  </div>'
