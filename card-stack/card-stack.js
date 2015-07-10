@@ -427,7 +427,7 @@ $(function() {
     };
 
     var unhyphenate = function(toUnhyphenate) {
-        return toUnhyphenate.replace(/\^/g, '.').replace('-', ' ');
+        return toUnhyphenate.replace(/\^/g, '.').replace(/-/g, ' ');
     };
 
     // "properties": {
@@ -529,14 +529,14 @@ $(function() {
                 var template3 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [music track] [listen]s in [a day] [ever]
                 var template4 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
                 var template5 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
-                var template6 = '<b>{{eventDate}}</b><br>{{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}}'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
-                var template7 = '<b>{{eventDate}}</b><br>{{value}} {{property}} {{objects}}<br>Your {{comparitor}} in {{eventPeriod}}'; // [Yesterday]: [1.2] [RescueTime] [business percent]<br>Your [6th] [fewest] in [a day]
+                var template6 = '<b>{{eventDate}}</b><br>{{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
+                var template7 = '<b>{{eventDate}}</b><br>{{value}} {{property}} {{objects}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [1.2] [RescueTime] [business percent]<br>Your [6th] [fewest] in [a day]
 
                 var supplantObject = {
                     eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
                     comparitor: createComparitorText(cardData.position, cardData.type),
                     eventPeriod: "a day",
-                    comparisonPeriod: "ever",
+                    comparisonPeriod: "",
                     colour: colour
                 };
 
