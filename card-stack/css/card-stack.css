@@ -448,15 +448,30 @@ h1 {
 .cardBackMain {
   height: 100%;
   margin-top: 45px;
-  background-color: #E7E9EE;
+  background-color: #fff;
   /*padding-left: 10px;
   padding-right: 10px;
    position: relative; */
   margin-bottom: -85px;
 }
 
+.cardBackTitle {
+  height: 49px;
+  width: 100%;
+  display: table;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.cardBackTitle p {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+}
+
 .cardBackMedia {
-  padding-bottom: 120px;
+  padding-bottom: 170px;
   width: 100%;
   height: 100%;
   display: table;

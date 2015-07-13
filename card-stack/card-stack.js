@@ -597,6 +597,7 @@ $(function() {
         , '<div class="cardBack-1">'
         , '  <div class="cardHeader" style="background-color: {{colour}};"><p>{{headerText}}</p></div>'
         , '    <div class="cardBackMain">'
+        , '      <div class="cardBackTitle" style="border-bottom-color:{{colour}}"><p>{{chartTitleText}}</p></div>'
         , '      <div class="cardBackMedia">'
         , '        <!--iframe class="mainChartFrame" src="{{mainChartSrc}}" scrolling="no"></iframe-->'
         , '      </div>'
@@ -713,6 +714,7 @@ $(function() {
                     colour: colour,
                     headerText: headerText,
                     headerText2: '&lt; back',
+                    chartTitleText: cardData.cardText,
                     shareContainer: shareContainerTemplate.supplant({
                         colour: colour,
                         shareContainerClasses: 'share-container-back'

@@ -29,11 +29,11 @@ path {
 
 .axis line {
   shape-rendering: crispEdges;
-  stroke: #fff;
+  stroke: #E7E9EE;
 }
 
 .axis .minor line {
-  stroke: #fff;
+  stroke: #E7E9EE;
   stroke-dasharray: 2,2;
 }
 
