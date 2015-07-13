@@ -304,6 +304,10 @@ if (offline) {
     var minStdDev = getQSParam().minStdDev;
     var maxStdDev = getQSParam().maxStdDev;
 
+    var sort_by_date = function(a, b) {
+        return new Date(b.generatedDate).getTime() - new Date(a.generatedDate).getTime();
+    };
+
     console.log('minStdDev',minStdDev);
 
     if (!username) username = "ed";
@@ -321,6 +325,7 @@ if (offline) {
             })
         .done(function(data) {
 
+            data.sort(sort_by_date);
             console.log('card data', data);
             window.cardData = data;
             deferred.resolve(data);
@@ -796,10 +801,6 @@ $(function() {
         var numberOfCardsToShow = 20;
         var skip = 0;
         deferred.done(function(cardsArray) {
-            var sort_by_date = function(a, b) {
-                return new Date(b.generatedDate).getTime() - new Date(a.generatedDate).getTime();
-            };
-            cardsArray.sort(sort_by_date);
             cardsArrayGlobal = cardsArray;
             if (numberOfCardsToShow > cardsArray.length) {
                 numberOfCardsToShow = cardsArray.length;
