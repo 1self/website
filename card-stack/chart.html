@@ -44,35 +44,8 @@
         for (var i = 0; i < dataArray.length; i++) {
             if (!isNaN(dataArray[i].value)) {
                 updatedArray.push(dataArray[i]);
-
-                // var j = updatedArray.length - 1;
-                // if (j === 0 || updatedArray[j].value <= lowestValue) {
-                //     // console.log('low values',j,lowestValue,updatedArray[j].value);
-                //     lowestValue = updatedArray[j].value;
-                //     lowestIndex = j;
-                // }
-
-                // if (j === 0 || updatedArray[j].value >= highestValue) {
-                //     // console.log('values',j,highestValue,updatedArray[j].value);
-                //     highestValue = updatedArray[j].value;
-                //     highestIndex = j;
-                // }
-
-                // for (var k = 0; k < highlightDatesArray.length; k++) {
-                //     if (highlightDatesArray[k] === updatedArray[j].date) {
-                //         updatedArray[j].highlight = true;
-                //     }
-                // }
             }
         }
-
-        // if (lowestIndex >= 0 && highlightCondition === "bottom10") {
-        //     updatedArray[lowestIndex].highlight = true;
-        // }
-
-        // if (highestIndex >= 0 && highlightCondition === "top10") {
-        //     updatedArray[highestIndex].highlight = true;
-        // }
 
         dataset.allData = updatedArray;
 
@@ -131,7 +104,7 @@
             addRankings(dataset.allData);
             dataset.allData.sort(sort_by_date);
             highlightData(dataset.allData);
-
+            dataset.property = data.property;
             callback(dataset);
         } else {
             var apiURL = dataSrc;
@@ -148,6 +121,7 @@
                     addRankings(dataset.allData);
                     dataset.allData.sort(sort_by_date);
                     highlightData(dataset.allData);
+                    dataset.property = data.property;
                     callback(dataset);
                 })
                 .fail(function(data) {
@@ -177,6 +151,8 @@
 
         var width = $('body').width();
         var height = $('body').height();
+
+        var yAxisLabel = chartData.property + " by day";
 
         // var chartWidth = width - 40;
         // var chartHeight = height;
@@ -333,6 +309,13 @@
                     break;
                 }
             }
+
+            // Add the text label for the x axis
+            svg.append("text")
+                .attr("transform", "translate(" + (width) + " ," + (height + margin.bottom) + ")")
+                .style("text-anchor", "middle")
+                .attr("class", "axis-label x-axis-label")
+                .text("Date");
         }
 
         if (vaxis) {
@@ -347,6 +330,17 @@
             gy.selectAll("text")
                 .attr("x", 4)
                 .attr("dy", -4);
+
+                // Add the text label for the Y axis
+            svg.append("text")
+                .attr("y", 0 - margin.left)
+                .attr("x", 0)
+                .attr("dy", "1em")
+                .attr("class", "axis-label y-axis-label")
+                .text(yAxisLabel);
+
+            svg.select(".y-axis-label")
+                .attr("transform", function() { console.log(this.getComputedTextLength()); return "rotate(-90) translate(" + (0 - this.getComputedTextLength()) + ", 0)"; } );
         }
 
         // add vertical lines down from scatter points
