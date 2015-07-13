@@ -796,6 +796,10 @@ $(function() {
         var numberOfCardsToShow = 20;
         var skip = 0;
         deferred.done(function(cardsArray) {
+            var sort_by_date = function(a, b) {
+                return new Date(b.generatedDate).getTime() - new Date(a.generatedDate).getTime();
+            };
+            cardsArray.sort(sort_by_date);
             cardsArrayGlobal = cardsArray;
             if (numberOfCardsToShow > cardsArray.length) {
                 numberOfCardsToShow = cardsArray.length;
