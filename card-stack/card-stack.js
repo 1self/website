@@ -494,7 +494,11 @@ $(function() {
                 isPercent = true;
             }
 
-            objectKey = Object.keys(propertiesObject)[0];
+            if (typeof propertiesObject === 'object')
+                objectKey = Object.keys(propertiesObject)[0];
+            else
+                objectKey = null;
+
             if (propertyText !== "") {
                 // returnString += '<span class="property-text" style="color: {{colour}}">' + propertyText + '</span>';
                 returnString += propertyText;
