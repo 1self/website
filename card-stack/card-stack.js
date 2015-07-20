@@ -747,6 +747,7 @@ $(function() {
             iFrameHtml += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
             iFrameHtml += '&highlightCondition=' + cardData.type;
             iFrameHtml += '&highlightDates=' + getHighlightDates(cardData);
+            iFrameHtml += '&doTransitions=true';
             iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
             iFrameHtml += 'scrolling="no"></iframe>';
             iFrameHtml += '<div class="clickable-overlay"></div>';
@@ -769,6 +770,7 @@ $(function() {
             iFrameHtml += '&highlightDates=' + getHighlightDates(cardData);
             iFrameHtml += '&vaxis=true&haxis=true';
             iFrameHtml += '&displayTooltips=true';
+            iFrameHtml += '&doTransitions=false';
             iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
             iFrameHtml += 'scrolling="no"></iframe>';
             $cardMedia.append(iFrameHtml);
