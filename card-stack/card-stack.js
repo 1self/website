@@ -37,19 +37,19 @@ function getHighlightDates(cardData) {
 }
 
 $('.prevButton').on('mousedown', function() { 
-    $(this).removeClass('standard-shadow'); 
+    $(this).removeClass('button-shadow'); 
 });
 
 $('.prevButton').on('mouseup', function() { 
-    $(this).addClass('standard-shadow'); 
+    $(this).addClass('button-shadow'); 
 });
 
 $('.nextButton').on('mousedown', function() { 
-    $(this).removeClass('standard-shadow'); 
+    $(this).removeClass('button-shadow'); 
 });
 
 $('.nextButton').on('mouseup', function() { 
-    $(this).addClass('standard-shadow'); 
+    $(this).addClass('button-shadow'); 
 });
 
 $(document).keydown(function (e) {
@@ -884,7 +884,7 @@ $(function() {
                 sendGAEvent(sharePaneAction, $li.attr('cardId'), $li.attr('cardIndex'));
                 
             });
-
+ 
             $stack.on('mousedown', '#shareToFacebook', function(e) {
                 console.log($('#shareToFacebook').parent().attr('class'));
                 $('#shareToFacebook').parent('div').toggleClass('standard-shadow');
