@@ -21,6 +21,7 @@
     var hhlt = getQSParam().hhlt === "true";
     var vaxis = getQSParam().vaxis === "true";
     var haxis = getQSParam().haxis === "true";
+    var doTransitions = getQSParam().doTransitions === "true";
     var highlightDates = getQSParam().highlightDates;
     var highlightCondition = getQSParam().highlightCondition;
     var displayTooltips = getQSParam().displayTooltips === "true";
@@ -211,8 +212,8 @@
             .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var lineSvg = svg.append("g")
-            .style("display", "none");
+        // var lineSvg = svg.append("g")
+        //     .style("display", "none");
 
         var focus = svg.append("g") 
             .style("display", "none");
@@ -353,17 +354,16 @@
             .attr("y2", height)
             .attr("x1", xMap)
             .attr("x2", xMap)
-            // .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.value) + ")"; } )
             .transition()
             .duration(1200)
             .ease('elastic')
             .attr("y2", yMap); //function(d) { return height - y(d.value); });
 
         // Add the valueline path.
-        lineSvg.append("path")
-            .attr("class", "line")
-            .attr("d", valueline(data))
-            .attr("stroke", lineColour);
+        // lineSvg.append("path")
+        //     .attr("class", "line")
+        //     .attr("d", valueline(data))
+        //     .attr("stroke", lineColour);
 
         // draw dots
         svg.selectAll(".dot")
