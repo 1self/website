@@ -144,6 +144,35 @@
         return colourArray[(idx + offset) % colourArray.length];
     }
 
+    function dataTextFormat(data, property) {
+
+        var isDuration = false;
+        var isPercentage = false;
+        var returnString = "";
+
+        if (property.indexOf("duration") > 0) {
+            isDuration = true;
+        } else if (property.indexOf("percent") > 0) {
+            isPercentage = true;
+        }
+
+        if (isDuration) {
+            if (data <= 60) {
+                returnString = Math.round(data) + "s";
+            } else if (data > 60 && data <= 3600) {
+                returnString = Math.floor(data / 60) + 'm ' + Math.round(data % 60) + 's';
+            } else {
+                returnString = Math.floor(data / 3600) + 'h ' + Math.round((data % 3600) / 60) + 'm';
+            }
+        } else if (isPercentage) {
+            returnString = data + "%";
+        } else {
+            returnString = data + '';
+        }
+console.log(returnString);
+        return returnString;
+    }
+
     function drawSparkLine(chartData, appendToElement) {
 
         var data = chartData.allData;
@@ -154,6 +183,9 @@
         var height = $('body').height();
 
         var yAxisLabel = chartData.property + " by day";
+
+
+
 
         // var chartWidth = width - 40;
         // var chartHeight = height;
@@ -177,7 +209,7 @@
         // Define the axes
         var xAxis = d3.svg.axis()
             .scale(x)
-            .orient("top")
+            .orient("bottom")
             .ticks(5);
 
         var yAxis = d3.svg.axis()
@@ -215,8 +247,8 @@
         // var lineSvg = svg.append("g")
         //     .style("display", "none");
 
-        var focus = svg.append("g") 
-            .style("display", "none");
+        // var focus = svg.append("g") 
+        //     .style("display", "none");
 
         var rankText = function(d) {
             var returnText;
@@ -401,7 +433,7 @@
             .attr("rankAsc", function(d) { return d.rankAsc; } )
             .attr("dx", width + 13)
             .attr("dy", "1em")
-            .text(function(d) { return d.value; } );
+            .text(function(d) { return dataTextFormat(d.value, chartData.property); } );
 
         // position labels as per updated position
         svg.selectAll(".highlight-text-active")
@@ -487,6 +519,9 @@
                 .duration(700)
                 .attr("r", 6);
             });
+
+        var focus = svg.append("g") 
+            .style("display", "none");
 
         // place the date at the intersection
         focus.append("text")
@@ -595,13 +630,13 @@
                 .attr("transform",
                       "translate(" + x(d.date) + "," +
                                      y(d.value) + ")")
-                .text(d.value);
+                .text(dataTextFormat(d.value, chartData.property));
 
             focus.select("text.y4")
                 .attr("transform",
                       "translate(" + x(d.date) + "," +
                                      y(d.value) + ")")
-                .text(d.value);
+                .text(dataTextFormat(d.value, chartData.property));
 
             focus.select(".x")
                 .attr("transform",
