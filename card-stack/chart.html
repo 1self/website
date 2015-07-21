@@ -185,6 +185,10 @@
         return returnString;
     }
 
+    function formatYAxisLabel(property) {
+        return "";
+    }
+
     function drawSparkLine(chartData, appendToElement) {
 
         var data = chartData.allData;
@@ -194,7 +198,7 @@
         var width = $('body').width();
         var height = $('body').height();
 
-        var yAxisLabel = chartData.property;
+        var yAxisLabel = formatYAxisLabel(chartData.property);
 
 
         // var chartWidth = width - 40;
@@ -342,7 +346,7 @@
             // var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
 
 
-            addYAxis(y, svg, width, margin.left, yAxisLabel, fnTickFormat);
+            addYAxis(y, svg, width + margin.right - margin.left, margin.left, yAxisLabel, fnTickFormat);
         }
 
         drawLollySticks(svg, data, height, width, xMap, yMap, lineColour, doTransitions);

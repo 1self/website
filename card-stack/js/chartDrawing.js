@@ -76,15 +76,17 @@ function addYAxis(yScale, svg, width, leftMargin, axisLabel, fnTickFormat) {
         .attr("dy", -4);
 
         // Add the text label for the Y axis
-    svg.append("text")
-        .attr("y", 0 - leftMargin)
-        .attr("x", 0)
-        .attr("dy", "1em")
-        .attr("class", "axis-label y-axis-label")
-        .text(axisLabel);
-
-    svg.select(".y-axis-label")
-        .attr("transform", function() { return "rotate(-90) translate(" + (0 - this.getComputedTextLength()) + ", 0)"; } );
+    if (axisLabel !== "") {
+        svg.append("text")
+            .attr("y", 0 - leftMargin)
+            .attr("x", 0)
+            .attr("dy", "1em")
+            .attr("class", "axis-label y-axis-label")
+            .text(axisLabel);
+    
+        svg.select(".y-axis-label")
+            .attr("transform", function() { return "rotate(-90) translate(" + (0 - this.getComputedTextLength()) + ", 0)"; } );
+    }
 }
 
 function drawLollySticks(svg, data, height, width, xMap, yMap, lineColour, doTransitions) {
