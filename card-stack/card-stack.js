@@ -969,22 +969,26 @@ $(function() {
 
     stack.throwInLast = function() {
         var cardLi = $('.stack .topOfDiscard')[0];
-        bringToTop(cardLi);
-        var val = '#' + cardLi.id;
-        var idx = discardPile.indexOf(val);
-        var card = stack.getCard(cardLi);
-        card.throwIn(cardLi.thrownX, cardLi.thrownY);
-        sendGAEvent('button-thrown-in-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));
+        if (cardLi) {
+            bringToTop(cardLi);
+            var val = '#' + cardLi.id;
+            var idx = discardPile.indexOf(val);
+            var card = stack.getCard(cardLi);
+            card.throwIn(cardLi.thrownX, cardLi.thrownY);
+            sendGAEvent('button-thrown-in-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));
+        }
     };
 
     stack.throwOutNext = function() {
         var cardLi = $('.stack .topOfMain')[0];
-        bringToTop(cardLi);
-        var card = stack.getCard(cardLi);
-        cardLi.thrownY = getRandomInt(-100, 100);
-        cardLi.thrownX = 1;
-        card.throwOut(cardLi.thrownX, cardLi.thrownY);
-        sendGAEvent('button-thrown-out-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));
+        if (cardLi) {
+            bringToTop(cardLi);
+            var card = stack.getCard(cardLi);
+            cardLi.thrownY = getRandomInt(-100, 100);
+            cardLi.thrownX = 1;
+            card.throwOut(cardLi.thrownX, cardLi.thrownY);
+            sendGAEvent('button-thrown-out-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));            
+        }    
     };
 
     window.stack = stack;
