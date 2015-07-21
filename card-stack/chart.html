@@ -28,6 +28,7 @@
     var displayTooltips = getQSParam().displayTooltips === "true";
     var dataSrc = 'http://app-staging.1self.co' + getQSParam().dataSrc;
     var offline = false;
+    var maxValue; // this is set in fn addRankings;
 
     $('.mainContainer').ready(function () {
         getData(dataSrc, function (data) {
@@ -65,6 +66,9 @@
         for (var i = 0; i < dataset.length; i++) {
             dataset[i].rankAsc = i;
             dataset[i].rankDesc = dataset.length - 1 - i;
+
+            if (dataset[i].rankDesc === 0)
+                maxValue = dataset[i].value;
         }
     }
 
@@ -145,19 +149,27 @@
         return colourArray[(idx + offset) % colourArray.length];
     }
 
+    function dataFormatType(dataProperty) {
+        returnObj = {};
+
+        if (dataProperty.indexOf("duration") > 0) {
+            returnObj.isDuration = true;
+        } else if (dataProperty.indexOf("percent") > 0) {
+            returnObj.isPercentage = true;
+        }
+
+        return returnObj;
+    }
+
     function dataTextFormat(data, property) {
 
         var isDuration = false;
         var isPercentage = false;
         var returnString = "";
 
-        if (property.indexOf("duration") > 0) {
-            isDuration = true;
-        } else if (property.indexOf("percent") > 0) {
-            isPercentage = true;
-        }
+        var dataFormat = dataFormatType(property);
 
-        if (isDuration) {
+        if (dataFormat.isDuration) {
             if (data <= 60) {
                 returnString = Math.round(data) + "s";
             } else if (data > 60 && data <= 3600) {
@@ -165,7 +177,7 @@
             } else {
                 returnString = Math.floor(data / 3600) + 'h ' + Math.round((data % 3600) / 60) + 'm';
             }
-        } else if (isPercentage) {
+        } else if (dataFormat.isPercentage) {
             returnString = data + "%";
         } else {
             returnString = data + '';
@@ -182,16 +194,14 @@
         var width = $('body').width();
         var height = $('body').height();
 
-        var yAxisLabel = chartData.property + " by day";
-
-
+        var yAxisLabel = chartData.property;
 
 
         // var chartWidth = width - 40;
         // var chartHeight = height;
 
         // Set the dimensions of the canvas / graph
-        var margin = {top: 20, right: 50, bottom: 20, left: 20};
+        var margin = {top: 20, right: 70, bottom: 20, left: 20};
         if (vaxis) margin.left -= 0;
         
         width = width - margin.left - margin.right;
@@ -300,8 +310,39 @@
             addXAxis(x, svg, height, true, null, width, margin.bottom);
         }
 
+        function getTimeFormatter(dataPoint) {
+            if (dataPoint <= 60) {
+                returnString = "%Ss";
+            } else if (dataPoint > 60 && dataPoint <= 3600) {
+                returnString = '%Mm %Ss';
+            } else {
+                returnString = '%Hh %Mm';
+            }
+            return returnString;
+        }
+
         if (vaxis) {
-            addYAxis(y, svg, width, margin.left, yAxisLabel);
+
+            var dataFormat = dataFormatType(chartData.property);
+            var fnTickFormat;
+
+            if (dataFormat.isDuration) {
+                console.log('here');
+                
+                fnTickFormat = function(d) {
+                    var timeFormatter = getTimeFormatter(maxValue);
+                    var formatTime = d3.time.format(timeFormatter);
+                    return formatTime(new Date(2012, 0, 1, 0, 0, d)); 
+                };
+            } else {
+                console.log('no! here');
+                fnTickFormat = function(d) { return d; };
+            }
+            
+            // var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+
+
+            addYAxis(y, svg, width, margin.left, yAxisLabel, fnTickFormat);
         }
 
         drawLollySticks(svg, data, height, width, xMap, yMap, lineColour, doTransitions);

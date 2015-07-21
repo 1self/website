@@ -46,18 +46,27 @@ function addXAxis(xScale, svg, height, removeOverlaps, axisLabel, width, bottomM
     }
 }
 
-function addYAxis(yScale, svg, width, leftMargin, axisLabel) {
+function addYAxis(yScale, svg, width, leftMargin, axisLabel, fnTickFormat) {
 
     var yAxis = d3.svg.axis()
         .scale(yScale)
         .orient("right")
         .ticks(5)
-        .tickSize(width);
+        .tickSize(width)
+        .tickFormat(fnTickFormat);
+
+    console.log('ticks', yAxis.scale().ticks(yAxis.ticks()[0]));
+    console.log('ticks', yAxis.scale().ticks());
 
     // Add the Y Axis
     var gy = svg.append("g")
         .attr("class", "y axis")
-        .call(yAxis);
+        .call(yAxis)
+        .selectAll('.tick')
+        .each(function(data) {
+            var tick = d3.select(this);
+            console.log(tick, tick.text());
+        });
 
     gy.selectAll("g").filter(function(d) { return d; })
         .classed("minor", true);
