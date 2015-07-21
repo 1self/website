@@ -26,7 +26,7 @@
     var highlightDates = getQSParam().highlightDates;
     var highlightCondition = getQSParam().highlightCondition;
     var displayTooltips = getQSParam().displayTooltips === "true";
-    var dataSrc = 'http://app-staging.1self.co' + decodeUriComponent(getQSParam().dataSrc);
+    var dataSrc = 'http://app-staging.1self.co' + decodeURIComponent(getQSParam().dataSrc);
     var offline = false;
     var maxValue; // this is set in fn addRankings;
 

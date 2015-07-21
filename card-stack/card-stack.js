@@ -761,7 +761,7 @@ $(function() {
                 iFrameHtml += '&highlightCondition=' + cardData.type;
                 iFrameHtml += '&highlightDates=' + getHighlightDates(cardData);
                 iFrameHtml += '&doTransitions=true';
-                iFrameHtml += '&dataSrc=' + encodeUriComponent(cardData.chart) + '" ';
+                iFrameHtml += '&dataSrc=' + encodeURIComponent(cardData.chart) + '" ';
                 iFrameHtml += 'scrolling="no"></iframe>';
                 iFrameHtml += '<div class="clickable-overlay"></div>';
                 $cardMedia.append(iFrameHtml);
