@@ -63,6 +63,15 @@ path {
 .highlight-text-hidden {
   display: none;
 }
+
+.outerContainer {
+
+}
+
+.mainContainer {
+
+}
+
 /*
 svg {
     margin: auto;
@@ -76,17 +85,4 @@ svg {
   background-size: cover;
   opacity: 0.5;
 }
-
-.outerContainer {
-
-  display: table;
-  width: 100%;
-  height: 100%;
-  vertical-align: middle;
-  text-align: center;
-}
-.mainContainer {
-	display: table-cell;
-	height: 100%;
-	vertical-align: middle;
-}*/
+*/
