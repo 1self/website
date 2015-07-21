@@ -4,51 +4,39 @@
   width: 400px;
   height: 500px;
   margin: auto;
-  background-color: #f7f7fa;
-}
+  background-color: #f7f7fa; }
 
 .body {
-  background-color: #f7f7fa;
-}
+  background-color: #f7f7fa; }
 
 .stack {
-  background: #e7e9ee;
-}
+  background: #e7e9ee; }
 
 .main-text-row {
-  font-size: 1.5em;
-}
+  font-size: 1.5em; }
 
 /* ----------- iPhone 4 and 4S ----------- */
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
   .body,
   .body .left-nav {
-    position: static;
-  }
+    position: static; }
   .body .left-nav,
   .body #viewport {
     width: 90%;
     height: 85%;
-    background-color: #fdc526;
-  }
+    background-color: #fdc526; }
   .body #viewport {
-    margin: auto;
-  }
+    margin: auto; }
   .body {
-    background-color: #fdc526;
-  }
+    background-color: #fdc526; }
   .stack {
-    background: #f2ae1c;
-  }
-}
+    background: #f2ae1c; } }
 
 /* Portrait */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
   .main-text-row {
-    font-size: 0.8em;
-  }
-}
+    font-size: 0.8em; } }
 
 /* Landscape */
 /* ----------- iPhone 5 and 5S ----------- */
@@ -59,9 +47,7 @@
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
   .main-text-row {
-    font-size: 1.5em;
-  }
-}
+    font-size: 1.5em; } }
 
 /* Portrait */
 /* Landscape */
@@ -69,62 +55,49 @@
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
   .main-text-row {
-    font-size: 1.7em;
-  }
-}
+    font-size: 1.7em; } }
 
 /* Portrait */
 /* Landscape */
 @-webkit-keyframes card-fade-out {
   0% {
-    opacity: 1;
-  }
+    opacity: 1; }
   100% {
     opacity: 0;
-    display: none;
-  }
-}
+    display: none; } }
 @keyframes card-fade-out {
   0% {
-    opacity: 1;
-  }
+    opacity: 1; }
   100% {
     opacity: 0;
-    display: none;
-  }
-}
+    display: none; } }
 
 .discardPile {
   -webkit-animation: card-fade-out 1s 1;
           animation: card-fade-out 1s 1;
-  opacity: 0;
-}
+  opacity: 0; }
 
 @font-face {
   font-family: "Raleway";
   font-style: normal;
   font-weight: 300;
   src: local("Raleway Light"), local("Raleway-Light"), url(/css/fonts/Raleway.woff) format("woff");
-  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000;
-}
+  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
 
 html,
 body,
 ul,
 li {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 html,
 body {
-  height: 100%;
-}
+  height: 100%; }
 
 body {
   font-family: "Raleway";
-  height: 100%;
-}
+  height: 100%; }
 
 button,
 input,
@@ -134,33 +107,27 @@ code {
   font: inherit;
   border: none;
   background: #FDE991;
-  padding: 0;
-}
+  padding: 0; }
 
 button {
   color: #C7433E;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 input {
-  width: 50px;
-}
+  width: 50px; }
 
 h1 {
   font-size: 3em;
-  margin: 0.67em 0;
-}
+  margin: 0.67em 0; }
 
 .header {
   height: 64px;
-  background-color: #30363e;
-}
+  background-color: #30363e; }
 
 .body {
   position: relative;
   height: 100%;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .body .left-nav {
   position: absolute;
@@ -169,15 +136,13 @@ h1 {
   left: 0;
   height: auto;
   width: 220px;
-  background-color: gray;
-}
+  background-color: gray; }
 
 .bottom-of-stack-container {
   position: absolute;
   display: table;
   width: 100%;
-  height: 100%;
-}
+  height: 100%; }
 
 .bottom-of-stack {
   display: table-cell;
@@ -185,8 +150,7 @@ h1 {
   text-align: center;
   width: 100%;
   height: 100%;
-  color: #454b54;
-}
+  color: #454b54; }
 
 .buttonsRow {
   width: 100%;
@@ -198,21 +162,18 @@ h1 {
   border-radius: 5px;
   border: 1px solid #454b54;
   position: relative;
-  /*box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26); 0 3px 0 rgba(0,0,0,0.2);*/
-}
+  /*box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26); 0 3px 0 rgba(0,0,0,0.2);*/ }
 
 .cardButton {
   text-align: center;
   width: 50%;
   height: 100%;
-  background-color: transparent;
-}
+  background-color: transparent; }
 
 .nextButton {
   border-left-width: 1px;
   border-left-color: #454b54;
-  border-left-style: solid;
-}
+  border-left-style: solid; }
 
 .cardHeader {
   text-align: center;
@@ -221,18 +182,14 @@ h1 {
   color: #ffffff;
   width: 100%;
   padding-bottom: 5px;
-  position: absolute;
-}
-
-.cardHeader p {
-  margin: 8px 0 8px 0;
-}
+  position: absolute; }
+  .cardHeader p {
+    margin: 8px 0 8px 0; }
 
 .cardContentContainer {
   height: 100%;
   margin-top: 45px;
-  margin-bottom: -85px;
-}
+  margin-bottom: -85px; }
 
 .cardMedia {
   text-align: center;
@@ -241,73 +198,58 @@ h1 {
   /*e7e9ee;*/
   position: relative;
   border-bottom-width: 1px;
-  border-bottom-style: solid;
-}
+  border-bottom-style: solid; }
 
 .standard-shadow {
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-}
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
 
 .button-shadow {
-  box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.26);
-}
+  box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.26); }
 
 .cardText {
   line-height: normal;
   text-align: center;
   padding-left: 10px;
-  padding-right: 10px;
-}
+  padding-right: 10px; }
 
 .main-text-row {
   width: 100%;
-  text-align: center;
-}
-
-.main-text-row p {
-  margin: 0;
-}
+  text-align: center; }
+  .main-text-row p {
+    margin: 0; }
 
 .cardNav {
   height: 40px;
   background-color: green;
   width: 100%;
   font-size: 12px;
-  position: absolute;
-}
-
-.cardNav p {
-  vertical-align: middle;
-  color: white;
-}
+  position: absolute; }
+  .cardNav p {
+    vertical-align: middle;
+    color: white; }
 
 .cardFullText {
   background-color: white;
   height: 100%;
   width: 100%;
-  display: table;
-}
-
-.cardFullText p {
-  vertical-align: middle;
-  text-align: center;
-  color: white;
-  font-size: 50px;
-}
+  display: table; }
+  .cardFullText p {
+    vertical-align: middle;
+    text-align: center;
+    color: white;
+    font-size: 50px; }
 
 .glance-row {
   width: 100%;
   height: 72px;
-  font-size: 30px;
-}
+  font-size: 30px; }
 
 .glance-blob-cell {
   width: 50%;
   float: left;
   /* height: 50px;
   display: table-cell;
-  vertical-align: middle;*/
-}
+  vertical-align: middle;*/ }
 
 .glance-blob {
   width: 50px;
@@ -318,79 +260,64 @@ h1 {
   display: table;
   color: white;
   border-width: 1px;
-  border-style: solid;
-}
+  border-style: solid; }
 
 .glance-blob-left {
   margin-left: auto;
-  margin-right: 5px;
-}
+  margin-right: 5px; }
 
 .glance-blob p {
   display: table-cell;
-  vertical-align: middle;
-}
+  vertical-align: middle; }
 
 .glance-blob-right {
   margin-right: auto;
   margin-left: 5px;
   background-size: 100%;
-  background-repeat: no-repeat;
-}
+  background-repeat: no-repeat; }
 
 .ordinal-suffix {
   font-size: 0.4em;
   line-height: 0.4em;
-  vertical-align: super;
-}
+  vertical-align: super; }
 
 .cardBackContainer {
   background-color: white;
   position: absolute;
   height: 300px;
-  width: 100%;
-}
+  width: 100%; }
 
 .share-container {
   position: absolute;
   width: 100%;
   padding-top: 20px;
-  background-color: #f2ae1c;
-}
+  background-color: #f2ae1c; }
 
 .share-container-front {
   bottom: 40px;
   height: 250px;
   -webkit-animation: share-grow-in 0.5s 1;
-          animation: share-grow-in 0.5s 1;
-}
+          animation: share-grow-in 0.5s 1; }
 
 @-webkit-keyframes share-grow-in {
   0% {
     opacity: 0;
-    height: 0px;
-  }
+    height: 0px; }
   100% {
     opacity: 1;
-    height: 250px;
-  }
-}
+    height: 250px; } }
 
 @keyframes share-grow-in {
   0% {
     opacity: 0;
-    height: 0px;
-  }
+    height: 0px; }
   100% {
     opacity: 1;
-    height: 250px;
-  }
-}
+    height: 250px; } }
 
 .share-container-back {
   height: 290px;
-  bottom: 0px;
-}
+  bottom: 0px; }
 
 .social-share-button {
   background-color: white;
@@ -404,21 +331,17 @@ h1 {
   border-radius: 5px;
   border: 1px solid #454b54;
   cursor: pointer;
-  /*box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26); 0 3px 0 rgba(0,0,0,0.2);*/
-}
+  /*box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26); 0 3px 0 rgba(0,0,0,0.2);*/ }
 
 .innerButton {
   display: table-cell;
-  vertical-align: middle;
-}
+  vertical-align: middle; }
 
 .hide {
-  display: none;
-}
+  display: none; }
 
 .fadeIn {
-  display: block;
-}
+  display: block; }
 
 .thumbnailFrame {
   height: 100%;
@@ -426,8 +349,7 @@ h1 {
   border-style: none;
   border-width: 0px;
   border-color: black;
-  padding: 0;
-}
+  padding: 0; }
 
 .clickable-overlay {
   position: absolute;
@@ -435,8 +357,7 @@ h1 {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: transparent;
-}
+  background-color: transparent; }
 
 .mainChartFrame {
   height: 100%;
@@ -444,21 +365,17 @@ h1 {
   border-style: none;
   border-width: 0px;
   border-color: black;
-  padding: 0;
-}
+  padding: 0; }
 
 .prevButton {
-  float: left;
-}
+  float: left; }
 
 .nextButton {
-  float: left;
-}
+  float: left; }
 
 .stackBase {
   display: table;
-  width: 100%;
-}
+  width: 100%; }
 
 .stackBase div {
   display: table-cell;
@@ -466,63 +383,54 @@ h1 {
   text-align: center;
   font-size: 30px;
   position: relative;
-  height: 400px;
-}
+  height: 400px; }
 
 .spyImg {
-  width: 30%;
-}
+  width: 30%; }
 
 .stack li {
   position: absolute;
   list-style: none;
   width: 100%;
-  height: 100%;
-}
+  height: 100%; }
 
 .stack {
   width: 100%;
   height: 100%;
   position: relative;
   margin: auto;
-  border-radius: 10px;
-}
+  border-radius: 10px; }
 
 .cardContainer {
   -webkit-transition: 0.6s;
           transition: 0.6s;
   -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-}
+          transform-style: preserve-3d; }
 
 .cardContainer-front.flip,
 .cardContainer-back {
   -webkit-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
   -ms-transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
-  transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
-}
+  transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg); }
 
 .cardContainer-front,
 .cardContainer-back.flip {
   -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
   -ms-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-}
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
 
 .cardBack-1 {
   width: 100%;
   height: 100%;
   position: absolute;
   left: 0px;
-  -webkit-transition: left 0.4s ease-in;
-}
+  -webkit-transition: left 0.4s ease-in; }
 
 .cardBack-2 {
   width: 100%;
   position: absolute;
   left: 3000px;
-  -webkit-transition: left 0.4s ease-in;
-}
+  -webkit-transition: left 0.4s ease-in; }
 
 .cardBackMain {
   height: 100%;
@@ -531,29 +439,25 @@ h1 {
   /*padding-left: 10px;
   padding-right: 10px;
    position: relative; */
-  margin-bottom: -85px;
-}
+  margin-bottom: -85px; }
 
 .cardBackTitle {
   height: 49px;
   width: 100%;
   display: table;
   border-bottom-width: 1px;
-  border-bottom-style: solid;
-}
+  border-bottom-style: solid; }
 
 .cardBackTitle p {
   margin: 0;
   text-align: center;
-  width: 100%;
-}
+  width: 100%; }
 
 .cardBackMedia {
   padding-bottom: 175px;
   width: 100%;
   height: 100%;
-  display: table;
-}
+  display: table; }
 
 .cardBackAction {
   cursor: pointer;
@@ -566,33 +470,27 @@ h1 {
   border-top-color: #454b54;
   vertical-align: middle;
   width: 100%;
-  display: table;
-}
+  display: table; }
 
 .actionText {
   font-size: 16px;
   display: table-cell;
   vertical-align: middle;
   padding-left: 10px;
-  padding-right: 10px;
-}
+  padding-right: 10px; }
 
 .backButton {
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .slideOutLeft {
-  left: -300px;
-}
+  left: -300px; }
 
 .slideInLeft {
-  left: 0px;
-}
+  left: 0px; }
 
 .cardContainer {
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-}
+          backface-visibility: hidden; }
 
 .stack .cardContainer {
   width: 100%;
@@ -606,21 +504,17 @@ h1 {
   border: 10px solid red;
   box-sizing: border-box;
   overflow: hidden;
-  cursor: default;
-}
+  cursor: default; }
 
 #viewport {
   width: 100%;
   height: 100%;
-  padding-top: 10px;
-}
+  padding-top: 10px; }
 
 #source {
   width: 500px;
-  margin: 20px auto;
-}
+  margin: 20px auto; }
 
 #source a {
-  color: #C7433E;
-}
+  color: #C7433E; }
 /*# sourceMappingURL=card-stack.css.map */
