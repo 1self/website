@@ -51,7 +51,7 @@ function addYAxis(yScale, svg, width, leftMargin, axisLabel, fnTickFormat) {
     var yAxis = d3.svg.axis()
         .scale(yScale)
         .orient("right")
-        .ticks(5)
+        .ticks(4)
         .tickSize(width)
         .tickFormat(fnTickFormat);
 

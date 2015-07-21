@@ -64,6 +64,16 @@ path {
   display: none;
 }
 
+.axis text {
+    fill: rgb(169, 178, 189);
+}
+
+/*  &.days text {
+    fill: #999;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }*/
+
 .outerContainer {
 
 }
