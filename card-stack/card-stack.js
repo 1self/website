@@ -305,7 +305,7 @@ if (offline) {
     var maxStdDev = getQSParam().maxStdDev;
 
     var sort_by_date = function(a, b) {
-        return new Date(b.generatedDate).getTime() - new Date(a.generatedDate).getTime();
+        return new Date(b.cardDate).getTime() - new Date(a.cardDate).getTime();
     };
 
     console.log('minStdDev',minStdDev);
@@ -632,7 +632,7 @@ $(function() {
 
     var buildCardHtml = function(cardData, colourIndex) {
 
-        var generatedDate = moment(cardData.generatedDate);
+        var cardDate = moment(cardData.cardDate);
         cardData.colourIndex = colourIndex;
 
         var colour = getColour(colourIndex);
@@ -659,7 +659,7 @@ $(function() {
         });
 
         if (cardData.type === "date") {
-            var dateNow = stripAtDetail(generatedDate.calendar());
+            var dateNow = stripAtDetail(cardDate.calendar());
 
             html = html.supplant({
                 cardFrontContent: '<div class="cardFullText" style="background-color: {{colour}};"><p>{{dateNow}}</p></div>'.supplant({
@@ -736,22 +736,24 @@ $(function() {
     };
 
     var renderThumbnailMedia = function(cardLi) {
-        var cardData = $(cardLi).find('.cardData');
-        cardData = decodeURIComponent(cardData.val());
-        cardData = JSON.parse(cardData);
+        if (cardLi) {
+            var cardData = $(cardLi).find('.cardData');
+            cardData = decodeURIComponent(cardData.val());
+            cardData = JSON.parse(cardData);
 
-        if (cardData.thumbnailMedia) {
-            var $cardMedia = $(cardLi).find('.cardMedia');
-            $cardMedia.empty();
-            var iFrameHtml = '<iframe class="thumbnailFrame" src="' + cardData.thumbnailMedia;
-            iFrameHtml += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
-            iFrameHtml += '&highlightCondition=' + cardData.type;
-            iFrameHtml += '&highlightDates=' + getHighlightDates(cardData);
-            iFrameHtml += '&doTransitions=true';
-            iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
-            iFrameHtml += 'scrolling="no"></iframe>';
-            iFrameHtml += '<div class="clickable-overlay"></div>';
-            $cardMedia.append(iFrameHtml);
+            if (cardData.thumbnailMedia) {
+                var $cardMedia = $(cardLi).find('.cardMedia');
+                $cardMedia.empty();
+                var iFrameHtml = '<iframe class="thumbnailFrame" src="' + cardData.thumbnailMedia;
+                iFrameHtml += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
+                iFrameHtml += '&highlightCondition=' + cardData.type;
+                iFrameHtml += '&highlightDates=' + getHighlightDates(cardData);
+                iFrameHtml += '&doTransitions=true';
+                iFrameHtml += '&dataSrc=' + cardData.chart + '" ';
+                iFrameHtml += 'scrolling="no"></iframe>';
+                iFrameHtml += '<div class="clickable-overlay"></div>';
+                $cardMedia.append(iFrameHtml);
+            }
         }
     };
 
@@ -792,6 +794,7 @@ $(function() {
         $(li).attr('id', 'card_' + addedCardsCount);
         $(li).attr('cardId', cardData.id);
         $(li).attr('cardIndex', cardIndex);
+        $(li).addClass('mainPile');
 
         $('.stack').append(li);
 
@@ -998,6 +1001,7 @@ $(function() {
         // debugger;
         markCardUnique($('.stack .topOfMain')[0], 'topOfMain');
         markCardUnique(e.target, 'topOfDiscard');
+        $(e.target).toggleClass("discardPile mainPile");
         discardPile.push('#' + e.target.id);
         e.target.thrownX = 1;
         e.target.thrownY = 78;
@@ -1018,6 +1022,7 @@ $(function() {
         var cardEl = $(discardPile[discardPile.length - 1])[0];
         markCardUnique(e.target, 'topOfMain');
         markCardUnique(cardEl, 'topOfDiscard');
+        $(e.target).toggleClass("discardPile mainPile");
 
         e.target.classList.add('in-deck');
         console.log('thrown in', e.target.id, discardPile);
