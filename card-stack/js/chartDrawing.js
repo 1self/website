@@ -6,12 +6,7 @@ Depends on d3 so ensure that that is linked to before this file in your main fil
 
  */
 
-function addXAxis(xScale, appendTo, height, removeOverlaps, axisLabel, width, bottomMargin) {
-
-    var xAxis = d3.svg.axis()
-        .scale(xScale)
-        .orient("bottom")
-        .ticks(5);
+function addXAxis(xAxis, appendTo, height, removeOverlaps, axisLabel, width, bottomMargin) {
 
     // Add the X Axis
     var dateTicks = appendTo.append("g")
@@ -46,14 +41,7 @@ function addXAxis(xScale, appendTo, height, removeOverlaps, axisLabel, width, bo
     }
 }
 
-function addYAxis(yScale, appendTo, width, leftMargin, axisLabel, fnTickFormat) {
-
-    var yAxis = d3.svg.axis()
-        .scale(yScale)
-        .orient("right")
-        .ticks(4)
-        .tickSize(width)
-        .tickFormat(fnTickFormat);
+function addYAxis(yAxis, appendTo, width, leftMargin, axisLabel) {
 
     console.log('ticks', yAxis.scale().ticks(yAxis.ticks()[0]));
     console.log('ticks', yAxis.scale().ticks());
@@ -65,7 +53,7 @@ function addYAxis(yScale, appendTo, width, leftMargin, axisLabel, fnTickFormat) 
         .selectAll('.tick')
         .each(function(data) {
             var tick = d3.select(this);
-            console.log(tick, tick.text());
+            // console.log(tick, tick.text());
         });
 
     gy.selectAll("g").filter(function(d) { return d; })

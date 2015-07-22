@@ -229,15 +229,24 @@
             formatDate = d3.time.format("%d-%b"),
             bisectDate = d3.bisector(function(d) { return d.date; }).left;
 
-        // Set the ranges
-        var x = d3.time.scale().range([0, width]);
-        var y = d3.scale.linear().range([height, 0]);
-
         data.forEach(function(d) {
             d.date = parseDate(d.date);
             // d.value = isNaN(d.value) ? 0 : d.value;
             // d.value = +d.value;
         });
+
+        // Set the ranges
+        var x = d3.time.scale()
+            .domain(d3.extent(data, function(d) { return d.date; }))
+            .range([0, width]);
+
+        var y = d3.scale.linear()
+            .domain([0, d3.max(data, function(d) { return d.value; })])
+            .range([height, 0]);
+
+        // Scale the range of the data
+        // x.domain(d3.extent(data, function(d) { return d.date; }));
+        // y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
         // setup x 
         var xMap = function(d) { return x(d.date);}; // data -> display
@@ -246,6 +255,8 @@
         var yMap = function(d) { return y(d.value); }; // data -> display
 
         var zoom = d3.behavior.zoom()
+            .x(x)
+            .y(y)
             .scaleExtent([1, 10])
             .on("zoom", zoomed);
 
@@ -318,10 +329,6 @@
                 }
             }
         };
-
-        // Scale the range of the data
-        x.domain(d3.extent(data, function(d) { return d.date; }));
-        y.domain([0, d3.max(data, function(d) { return d.value; })]);
             
         // Adds the svg canvas
         var svg = d3.select(".mainContainer")
@@ -334,17 +341,13 @@
 
         var container = svg.append("g");
 
-        // ToDo: refactor this so that this function doesn't depend on being declared after container
-        function zoomed() {
-            console.log('zoomed', d3.event.translate, d3.event.scale);
-            var xTrans = d3.event.translate[0];
-            container.attr("transform", "translate(" + xTrans + ",0)scale(" + d3.event.scale + ")");
-            container.selectAll('.y')
-                .each( function() { console.log(this); this.setAttribute("transform", "translate(0,0)"); } );
-        }
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom")
+            .ticks(5);
 
         if (haxis) {
-            addXAxis(x, container, height, true, null, width, margin.bottom);
+            addXAxis(xAxis, svg, height, true, null, width, margin.bottom);
         }
 
         function getTimeFormatter(dataPoint) {
@@ -358,24 +361,30 @@
             return returnString;
         }
 
-        if (vaxis) {
+        var fnTickFormat;
 
-            var dataFormat = dataFormatType(chartData.property);
-            var fnTickFormat;
-
-            if (dataFormat.isDuration) {
+        var dataFormat = dataFormatType(chartData.property);
+        if (dataFormat.isDuration) {
+            
+            fnTickFormat = function(d) {
+                var timeFormatter = getTimeFormatter(maxValue);
+                var formatTime = d3.time.format(timeFormatter);
                 
-                fnTickFormat = function(d) {
-                    var timeFormatter = getTimeFormatter(maxValue);
-                    var formatTime = d3.time.format(timeFormatter);
-                    
-                    return formatTime(new Date(2012, 0, 1, 0, 0, d)); // new Date(year, month, day, hours, minutes, seconds, milliseconds);
-                };
-            } else {
-                fnTickFormat = function(d) { return d; };
-            }
+                return formatTime(new Date(2012, 0, 1, 0, 0, d)); // new Date(year, month, day, hours, minutes, seconds, milliseconds);
+            };
+        } else {
+            fnTickFormat = function(d) { return d; };
+        }
 
-            addYAxis(y, container, width + margin.right - margin.left, margin.left, yAxisLabel, fnTickFormat);
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("right")
+            .ticks(4)
+            .tickSize(width + margin.right - margin.left);
+            // .tickFormat(fnTickFormat);
+
+        if (vaxis) {
+            addYAxis(yAxis, svg, width + margin.right - margin.left, margin.left, yAxisLabel);
         }
 
         drawLollySticks(container, data, height, width, xMap, yMap, lineColour, doTransitions);
@@ -578,6 +587,20 @@
                 .on("mouseover", function() { focus.style("display", null); })
                 .on("mouseout", function() { focus.style("display", "none"); })
                 .on("mousemove", mousemove);
+        }
+
+        // ToDo: refactor this so that this function doesn't depend on being declared after container
+        function zoomed() {
+            // console.log('zoomed', d3.event.translate, d3.event.scale);
+            var xTrans = d3.event.translate[0];
+            container.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+            svg.select(".y.axis").call(yAxis);
+            svg.select(".x.axis").call(xAxis);
+
+            // console.log('ticks a', yAxis.scale().ticks(yAxis.ticks()[0]));
+            // console.log('ticks b', yAxis.scale().ticks());
+            // container.selectAll('.y')
+            //     .each( function() { console.log(this); this.setAttribute("transform", "translate(0,0)"); } );
         }
 
         function mousemove() {

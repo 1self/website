@@ -326,6 +326,7 @@ if (offline) {
 
     var url = 'https://api-staging.1self.co/v1/users/';
     url += username + '/cards';
+    // url += '?extraFiltering=true';
     url += minStdDev ? '?minStdDev=' + minStdDev : '?minStdDev=' + "2";
     url += maxStdDev ? '&maxStdDev=' + maxStdDev : '';
 
