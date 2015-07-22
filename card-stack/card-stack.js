@@ -87,8 +87,8 @@ moment.locale('en', {
         lastDay : '[Yesterday at] LT',
         sameDay : '[Today at] LT',
         nextDay : '[Tomorrow at] LT',
-        lastWeek : '[last] dddd [at] LT',
-        nextWeek : 'dddd [at] LT',
+        lastWeek : 'dddd [at] LT',
+        nextWeek : '[next] dddd [at] LT',
         sameElse : 'll'
     }
 });
@@ -461,7 +461,7 @@ $(function() {
         if (propertyText === "artist-name")
             return "";
         else if (propertyText === "album-name")
-            return "album";
+            return "tracks from the album";
         else if (propertyText.indexOf('percent') >= 0)
             return propertyText.replace('percent', '').trim();
         else if (propertyText.indexOf('duration') >= 0)
