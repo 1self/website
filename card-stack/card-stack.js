@@ -819,7 +819,7 @@ $(function() {
     };
 
     var buildStack = function(stack) {
-        var numberOfCardsToShow = 20;
+        var numberOfCardsToShow = 10;
         var skip = 0;
         deferred.done(function(cardsArray) {
             cardsArrayGlobal = cardsArray;
@@ -1025,13 +1025,19 @@ $(function() {
         markCardUnique($cardList[$cardList.length - 1 - cardsOnDiscard], 'topOfMain');
         renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
         e.target.classList.remove('in-deck');
-        console.log('thrown out', e.target.id, discardPile);
-        
+        console.log('thrown out', e.target.id, discardPile);   
         sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
-        
+    
+        $('.discardPile').add('.topOfDiscard').delay(500).fadeOut(300, function(){
+           $(this).remove();
+           console.log('removed card');
+        });
+
         // addToStack(stack, cardDataGlobal, addedCardsCount, false);
         // $cardList = $('.stack li');
     });
+
+        
 
     stack.on('throwin', function(e) {
         discardPile.pop();

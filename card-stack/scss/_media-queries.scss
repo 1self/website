@@ -1,9 +1,13 @@
     .body #viewport {
         /* margin-left: 232px; */
+        // width: 100%;
+        // height: 100%;
         width: 400px;
         height: 500px;
+        padding:0;
         margin: auto;
         background-color: #f7f7fa;
+
     }
     .body {
         background-color: #f7f7fa;
@@ -46,8 +50,6 @@
         background: #f2ae1c;
     }
    
-
-
 }
 
 /* Portrait */
@@ -79,9 +81,18 @@
   and (max-device-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2) {
 
+}
 
+@media only screen 
+  and (min-device-height: 568px)  {
+
+  .main-text-row {
+    font-size: 1.2em;
+  }
 
 }
+
+
 
 /* Portrait */
 @media only screen 
@@ -145,6 +156,10 @@
 
    .main-text-row {
     font-size: 1.7em;
+	}
+
+	.body .left-nav, .body #viewport {
+
 	}
 
 }
