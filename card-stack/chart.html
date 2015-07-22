@@ -189,6 +189,23 @@
         return "";
     }
 
+
+    // function dragstarted(d) {
+    //     console.log('dragstarted');
+    //   d3.event.sourceEvent.stopPropagation();
+    //   d3.select(this).classed("dragging", true);
+    // }
+
+    // function dragged(d) {
+    //     console.log('dragged');
+    //   d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+    // }
+
+    // function dragended(d) {
+    //     console.log('dragended');
+    //   d3.select(this).classed("dragging", false);
+    // }
+
     function drawSparkLine(chartData, appendToElement) {
 
         var data = chartData.allData;
@@ -199,10 +216,6 @@
         var height = $('body').height();
 
         var yAxisLabel = formatYAxisLabel(chartData.property);
-
-
-        // var chartWidth = width - 40;
-        // var chartHeight = height;
 
         // Set the dimensions of the canvas / graph
         var margin = {top: 20, right: 70, bottom: 20, left: 20};
@@ -232,14 +245,15 @@
         // setup y
         var yMap = function(d) { return y(d.value); }; // data -> display
 
-            
-        // Adds the svg canvas
-        var svg = d3.select(".mainContainer")
-            .append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var zoom = d3.behavior.zoom()
+            .scaleExtent([1, 10])
+            .on("zoom", zoomed);
+
+        // var drag = d3.behavior.drag()
+        //     .origin(function(d) { return d; })
+        //     .on("dragstart", dragstarted)
+        //     .on("drag", dragged)
+        //     .on("dragend", dragended);
 
         var rankText = function(d) {
             var returnText;
@@ -305,13 +319,30 @@
             }
         };
 
-
         // Scale the range of the data
         x.domain(d3.extent(data, function(d) { return d.date; }));
         y.domain([0, d3.max(data, function(d) { return d.value; })]);
+            
+        // Adds the svg canvas
+        var svg = d3.select(".mainContainer")
+            .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                .call(zoom);
+
+        var container = svg.append("g");
+
+        // ToDo: refactor this so that this function doesn't depend on being declared after container
+        function zoomed() {
+            console.log('zoomed', d3.event.translate, d3.event.scale);
+            var xTrans = d3.event.translate[0];
+          container.attr("transform", "translate(" + xTrans + ",0)scale(" + d3.event.scale + ")");
+        }
 
         if (haxis) {
-            addXAxis(x, svg, height, true, null, width, margin.bottom);
+            addXAxis(x, container, height, true, null, width, margin.bottom);
         }
 
         function getTimeFormatter(dataPoint) {
@@ -331,28 +362,24 @@
             var fnTickFormat;
 
             if (dataFormat.isDuration) {
-                console.log('here');
                 
                 fnTickFormat = function(d) {
                     var timeFormatter = getTimeFormatter(maxValue);
                     var formatTime = d3.time.format(timeFormatter);
-                    return formatTime(new Date(2012, 0, 1, 0, 0, d)); 
+                    
+                    return formatTime(new Date(2012, 0, 1, 0, 0, d)); // new Date(year, month, day, hours, minutes, seconds, milliseconds);
                 };
             } else {
-                console.log('no! here');
                 fnTickFormat = function(d) { return d; };
             }
-            
-            // var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
 
-
-            addYAxis(y, svg, width + margin.right - margin.left, margin.left, yAxisLabel, fnTickFormat);
+            addYAxis(y, container, width + margin.right - margin.left, margin.left, yAxisLabel, fnTickFormat);
         }
 
-        drawLollySticks(svg, data, height, width, xMap, yMap, lineColour, doTransitions);
+        drawLollySticks(container, data, height, width, xMap, yMap, lineColour, doTransitions);
 
         // add highlight text (rank)
-        svg.selectAll(".highlight-text")
+        container.selectAll(".highlight-text")
             .data(data)
             .enter().append("text")
             .attr("class", highlightTextStore )
@@ -365,7 +392,7 @@
         updateOverlaps();
 
         // add highlight text (value)
-        svg.selectAll(".highlight-text")
+        container.selectAll(".highlight-text")
             .data(data)
             .enter().append("text")
             .attr("class", function(d) { return d.highlight ? "highlight-text-active" : "highlight-text-hidden"; } )
@@ -375,11 +402,11 @@
             .text(function(d) { return dataTextFormat(d.value, chartData.property); } );
 
         // position labels as per updated position
-        svg.selectAll(".highlight-text-active")
+        container.selectAll(".highlight-text-active")
             .each( function() { repositionLabel(this); } );
 
         // add highlight main horizontal line
-        svg.selectAll(".highlight-text")
+        container.selectAll(".highlight-text")
             .data(highlightTextElements)
             .enter().append("line")
             .style("stroke", lineColour)
@@ -391,7 +418,7 @@
 
 
         // add highlight final tick to label
-        svg.selectAll(".highlight-text")
+        container.selectAll(".highlight-text")
             .data(highlightTextElements)
             .enter().append("line")
             .style("stroke", lineColour)
@@ -402,7 +429,7 @@
             .attr("transform", function(d) { return "translate(0," + d.newPsn + ")"; } );
 
         // add highlight vertical line to join main line to tick
-        svg.selectAll(".highlight-text")
+        container.selectAll(".highlight-text")
             .data(highlightTextElements)
             .enter().append("line")
             .style("stroke", lineColour)
@@ -414,7 +441,7 @@
 
         if (doTransitions) {
         // draw main highlight inner dot
-            svg.selectAll(".highlight-text")
+            container.selectAll(".highlight-text")
                 .data(highlightTextElements)
                 .enter().append("circle")
                 .attr("class", "dot")
@@ -430,7 +457,7 @@
                 .each("end", function() {
 
                 // draw main highlight inner dot - transition to correct size from big
-                svg.selectAll(".highlight-text")
+                container.selectAll(".highlight-text")
                     .data(highlightTextElements)
                     .enter().append("circle")
                     .attr("class", "dot")
@@ -446,7 +473,7 @@
                 });
         } else {
         // draw main highlight inner dot
-            svg.selectAll(".highlight-text")
+            container.selectAll(".highlight-text")
                 .data(highlightTextElements)
                 .enter().append("circle")
                 .attr("class", "dot")
@@ -457,7 +484,7 @@
                 .attr("cy", yMap);
 
                 // draw main highlight inner dot - transition to correct size from big
-            svg.selectAll(".highlight-text")
+            container.selectAll(".highlight-text")
                 .data(highlightTextElements)
                 .enter().append("circle")
                 .attr("class", "dot")
@@ -469,7 +496,7 @@
                 .style("display", function(d) { return d.highlight === "date" ? "block" : "none" ; } );
         }
 
-        var focus = svg.append("g") 
+        var focus = container.append("g") 
             .style("display", "none");
 
         // place the date at the intersection
@@ -541,7 +568,7 @@
         
         // append the rectangle to capture mouse
         if (displayTooltips) {
-            svg.append("rect")
+            container.append("rect")
                 .attr("width", width)
                 .attr("height", height)
                 .style("fill", "none")

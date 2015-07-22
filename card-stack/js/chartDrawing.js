@@ -6,7 +6,7 @@ Depends on d3 so ensure that that is linked to before this file in your main fil
 
  */
 
-function addXAxis(xScale, svg, height, removeOverlaps, axisLabel, width, bottomMargin) {
+function addXAxis(xScale, appendTo, height, removeOverlaps, axisLabel, width, bottomMargin) {
 
     var xAxis = d3.svg.axis()
         .scale(xScale)
@@ -14,7 +14,7 @@ function addXAxis(xScale, svg, height, removeOverlaps, axisLabel, width, bottomM
         .ticks(5);
 
     // Add the X Axis
-    var dateTicks = svg.append("g")
+    var dateTicks = appendTo.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis)
@@ -38,7 +38,7 @@ function addXAxis(xScale, svg, height, removeOverlaps, axisLabel, width, bottomM
 
     if (axisLabel) {
         // Add the text label for the x axis
-        svg.append("text")
+        appendTo.append("text")
             .attr("transform", "translate(" + (width) + " ," + (height + margin.bottom) + ")")
             .style("text-anchor", "middle")
             .attr("class", "axis-label x-axis-label")
@@ -46,7 +46,7 @@ function addXAxis(xScale, svg, height, removeOverlaps, axisLabel, width, bottomM
     }
 }
 
-function addYAxis(yScale, svg, width, leftMargin, axisLabel, fnTickFormat) {
+function addYAxis(yScale, appendTo, width, leftMargin, axisLabel, fnTickFormat) {
 
     var yAxis = d3.svg.axis()
         .scale(yScale)
@@ -59,7 +59,7 @@ function addYAxis(yScale, svg, width, leftMargin, axisLabel, fnTickFormat) {
     console.log('ticks', yAxis.scale().ticks());
 
     // Add the Y Axis
-    var gy = svg.append("g")
+    var gy = appendTo.append("g")
         .attr("class", "y axis")
         .call(yAxis)
         .selectAll('.tick')
@@ -77,23 +77,23 @@ function addYAxis(yScale, svg, width, leftMargin, axisLabel, fnTickFormat) {
 
         // Add the text label for the Y axis
     if (axisLabel !== "") {
-        svg.append("text")
+        appendTo.append("text")
             .attr("y", 0 - leftMargin)
             .attr("x", 0)
             .attr("dy", "1em")
             .attr("class", "axis-label y-axis-label")
             .text(axisLabel);
     
-        svg.select(".y-axis-label")
+        appendTo.select(".y-axis-label")
             .attr("transform", function() { return "rotate(-90) translate(" + (0 - this.getComputedTextLength()) + ", 0)"; } );
     }
 }
 
-function drawLollySticks(svg, data, height, width, xMap, yMap, lineColour, doTransitions) {
+function drawLollySticks(appendTo, data, height, width, xMap, yMap, lineColour, doTransitions) {
 
     // add vertical lines down from scatter points
     if (doTransitions) {
-        svg.selectAll(".lolly-stick")
+        appendTo.selectAll(".lolly-stick")
             .data(data)
             .enter().append("line")
             .attr("class", "lolly-stick")
@@ -108,7 +108,7 @@ function drawLollySticks(svg, data, height, width, xMap, yMap, lineColour, doTra
             .attr("y2", yMap); //function(d) { return height - y(d.value); });
 
         // draw dots
-        svg.selectAll(".dot")
+        appendTo.selectAll(".dot")
             .data(data)
             .enter().append("circle")
             .attr("class", "dot")
@@ -123,7 +123,7 @@ function drawLollySticks(svg, data, height, width, xMap, yMap, lineColour, doTra
             .attr("cy", yMap); //function(d) { return height - y(d.value); });
 
     } else {
-        svg.selectAll(".lolly-stick")
+        appendTo.selectAll(".lolly-stick")
             .data(data)
             .enter().append("line")
             .attr("class", "lolly-stick")
@@ -134,7 +134,7 @@ function drawLollySticks(svg, data, height, width, xMap, yMap, lineColour, doTra
             .attr("x2", xMap);
 
         // draw dots
-        svg.selectAll(".dot")
+        appendTo.selectAll(".dot")
             .data(data)
             .enter().append("circle")
             .attr("class", "dot")
