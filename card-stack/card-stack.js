@@ -1015,9 +1015,11 @@ $(function() {
 
     stack.on('throwout', function(e) {
         // debugger;
+        console.log(e.throwOutConfidence);
         markCardUnique($('.stack .topOfMain')[0], 'topOfMain');
         markCardUnique(e.target, 'topOfDiscard');
-        $(e.target).toggleClass("discardPile mainPile");
+        $(e.target).addClass("discardPile");
+        $(e.target).removeClass("mainPile");
         discardPile.push('#' + e.target.id);
         e.target.thrownX = 1;
         e.target.thrownY = 78;
@@ -1028,9 +1030,9 @@ $(function() {
         console.log('thrown out', e.target.id, discardPile);   
         sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
     
-        $('.discardPile').add('.topOfDiscard').delay(500).fadeOut(300, function(){
-           $(this).remove();
-           console.log('removed card');
+        $('.topOfDiscard').delay(1000).fadeOut(1000, function() {
+           // $(this).remove();
+           // console.log('removed card');
         });
 
         // addToStack(stack, cardDataGlobal, addedCardsCount, false);
@@ -1044,12 +1046,14 @@ $(function() {
         var cardEl = $(discardPile[discardPile.length - 1])[0];
         markCardUnique(e.target, 'topOfMain');
         markCardUnique(cardEl, 'topOfDiscard');
-        $(e.target).toggleClass("discardPile mainPile");
+        $(e.target).show();
+        $(e.target).addClass("mainPile");
+        $(e.target).removeClass("discardPile");
 
         e.target.classList.add('in-deck');
         console.log('thrown in', e.target.id, discardPile);
 
-        sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
+        sendGAEvent('thrown-in-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
     });
 
 });

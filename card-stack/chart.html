@@ -338,7 +338,9 @@
         function zoomed() {
             console.log('zoomed', d3.event.translate, d3.event.scale);
             var xTrans = d3.event.translate[0];
-          container.attr("transform", "translate(" + xTrans + ",0)scale(" + d3.event.scale + ")");
+            container.attr("transform", "translate(" + xTrans + ",0)scale(" + d3.event.scale + ")");
+            container.selectAll('.y')
+                .each( function() { console.log(this); this.setAttribute("transform", "translate(0,0)"); } );
         }
 
         if (haxis) {
