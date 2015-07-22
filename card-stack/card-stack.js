@@ -656,8 +656,8 @@ $(function() {
         };
 
         var html = '<input id="hidCard_{{id}}" class="cardData" type="hidden" value="{{inputValue}}" />';
-        html += '<div class="cardContainer cardContainer-front standard-shadow">{{cardFrontContent}}</div>';
-        html += '<div class="cardContainer cardContainer-back standard-shadow">';
+        html += '<div class="cardContainer cardContainer-front">{{cardFrontContent}}</div>';
+        html += '<div class="cardContainer cardContainer-back">';
         html += '  {{cardBackContent}}';
         html += '{{cardNav}}</div>';
 
@@ -860,10 +860,16 @@ $(function() {
                 if ($container.hasClass('flip')) {
                     // flipped to front
                     sendGAEvent('flipped-to-front-' + $li.attr('cardIndex'), $li.attr('cardId'), $li.attr('cardIndex'));
+                    $('#viewport').removeAttr('style');
+                    $('.body').removeAttr('style');
+                    // $('#viewport').css({"width": "90%", "height": "85%"});
+                    // $('.body').css("padding","10px 0 0 0");
                 } else {
                     // flipped to back
                     renderMainMedia($li);
                     sendGAEvent('flipped-to-back-' + $li.attr('cardIndex'), $li.attr('cardId'), $li.attr('cardIndex'));
+                    $('#viewport').css({"width": "100%", "height": "100%"});
+                    $('.body').css("padding","0px");
                 }
 
                 $container.toggleClass('flip');
@@ -942,9 +948,14 @@ $(function() {
                 
             });
 
-            $('.bottom-of-stack-container h1').text('All done');
+
+            $('.bottom-of-stack-container h1').text('All done').css({"font-size": "3em", "margin": "0.67em 0"});
             $('.bottom-of-stack-container h1').after('<i class="fa fa-thumbs-o-up fa-4x"></i>');
             $('.bottom-of-stack-container p').text('Come back for more cards later');
+            $('.bottom-of-stack-container .loading').remove();
+
+
+
         });
     };
 
@@ -1038,8 +1049,7 @@ $(function() {
         // addToStack(stack, cardDataGlobal, addedCardsCount, false);
         // $cardList = $('.stack li');
     });
-
-        
+            
 
     stack.on('throwin', function(e) {
         discardPile.pop();
