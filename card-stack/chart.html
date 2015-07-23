@@ -335,8 +335,8 @@
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
             .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-                // .call(zoom);
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                .call(zoom);
 
         var container = svg.append("g");
 
@@ -453,9 +453,10 @@
         // draw main highlight inner dot
             container.selectAll(".highlight-text")
                 .data(highlightTextElements)
-                .enter().append("circle")
-                .attr("class", "dot")
-                .attr("r", 3.5)
+                .enter().append("ellipse")
+                .attr("class", "highlight-inner-dot")
+                .attr("rx", 3.5)
+                .attr("ry", 3.5)
                 .style("fill", lineColour)
                 .style("display", function(d) { return d.highlight === "date" ? "block" : "none" ; } )
                 .attr("cx", -50)
@@ -469,9 +470,10 @@
                 // draw main highlight inner dot - transition to correct size from big
                 container.selectAll(".highlight-text")
                     .data(highlightTextElements)
-                    .enter().append("circle")
-                    .attr("class", "dot")
-                    .attr("r", 200)
+                    .enter().append("ellipse")
+                    .attr("class", "highlight-outer-dot")
+                    .attr("rx", 200)
+                    .attr("ry", 200)
                     .attr("cx", xMap)
                     .attr("cy", yMap)
                     .style("fill", "none")
@@ -479,15 +481,17 @@
                     .style("display", function(d) { return d.highlight === "date" ? "block" : "none" ; } )
                     .transition()
                     .duration(700)
-                    .attr("r", 6);
+                    .attr("rx", 6)
+                    .attr("ry", 6);
                 });
         } else {
         // draw main highlight inner dot
             container.selectAll(".highlight-text")
                 .data(highlightTextElements)
-                .enter().append("circle")
-                .attr("class", "dot")
-                .attr("r", 3.5)
+                .enter().append("ellipse")
+                .attr("class", "highlight-inner-dot")
+                .attr("rx", 3.5)
+                .attr("ry", 3.5)
                 .style("fill", lineColour)
                 .style("display", function(d) { return d.highlight === "date" ? "block" : "none" ; } )
                 .attr("cx", xMap)
@@ -496,9 +500,10 @@
                 // draw main highlight inner dot - transition to correct size from big
             container.selectAll(".highlight-text")
                 .data(highlightTextElements)
-                .enter().append("circle")
-                .attr("class", "dot")
-                .attr("r", 6)
+                .enter().append("ellipse")
+                .attr("class", "highlight-outer-dot")
+                .attr("rx", 6)
+                .attr("ry", 6)
                 .attr("cx", xMap)
                 .attr("cy", yMap)
                 .style("fill", "none")
@@ -575,20 +580,21 @@
             .attr("class", "y4")
             .attr("dx", 8)
             .attr("dy", "1em");
-        
+
+        var rect = container.append("rect")
+            .attr("width", width)
+            .attr("height", height)
+            .style("fill", "none")
+            .style("pointer-events", "all"); 
+
         // append the rectangle to capture mouse
-        if (displayTooltips) {
-            container.append("rect")
-                .attr("width", width)
-                .attr("height", height)
-                .style("fill", "none")
-                .style("pointer-events", "all")
-                .on("mouseover", function() { focus.style("display", null); })
-                .on("mouseout", function() { focus.style("display", "none"); })
-                .on("mousemove", mousemove);
+        if (displayTooltips) {//false) { //
+            rect.on("mouseover", function() { focus.style("display", null); });
+            rect.on("mouseout", function() { focus.style("display", "none"); });
+            rect.on("mousemove", mousemove);
         }
 
-        container.call(zoom);
+        // container.call(zoom);
 
         // ToDo: refactor this so that this function doesn't depend on being declared after container
         function zoomed() {
@@ -598,6 +604,16 @@
             // d3.event.transform(x);
             // svg.select(".y.axis").call(yAxis);
             svg.select(".x.axis").call(xAxis);
+
+            container.selectAll('.dot, .highlight-inner-dot')
+                .attr('rx', 3.5 / d3.event.scale );
+
+            container.selectAll('.highlight-outer-dot')
+                .style('stroke-width', 1 / d3.event.scale )
+                .attr('rx', 6 / d3.event.scale );
+
+            container.selectAll('.lolly-stick')
+                .style('stroke-width', 1 / d3.event.scale );
 
             // console.log('ticks a', yAxis.scale().ticks(yAxis.ticks()[0]));
             // console.log('ticks b', yAxis.scale().ticks());
