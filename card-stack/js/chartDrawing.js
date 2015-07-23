@@ -15,19 +15,21 @@ function addXAxis(xAxis, appendTo, height, removeOverlaps, axisLabel, width, bot
         .call(xAxis)
     .selectAll('.tick');
 
-    for (var j = 0; j < dateTicks[0].length; j++) {
-        var c = dateTicks[0][j],
-            n = dateTicks[0][j+1];
+    if (removeOverlaps) {
+        for (var j = 0; j < dateTicks[0].length; j++) {
+            var c = dateTicks[0][j],
+                n = dateTicks[0][j+1];
 
-        if (!c || !n || !c.getBoundingClientRect || !n.getBoundingClientRect)
-            continue;
+            if (!c || !n || !c.getBoundingClientRect || !n.getBoundingClientRect)
+                continue;
 
-        while (c.getBoundingClientRect().right > n.getBoundingClientRect().left) {
-            d3.select(n).remove();
-            j++;
-            n = dateTicks[0][j+1];
-            if (!n)
-            break;
+            while (c.getBoundingClientRect().right > n.getBoundingClientRect().left) {
+                d3.select(n).remove();
+                j++;
+                n = dateTicks[0][j+1];
+                if (!n)
+                break;
+            }
         }
     }
 
