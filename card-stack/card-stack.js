@@ -326,8 +326,8 @@ if (offline) {
 
     var url = 'https://api-staging.1self.co/v1/users/';
     url += username + '/cards';
-    // url += '?extraFiltering=true';
-    url += minStdDev ? '?minStdDev=' + minStdDev : '?minStdDev=' + "2";
+    url += '?extraFiltering=true';
+    url += minStdDev ? '&minStdDev=' + minStdDev : '?minStdDev=' + "2";
     url += maxStdDev ? '&maxStdDev=' + maxStdDev : '';
 
     console.log(url);
@@ -963,8 +963,8 @@ $(function() {
     var stackConfig = {
         throwOutConfidence: function(offset, element) {
             // console.log('offset and element', offset, element.offsetWidth);
-            // console.log(Math.min(Math.abs(offset + 150) / element.offsetWidth, 1));
-            return Math.min(Math.abs(offset + 180) / element.offsetWidth, 1);
+            // console.log(Math.min(Math.abs(Math.abs(offset) + 180) / element.offsetWidth, 1));
+            return Math.min(Math.abs(Math.abs(offset) + 180) / element.offsetWidth, 1);
         }
     };
 

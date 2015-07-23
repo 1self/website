@@ -378,9 +378,9 @@
 
         var yAxis = d3.svg.axis()
             .scale(y)
-            .orient("right")
+            .orient("left")
             .ticks(4)
-            .tickSize(width + margin.right - margin.left);
+            .tickSize(-(width + margin.right - margin.left));
             // .tickFormat(fnTickFormat);
 
         if (vaxis) {
