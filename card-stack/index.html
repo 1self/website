@@ -15,6 +15,26 @@
     <!-- CSS  -->
     <link rel="stylesheet" href="css/card-stack.css">
     <link rel="stylesheet" href="css/font-awesome-4.3.0/css/font-awesome.min.css">
+
+    <script src="utils.js"></script>
+
+    <script>
+
+
+    var username = getQSParam().user;
+
+    if (!username) username = "ed";
+
+    var API_HOST = 'https://api-staging.1self.co';
+
+    var userAvatarUrl = "img/profilepic.jpg";
+
+    if (username === "ed")
+      userAvatarUrl = "img/ed.png";
+    else if (username === "martin")
+      userAvatarUrl = "img/martin.png";
+
+    </script>
 </head>
 
 <body>
@@ -55,7 +75,6 @@
     <!-- JS -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/moment/min/moment.min.js"></script>
-    <script src="utils.js"></script>
     <script src="card-stack.js"></script>
     <script src="js/touche.js"></script>
     <script src="js/swing/swing.min.js"></script>

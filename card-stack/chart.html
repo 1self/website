@@ -26,7 +26,7 @@
     var highlightDates = getQSParam().highlightDates;
     var highlightCondition = getQSParam().highlightCondition;
     var displayTooltips = getQSParam().displayTooltips === "true";
-    var dataSrc = 'http://app-staging.1self.co' + decodeURIComponent(getQSParam().dataSrc);
+    var dataSrc = decodeURIComponent(getQSParam().dataSrc);
     var offline = false;
     var maxValue; // this is set in fn addRankings;
 
@@ -594,24 +594,35 @@
         }
 
         // container.call(zoom);
+        // 
+        console.log(width, xMap(data[data.length-1]));
+
+        var max = Math.round(xMap(data[data.length-1]));
+        var lastScale = 1;
 
         // ToDo: refactor this so that this function doesn't depend on being declared after container
         function zoomed() {
+            if (lastScale !== d3.event.scale)
+                max = Math.round(xMap(data[data.length-1]));
 
+            lastScale = d3.event.scale;
+            
             var tx = d3.event.translate[0];
+            console.log(tx, width - max);
             var ty = d3.event.translate[1];
             tx = Math.min(tx, 0);
+            tx = Math.max(tx, width - max);
             // tx = Math.max(tx, -width);
             // 
             // d3.event.translate[0] = tx;
 
             // console.log(d3.event);
-            console.log('zoomed', d3.event.translate, d3.event.scale, tx, width);
+            // console.log('zoomed', d3.event.translate, d3.event.scale, tx, width);
             
             d3.event.target.translate([tx, ty]);
 
             container.attr("transform", "translate(" + tx + ",0)scale(" + d3.event.scale + ",1)");
-            
+
             // d3.event.transform(x);
             // svg.select(".y.axis").call(yAxis);
             if (tx !== 0)
