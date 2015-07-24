@@ -64,6 +64,12 @@ path {
   display: none;
 }
 
+.highlight-text-div {
+  border-style: solid;
+  border-width: 1px;
+  position: absolute;
+}
+
 .axis text {
     fill: rgb(169, 178, 189);
 }
