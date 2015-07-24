@@ -310,11 +310,17 @@
         };
 
         var highlightTextDiv;
+        var highlightPointer;
         if (!doTransitions) {
             highlightTextDiv = d3.select(".mainContainer").append("div")
                 .attr("class", "highlight-text-div")
                 .style("top", "30px")
                 .style("border-color", getColour(lineColour, 1));
+
+            highlightPointer = d3.select(".mainContainer").append("div")
+                .attr("class", "highlight-pointer")
+                .style("top", "35px")
+                .style("border-color", "transparent transparent transparent " + getColour(lineColour, 1));
         }
             
         // Adds the svg canvas
@@ -592,7 +598,7 @@
             var returnString = "";
 
             returnString += rankText(d) + '<br>';
-            returnString += d.value + '<br>';
+            returnString += Math.round(d.value) + '<br>';
             returnString += formatHighlightDate(d.date);
 
             return returnString;
@@ -600,12 +606,15 @@
 
         var doHighlightTextOffset = function() {
             var highlightOffset;
+            var offsetPadding = 10;
 
             highlightOffset = +(highlightTextDiv.style("width").replace("px", ""));
             highlightOffset += (+(highlightTextDiv.style("padding").replace("px", "")) * 2);
-            highlightOffset += 10;
+            highlightOffset += offsetPadding;
 
-            highlightTextDiv.style("left", (width + margin.left - highlightOffset) + "px");            
+            highlightTextDiv.style("left", (width + margin.left - highlightOffset) + "px");
+
+            highlightPointer.style("left", (width + margin.left - offsetPadding + 2) + "px");         
         };
 
         if (!doTransitions) {
