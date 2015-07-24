@@ -210,7 +210,8 @@
         // Parse the date / time
         var parseDate = d3.time.format("%Y-%m-%d").parse,
             formatDate = d3.time.format("%d-%b"),
-            bisectDate = d3.bisector(function(d) { return d.date; }).left;
+            bisectDate = d3.bisector(function(d) { return d.date; }).left,
+            formatHighlightDate =d3.time.format("%a %e %b");
 
         data.forEach(function(d) {
             d.date = parseDate(d.date);
@@ -307,6 +308,14 @@
                 }
             }
         };
+
+        var highlightTextDiv;
+        if (!doTransitions) {
+            highlightTextDiv = d3.select(".mainContainer").append("div")
+                .attr("class", "highlight-text-div")
+                .style("top", "30px")
+                .style("border-color", getColour(lineColour, 1));
+        }
             
         // Adds the svg canvas
         var svg = d3.select(".mainContainer")
@@ -579,6 +588,26 @@
             rect.on("mousemove", mousemove);
         }
 
+        var buildHighlightText = function (d) {
+            var returnString = "";
+
+            returnString += rankText(d) + '<br>';
+            returnString += d.value + '<br>';
+            returnString += formatHighlightDate(d.date);
+
+            return returnString;
+        };
+
+        var doHighlightTextOffset = function() {
+            var highlightOffset;
+
+            highlightOffset = +(highlightTextDiv.style("width").replace("px", ""));
+            highlightOffset += (+(highlightTextDiv.style("padding").replace("px", "")) * 2);
+            highlightOffset += 10;
+
+            highlightTextDiv.style("left", (width + margin.left - highlightOffset) + "px");            
+        };
+
         if (!doTransitions) {
             svg.append("line")
                 .attr("class", "main-highlight-line")
@@ -600,15 +629,11 @@
                 .attr("cx", x(data[data.length-1].date))
                 .attr("cy", y(data[data.length-1].value));
 
-            d3.select(".mainContainer").append("div")
-                .attr("class", "highlight-text-div")
-                .style("height", 50)
-                .style("width", 60)
-                .style("border-color", lineColour)
-                .style("background-color", lineColour)
-                .style("left", 100)
-                .style("top", 100)
-                .html('test text');
+            highlightTextDiv.html(buildHighlightText(data[data.length-1]));
+
+            console.log(highlightTextDiv);
+
+            doHighlightTextOffset();
         }
 
         var max = xMap(data[data.length-1]);
@@ -668,6 +693,12 @@
             svg.select("circle.main-highlight-circle")
                 .attr("cx", x(d.date))
                 .attr("cy", y(d.value));
+
+
+            highlightTextDiv.html(buildHighlightText(d));
+
+            doHighlightTextOffset();
+
                 // .attr("transform",
                 //       "translate(" + x(d.date) + "," +
                 //                      y(d.value) + ")");
