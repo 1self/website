@@ -640,15 +640,11 @@
 
             highlightTextDiv.html(buildHighlightText(data[data.length-1]));
 
-            console.log(highlightTextDiv);
-
             doHighlightTextOffset();
         }
 
         var max = xMap(data[data.length-1]);
         var lastScale = 1;
-
-        console.log(width, max, width - max);
 
         // ToDo: refactor this so that this function doesn't depend on being declared after container
         function zoomed() {
@@ -707,17 +703,6 @@
             highlightTextDiv.html(buildHighlightText(d));
 
             doHighlightTextOffset();
-
-                // .attr("transform",
-                //       "translate(" + x(d.date) + "," +
-                //                      y(d.value) + ")");
-
-            console.log(i, data[i].value, x(d.date));
-
-            // console.log('ticks a', yAxis.scale().ticks(yAxis.ticks()[0]));
-            // console.log('ticks b', yAxis.scale().ticks());
-            // container.selectAll('.y')
-            //     .each( function() { console.log(this); this.setAttribute("transform", "translate(0,0)"); } );
         }
 
         function mousemove() {
