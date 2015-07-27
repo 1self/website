@@ -505,8 +505,13 @@ $(function() {
                     supplantObject.value = propertiesObj.value;
                     cardText = template7.supplant(supplantObject);
 
-                } else if (cardData.actionTags[0] === "exercise" && cardData.chart.indexOf('steps') > 0) {
-                    supplantObject.property = propertiesObj.propertiesText;
+                } else if (cardData.actionTags[0] === "exercise") {
+
+                    if (cardData.chart.indexOf('steps') > 0) {
+                        supplantObject.property = propertiesObj.propertiesText;
+                    } else {
+                        supplantObject.property = "walks"
+                    }
                     supplantObject.value = propertiesObj.value;
                     cardText = template8.supplant(supplantObject);
 
