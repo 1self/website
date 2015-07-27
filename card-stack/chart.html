@@ -668,9 +668,6 @@
                 d3.event.target.translate([tx, ty]);
             }
 
-
-            // console.log(tx);
-
             container.attr("transform", "translate(" + tx + ",0)scale(" + d3.event.scale + ",1)");
 
             if (tx !== 0)
@@ -704,57 +701,6 @@
 
             doHighlightTextOffset();
         }
-
-        // function mousemove() {
-        //     var x0 = x.invert(d3.mouse(this)[0]),
-        //         i = bisectDate(data, x0, 1),
-        //         d0 = data[i - 1],
-        //         d1 = data[i],
-        //         d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-
-        //     focus.select("circle.y")
-        //         .attr("transform",
-        //               "translate(" + x(d.date) + "," +
-        //                              y(d.value) + ")");
-
-        //     focus.select("text.y1")
-        //         .attr("transform",
-        //               "translate(" + x(d.date) + "," +
-        //                              y(d.value) + ")")
-        //         .text(rankText(d));
-
-        //     focus.select("text.y2")
-        //         .attr("transform",
-        //               "translate(" + x(d.date) + "," +
-        //                              y(d.value) + ")")
-        //         .text(rankText(d));
-
-        //     focus.select("text.y3")
-        //         .attr("transform",
-        //               "translate(" + x(d.date) + "," +
-        //                              y(d.value) + ")")
-        //         .text(dataTextFormat(d.value, chartData.property));
-
-        //     focus.select("text.y4")
-        //         .attr("transform",
-        //               "translate(" + x(d.date) + "," +
-        //                              y(d.value) + ")")
-        //         .text(dataTextFormat(d.value, chartData.property));
-
-        //     focus.select(".x")
-        //         .attr("transform",
-        //               "translate(" + x(d.date) + "," +
-        //                              y(d.value) + ")")
-        //                    .attr("y2", height - y(d.value));
-
-        //     focus.select(".y")
-        //         .attr("transform",
-        //               "translate(" + width * -1 + "," +
-        //                              y(d.value) + ")")
-        //                    .attr("x2", width + width);
-        // }
-
- 
     }
 
 
