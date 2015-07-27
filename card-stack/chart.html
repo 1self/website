@@ -597,8 +597,8 @@
         var buildHighlightText = function (d) {
             var returnString = "";
 
-            returnString += rankText(d) + '<br>';
-            returnString += Math.round(d.value) + '<br>';
+            returnString += rankText(d) + ' position of ' + data.length + '<br>';
+            returnString += dataTextFormat(d.value, chartData.property) + '<br>';
             returnString += formatHighlightDate(d.date);
 
             return returnString;
