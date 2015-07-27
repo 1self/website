@@ -453,7 +453,7 @@ $(function() {
     };
 
     var createCardText = function(cardData, colour) {
-        if (!cardData.cardText) {
+        // if (!cardData.cardText) {
             var cardText = '';
 
             if (cardData.type === "top10" || cardData.type === "bottom10") {
@@ -483,43 +483,57 @@ $(function() {
                     if (cardData.properties.sum.__count__) {
                         supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
                         cardText = template1.supplant(supplantObject);
+                        console.log("template1");
                     } else {
                         supplantObject.action_pp = displayTags(pastParticiple(cardData.actionTags));
                         supplantObject.property = propertiesObj.propertiesText;
                         cardText = template2.supplant(supplantObject);
+                        console.log("template2", cardData.actionTags);
                     }
                 } else if (cardData.actionTags[0] === "listen") {
                     if (cardData.properties.sum.__count__) {
                         supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
                         supplantObject.objects = displayTags(cardData.objectTags);
                         cardText = template3.supplant(supplantObject);
+                        console.log("template3");
                     } else {
                         supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
                         supplantObject.property = propertiesObj.propertiesText;
                         supplantObject.value = propertiesObj.value;
                         cardText = template6.supplant(supplantObject);
+                        console.log("template6");
                     }
                 } else if (cardData.actionTags[0] === "use") {
                     supplantObject.property = "&quot;" + propertiesObj.propertiesText + "&quot;";
                     supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
                     supplantObject.value = propertiesObj.value;
                     cardText = template7.supplant(supplantObject);
+                    console.log("template7", cardData.actionTags);
+
+                } else if (cardData.actionTags[0] === "develop") {
+
+                    supplantObject.property = "coding";
+                    supplantObject.value = propertiesObj.value;
+                    cardText = template8.supplant(supplantObject);
+                    console.log("template8");
 
                 } else if (cardData.actionTags[0] === "exercise") {
 
                     if (cardData.chart.indexOf('steps') > 0) {
                         supplantObject.property = propertiesObj.propertiesText;
                     } else {
-                        supplantObject.property = "walks"
+                        supplantObject.property = "walks";
                     }
                     supplantObject.value = propertiesObj.value;
                     cardText = template8.supplant(supplantObject);
+                    console.log("template8");
 
                 } else if (cardData.actionTags[0] === "browse" && cardData.chart.indexOf('times-visited') > 0) {
                     supplantObject.property = propertiesObj.propertiesText;
                     supplantObject.value = propertiesObj.value;
                     supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
                     cardText = template9.supplant(supplantObject);
+                    console.log("template9");
                 }
 
                 if (cardText === '') {
@@ -528,13 +542,14 @@ $(function() {
                     supplantObject.objects = displayTags(cardData.objectTags);
                     supplantObject.value = propertiesObj.value;
                     cardText = templateDefault.supplant(supplantObject);
+                    console.log("templateDefault");
                 } 
 
                 cardText = cardText.supplant(supplantObject);
 
                 cardData.cardText = cardText;
             }
-        }
+        // }
     };
 
     var flipButtonTemplate = [
@@ -633,6 +648,8 @@ $(function() {
                 dataSourceIconUrl = 'img/googlefiticon.svg';
             else if (cardData.actionTags[0] === "browse")
                 dataSourceIconUrl = 'img/visit_counter.png';
+            else if (cardData.actionTags[0] === "develop")
+                dataSourceIconUrl = 'img/sublime.png';
             else
                 dataSourceIconUrl = 'img/githubicon.svg';
 
