@@ -786,7 +786,7 @@ $(function() {
         var numberOfCardsToShow = 10;
         var skip = 0;
         deferred.done(function(cardsArray) {
-            cardsArrayGlobal = cardsArray;
+            cardsArrayGlobal = cardsArray.reverse();
             if (numberOfCardsToShow > cardsArray.length) {
                 numberOfCardsToShow = cardsArray.length;
             }
