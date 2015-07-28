@@ -121,7 +121,7 @@
                     })
                 .done(function(data) {
 
-                    // console.log('chart data', data);
+                    console.log('chart data', data);
                     dataset = stripNullValues(data.data);
                     dataset.allData.sort(sort_by_date);
                     addRankings(dataset.allData);
@@ -193,7 +193,7 @@
 
         var data = chartData.allData;
 
-        console.log(chartData);
+        // console.log(chartData);
 
         var width = $('body').width();
         var height = $('body').height();
