@@ -449,6 +449,16 @@ h1 {
   padding-right: 10px;
 }
 
+.getMoreCardsBtn {
+  background-color: #454b54;
+  color: #fff;
+  width: 50%;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
 .main-text-row {
   width: 100%;
   text-align: center;

@@ -93,169 +93,177 @@ moment.locale('en', {
     }
 });
 
-var deferred = $.Deferred();
+var deferred; // = $.Deferred();
 
 var offline = false;
 
-if (offline) {
-    var data = [{
-    "id": "55b5748cdc5ba2d0695ef487",
-    "type": "top10",
-    "outOf": 3,
-    "thumbnailMedia": "chart.html",
-    "startRange": "2015-07-26",
-    "endRange": "2015-07-26",
-    "objectTags": [
-        "self"
-    ],
-    "actionTags": [
-        "exercise",
-        "walk"
-    ],
-    "position": 0,
-    "properties": {
-        "sum": {
-            "steps": 2609
-        }
-    },
-    "propertyName": "steps.sum",
-    "stdDev": 438.1781305292107,
-    "correctedStdDev": 657.2671957938161,
-    "sampleStdDev": 2.114056519011006,
-    "sampleCorrectedStdDev": 1.4093710126740038,
-    "mean": 1682.6666666666667,
-    "variance": 926.3333333333333,
-    "cardDate": "2015-07-26",
-    "generatedDate": "2015-07-27T00:00:12.043Z",
-    "chart": "/v1/users/m/rollups/day/self/exercise,walk/sum.steps/.json?to=2015-07-26"
-}, {
-    "id": "55b5748cdc5ba2d0695ef488",
-    "type": "top10",
-    "outOf": 3,
-    "thumbnailMedia": "chart.html",
-    "startRange": "2015-07-26",
-    "endRange": "2015-07-26",
-    "objectTags": [
-        "self"
-    ],
-    "actionTags": [
-        "exercise",
-        "walk"
-    ],
-    "position": 0,
-    "properties": {
-        "sum": {
-            "__count__": 252
-        }
-    },
-    "propertyName": "__count__.sum",
-    "stdDev": 43.84822307308093,
-    "correctedStdDev": 65.7723346096214,
-    "sampleStdDev": 1.5508040060520993,
-    "sampleCorrectedStdDev": 1.0338693373680663,
-    "mean": 184,
-    "variance": 68,
-    "cardDate": "2015-07-26",
-    "generatedDate": "2015-07-27T00:00:12.880Z",
-    "chart": "/v1/users/m/rollups/day/self/exercise,walk/sum.__count__/.json?to=2015-07-26"
-}, {
-    "id": "55b5748ddc5ba2d0695ef489",
-    "type": "bottom10",
-    "outOf": 3,
-    "thumbnailMedia": "chart.html",
-    "startRange": "2015-07-26",
-    "endRange": "2015-07-26",
-    "objectTags": [
-        "google"
-    ],
-    "actionTags": [
-        "browse"
-    ],
-    "position": 0,
-    "properties": {
-        "sum": {
-            "times-visited": 1
-        }
-    },
-    "propertyName": "times-visited.sum",
-    "stdDev": 3.5381518506868126,
-    "correctedStdDev": 5.307227776030219,
-    "sampleStdDev": 2.1668563109235808,
-    "sampleCorrectedStdDev": 1.4445708739490537,
-    "mean": 8.666666666666666,
-    "variance": -7.666666666666666,
-    "cardDate": "2015-07-26",
-    "generatedDate": "2015-07-27T00:00:13.442Z",
-    "chart": "/v1/users/m/rollups/day/google/browse/sum.times-visited/.json?to=2015-07-26"
-}, {
-    "id": "55b5748ddc5ba2d0695ef48a",
-    "type": "bottom10",
-    "outOf": 3,
-    "thumbnailMedia": "chart.html",
-    "startRange": "2015-07-26",
-    "endRange": "2015-07-26",
-    "objectTags": [
-        "google"
-    ],
-    "actionTags": [
-        "browse"
-    ],
-    "position": 0,
-    "properties": {
-        "sum": {
-            "__count__": 1
-        }
-    },
-    "propertyName": "__count__.sum",
-    "stdDev": 3.5381518506868126,
-    "correctedStdDev": 5.307227776030219,
-    "sampleStdDev": 2.1668563109235808,
-    "sampleCorrectedStdDev": 1.4445708739490537,
-    "mean": 8.666666666666666,
-    "variance": -7.666666666666666,
-    "cardDate": "2015-07-26",
-    "generatedDate": "2015-07-27T00:00:13.805Z",
-    "chart": "/v1/users/m/rollups/day/google/browse/sum.__count__/.json?to=2015-07-26"
-}];
+function getCards() {
 
-    deferred.resolve(data);
-} else {
-    // Get the ajax requests out of the way early because they
-    // are typically longest to complete
+    deferred = $.Deferred();
 
-    var minStdDev = getQSParam().minStdDev;
-    var maxStdDev = getQSParam().maxStdDev;
+    if (offline) {
+        var data = [{
+        "id": "55b5748cdc5ba2d0695ef487",
+        "type": "top10",
+        "outOf": 3,
+        "thumbnailMedia": "chart.html",
+        "startRange": "2015-07-26",
+        "endRange": "2015-07-26",
+        "objectTags": [
+            "self"
+        ],
+        "actionTags": [
+            "exercise",
+            "walk"
+        ],
+        "position": 0,
+        "properties": {
+            "sum": {
+                "steps": 2609
+            }
+        },
+        "propertyName": "steps.sum",
+        "stdDev": 438.1781305292107,
+        "correctedStdDev": 657.2671957938161,
+        "sampleStdDev": 2.114056519011006,
+        "sampleCorrectedStdDev": 1.4093710126740038,
+        "mean": 1682.6666666666667,
+        "variance": 926.3333333333333,
+        "cardDate": "2015-07-26",
+        "generatedDate": "2015-07-27T00:00:12.043Z",
+        "chart": "/v1/users/m/rollups/day/self/exercise,walk/sum.steps/.json?to=2015-07-26"
+    }, {
+        "id": "55b5748cdc5ba2d0695ef488",
+        "type": "top10",
+        "outOf": 3,
+        "thumbnailMedia": "chart.html",
+        "startRange": "2015-07-26",
+        "endRange": "2015-07-26",
+        "objectTags": [
+            "self"
+        ],
+        "actionTags": [
+            "exercise",
+            "walk"
+        ],
+        "position": 0,
+        "properties": {
+            "sum": {
+                "__count__": 252
+            }
+        },
+        "propertyName": "__count__.sum",
+        "stdDev": 43.84822307308093,
+        "correctedStdDev": 65.7723346096214,
+        "sampleStdDev": 1.5508040060520993,
+        "sampleCorrectedStdDev": 1.0338693373680663,
+        "mean": 184,
+        "variance": 68,
+        "cardDate": "2015-07-26",
+        "generatedDate": "2015-07-27T00:00:12.880Z",
+        "chart": "/v1/users/m/rollups/day/self/exercise,walk/sum.__count__/.json?to=2015-07-26"
+    }, {
+        "id": "55b5748ddc5ba2d0695ef489",
+        "type": "bottom10",
+        "outOf": 3,
+        "thumbnailMedia": "chart.html",
+        "startRange": "2015-07-26",
+        "endRange": "2015-07-26",
+        "objectTags": [
+            "google"
+        ],
+        "actionTags": [
+            "browse"
+        ],
+        "position": 0,
+        "properties": {
+            "sum": {
+                "times-visited": 1
+            }
+        },
+        "propertyName": "times-visited.sum",
+        "stdDev": 3.5381518506868126,
+        "correctedStdDev": 5.307227776030219,
+        "sampleStdDev": 2.1668563109235808,
+        "sampleCorrectedStdDev": 1.4445708739490537,
+        "mean": 8.666666666666666,
+        "variance": -7.666666666666666,
+        "cardDate": "2015-07-26",
+        "generatedDate": "2015-07-27T00:00:13.442Z",
+        "chart": "/v1/users/m/rollups/day/google/browse/sum.times-visited/.json?to=2015-07-26"
+    }, {
+        "id": "55b5748ddc5ba2d0695ef48a",
+        "type": "bottom10",
+        "outOf": 3,
+        "thumbnailMedia": "chart.html",
+        "startRange": "2015-07-26",
+        "endRange": "2015-07-26",
+        "objectTags": [
+            "google"
+        ],
+        "actionTags": [
+            "browse"
+        ],
+        "position": 0,
+        "properties": {
+            "sum": {
+                "__count__": 1
+            }
+        },
+        "propertyName": "__count__.sum",
+        "stdDev": 3.5381518506868126,
+        "correctedStdDev": 5.307227776030219,
+        "sampleStdDev": 2.1668563109235808,
+        "sampleCorrectedStdDev": 1.4445708739490537,
+        "mean": 8.666666666666666,
+        "variance": -7.666666666666666,
+        "cardDate": "2015-07-26",
+        "generatedDate": "2015-07-27T00:00:13.805Z",
+        "chart": "/v1/users/m/rollups/day/google/browse/sum.__count__/.json?to=2015-07-26"
+    }];
 
-    var sort_by_date = function(a, b) {
-        return new Date(b.cardDate).getTime() - new Date(a.cardDate).getTime();
-    };
+        deferred.resolve(data);
+    } else {
+        // Get the ajax requests out of the way early because they
+        // are typically longest to complete
 
-    var url = API_HOST + '/v1/users/';
-    url += username + '/cards';
-    url += '?extraFiltering=true';
-    url += minStdDev ? '&minStdDev=' + minStdDev : '&minStdDev=' + "2";
-    url += maxStdDev ? '&maxStdDev=' + maxStdDev : '';
+        var minStdDev = getQSParam().minStdDev;
+        var maxStdDev = getQSParam().maxStdDev;
 
-    console.log(url);
+        var sort_by_date = function(a, b) {
+            return new Date(b.cardDate).getTime() - new Date(a.cardDate).getTime();
+        };
 
-    $.getJSON(url,
-            function() {
-                console.log("accessed api for cards");
+        var url = API_HOST + '/v1/users/';
+        url += username + '/cards';
+        url += '?extraFiltering=true';
+        url += minStdDev ? '&minStdDev=' + minStdDev : '&minStdDev=' + "2";
+        url += maxStdDev ? '&maxStdDev=' + maxStdDev : '';
+
+        console.log(url);
+
+        $.getJSON(url,
+                function() {
+                    console.log("accessed api for cards");
+                })
+            .done(function(data) {
+
+                data.sort(sort_by_date);
+                console.log('card data', data);
+                window.cardData = data;
+                deferred.resolve(data);
             })
-        .done(function(data) {
+            .fail(function(data) {
+                console.log('error getting cards', data);
 
-            data.sort(sort_by_date);
-            console.log('card data', data);
-            window.cardData = data;
-            deferred.resolve(data);
-        })
-        .fail(function(data) {
-            console.log('error getting cards', data);
-
-        });
+            });
+    }
 }
 
 $(function() {
+
+    getCards();
+
     var stack;
 
     var getColour = function(idx) {
@@ -782,14 +790,75 @@ $(function() {
         addedCardsCount++;
     };
 
+    var stackConfig = {
+        throwOutConfidence: function(offset, element) {
+            // console.log('offset and element', offset, element.offsetWidth);
+            // console.log(Math.min(Math.abs(Math.abs(offset) + 180) / element.offsetWidth, 1));
+            return Math.min(Math.abs(Math.abs(offset) + 180) / element.offsetWidth, 1);
+        }
+    };
+
+    function bringToTop(cardEl) {
+        var $cardEl = $(cardEl);
+        var cardElId = $cardEl.attr('id');
+        var $cardUl = $cardEl.parent();
+        $cardEl.detach();
+        $cardUl.append(cardEl);
+    }
+
+    function moveToLast(arr, idx) {
+        var lastIdx = arr.length - 1;
+        var len = arr.length;
+        var val = null;
+        if (idx !== lastIdx) {
+            val = arr[idx];
+            for (var i = idx; i < len; ++i) {
+                arr[i] = arr[i + 1];
+            }
+            arr[lastIdx] = val;
+        }
+    }
+
+    function markCardUnique(cardEl, label) {
+        $('.stack li').removeClass(label);
+        if (cardEl !== undefined) {
+            $(cardEl).addClass(label);
+        }
+    }
+
+    function markCardRead(username, cardId) {
+
+        var apiUrl = API_HOST + "/v1/users/" + username + "/cards/" + cardId;
+
+        console.log('markCardRead url:', apiUrl);
+
+        $.ajax({
+                    url: apiUrl,
+                    data: JSON.stringify({ "read" : true, "readInfo" : {} }),
+                    type: "PATCH",
+                    contentType: "application/json"
+
+        }).done(function (data) {
+            console.log('markCardRead', username, cardId, data);
+
+        }).fail(function (data) {
+            console.log('ERROR markCardRead', username, cardId, data);
+        });
+    }
+
     var buildStack = function(stack) {
-        var numberOfCardsToShow = 10;
+        var numberOfCardsToShow = 3;
         var skip = 0;
         deferred.done(function(cardsArray) {
             cardsArrayGlobal = cardsArray.reverse();
             if (numberOfCardsToShow > cardsArray.length) {
                 numberOfCardsToShow = cardsArray.length;
             }
+
+            // empty stack of li elements
+            $('.discardPile').remove();
+            $('.mainPile').remove();
+            discardPile = [];
 
             for (var i = numberOfCardsToShow + skip - 1; i >= skip; i--) {
                 addToStack(stack, cardsArray[i], i, (i === skip));
@@ -912,141 +981,111 @@ $(function() {
                 
             });
 
+            $stack.on('mousedown', '.getMoreCardsBtn', function(e) {
+                $('.getMoreCardsBtn').removeClass('standard-shadow');
+            });
+
+            $stack.on('mouseup', '.getMoreCardsBtn', function(e) {
+                $('.nextButton').trigger('click');
+            });
+
 
             $('.bottom-of-stack-container h1').text('All done').css({"font-size": "3em", "margin": "0.67em 0"});
-            $('.bottom-of-stack-container h1').after('<i class="fa fa-thumbs-o-up fa-4x"></i>');
-            $('.bottom-of-stack-container p').text('Come back for more cards later');
-            $('.bottom-of-stack-container .loading').remove();
 
+            // $('.bottom-of-stack-container h1').after('<div class="getMoreCardsBtn standard-shadow">Get more cards</div>');
+            // $('.bottom-of-stack-container h1').after('<i class="fa fa-thumbs-o-up fa-4x"></i>');
+            $('.bottom-of-stack-container p').hide(); //text('Come back for more cards later');
+            $('.bottom-of-stack-container .loading').hide();
+            $('.getMoreCardsBtn').show();
 
+            window.stack = stack;
 
-        });
-    };
+            stack.on('throwout', function(e) {
+                // debugger;
+                console.log(e.throwOutConfidence);
+                markCardUnique($('.stack .topOfMain')[0], 'topOfMain');
+                markCardUnique(e.target, 'topOfDiscard');
+                $(e.target).addClass("discardPile");
+                $(e.target).removeClass("mainPile");
+                discardPile.push('#' + e.target.id);
+                e.target.thrownX = 1;
+                e.target.thrownY = 78;
+                var cardsOnDiscard = discardPile.length;
+                markCardUnique($cardList[$cardList.length - 1 - cardsOnDiscard], 'topOfMain');
+                renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
+                e.target.classList.remove('in-deck');
+                console.log('thrown out', e.target.id, discardPile);   
+                sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
 
-    var stackConfig = {
-        throwOutConfidence: function(offset, element) {
-            // console.log('offset and element', offset, element.offsetWidth);
-            // console.log(Math.min(Math.abs(Math.abs(offset) + 180) / element.offsetWidth, 1));
-            return Math.min(Math.abs(Math.abs(offset) + 180) / element.offsetWidth, 1);
-        }
-    };
-
-    stack = gajus.Swing.Stack(stackConfig);
-
-    function bringToTop(cardEl) {
-        var $cardEl = $(cardEl);
-        var cardElId = $cardEl.attr('id');
-        var $cardUl = $cardEl.parent();
-        $cardEl.detach();
-        $cardUl.append(cardEl);
-    }
-
-    function moveToLast(arr, idx) {
-        var lastIdx = arr.length - 1;
-        var len = arr.length;
-        var val = null;
-        if (idx !== lastIdx) {
-            val = arr[idx];
-            for (var i = idx; i < len; ++i) {
-                arr[i] = arr[i + 1];
-            }
-            arr[lastIdx] = val;
-        }
-    }
-
-    stack.throwInLast = function() {
-        var cardLi = $('.stack .topOfDiscard')[0];
-        if (cardLi) {
-            bringToTop(cardLi);
-            var val = '#' + cardLi.id;
-            var idx = discardPile.indexOf(val);
-            var card = stack.getCard(cardLi);
-            card.throwIn(cardLi.thrownX, cardLi.thrownY);
-            sendGAEvent('button-thrown-in-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));
-        }
-    };
-
-    stack.throwOutNext = function() {
-        var cardLi = $('.stack .topOfMain')[0];
-        if (cardLi) {
-            bringToTop(cardLi);
-            var card = stack.getCard(cardLi);
-            cardLi.thrownY = getRandomInt(-100, 100);
-            cardLi.thrownX = 1;
-            card.throwOut(cardLi.thrownX, cardLi.thrownY);
-            sendGAEvent('button-thrown-out-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));            
-        }    
-    };
-
-    window.stack = stack;
-    buildStack(stack);
-
-    function markCardUnique(cardEl, label) {
-        $('.stack li').removeClass(label);
-        if (cardEl !== undefined) {
-            $(cardEl).addClass(label);
-        }
-    }
-
-    function markCardRead(username, cardId) {
-
-        var apiUrl = API_HOST + "/v1/users/" + username + "/cards/" + cardId;
-
-        console.log('markCardRead url:', apiUrl);
-
-        $.ajax({
-                    url: apiUrl,
-                    data: JSON.stringify({ "read" : true, "readInfo" : {} }),
-                    type: "PATCH",
-                    contentType: "application/json"
-
-        }).done(function (data) {
-            console.log('markCardRead', username, cardId, data);
-
-        }).fail(function (data) {
-            console.log('ERROR markCardRead', username, cardId, data);
-        });
-    }
-
-    stack.on('throwout', function(e) {
-        // debugger;
-        console.log(e.throwOutConfidence);
-        markCardUnique($('.stack .topOfMain')[0], 'topOfMain');
-        markCardUnique(e.target, 'topOfDiscard');
-        $(e.target).addClass("discardPile");
-        $(e.target).removeClass("mainPile");
-        discardPile.push('#' + e.target.id);
-        e.target.thrownX = 1;
-        e.target.thrownY = 78;
-        var cardsOnDiscard = discardPile.length;
-        markCardUnique($cardList[$cardList.length - 1 - cardsOnDiscard], 'topOfMain');
-        renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
-        e.target.classList.remove('in-deck');
-        console.log('thrown out', e.target.id, discardPile);   
-        sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
-
-        markCardRead(username, e.target.getAttribute('cardId')); // username is declared globally in index.html
-    
-        $('.topOfDiscard').delay(1000).fadeOut(1000, function() {
-
-        });
-
-    });
+                markCardRead(username, e.target.getAttribute('cardId')); // username is declared globally in index.html
             
+                $('.topOfDiscard').delay(1000).fadeOut(1000, function() {
 
-    stack.on('throwin', function(e) {
-        discardPile.pop();
-        var cardEl = $(discardPile[discardPile.length - 1])[0];
-        markCardUnique(e.target, 'topOfMain');
-        markCardUnique(cardEl, 'topOfDiscard');
-        $(e.target).show();
-        $(e.target).addClass("mainPile");
-        $(e.target).removeClass("discardPile");
+                });
 
-        e.target.classList.add('in-deck');
-        console.log('thrown in', e.target.id, discardPile);
+            });                    
 
-        sendGAEvent('thrown-in-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
-    });
+            stack.on('throwin', function(e) {
+                discardPile.pop();
+                var cardEl = $(discardPile[discardPile.length - 1])[0];
+                markCardUnique(e.target, 'topOfMain');
+                markCardUnique(cardEl, 'topOfDiscard');
+                $(e.target).show();
+                $(e.target).addClass("mainPile");
+                $(e.target).removeClass("discardPile");
+
+                e.target.classList.add('in-deck');
+                console.log('thrown in', e.target.id, discardPile);
+
+                sendGAEvent('thrown-in-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
+            });
+
+        });
+    };
+
+    function setUpStack() {
+
+        stack = gajus.Swing.Stack(stackConfig);
+
+        stack.throwInLast = function() {
+            var cardLi = $('.stack .topOfDiscard')[0];
+            if (cardLi) {
+                bringToTop(cardLi);
+                var val = '#' + cardLi.id;
+                var idx = discardPile.indexOf(val);
+                var card = stack.getCard(cardLi);
+                card.throwIn(cardLi.thrownX, cardLi.thrownY);
+                sendGAEvent('button-thrown-in-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));
+            }
+        };
+
+        stack.throwOutNext = function() {
+            var cardLi = $('.stack .topOfMain')[0];
+            if (cardLi) {
+                bringToTop(cardLi);
+                var card = stack.getCard(cardLi);
+                cardLi.thrownY = getRandomInt(-100, 100);
+                cardLi.thrownX = 1;
+                card.throwOut(cardLi.thrownX, cardLi.thrownY);
+                sendGAEvent('button-thrown-out-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));            
+            } else {
+                $('.getMoreCardsBtn').addClass('standard-shadow');
+
+                $('.getMoreCardsBtn').hide();
+                $('.bottom-of-stack-container .loading').show();
+                $('.bottom-of-stack-container h1').text('Loading cards...');
+
+                getCards();
+                setUpStack();
+                buildStack(stack);
+
+                sendGAEvent('get-more-cards');
+            }
+        };
+
+    }
+
+    setUpStack();
+    buildStack(stack);
 
 });
