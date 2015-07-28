@@ -380,7 +380,7 @@
             addYAxis(yAxis, svg, width + margin.right - margin.left, margin.left, yAxisLabel);
         }
 
-        drawLollySticks(container, data, height, width, xMap, yMap, lineColour, doTransitions);
+        drawLollySticks(container, data, height, width, xMap, yMap, lineColour, doTransitions, highlightCondition);
 
         // add highlight text (rank)
         container.selectAll(".highlight-text-selector")
