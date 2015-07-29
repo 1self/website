@@ -508,6 +508,12 @@ h1 {
   margin: 0;
 }
 
+.infoLink {
+  font-size: 0.7em;
+  text-decoration: none;
+  padding: 3px;
+}
+
 .glance-row {
   width: 100%;
   height: 72px;
