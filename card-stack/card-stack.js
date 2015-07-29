@@ -993,19 +993,32 @@ $(function() {
                 $('.nextButton').trigger('click');
             });
 
+            $stack.on('mousedown', '.tellMeAboutNewCardsBtn', function(e) {
+                $('.getMoreCardsBtn').removeClass('standard-shadow');
+            });
+
+            $stack.on('mouseup', '.tellMeAboutNewCardsBtn', function(e) {
+                sendGAEvent('request-new-card-notification', username);
+                $('.bottom-of-stack-container .tellMeAboutNewCardsBtn').hide();
+                $('.bottom-of-stack-container h1').text('You got it!').addClass("bottom-of-stack-large-text").show();
+                $('.bottom-of-stack-container p').html("We'll send you an email when you have new cards").show();
+                localStorage.requestedNotification = true;
+            });
 
             if (cardsArray.length > 0) {
                 $('.bottom-of-stack-container h1').text('All done').hide();
                 $('.bottom-of-stack-container p').hide();
                 $('.bottom-of-stack-container .loading').hide();
-                $('.bottom-of-stack-container .fa').hide();
+                $('.bottom-of-stack-container .tellMeAboutNewCardsBtn').hide();
                 $('.getMoreCardsBtn').show();
             } else {
                 $('.bottom-of-stack-container h1').text('All done').addClass("bottom-of-stack-large-text").show();
                 $('.bottom-of-stack-container p').html('No more cards right now.<br>Come back for more later').show();
                 $('.bottom-of-stack-container .loading').hide();
-                $('.bottom-of-stack-container .fa').show();
                 $('.getMoreCardsBtn').hide();
+
+                if (!localStorage.requestedNotification)
+                    $('.bottom-of-stack-container .tellMeAboutNewCardsBtn').show();
             }
 
             window.stack = stack;
@@ -1084,7 +1097,7 @@ $(function() {
                 $('.bottom-of-stack-container .loading').show();
                 $('.bottom-of-stack-container h1').text('Loading cards...').removeClass("bottom-of-stack-large-text");
                 $('.bottom-of-stack-container p').hide();
-                $('.bottom-of-stack-container .fa').hide();
+                $('.bottom-of-stack-container .tellMeAboutNewCardsBtn').hide();
 
                 getCards();
                 setUpStack();
