@@ -516,11 +516,13 @@ $(function() {
                     // console.log("template7", cardData.actionTags);
 
                 } else if (cardData.actionTags[0] === "develop") {
-
-                    supplantObject.property = "coding";
+                    if (cardData.chart.indexOf('.duration') > 0) {
+                        supplantObject.property = "coding";
+                    } else {
+                        supplantObject.property = "coding sessions";
+                    }
                     supplantObject.value = propertiesObj.value;
                     cardText = template8.supplant(supplantObject);
-                    // console.log("template8");
 
                 } else if (cardData.actionTags[0] === "exercise") {
 
@@ -655,6 +657,8 @@ $(function() {
                 dataSourceIconUrl = 'img/visit_counter.png';
             else if (cardData.actionTags[0] === "develop")
                 dataSourceIconUrl = 'img/sublime.png';
+            else if (cardData.objectTags.indexOf("github") >= 0)
+                dataSourceIconUrl = 'img/githubicon.svg';
             else
                 dataSourceIconUrl = 'img/puzzlepiece.svg';
 
@@ -990,13 +994,19 @@ $(function() {
             });
 
 
-            $('.bottom-of-stack-container h1').text('All done').css({"font-size": "3em", "margin": "0.67em 0"});
-
-            // $('.bottom-of-stack-container h1').after('<div class="getMoreCardsBtn standard-shadow">Get more cards</div>');
-            // $('.bottom-of-stack-container h1').after('<i class="fa fa-thumbs-o-up fa-4x"></i>');
-            $('.bottom-of-stack-container p').hide(); //text('Come back for more cards later');
-            $('.bottom-of-stack-container .loading').hide();
-            $('.getMoreCardsBtn').show();
+            if (cardsArray.length > 0) {
+                $('.bottom-of-stack-container h1').text('All done').hide();
+                $('.bottom-of-stack-container p').hide();
+                $('.bottom-of-stack-container .loading').hide();
+                $('.bottom-of-stack-container .fa').hide();
+                $('.getMoreCardsBtn').show();
+            } else {
+                $('.bottom-of-stack-container h1').text('All done').addClass("bottom-of-stack-large-text").show();
+                $('.bottom-of-stack-container p').html('No more cards right now.<br>Come back for more later').show();
+                $('.bottom-of-stack-container .loading').hide();
+                $('.bottom-of-stack-container .fa').show();
+                $('.getMoreCardsBtn').hide();
+            }
 
             window.stack = stack;
 
@@ -1070,10 +1080,11 @@ $(function() {
                 sendGAEvent('button-thrown-out-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));            
             } else {
                 $('.getMoreCardsBtn').addClass('standard-shadow');
-
                 $('.getMoreCardsBtn').hide();
                 $('.bottom-of-stack-container .loading').show();
-                $('.bottom-of-stack-container h1').text('Loading cards...');
+                $('.bottom-of-stack-container h1').text('Loading cards...').removeClass("bottom-of-stack-large-text");
+                $('.bottom-of-stack-container p').hide();
+                $('.bottom-of-stack-container .fa').hide();
 
                 getCards();
                 setUpStack();
