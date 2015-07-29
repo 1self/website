@@ -656,7 +656,7 @@ $(function() {
             else if (cardData.actionTags[0] === "develop")
                 dataSourceIconUrl = 'img/sublime.png';
             else
-                dataSourceIconUrl = 'img/githubicon.svg';
+                dataSourceIconUrl = 'img/puzzlepiece.svg';
 
             createCardText(cardData, colour);
 
