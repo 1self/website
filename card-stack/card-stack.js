@@ -1036,6 +1036,7 @@ $(function() {
                 e.target.thrownY = 78;
                 var cardsOnDiscard = discardPile.length;
                 markCardUnique($cardList[$cardList.length - 1 - cardsOnDiscard], 'topOfMain');
+                bringToTop($('.stack .topMain')[0]);
                 renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
                 e.target.classList.remove('in-deck');
                 console.log('thrown out', e.target.id, discardPile);   
