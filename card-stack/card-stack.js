@@ -831,15 +831,20 @@ $(function() {
         }
     }
 
-    function markCardRead(username, cardId) {
+    function markCardRead(username, cardElem) {
+
+        var cardId = cardElem.getAttribute('cardId');
+        var now = new Date();
 
         var apiUrl = API_HOST + "/v1/users/" + username + "/cards/" + cardId;
 
-        console.log('markCardRead url:', apiUrl);
+        var viewDuration = now.getTime() - cardElem.cardVisibleAt;
+
+        console.log('markCardRead url:', apiUrl, ", viewDuration: ", viewDuration);
 
         $.ajax({
                     url: apiUrl,
-                    data: JSON.stringify({ "read" : true, "readInfo" : {} }),
+                    data: JSON.stringify({ "read" : true, "readInfo" : { viewDuration: viewDuration } }),
                     type: "PATCH",
                     contentType: "application/json"
 
@@ -870,6 +875,9 @@ $(function() {
             }
 
             markCardUnique($('.stack li:last')[0], 'topOfMain');
+
+            if ($('.stack li:last')[0])
+                $('.stack li:last')[0].cardVisibleAt = (new Date()).getTime();
 
             $cardList = $('.stack li');
             var $stack = $('.stack');
@@ -1036,13 +1044,18 @@ $(function() {
                 e.target.thrownY = 78;
                 var cardsOnDiscard = discardPile.length;
                 markCardUnique($cardList[$cardList.length - 1 - cardsOnDiscard], 'topOfMain');
-                bringToTop($('.stack .topMain')[0]);
+
+                if ($cardList.length - 1 - cardsOnDiscard >= 0) {
+                    bringToTop($cardList[$cardList.length - 1 - cardsOnDiscard]);
+                    $cardList[$cardList.length - 1 - cardsOnDiscard].cardVisibleAt = (new Date()).getTime();
+                }
+                
                 renderThumbnailMedia($cardList[$cardList.length - 1 - cardsOnDiscard]);
                 e.target.classList.remove('in-deck');
                 console.log('thrown out', e.target.id, discardPile);   
                 sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
 
-                markCardRead(username, e.target.getAttribute('cardId')); // username is declared globally in index.html
+                markCardRead(username, e.target); // username is declared globally in index.html
             
                 $('.topOfDiscard').delay(1000).fadeOut(1000, function() {
 
