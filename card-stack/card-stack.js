@@ -845,7 +845,7 @@ $(function() {
                             "readInfo" : 
                                             { 
                                                 viewDuration:       viewDuration,
-                                                cardIndex:          cardElem.getAttribute('cardIndex'),
+                                                cardIndex:          +cardElem.getAttribute('cardIndex'),
                                                 cardReloadCount:    cardReloadCount
                                             }
                         };
