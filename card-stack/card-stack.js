@@ -284,6 +284,12 @@ $(function() {
         ga('send', 'event', gaObj);
     };
 
+    window.logInfoClick = function(elem) {
+        var $elem = $(elem);
+        var cardLi = $elem.parentsUntil('ul', 'li')[0];
+        sendGAEvent('infoLink_click', $elem.attr('href'), cardLi.getAttribute('cardIndex'));
+    };
+
     var dateRangetext = function(startRange, endRange) {
         var rangeText;
         var now = moment();
@@ -469,7 +475,7 @@ $(function() {
                 // var template4 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
                 // var template5 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
                 var template6 = '<b>{{eventDate}}</b><br>{{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
-                var template7 = '<b>{{eventDate}}</b><br>{{value}} of your {{objects}} was {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}<br><a class="infoLink" href="https://www.rescuetime.com/dashboard/for/the/day/of/{{cardDate}}" target="_blank" style="color:{{colour}}"><i class="fa fa-info-circle"></i> More info at RescueTime.com</a>'; // [Yesterday]: [1.2%] of your [computer use] was [business]<br>Your [6th] [fewest] in [a day]
+                var template7 = '<b>{{eventDate}}</b><br>{{value}} of your {{objects}} was {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}<br><a onclick="logInfoClick(this);" class="infoLink" href="https://www.rescuetime.com/dashboard/for/the/day/of/{{cardDate}}" target="_blank" style="color:{{colour}}"><i class="fa fa-info-circle"></i> More info at RescueTime.com</a>'; // [Yesterday]: [1.2%] of your [computer use] was [business]<br>Your [6th] [fewest] in [a day]
                 var template8 = '<b>{{eventDate}}</b><br>{{value}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [2609] [steps]<br>Your [6th] [fewest] in [a day]
                 var template9 = '<b>{{eventDate}}</b><br>{{value}} {{objects}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [34] [google] [visits]<br>Your [6th] [fewest] in [a day]
 
@@ -942,6 +948,14 @@ $(function() {
                 $container.toggleClass('flip');
                 $container.siblings().toggleClass('flip');
             });
+
+            // $stack.on('click', '.infoLink', function(e) {
+            //     console.log(e.target);
+            // });
+            // 
+            console.log($stack.find('.infoLink'));
+            console.log($stack.find('.clickable-overlay'));
+            console.log($('.clickable-overlay'));
 
             $stack.on('mousedown', '.share-button', function(e) {
                 $('.share-button').removeClass('standard-shadow');
