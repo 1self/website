@@ -265,6 +265,7 @@ $(function() {
     getCards();
 
     var stack;
+    var cardReloadCount = 0;
 
     var getColour = function(idx) {
         var colourArray = ['#dd2649', '#00a2d4', '#e93d31', '#f2ae1c', '#61b346', '#cf4b9a', '#367ec0', '#00ad87'];
@@ -831,7 +832,7 @@ $(function() {
         }
     }
 
-    function markCardRead(username, cardElem) {
+    function markCardRead(username, cardElem, cardReloadCount) {
 
         var cardId = cardElem.getAttribute('cardId');
         var now = new Date();
@@ -840,11 +841,20 @@ $(function() {
 
         var viewDuration = now.getTime() - cardElem.cardVisibleAt;
 
-        console.log('markCardRead url:', apiUrl, ", viewDuration: ", viewDuration);
+        var dataBody = {   "read" : true, 
+                            "readInfo" : 
+                                            { 
+                                                viewDuration:       viewDuration,
+                                                cardIndex:          cardElem.getAttribute('cardIndex'),
+                                                cardReloadCount:    cardReloadCount
+                                            }
+                        };
+
+        console.log('markCardRead url:', apiUrl, ", dataBody: ", dataBody);
 
         $.ajax({
                     url: apiUrl,
-                    data: JSON.stringify({ "read" : true, "readInfo" : { viewDuration: viewDuration } }),
+                    data: JSON.stringify(dataBody),
                     type: "PATCH",
                     contentType: "application/json"
 
@@ -1055,7 +1065,7 @@ $(function() {
                 console.log('thrown out', e.target.id, discardPile);   
                 sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
 
-                markCardRead(username, e.target); // username is declared globally in index.html
+                markCardRead(username, e.target, cardReloadCount); // username is declared globally in index.html
             
                 $('.topOfDiscard').delay(1000).fadeOut(1000, function() {
 
@@ -1115,6 +1125,7 @@ $(function() {
                 $('.bottom-of-stack-container .tellMeAboutNewCardsBtn').hide();
 
                 getCards();
+                cardReloadCount++;
                 setUpStack();
                 buildStack(stack);
 
