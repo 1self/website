@@ -602,6 +602,7 @@ $(function() {
         , '  <div class="social-share-button standard-shadow"><div id="shareToTwitter" class="innerButton">Share to Twitter</div></div>'
         , '  <div class="social-share-button standard-shadow"><div id="shareToFacebook" class="innerButton">Share to Facebook</div></div>'
         , '  <div class="social-share-button standard-shadow"><div id="shareToLink" class="innerButton">Get shareable link</div></div>'
+        , '  <div class="social-share-thanks" style="display:none;"><p>We haven\'t implemented sharing yet but it is coming soon.<br>Thanks for clicking<br><br><i class="fa fa-smile-o fa-2x"></i></p></div>'
         , '</div>'].join('');
 
 
@@ -866,6 +867,16 @@ $(function() {
         });
     }
 
+    var hideShareButtonsShowThanks = function() {
+        $('.social-share-thanks').show();
+        $('.social-share-button').hide();
+
+        window.setTimeout(function() {
+            $('.social-share-thanks').hide();
+            $('.social-share-button').show();
+        }, 4000);
+    };
+
     var buildStack = function(stack) {
         var numberOfCardsToShow = 10;
         var skip = 0;
@@ -965,6 +976,8 @@ $(function() {
                 sharePaneAction += '-' + $li.attr('cardIndex');
 
                 sendGAEvent(sharePaneAction, $li.attr('cardId'), $li.attr('cardIndex'));
+
+                hideShareButtonsShowThanks();
                 
             });
  
@@ -984,6 +997,8 @@ $(function() {
                 sharePaneAction += '-' + $li.attr('cardIndex');
 
                 sendGAEvent(sharePaneAction, $li.attr('cardId'), $li.attr('cardIndex'));
+
+                hideShareButtonsShowThanks();
                 
             });
 
@@ -1001,6 +1016,8 @@ $(function() {
                 sharePaneAction += '-' + $li.attr('cardIndex');
 
                 sendGAEvent(sharePaneAction, $li.attr('cardId'), $li.attr('cardIndex'));
+
+                hideShareButtonsShowThanks();
                 
             });
 
