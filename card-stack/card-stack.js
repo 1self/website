@@ -108,7 +108,7 @@ function getCards() {
     };
 
     if (offline) {
-        url = "offline_json/google-fit.json";
+        url = "offline_json/offline.json";
     } else {
         // Get the ajax requests out of the way early because they
         // are typically longest to complete
@@ -119,7 +119,7 @@ function getCards() {
         url = API_HOST + '/v1/users/';
         url += username + '/cards';
         url += '?extraFiltering=true';
-        url += minStdDev ? '&minStdDev=' + minStdDev : '&minStdDev=' + "2";
+        url += minStdDev ? '&minStdDev=' + minStdDev : '&minStdDev=' + "0.5";
         url += maxStdDev ? '&maxStdDev=' + maxStdDev : '';
     }
 
@@ -416,12 +416,20 @@ $(function() {
 
                 } else if (cardData.actionTags[0] === "exercise") {
 
-                    if (cardData.chart.indexOf('steps') > 0) {
-                        supplantObject.property = propertiesObj.propertiesText;
+                    if (cardData.actionTags[1] === "walk") {
+                        if (cardData.chart.indexOf('steps') > 0) {
+                            supplantObject.property = propertiesObj.propertiesText;
+                        } else {
+                            supplantObject.property = "walks";
+                        }
                         supplantObject.value = propertiesObj.value;
                         cardText = template8.supplant(supplantObject);
-                    // } else {
-                    //     supplantObject.property = "walks";
+                    } else if (cardData.actionTags[1] === "ride") {
+                        if (cardData.propertyName === "distance.sum") {
+                            supplantObject.property = "metres ridden";
+                            supplantObject.value = propertiesObj.value;
+                            cardText = template8.supplant(supplantObject);
+                        }
                     }
                     // console.log("template8");
 
