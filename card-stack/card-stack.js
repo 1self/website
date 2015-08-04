@@ -95,7 +95,7 @@ moment.locale('en', {
 
 var deferred; // = $.Deferred();
 
-var offline = false;
+var offline = true;
 
 function getCards() {
 
