@@ -131,8 +131,9 @@ function getCards() {
             })
         .done(function(data) {
 
-            data.sort(sort_by_date);
+            // data.sort(sort_by_date);
             console.log('card data', data);
+            data = data.reverse();
             window.cardData = data;
             deferred.resolve(data);
         })
@@ -222,16 +223,19 @@ $(function() {
     };
 
     var pluralise = function(stringArray) {
-        var toReturn = [];
-        for (var i in stringArray) {
-            var plural;
-            if (stringArray[i] === "push")
-                plural = "es";
-            else
-                plural = "s";
-            toReturn.push(stringArray[i] + plural);
-        }
-        return toReturn;
+        var lastItem = stringArray[stringArray.length - 1];
+        
+        var plural;
+        if (lastItem === "push")
+            plural = "es";
+        else
+            plural = "s";
+
+        lastItem += plural;
+
+        stringArray[stringArray.length - 1] = lastItem;
+
+        return stringArray;
     };
 
     var pastParticiple = function(stringArray) {
@@ -556,7 +560,7 @@ $(function() {
                 dataSourceIconUrl = 'img/visit_counter.png';
             else if (cardData.actionTags[0] === "develop")
                 dataSourceIconUrl = 'img/sublime.png';
-            else if (cardData.objectTags.indexOf("github") >= 0)
+            else if (cardData.objectTags.indexOf("github") >= 0 || cardData.actionTags.indexOf("github") >= 0)
                 dataSourceIconUrl = 'img/githubicon.svg';
             else
                 dataSourceIconUrl = 'img/puzzlepiece.svg';
@@ -732,36 +736,38 @@ $(function() {
     function markCardRead(username, cardElem, cardReloadCount) {
 
         var cardId = cardElem.getAttribute('cardId');
-        var now = new Date();
+        if (cardId) {
+            var now = new Date();
 
-        var apiUrl = API_HOST + "/v1/users/" + username + "/cards/" + cardId;
+            var apiUrl = API_HOST + "/v1/users/" + username + "/cards/" + cardId;
 
-        var viewDuration = now.getTime() - cardElem.cardVisibleAt;
+            var viewDuration = now.getTime() - cardElem.cardVisibleAt;
 
-        var dataBody = {   "read" : true, 
-                            "readInfo" : 
-                                            { 
-                                                viewDuration:       viewDuration,
-                                                cardIndex:          +cardElem.getAttribute('cardIndex'),
-                                                cardReloadCount:    cardReloadCount
-                                            }
-                        };
+            var dataBody = {   "read" : true, 
+                                "readInfo" : 
+                                                { 
+                                                    viewDuration:       viewDuration,
+                                                    cardIndex:          +cardElem.getAttribute('cardIndex'),
+                                                    cardReloadCount:    cardReloadCount
+                                                }
+                            };
 
-        console.log('markCardRead url:', apiUrl, ", dataBody: ", dataBody);
+            console.log('markCardRead url:', apiUrl, ", dataBody: ", dataBody);
 
-        if (!offline) {
-            $.ajax({
-                        url: apiUrl,
-                        data: JSON.stringify(dataBody),
-                        type: "PATCH",
-                        contentType: "application/json"
+            if (!offline) {
+                $.ajax({
+                            url: apiUrl,
+                            data: JSON.stringify(dataBody),
+                            type: "PATCH",
+                            contentType: "application/json"
 
-            }).done(function (data) {
-                console.log('markCardRead', username, cardId, data);
+                }).done(function (data) {
+                    console.log('markCardRead', username, cardId, data);
 
-            }).fail(function (data) {
-                console.log('ERROR markCardRead', username, cardId, data);
-            });
+                }).fail(function (data) {
+                    console.log('ERROR markCardRead', username, cardId, data);
+                });
+            }
         }
     }
 
@@ -955,7 +961,7 @@ $(function() {
                 $('.getMoreCardsBtn').show();
             } else {
                 $('.bottom-of-stack-container h1').text('All done').addClass("bottom-of-stack-large-text").show();
-                $('.bottom-of-stack-container p').html('No more cards right now.<br>Come back for more later').show();
+                $('.bottom-of-stack-container p').html('That&apos;s all we&apos;ve got for you right now.<br><br>Thanks for looking!<br><br>New cards will be generated for you daily.').show();
                 $('.bottom-of-stack-container .loading').hide();
                 $('.getMoreCardsBtn').hide();
 
