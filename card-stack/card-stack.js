@@ -119,7 +119,7 @@ function getCards() {
         url = API_HOST + '/v1/users/';
         url += username + '/cards';
         url += '?extraFiltering=true';
-        url += minStdDev ? '&minStdDev=' + minStdDev : '&minStdDev=' + "0.5";
+        url += minStdDev ? '&minStdDev=' + minStdDev : ''; //&minStdDev=' + "0.5";
         url += maxStdDev ? '&maxStdDev=' + maxStdDev : '';
     }
 
@@ -954,7 +954,7 @@ $(function() {
                     localStorage.requestedNotification = true;
                 });
             }
-            
+
             if (cardsArray.length > 0) {
                 $('.bottom-of-stack-container h1').text('All done').hide();
                 $('.bottom-of-stack-container p').hide();
