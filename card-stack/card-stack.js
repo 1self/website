@@ -568,7 +568,7 @@ $(function() {
             createCardText(cardData, colour);
 
             var headerText = cardData.type === "top10" ? "Top" : "Bottom";
-            headerText += ' 10: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf;
+            headerText += ' 10'; //: ' + createComparitorText(cardData.position, cardData.type) + ' of ' + cardData.outOf;
 
             var frontContent = [
                 , '<div class="cardHeader" style="background-color: {{colour}};">'
