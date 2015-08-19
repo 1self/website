@@ -82,7 +82,8 @@
         var ranking_sort = function(a, b) {
             var diff = a.value - b.value;
             if (diff === 0) {
-                return new Date(b.date).getTime() - new Date(a.date).getTime();
+                return new Date(a.date).getTime() - new Date(b.date).getTime();
+                // return new Date(b.date).getTime() - new Date(a.date).getTime();
             } else {
                 return diff;
             }
