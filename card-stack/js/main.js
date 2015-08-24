@@ -9,9 +9,12 @@
           case arrow.right:
               $('.next').trigger('click');
           break;
-          // case arrow.down:
-          //     $('.flip-toggle').trigger('mouseup');
-          // break;
+          case arrow.down:
+              $('.topOfMain .more').trigger('click');
+          break;
+          case arrow.up:
+              $('.topOfMain .more-back').trigger('click');
+          break;
           default: return; // allow other keys to be handled
       }
       e.preventDefault();
@@ -39,12 +42,10 @@
     return $(this).addClass("clicked");
   });
 
-
   $(".more, .more-back").click(function() {
-  $(".card-container").toggleClass("hover");
-  $(".back").toggleClass("iefix");
+    $(".card-container").toggleClass("hover");
+    $(".back").toggleClass("iefix");
   });
-
 
   $(".share").click(function() {
     $(".flyout-btn").toggleClass("btn-rotate");
@@ -52,9 +53,7 @@
     $(".overlay").toggleClass("open");
   });
 
-
   $('.removed-from-deck').delay(1000).remove();
-
 
   $(".flyout").find("a").click(function (e) {
     e.preventDefault();                   // prevent default anchor behavior
