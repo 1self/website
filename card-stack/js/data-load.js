@@ -10,7 +10,7 @@ function getCards() {
     var url;
 
     if (offline) {
-        url = "offline_json/offline.json";
+        url = "../offline_json/offline.json";
     } else {
         // Get the ajax requests out of the way early because they
         // are typically longest to complete
