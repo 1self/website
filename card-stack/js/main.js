@@ -1,4 +1,23 @@
+  $(document).keydown(function (e) {
+      var keyCode = e.keyCode || e.which,
+      arrow = {left: 37, up: 38, right: 39, down: 40 };
 
+      switch (keyCode) {
+          case arrow.left:
+              $('.previous').trigger('click');
+          break;
+          case arrow.right:
+              $('.next').trigger('click');
+          break;
+          // case arrow.down:
+          //     $('.flip-toggle').trigger('mouseup');
+          // break;
+          default: return; // allow other keys to be handled
+      }
+      e.preventDefault();
+      // prevent default action (eg. page moving up/down)
+      // but consider accessibility (eg. user may want to use keys to choose a radio button)
+  });   
 // Menu
 
 (function() {
@@ -45,7 +64,9 @@
 
     setTimeout(function(){
          window.location = goTo;
-    }, 550);       
+    }, 550);
+
+  
 });  
 
 }).call(this);
