@@ -1,7 +1,7 @@
 var deferred; // = $.Deferred();
 var offline = false;
 var API_HOST = "https://api.1self.co";
-var username = getQSParam().username;
+var username = getQSParam().user;
 
 function getCards() {
 
@@ -21,7 +21,7 @@ function getCards() {
         url = API_HOST + '/v1/users/';
         url += username + '/cards';
         url += '?extraFiltering=true';
-        url += minStdDev ? '&minStdDev=' + minStdDev : '&minStdDev=' + "0.5";
+        url += minStdDev ? '&minStdDev=' + minStdDev : '';
         url += maxStdDev ? '&maxStdDev=' + maxStdDev : '';
     }
 
