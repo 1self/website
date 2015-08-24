@@ -7,7 +7,7 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/d3/d3.min.js"></script>
     <script src="js/chartDrawing.js"></script>
-    <script src="utils.js"></script>
+    <script src="js/utils.js"></script>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
     var highlightCondition = getQSParam().highlightCondition;
     var displayTooltips = getQSParam().displayTooltips === "true";
     var dataSrc = decodeURIComponent(getQSParam().dataSrc);
-    var offline = false;
+    var offline = true;
     var maxValue; // this is set in fn addRankings;
 
     $('.mainContainer').ready(function () {
