@@ -532,7 +532,6 @@ hr {
     height: 100%;
     border-radius: 4px;
     z-index: 2;
-    background: #FFF
 }
 
 .back {
@@ -543,7 +542,6 @@ hr {
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
     z-index: 3;
-    background-color: #FFF;
     z-index: 0;
     border: 1px solid #ccc;
     top: -18%;
@@ -878,7 +876,7 @@ footer:before {
     height: 100%;
     top: 0%;
     position: absolute;
-    display: block
+    display: block;
 }
 
 /*.bottom-menu .previous a:hover {
@@ -895,7 +893,7 @@ footer:before {
     background-repeat: no-repeat;
     background-position: 70% 0%;
     background-size: 10%;
-    display: block
+    display: block;
 }
 
 .bottom-menu .next a {
@@ -903,7 +901,7 @@ footer:before {
     height: 100%;
     top: 0%;
     position: absolute;
-    display: block
+    display: block;
 }
 
 /*.bottom-menu .next a:hover {
@@ -1868,6 +1866,20 @@ footer:before {
     top: 0
 }*/
 
+.card.date-card .front {
+    background-color: gray;
+    background-image: url(../img/texture.svg);
+    background-repeat: tile;
+    background-size: contain;
+}
+
+.card.date-card .front .gradient-overlay {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(60,60,60,0.75);
+    position: absolute;
+}
+
 .headline b {
     font-weight: normal;
     font-size: 60%;
@@ -1886,6 +1898,15 @@ footer:before {
 .headline .event-date {
     float: left;
     width: 80%;
+}
+
+.date-card .event-date {
+    color: #fff;
+    font-size: 2.5em;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 20px;
 }
 
 .headline .service-container {

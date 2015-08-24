@@ -123,7 +123,9 @@ function createCard (cardData) {
 	var $card; 
 
 	if (cardData.type ==="date") {
+        var cardDate = moment(cardData.cardDate);
 		$card = $(".card-template.date-card").clone();
+        $card.find('.event-date').text(stripAtDetail(cardDate.calendar()));
 
 	} else if (cardData.type === "top10" || cardData.type === "bottom10") {
 		$card = $(".card-template.top-ten-card").clone();
