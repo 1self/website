@@ -1925,7 +1925,7 @@ footer:before {
 
 .headline.googlefit {
     border-top-style: solid;
-    border-color: #000000;
+    border-color: #DC493C;
     border-top-width: 20px;
 }
 
@@ -1935,9 +1935,21 @@ footer:before {
     background-size: cover
 }
 
+.headline.hackernews {
+    border-top-style: solid;
+    border-color: rgb(244,101,7);
+    border-top-width: 20px;
+}
+
+.headline.hackernews .service {
+    background: url(../img/service-hackernews.svg);
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
 .headline.instagram {
     border-top-style: solid;
-    border-color: #000000;
+    border-color: rgb(23,90,131);
     border-top-width: 20px;
 }
 
@@ -1949,7 +1961,7 @@ footer:before {
 
 .headline.intellij {
     border-top-style: solid;
-    border-color: #000000;
+    border-color: rgb(26,92,171);
     border-top-width: 20px;
 }
 
@@ -1985,7 +1997,7 @@ footer:before {
 
 .headline.stackoverflow {
     border-top-style: solid;
-    border-color: #000000;
+    border-color: rgb(244,121,32);
     border-top-width: 20px;
 }
 
@@ -1997,7 +2009,7 @@ footer:before {
 
 .headline.strava {
     border-top-style: solid;
-    border-color: #000000;
+    border-color: rgb(242,97,34);
     border-top-width: 20px;
 }
 
@@ -2021,7 +2033,7 @@ footer:before {
 
 .headline.twitter {
     border-top-style: solid;
-    border-color: #000000;
+    border-color: rgb(77,151,212);
     border-top-width: 20px;
 }
 
@@ -2045,7 +2057,7 @@ footer:before {
 
 .headline.visualstudio {
     border-top-style: solid;
-    border-color: #000000;
+    border-color: rgb(106,32,125);
     border-top-width: 20px;
 }
 
