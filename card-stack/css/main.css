@@ -1945,7 +1945,7 @@ footer:before {
 .headline.foursquare .service {
     background: url(../img/service-foursquare.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.github {
@@ -1957,7 +1957,7 @@ footer:before {
 .headline.github .service {
     background: url(../img/service-github.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.googlefit {
@@ -1969,7 +1969,7 @@ footer:before {
 .headline.googlefit .service {
     background: url(../img/service-googlefit.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.hackernews {
@@ -1981,7 +1981,7 @@ footer:before {
 .headline.hackernews .service {
     background: url(../img/service-hackernews.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.instagram {
@@ -1993,7 +1993,7 @@ footer:before {
 .headline.instagram .service {
     background: url(../img/service-instagram.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.intellij {
@@ -2005,7 +2005,7 @@ footer:before {
 .headline.intellij .service {
     background: url(../img/service-intellij.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.lastfm {
@@ -2017,7 +2017,7 @@ footer:before {
 .headline.lastfm .service {
     background: url(../img/service-lastfm.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.rescuetime {
@@ -2029,7 +2029,7 @@ footer:before {
 .headline.rescuetime .service {
     background: url(../img/service-rescuetime.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.stackoverflow {
@@ -2041,7 +2041,7 @@ footer:before {
 .headline.stackoverflow .service {
     background: url(../img/service-stackoverflow.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.strava {
@@ -2053,7 +2053,7 @@ footer:before {
 .headline.strava .service {
     background: url(../img/service-strava.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.sublime {
@@ -2065,7 +2065,7 @@ footer:before {
 .headline.sublime .service {
     background: url(../img/service-sublime.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.twitter {
@@ -2077,7 +2077,7 @@ footer:before {
 .headline.twitter .service {
     background: url(../img/service-twitter.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.visitcounter {
@@ -2089,7 +2089,7 @@ footer:before {
 .headline.visitcounter .service {
     background: url(../img/service-visitcounter.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .headline.visualstudio {
@@ -2101,7 +2101,7 @@ footer:before {
 .headline.visualstudio .service {
     background: url(../img/service-visualstudio.svg);
     background-repeat: no-repeat;
-    background-size: cover
+    background-size: contain;
 }
 
 .chart {

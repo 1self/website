@@ -118,6 +118,8 @@ function injectCardData (cardData, $card) {
 
     var $headline = $card.find(".headline");
 	$headline.addClass(cardData.dataSource);
+
+    console.log($headline);
 }
 
 function createCard (cardData) {
@@ -213,10 +215,12 @@ $(document).ready(function(){
         console.log(cardsAdded);
         console.log(cardsInDeck[0]);
 
-        if (cardsInDeck.length > 3) {
-
+        if (cardsInDeck.length > 0) {
             var $cardNumText = $('.card-number-text');
             $cardNumText.text(parseInt($cardNumText.text()) - 1);
+        }
+
+        if (cardsInDeck.length > 3) {
 
             cardsAdded--;
             var bottomLi = $('.stack li.in-deck')[0];
