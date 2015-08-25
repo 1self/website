@@ -771,20 +771,29 @@ main {
     position: relative
 }
 
-.headline {
+.front .headline {
     height: 40%
 }
 
-.chart {
+.front .chart {
     height: 50%;
     position: absolute;
     top: 40%;
 }
 
-.card-menu {
+.front .chart-overlay {
+    height: 50%;
+    position: absolute;
+    top: 40%;
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+}
+
+.front .card-menu {
     height: 10%;
     position: absolute;
     top: 90%;
+    width: 100%;
 }
 
 .share-fav {
@@ -2129,15 +2138,19 @@ footer:before {
 
 .back .headline {
     height: 30%;
-    padding: 5%
 }
 
 .back .chart {
-    height: 50%
+    height: 50%;
+    position: absolute;
+    top: 30%;
 }
 
 .back .card-menu {
-    height: 20%
+    height: 20%;
+    position: absolute;
+    top: 80%;
+    width: 100%;
 }
 
 .card-count {

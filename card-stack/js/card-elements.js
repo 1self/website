@@ -156,7 +156,7 @@ function createCardText(cardData, colour) {
 
         cardData.cardText = cardText;
     }
-};
+}
 
 function buildPropertiesTextAndGetValue (propertiesObject) {
     // debugger;
