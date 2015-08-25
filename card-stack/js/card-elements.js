@@ -48,237 +48,115 @@ function markCardRead(username, cardElem, cardReloadCount) {
     }
 }
 
-var createCardText = function(cardData, colour) {
-    // if (!cardData.cardText) {
-        var cardText = '';
+function createCardText(cardData, colour) {
+    var cardText = '';
 
-        if (cardData.type === "top10" || cardData.type === "bottom10") {
-            // var template1 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: [6th] [fewest] [commit]s in [a day] [ever]
-            // var template2 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [most] [commit]ted [file changes] in [a day] [ever]
-            // var template3 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [music track] [listen]s in [a day] [ever]
-            // // var template4 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
-            // // var template5 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
-            // var template6 = '<b>{{eventDate}}</b><br>{{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
-            // var template7 = '<b>{{eventDate}}</b><br>{{value}} of your {{objects}} was {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}<br><a onclick="logInfoClick(this);" class="infoLink" href="https://www.rescuetime.com/dashboard/for/the/day/of/{{cardDate}}" target="_blank" style="color:{{colour}}"><i class="fa fa-info-circle"></i> More info at RescueTime.com</a>'; // [Yesterday]: [1.2%] of your [computer use] was [business]<br>Your [6th] [fewest] in [a day]
-            // var template8 = '<b>{{eventDate}}</b><br>{{value}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [2609] [steps]<br>Your [6th] [fewest] in [a day]
-            // var template9 = '<b>{{eventDate}}</b><br>{{value}} {{objects}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [34] [google] [visits]<br>Your [6th] [fewest] in [a day]
+    if (cardData.type === "top10" || cardData.type === "bottom10") {
 
-            // var templateDefault = '<b>{{eventDate}}</b><br>{{value}} {{{objects}}} {{{action_pp}}} {{{property}}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [1.2] {objects} {actions} {properties}<br>Your [6th] [fewest] in [a day]
+        var template1 = '{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: [6th] [fewest] [commit]s in [a day] [ever]
+        var template2 = '{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [most] [commit]ted [file changes] in [a day] [ever]
+        var template3 = '{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [music track] [listen]s in [a day] [ever]
+        // var template4 = '{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
+        // var template5 = '{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
+        var template6 = '{{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
+        var template7 = '{{value}} of your {{objects}} was {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}<br><a onclick="logInfoClick(this);" class="infoLink" href="https://www.rescuetime.com/dashboard/for/the/day/of/{{cardDate}}" target="_blank" style="color:{{colour}}"><i class="fa fa-info-circle"></i> More info at RescueTime.com</a>'; // [Yesterday]: [1.2%] of your [computer use] was [business]<br>Your [6th] [fewest] in [a day]
+        var template8 = '{{value}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [2609] [steps]<br>Your [6th] [fewest] in [a day]
+        var template9 = '{{value}} {{objects}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [34] [google] [visits]<br>Your [6th] [fewest] in [a day]
 
-            var template1 = '{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: [6th] [fewest] [commit]s in [a day] [ever]
-            var template2 = '{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [most] [commit]ted [file changes] in [a day] [ever]
-            var template3 = '{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [music track] [listen]s in [a day] [ever]
-            // var template4 = '{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
-            // var template5 = '{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
-            var template6 = '{{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
-            var template7 = '{{value}} of your {{objects}} was {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}<br><a onclick="logInfoClick(this);" class="infoLink" href="https://www.rescuetime.com/dashboard/for/the/day/of/{{cardDate}}" target="_blank" style="color:{{colour}}"><i class="fa fa-info-circle"></i> More info at RescueTime.com</a>'; // [Yesterday]: [1.2%] of your [computer use] was [business]<br>Your [6th] [fewest] in [a day]
-            var template8 = '{{value}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [2609] [steps]<br>Your [6th] [fewest] in [a day]
-            var template9 = '{{value}} {{objects}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [34] [google] [visits]<br>Your [6th] [fewest] in [a day]
+        var templateDefault = '{{value}} {{{objects}}} {{{action_pp}}} {{{property}}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [1.2] {objects} {actions} {properties}<br>Your [6th] [fewest] in [a day]
 
-            var templateDefault = '{{value}} {{{objects}}} {{{action_pp}}} {{{property}}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [1.2] {objects} {actions} {properties}<br>Your [6th] [fewest] in [a day]
+        var supplantObject = {
+            eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
+            comparitor: createComparitorText(cardData.position, cardData.type),
+            eventPeriod: "a day",
+            comparisonPeriod: "",
+            colour: colour
+        };
 
-            var supplantObject = {
-                eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
-                comparitor: createComparitorText(cardData.position, cardData.type),
-                eventPeriod: "a day",
-                comparisonPeriod: "",
-                colour: colour
-            };
+        var propertiesObj = buildPropertiesTextAndGetValue(cardData.properties.sum);
 
-            var propertiesObj = buildPropertiesTextAndGetValue(cardData.properties.sum);
-
-            if (cardData.actionTags[0] === "commit" || cardData.actionTags[1] === "push") {
-                if (cardData.properties.sum.__count__) {
-                    supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
-                    cardText = template1.supplant(supplantObject);
-                    // console.log("template1");
-                } else {
-                    supplantObject.action_pp = displayTags(pastParticiple(cardData.actionTags));
-                    supplantObject.property = propertiesObj.propertiesText;
-                    cardText = template2.supplant(supplantObject);
-                    // console.log("template2", cardData.actionTags);
-                }
-            } else if (cardData.actionTags[0] === "listen") {
-                if (cardData.properties.sum.__count__) {
-                    supplantObject.action_pl = customFormatActionTags(displayTags(cardData.actionTags));
-                    supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
-                    cardText = template3.supplant(supplantObject);
-                    // console.log("template3");
-                } else {
-                    supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
-                    supplantObject.property = propertiesObj.propertiesText;
-                    supplantObject.value = propertiesObj.value;
-                    cardText = template6.supplant(supplantObject);
-                    // console.log("template6");
-                }
-            } else if (cardData.actionTags[0] === "use") {
-                supplantObject.property = "&quot;" + propertiesObj.propertiesText + "&quot;";
+        if (cardData.actionTags[0] === "commit" || cardData.actionTags[1] === "push") {
+            if (cardData.properties.sum.__count__) {
+                supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
+                cardText = template1.supplant(supplantObject);
+                // console.log("template1");
+            } else {
+                supplantObject.action_pp = displayTags(pastParticiple(cardData.actionTags));
+                supplantObject.property = propertiesObj.propertiesText;
+                cardText = template2.supplant(supplantObject);
+                // console.log("template2", cardData.actionTags);
+            }
+        } else if (cardData.actionTags[0] === "listen") {
+            if (cardData.properties.sum.__count__) {
+                supplantObject.action_pl = customFormatActionTags(displayTags(cardData.actionTags));
                 supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
+                cardText = template3.supplant(supplantObject);
+                // console.log("template3");
+            } else {
+                supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
+                supplantObject.property = propertiesObj.propertiesText;
                 supplantObject.value = propertiesObj.value;
-                supplantObject.cardDate = cardData.cardDate;
-                cardText = template7.supplant(supplantObject);
-                // console.log("template7", cardData.actionTags);
+                cardText = template6.supplant(supplantObject);
+                // console.log("template6");
+            }
+        } else if (cardData.actionTags[0] === "use") {
+            supplantObject.property = "&quot;" + propertiesObj.propertiesText + "&quot;";
+            supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
+            supplantObject.value = propertiesObj.value;
+            supplantObject.cardDate = cardData.cardDate;
+            cardText = template7.supplant(supplantObject);
+            // console.log("template7", cardData.actionTags);
 
-            } else if (cardData.actionTags[0] === "develop") {
-                if (cardData.chart.indexOf('.duration') > 0) {
-                    supplantObject.property = "coding";
+        } else if (cardData.actionTags[0] === "develop") {
+            if (cardData.chart.indexOf('.duration') > 0) {
+                supplantObject.property = "coding";
+            } else {
+                supplantObject.property = "coding sessions";
+            }
+            supplantObject.value = propertiesObj.value;
+            cardText = template8.supplant(supplantObject);
+
+        } else if (cardData.actionTags[0] === "exercise") {
+
+            if (cardData.actionTags[1] === "walk") {
+                if (cardData.chart.indexOf('steps') > 0) {
+                    supplantObject.property = propertiesObj.propertiesText;
                 } else {
-                    supplantObject.property = "coding sessions";
+                    supplantObject.property = "walks";
                 }
                 supplantObject.value = propertiesObj.value;
                 cardText = template8.supplant(supplantObject);
-
-            } else if (cardData.actionTags[0] === "exercise") {
-
-                if (cardData.actionTags[1] === "walk") {
-                    if (cardData.chart.indexOf('steps') > 0) {
-                        supplantObject.property = propertiesObj.propertiesText;
-                    } else {
-                        supplantObject.property = "walks";
-                    }
+            } else if (cardData.actionTags[1] === "ride") {
+                if (cardData.propertyName === "distance.sum") {
+                    supplantObject.property = "metres ridden";
                     supplantObject.value = propertiesObj.value;
                     cardText = template8.supplant(supplantObject);
-                } else if (cardData.actionTags[1] === "ride") {
-                    if (cardData.propertyName === "distance.sum") {
-                        supplantObject.property = "metres ridden";
-                        supplantObject.value = propertiesObj.value;
-                        cardText = template8.supplant(supplantObject);
-                    }
                 }
-                // console.log("template8");
-
-            } else if (cardData.actionTags[0] === "browse" && cardData.chart.indexOf('times-visited') > 0) {
-                supplantObject.property = propertiesObj.propertiesText;
-                supplantObject.value = propertiesObj.value;
-                supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
-                cardText = template9.supplant(supplantObject);
-                // console.log("template9");
             }
+            // console.log("template8");
 
-            if (cardText === '') {
-                supplantObject.property = propertiesObj.propertiesText;
-                supplantObject.action_pp = displayTags(pastParticiple(cardData.actionTags));
-                supplantObject.objects = displayTags(cardData.objectTags);
-                supplantObject.value = propertiesObj.value;
-                cardText = templateDefault.supplant(supplantObject);
-                // console.log("templateDefault");
-            } 
-
-            cardText = cardText.supplant(supplantObject);
-
-            cardData.cardText = cardText;
+        } else if (cardData.actionTags[0] === "browse" && cardData.chart.indexOf('times-visited') > 0) {
+            supplantObject.property = propertiesObj.propertiesText;
+            supplantObject.value = propertiesObj.value;
+            supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
+            cardText = template9.supplant(supplantObject);
+            // console.log("template9");
         }
-    // }
+
+        if (cardText === '') {
+            supplantObject.property = propertiesObj.propertiesText;
+            supplantObject.action_pp = displayTags(pastParticiple(cardData.actionTags));
+            supplantObject.objects = displayTags(cardData.objectTags);
+            supplantObject.value = propertiesObj.value;
+            cardText = templateDefault.supplant(supplantObject);
+            // console.log("templateDefault");
+        } 
+
+        cardText = cardText.supplant(supplantObject);
+
+        cardData.cardText = cardText;
+    }
 };
-
-// function createCardText(cardData, colour) {
-//     var cardText = '';
-
-//     if (cardData.type === "top10" || cardData.type === "bottom10") {
-//         var template1 = '{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}<br><b class="event-date" >{{eventDate}}</b>'; // e.g. [Yesterday]: [6th] [fewest] [commit]s in [a day] [ever]
-//         var template2 = '{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}<br><b class="event-date" >{{eventDate}}</b>'; // [Yesterday]: [6th] [most] [commit]ted [file changes] in [a day] [ever]
-//         var template3 = '{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}<br><b class="event-date" >{{eventDate}}</b>'; // [Yesterday]: [6th] [fewest] [music track] [listen]s in [a day] [ever]
-//         // var template4 = '<b>{{eventDate}}</b><br>{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
-//         // var template5 = '<b>{{eventDate}}</b><br>{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
-//         var template6 = '{{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}<br><b class="event-date" >{{eventDate}}</b>'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
-//         var template7 = '{{value}} of your {{objects}} was {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}<br><b class="event-date" >{{eventDate}}</b><br><a onclick="logInfoClick(this);" class="infoLink" href="https://www.rescuetimecom/dashboard/for/the/day/of/{{cardDate}}" target="_blank" style="color:{{colour}}"><i class="fa fa-info-circle"></i> More info at RescueTime.com</a>'; // [Yesterday]: [1.2%] of your [computer use] was [business]<br>Your [6th] [fewest] in [a day]
-//         var template8 = '{{value}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}<br><b class="event-date" >{{eventDate}}</b>'; // [Yesterday]: [2609] [steps]<br>Your [6th] [fewest] in [a day]
-//         var template9 = '{{value}} {{objects}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}<br><b class="event-date" >{{eventDate}}</b>'; // [Yesterday]: [34] [google] [visits]<br>Your [6th] [fewest] in [a day]
-
-//         var templateDefault = '<br class="event-date" ><b>{{eventDate}}</b>{{value}} {{{objects}}} {{{action_pp}}} {{{property}}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [1.2] {objects} {actions} {properties}<br>Your [6th] [fewest] in [a day]
-
-//         var supplantObject = {
-//             eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
-//             comparitor: createComparitorText(cardData.position, cardData.type),
-//             eventPeriod: "a day",
-//             comparisonPeriod: "",
-//             colour: colour
-//         };
-
-//         var propertiesObj = buildPropertiesTextAndGetValue(cardData.properties.sum);
-
-//         if (cardData.actionTags[0] === "commit" || cardData.actionTags[1] === "push") {
-//             if (cardData.properties.sum.__count__) {
-//                 supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
-//                 cardText = template1.supplant(supplantObject);
-//                 // console.log("template1");
-//             } else {
-//                 supplantObject.action_pp = displayTags(pastParticiple(cardData.actionTags));
-//                 supplantObject.property = propertiesObj.propertiesText;
-//                 cardText = template2.supplant(supplantObject);
-//                 // console.log("template2", cardData.actionTags);
-//             }
-//         } else if (cardData.actionTags[0] === "listen") {
-//             if (cardData.properties.sum.__count__) {
-//                 supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
-//                 supplantObject.objects = displayTags(cardData.objectTags);
-//                 cardText = template3.supplant(supplantObject);
-//                 // console.log("template3");
-//             } else {
-//                 supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
-//                 supplantObject.property = propertiesObj.propertiesText;
-//                 supplantObject.value = propertiesObj.value;
-//                 cardText = template6.supplant(supplantObject);
-//                 // console.log("template6");
-//             }
-//         } else if (cardData.actionTags[0] === "use") {
-//             supplantObject.property = "&quot;" + propertiesObj.propertiesText + "&quot;";
-//             supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
-//             supplantObject.value = propertiesObj.value;
-//             supplantObject.cardDate = cardData.cardDate;
-//             cardText = template7.supplant(supplantObject);
-//             // console.log("template7", cardData.actionTags);
-
-//         } else if (cardData.actionTags[0] === "develop") {
-//             if (cardData.chart.indexOf('.duration') > 0) {
-//                 supplantObject.property = "coding";
-//             } else {
-//                 supplantObject.property = "coding sessions";
-//             }
-//             supplantObject.value = propertiesObj.value;
-//             cardText = template8.supplant(supplantObject);
-
-//         } else if (cardData.actionTags[0] === "exercise") {
-
-//             if (cardData.actionTags[1] === "walk") {
-//                 if (cardData.chart.indexOf('steps') > 0) {
-//                     supplantObject.property = propertiesObj.propertiesText;
-//                 } else {
-//                     supplantObject.property = "walks";
-//                 }
-//                 supplantObject.value = propertiesObj.value;
-//                 cardText = template8.supplant(supplantObject);
-//             } else if (cardData.actionTags[1] === "ride") {
-//                 if (cardData.propertyName === "distance.sum") {
-//                     supplantObject.property = "metres ridden";
-//                     supplantObject.value = propertiesObj.value;
-//                     cardText = template8.supplant(supplantObject);
-//                 }
-//             }
-//             // console.log("template8");
-
-//         } else if (cardData.actionTags[0] === "browse" && cardData.chart.indexOf('times-visited') > 0) {
-//             supplantObject.property = propertiesObj.propertiesText;
-//             supplantObject.value = propertiesObj.value;
-//             supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
-//             cardText = template9.supplant(supplantObject);
-//             // console.log("template9");
-//         }
-
-//         if (cardText === '') {
-//             supplantObject.property = propertiesObj.propertiesText;
-//             supplantObject.action_pp = displayTags(pastParticiple(cardData.actionTags));
-//             supplantObject.objects = displayTags(cardData.objectTags);
-//             supplantObject.value = propertiesObj.value;
-//             cardText = templateDefault.supplant(supplantObject);
-//             // console.log("templateDefault");
-//         }
-
-//         cardText = cardText.supplant(supplantObject);
-
-//         cardData.cardText = cardText;
-//     }
-// }
 
 function buildPropertiesTextAndGetValue (propertiesObject) {
     // debugger;
