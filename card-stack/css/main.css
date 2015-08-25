@@ -779,6 +779,8 @@ main {
     height: 50%;
     position: absolute;
     top: 40%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .front .chart-overlay {
@@ -2104,7 +2106,8 @@ footer:before {
 
 .chart {
     background: #FFF;
-    border: 0px
+    border: 0px;
+    width: 100%;
 }
 
 .card-menu .more {
@@ -2199,11 +2202,15 @@ footer:before {
     display: none
 }
 
-.chart-iframe {
-    width: 90%;
+.front .chart-iframe {
+    width: 100%;
     height: 100%;
-    margin: 0 5% 0 5%;
     border: 1px solid #CCC
+}
+
+.back .chart-iframe {
+    width: 100%;
+    height: 100%;
 }
 
 .setting-card {
