@@ -85,7 +85,6 @@
             // } else {
             //     return diff;
             }
-            console.log(a.value, b.value, a.date, b.date, diff);
             return diff;
         };
 
@@ -149,7 +148,7 @@
             // alert(apiURL);
             var jqxhr = $.getJSON(apiURL,
                     function() {
-                        // console.log("accessed api for chart data");
+                        
                     })
                 .done(function(data) {
 
@@ -293,8 +292,6 @@
     function drawSparkLine(chartData) {
 
         var data = chartData.allData;
-
-        // console.log(chartData);
 
         var width = $('body').width();
         var height = $('body').height();
@@ -759,7 +756,6 @@
             }
 
             lastScale = d3.event.scale;
-            // console.log(tx, width, max, width - max, Math.max(Math.min(tx, 0), (width - max)));
             var ty = d3.event.translate[1];
 
             tx = Math.min(tx, width);
