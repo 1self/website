@@ -145,7 +145,15 @@ $(document).ready(function(){
     var stack;
     var discardPile = [];
 
-    stack = gajus.Swing.Stack();
+    var stackConfig = {
+        throwOutConfidence: function(offset, element) {
+            // console.log('offset and element', offset, element.offsetWidth);
+            // console.log(Math.min(Math.abs(Math.abs(offset) + 180) / element.offsetWidth, 1));
+            return Math.min(Math.abs(Math.abs(offset) + 180) / element.offsetWidth, 1);
+        }
+    };
+
+    stack = gajus.Swing.Stack(stackConfig);
 
     stack.on('throwout', function (e) {
 
