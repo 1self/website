@@ -548,7 +548,8 @@ hr {
     left: -6%;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
     width: 112%;
-    height: 145%
+    height: 145%;
+    background-color: #fff;
 }
 
 .hide {
@@ -775,11 +776,15 @@ main {
 }
 
 .chart {
-    height: 50%
+    height: 50%;
+    position: absolute;
+    top: 40%;
 }
 
 .card-menu {
-    height: 10%
+    height: 10%;
+    position: absolute;
+    top: 90%;
 }
 
 .share-fav {

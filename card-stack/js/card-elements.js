@@ -13,36 +13,38 @@ moment.locale('en', {
 function markCardRead(username, cardElem, cardReloadCount) {
 
     var cardId = cardElem.getAttribute('cardId');
-    var now = new Date();
+    if (cardId) {
+        var now = new Date();
 
-    var apiUrl = API_HOST + "/v1/users/" + username + "/cards/" + cardId;
+        var apiUrl = API_HOST + "/v1/users/" + username + "/cards/" + cardId;
 
-    var viewDuration = now.getTime() - cardElem.cardVisibleAt;
+        var viewDuration = now.getTime() - cardElem.cardVisibleAt;
 
-    var dataBody = {    "read" : true, 
-                        "readInfo" : 
-                                        { 
-                                            viewDuration:       viewDuration,
-                                            cardIndex:          +cardElem.getAttribute('cardIndex'),
-                                            cardReloadCount:    cardReloadCount
-                                        }
-                    };
+        var dataBody = {   "read" : true, 
+                            "readInfo" : 
+                                            { 
+                                                viewDuration:       viewDuration,
+                                                cardIndex:          +cardElem.getAttribute('cardIndex'),
+                                                cardReloadCount:    cardReloadCount
+                                            }
+                        };
 
-    console.log('markCardRead url:', apiUrl, ", dataBody: ", dataBody);
+        console.log('markCardRead url:', apiUrl, ", dataBody: ", dataBody);
 
-    if (!offline) {
-        $.ajax({
-                    url: apiUrl,
-                    data: JSON.stringify(dataBody),
-                    type: "PATCH",
-                    contentType: "application/json"
+        if (!offline) {
+            $.ajax({
+                        url: apiUrl,
+                        data: JSON.stringify(dataBody),
+                        type: "PATCH",
+                        contentType: "application/json"
 
-        }).done(function (data) {
-            console.log('markCardRead', username, cardId, data);
+            }).done(function (data) {
+                console.log('markCardRead', username, cardId, data);
 
-        }).fail(function (data) {
-            console.log('ERROR markCardRead', username, cardId, data);
-        });
+            }).fail(function (data) {
+                console.log('ERROR markCardRead', username, cardId, data);
+            });
+        }
     }
 }
 
@@ -295,7 +297,7 @@ function buildPropertiesTextAndGetValue (propertiesObject) {
 
         if (objectKey.indexOf('duration') >= 0) {
             isDuration = true;
-        } else if (objectKey.indexOf('percent') >= 0) {
+        } else if (objectKey.indexOf('percent') >= 0 || objectKey.indexOf('productivity-pulse') >= 0) {
             isPercent = true;
         }
 
@@ -365,16 +367,19 @@ function displayTags(tagArray) {
 }
 
 function pluralise(stringArray) {
-    var toReturn = [];
-    for (var i in stringArray) {
-        var plural;
-        if (stringArray[i] === "push")
-            plural = "es";
-        else
-            plural = "s";
-        toReturn.push(stringArray[i] + plural);
-    }
-    return toReturn;
+    var lastItem = stringArray[stringArray.length - 1];
+    
+    var plural;
+    if (lastItem === "push")
+        plural = "es";
+    else
+        plural = "s";
+
+    lastItem += plural;
+
+    stringArray[stringArray.length - 1] = lastItem;
+
+    return stringArray;
 }
 
 function pastParticiple(stringArray) {
@@ -383,6 +388,10 @@ function pastParticiple(stringArray) {
         var pp;
         if (stringArray[i] === "commit")
             pp = "ted";
+        else if (stringArray[i] === "github")
+            pp = '';
+        else if (stringArray[i] === "push")
+            pp = 'ed';
         else
             pp = "s";
         toReturn.push(stringArray[i] + pp);
@@ -412,8 +421,17 @@ function customFormatProperty(propertyText) {
 function customFormatObjTags(objTagsString) {
     if (objTagsString === "computer desktop") 
         return "computer time";
+    else if (objTagsString === "music")
+        return "music tracks";
     else
         return objTagsString;
+}
+
+function customFormatActionTags(actionTagsString) {
+    if (actionTagsString === "listen") 
+        return "listened to";
+    else
+        return actionTagsString;
 }
 
 function setPrecision(numberToSet) {
@@ -470,6 +488,10 @@ function setSourceElements (cardData) {
             
         else if (cardData.actionTags[0] === "develop") {
             cardData.dataSource = 'sublime';
+        }
+            
+        else if (cardData.objectTags[0] === "tweets") {
+            cardData.dataSource = 'twitter';
         }
             
         else if (cardData.objectTags.indexOf("github") >= 0 || cardData.actionTags.indexOf("github") >= 0) {
