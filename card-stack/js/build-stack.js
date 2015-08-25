@@ -22,7 +22,8 @@ function buildStack (stack) {
             
             if (i === skip) {
 	          	markCardUnique($li[0], 'topOfMain');
-	        	renderThumbnailMedia($li, cardsArray[i]);
+                renderThumbnailMedia($li, cardsArray[i]);
+	        	renderMainMedia($li, cardsArray[i]);
             }
        	}
 
@@ -170,6 +171,7 @@ $(document).ready(function(){
         	bringToTop(newTop);
             newTop.cardVisibleAt = (new Date()).getTime();
             renderThumbnailMedia($newTop, cardData);
+            renderMainMedia($newTop, cardData);
         } else {
         	$('.stack li').removeClass('topOfMain');
         }

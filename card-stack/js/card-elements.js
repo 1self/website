@@ -391,7 +391,23 @@ function renderThumbnailMedia($cardLi, cardData) {
         iFrameSrc += '&highlightDates=' + getHighlightDates(cardData);
         iFrameSrc += '&doTransitions=true';
         iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
-        $cardLi.find(".chart-iframe").attr("src", iFrameSrc);
+        $cardLi.find(".front .chart-iframe").attr("src", iFrameSrc);
+    }
+}
+
+
+function renderMainMedia($cardLi, cardData) {
+
+    if (cardData.thumbnailMedia) {
+        var iFrameSrc = cardData.thumbnailMedia;
+        iFrameSrc += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
+        iFrameSrc += '&highlightCondition=' + cardData.type;
+        iFrameSrc += '&highlightDates=' + getHighlightDates(cardData);
+        iFrameSrc += '&vaxis=true&haxis=true';
+        iFrameSrc += '&displayTooltips=true';
+        iFrameSrc += '&doTransitions=false';
+        iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
+        $cardLi.find(".back .chart-iframe").attr("src", iFrameSrc);
     }
 }
 
