@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="chart.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/d3/d3.min.js"></script>
     <script src="js/chartDrawing.js"></script>
@@ -12,7 +13,14 @@
 
 <body>
     <div class="outerContainer">
-        <div class="mainContainer"></div>
+        <div class="mainContainer">
+            <div class="chart-loading">
+                <div class="chart-loading-inner">
+                    <div class="chart-loading-spinner"><i class="fa fa-4x fa-circle-o-notch fa-spin"></i></div>
+                    <div class="chart-loading-text">Chart loading...</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -31,16 +39,22 @@
     var maxValue; // this is set in fn addRankings;
 
     $('.mainContainer').ready(function () {
+
+        var width = $('body').width();
+        var height = $('body').height();
+
+        $('.chart-loading').height(height);
+
         getData(dataSrc, function (data) {
-          drawChart(data);
+          drawChart(data, width, height);
         });
     });
 
-    function drawChart(data) {
+    function drawChart(data, width, height) {
         // if (doTransitions) {
         //     draw5Bars(data);
         // } else {
-            drawSparkLine(data);
+            drawSparkLine(data, width, height);
         // }
     }
 
@@ -246,13 +260,11 @@
         return returnData;
     }
 
-    function draw5Bars(chartData) {
+    function draw5Bars(chartData, width, height) {
         var data = get5(chartData.allData, highlightCondition);
 
         console.log(data);
 
-        var width = $('body').width();
-        var height = $('body').height();
         var margin = {top: 20, right: 20, bottom: 20, left: 20};
 
         var rank = function(d) {
@@ -289,12 +301,12 @@
             .attr("x2", xMap);
     }
 
-    function drawSparkLine(chartData) {
+    function drawSparkLine(chartData, width, height) {
 
         var data = chartData.allData;
 
-        var width = $('body').width();
-        var height = $('body').height();
+        // var width = $('body').width();
+        // var height = $('body').height();
 
         var yAxisLabel = formatYAxisLabel(chartData.property);
 
@@ -406,6 +418,8 @@
                 }
             }
         };
+
+        $('.chart-loading').hide();
 
         var highlightTextDiv;
         var highlightPointer;

@@ -159,7 +159,6 @@ $(document).ready(function(){
 
     	var $cardList = $(".stack li");
 
-        console.log(e.target.innerText || e.target.textContent, 'has been thrown out of the stack to the', e.throwDirection == 1 ? 'right' : 'left', 'direction.');
         e.target.classList.remove('in-deck');
         e.target.classList.add('removed-from-deck');
         discardPile.push(e.target);
@@ -201,6 +200,7 @@ $(document).ready(function(){
     });
 
     stack.on('throwin', function(e) {
+        
         discardPile.pop();
         var cardEl = $(discardPile[discardPile.length - 1])[0];
         markCardUnique(e.target, 'topOfMain');
@@ -216,12 +216,8 @@ $(document).ready(function(){
 
         // bring the active card to the top in the li list so it can always be interacted with
         bringToTop(e.target);
-        console.log('thrown in', e.target.id, discardPile);
 
         var cardsInDeck = $('.stack li.in-deck');
-
-        console.log(cardsAdded);
-        console.log(cardsInDeck[0]);
 
         if (cardsInDeck.length > 0) {
             var $cardNumText = $('.card-number-text');
@@ -243,12 +239,12 @@ $(document).ready(function(){
         // sendGAEvent('thrown-in-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
     });
 
-	$(".next").click(function(){
-	throwOutNext(stack);
+	$(".next").click(function() {
+	   throwOutNext(stack);
 	});
 
-	$(".previous").click(function(){
-	throwInPrevious(stack);
+	$(".previous").click(function() {
+	   throwInPrevious(stack);
 	});
 
 	buildStack(stack);
