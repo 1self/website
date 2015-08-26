@@ -25,29 +25,34 @@
 
 (function() {
   $(".flyout-btn").click(function() {
+    console.log('click 1');
     $(".flyout-btn").toggleClass("btn-rotate");
     $(".overlay").toggleClass("open");
-    $(".flyout").find("a").removeClass();
+    // $(".flyout").find("a").removeClass();
     
     return $(".flyout").removeClass("flyout-init fade").toggleClass("expand");
   });
 
   $(".flyout").find("a").click(function() {
+    console.log('click 2');
     $(".flyout-btn").toggleClass("btn-rotate");
     $(".flyout").removeClass("expand").addClass("fade");
     return $(this).addClass("clicked");
   });
 
   $(".share").find("a").click(function() {
+    console.log('click 3');
     return $(this).addClass("clicked");
   });
 
   $(".more, .more-back").click(function() {
+    console.log('click 4');
     $(".card-container").toggleClass("hover");
     $(".back").toggleClass("iefix");
   });
 
   $(".share").click(function() {
+    console.log('click 5');
     $(".flyout-btn").toggleClass("btn-rotate");
     $(".share-buttons-wrap").toggleClass("hide zoomIn");
     $(".overlay").toggleClass("open");
@@ -56,6 +61,7 @@
   $('.removed-from-deck').delay(1000).remove();
 
   $(".flyout").find("a").click(function (e) {
+    console.log('click 6');
     e.preventDefault();                   // prevent default anchor behavior
     var goTo = this.getAttribute("href"); // store anchor href
 

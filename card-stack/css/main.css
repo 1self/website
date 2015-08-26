@@ -765,8 +765,8 @@ header {
 }
 
 main {
-    height: 87%;
-    padding-top: 15%;
+    height: 85%;
+    padding-top: 40px;
     z-index: 1;
     position: relative
 }
@@ -875,8 +875,7 @@ footer:before {
 .bottom-menu {
     width: 100%;
     height: 100%;
-    top: 0%;
-    padding-top: 3em;
+    top: 40%;
     position: absolute
 }
 
@@ -949,22 +948,17 @@ footer:before {
 
 .flyout-wrap {
     position: relative;
-    width: 90px;
-    height: 100%;
+    height: 55px;
     margin: 0 auto
-}
-
-.flyout-wrap {
-    position: relative
 }
 
 .flyout {
     position: relative;
-    bottom: 73px;
-    -webkit-transform: rotate(-34deg);
+    /*bottom: 73px;*/
+    /*-webkit-transform: rotate(-34deg);
     -ms-transform: rotate(-34deg);
-    transform: rotate(-34deg);
-    left: -98px;
+    transform: rotate(-34deg);*/
+    /*left: -98px;*/
     z-index: 5
 }
 
@@ -972,40 +966,45 @@ footer:before {
     position: absolute;
     display: block;
     height: 165px;
-    background: yellow;
-    -webkit-transform-origin: 12.5px bottom;
-    -ms-transform-origin: 12.5px bottom;
-    transform-origin: 12.5px bottom
+    width: 100%;
+    -webkit-transform-origin: center bottom;
+    -ms-transform-origin: center bottom;
+    transform-origin: center bottom
 }
 
 .flyout-wrap .flyout>li:nth-of-type(1) {
-    -webkit-transform: rotate(-31deg);
-    -ms-transform: rotate(-31deg);
-    transform: rotate(-31deg)
+    -webkit-transform: rotate(-60deg);
+    -ms-transform: rotate(-60deg);
+    transform: rotate(-60deg);
+    /*background: yellow;*/
 }
 
 .flyout-wrap .flyout>li:nth-of-type(2) {
-    -webkit-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg)
+    -webkit-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    /*background: red;*/
 }
 
 .flyout-wrap .flyout>li:nth-of-type(3) {
-    -webkit-transform: rotate(30deg);
-    -ms-transform: rotate(30deg);
-    transform: rotate(30deg)
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    /*background: blue;*/
 }
 
 .flyout-wrap .flyout>li:nth-of-type(4) {
-    -webkit-transform: rotate(60deg);
-    -ms-transform: rotate(60deg);
-    transform: rotate(60deg)
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+    /*background: green;*/
 }
 
 .flyout-wrap .flyout>li:nth-of-type(5) {
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg)
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg);
+    /*background: pink;*/
 }
 
 .flyout-wrap .flyout>li a {
@@ -1013,6 +1012,7 @@ footer:before {
     display: block;
     width: 40px;
     height: 40px;
+    left: 8px;
     overflow: hidden;
     text-indent: -99999px;
     background: #aaa;
@@ -1297,9 +1297,9 @@ footer:before {
     width: 90px;
     height: 90px;
     overflow: hidden;
-    text-indent: -99999px;
+    /*text-indent: -99999px;
     background: #32373d;
-    background: -webkit-linear-gradient(315deg, #32373d 0%, #87a9cc 100%);
+    background: -webkit-linear-gradient(315deg, #32373d 0%, #87a9cc 100%);*/
     background: linear-gradient(135deg, #32373d 0%, #87a9cc 100%);
     border-radius: 50%;
     outline: none;
@@ -2375,15 +2375,15 @@ footer:before {
         overflow-x: hidden
     }
     .flyout-wrap .flyout-btn {
-        width: 75px;
-        height: 75px
+        width: 55px;
+        height: 55px
     }
     .flyout-wrap {
-        width: 75px
+        width: 55px
     }
     .flyout {
-        left: -103px;
-        bottom: 85px
+        left: -40px;
+        bottom: 140px
     }
 }
 
