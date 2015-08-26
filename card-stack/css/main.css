@@ -830,10 +830,10 @@ main {
 }
 
 footer {
-    position: relative;
+    position: absolute;
+    bottom: 0px;
     height: 15%;
-    background: #31373d;
-    background: -webkit-linear-gradient(top, #31373d 0%, #58636e 100%);
+    width: 100%;
     background: linear-gradient(to bottom, #31373d 0%, #58636e 100%)
 }
 
