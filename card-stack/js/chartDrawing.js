@@ -57,8 +57,8 @@ function addYAxis(yAxis, appendTo, width, leftMargin, axisLabel) {
         .selectAll('.tick')
         .each(function(data) {
             var tick = d3.select(this);
-            console.log(tick, tick.text());
-            console.log(tick.select('text')[0][0].getComputedTextLength());
+            // console.log(tick, tick.text());
+            // console.log(tick.select('text')[0][0].getComputedTextLength());
             if (tick.select('text')[0][0].getComputedTextLength() > maxLabelLength)
                 maxLabelLength = tick.select('text')[0][0].getComputedTextLength();
         });

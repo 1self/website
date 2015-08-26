@@ -7,7 +7,6 @@ function buildStack (stack) {
     var skip = 0;
     deferred.done(function(cardsArray) {
     	globalCardsArray = cardsArray;
-    	console.log(cardsArray.length);
 
         $('.out-of-text').text(cardsArray.length);
         $('.card-number-text').text("1");
@@ -82,7 +81,6 @@ function addToStack ($liTemplate, stack, cardData, cardIndex, renderThumbnail) {
 	var $stack = $(".stack");
 
 	$stack.prepend($li);
-	console.log($li.find(".card-container"));
 	$li.find(".card-container").append($card);
 	$li.removeClass("card-hide");
 	$card.removeClass("card-hide");
@@ -119,7 +117,6 @@ function injectCardData (cardData, $card) {
     var $headline = $card.find(".headline");
 	$headline.addClass(cardData.dataSource);
 
-    console.log($headline);
 }
 
 function createCard (cardData) {
@@ -200,37 +197,40 @@ $(document).ready(function(){
     });
 
     stack.on('throwin', function(e) {
+
+        if (existsInDiscard(discardPile, e.target)) {
+
+            discardPile.pop();
+            var cardEl = $(discardPile[discardPile.length - 1])[0];
+            markCardUnique(e.target, 'topOfMain');
+            markCardUnique(cardEl, 'topOfDiscard');
+            $(e.target).show();
         
-        discardPile.pop();
-        var cardEl = $(discardPile[discardPile.length - 1])[0];
-        markCardUnique(e.target, 'topOfMain');
-        markCardUnique(cardEl, 'topOfDiscard');
-        $(e.target).show();
-    
-        e.target.classList.add('in-deck');
-        e.target.classList.remove('removed-from-deck');
+            e.target.classList.add('in-deck');
+            e.target.classList.remove('removed-from-deck');
 
-        // move discarded cards back to top of stack to ensure ordering is correct
-        var discards = $('.stack li.removed-from-deck').detach();
-        $('.stack').append(discards);
+            // move discarded cards back to top of stack to ensure ordering is correct
+            var discards = $('.stack li.removed-from-deck').detach();
+            $('.stack').append(discards);
 
-        // bring the active card to the top in the li list so it can always be interacted with
-        bringToTop(e.target);
+            // bring the active card to the top in the li list so it can always be interacted with
+            bringToTop(e.target);
 
-        var cardsInDeck = $('.stack li.in-deck');
+            var cardsInDeck = $('.stack li.in-deck');
 
-        if (cardsInDeck.length > 0) {
-            var $cardNumText = $('.card-number-text');
-            $cardNumText.text(parseInt($cardNumText.text()) - 1);
-        }
+            if (cardsInDeck.length > 0) {
+                var $cardNumText = $('.card-number-text');
+                $cardNumText.text(parseInt($cardNumText.text()) - 1);
+            }
 
-        if (cardsInDeck.length > 3) {
+            if (cardsInDeck.length > 3) {
 
-            cardsAdded--;
-            var bottomLi = $('.stack li.in-deck')[0];
-            var bottomCard = stack.getCard(bottomLi);
-            bottomCard.destroy();
-            $(bottomLi).remove();
+                cardsAdded--;
+                var bottomLi = $('.stack li.in-deck')[0];
+                var bottomCard = stack.getCard(bottomLi);
+                bottomCard.destroy();
+                $(bottomLi).remove();
+            }
         }
 
 // http://stackoverflow.com/questions/2087510/callback-on-css-transition
@@ -250,6 +250,14 @@ $(document).ready(function(){
 	buildStack(stack);
 
 });
+
+function existsInDiscard(discardPile, targetElem) {
+    for (var i = 0; i < discardPile.length; i++) {
+        if (discardPile[i] === targetElem)
+            return true;
+    }
+    return false;
+}
 
 
 function throwInPrevious(stack){
