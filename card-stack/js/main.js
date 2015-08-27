@@ -97,6 +97,23 @@ function clickPulse(x, y, $pulseElem) {
     );  
 }
 
+function sendGAEvent(eventAction, eventLabel, eventValue) {
+    var gaObj = {};
+    gaObj.eventCategory = 'card-stack';
+    gaObj.eventAction = eventAction;
+    gaObj.eventLabel = eventLabel;
+    gaObj.eventValue = eventValue;
+
+    console.log('gaObj', gaObj);
+
+    // ga('send', 'event', gaObj);
+}
+
+window.logInfoClick = function(elem) {
+    var $elem = $(elem);
+    var cardLi = $elem.parentsUntil('ul', 'li')[0];
+    sendGAEvent('infoLink_click', $elem.attr('href'), cardLi.getAttribute('cardIndex'));
+};
 
 
 
