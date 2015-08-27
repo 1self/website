@@ -77,6 +77,9 @@ function getPrimaryColour(dataSourceName) {
 	if (dataSourceName === "visualstudio")
 		return "#6A207D";
 
+	if (dataSourceName === "unknown-data-source")
+		return "#0097C4";
+
 	return "#999999";
 }
 

@@ -2121,6 +2121,18 @@ circle {
     background-size: contain;
 }
 
+.headline.unknown-data-source {
+    border-top-style: solid;
+    border-color: #0097C4;
+    border-top-width: 20px;
+}
+
+.headline.unknown-data-source .service {
+    background: url(../img/service-unknown-data-source.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .chart {
     background: #FFF;
     border: 0px;
