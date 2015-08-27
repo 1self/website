@@ -346,39 +346,7 @@ function dateRangetext(startRange, endRange) {
 }
 
 function setSourceElements (cardData) {
-    if (cardData.actionTags && cardData.objectTags) {
-
-        if (cardData.actionTags[0] === "use") {
-            cardData.dataSource = 'rescuetime';
-        }
-
-        else if (cardData.actionTags[0] === "listen") {
-            cardData.dataSource = 'lastfm';
-        }
-            
-        else if (cardData.actionTags[0] === "exercise") {
-            cardData.dataSource = 'googlefit';
-        }
-            
-        else if (cardData.actionTags[0] === "browse") {
-            cardData.dataSource = 'visitcounter';
-        }
-            
-        else if (cardData.actionTags[0] === "develop") {
-            cardData.dataSource = 'sublime';
-        }
-            
-        else if (cardData.objectTags[0] === "tweets") {
-            cardData.dataSource = 'twitter';
-        }
-            
-        else if (cardData.objectTags.indexOf("github") >= 0 || cardData.actionTags.indexOf("github") >= 0) {
-            cardData.dataSource = 'github';
-        }
-        else {
-            cardData.dataSource = 'unknown-data-source';
-        }
-    } 
+    cardData.dataSource = getDataSource(cardData);
 }
 
 
@@ -386,7 +354,7 @@ function renderThumbnailMedia($cardLi, cardData) {
 
     if (cardData.thumbnailMedia) {
         var iFrameSrc = cardData.thumbnailMedia;
-        iFrameSrc += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
+        iFrameSrc += '?lineColour=' + stripHash(getPrimaryColour(cardData.dataSource));
         iFrameSrc += '&highlightCondition=' + cardData.type;
         iFrameSrc += '&highlightDates=' + getHighlightDates(cardData);
         iFrameSrc += '&doTransitions=true';
@@ -400,7 +368,7 @@ function renderMainMedia($cardLi, cardData) {
 
     if (cardData.thumbnailMedia) {
         var iFrameSrc = cardData.thumbnailMedia;
-        iFrameSrc += '?lineColour=' + stripHash(getColour(cardData.colourIndex));
+        iFrameSrc += '?lineColour=' + stripHash(getPrimaryColour(cardData.dataSource));
         iFrameSrc += '&highlightCondition=' + cardData.type;
         iFrameSrc += '&highlightDates=' + getHighlightDates(cardData);
         iFrameSrc += '&vaxis=true&haxis=true';

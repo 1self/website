@@ -43,7 +43,9 @@
         var width = $('body').width();
         var height = $('body').height();
 
-        $('.chart-loading').height(height);
+        var $chartLoading = $('.chart-loading');
+        $chartLoading.height(height);
+        $chartLoading.css('color', lineColour);
 
         getData(dataSrc, function (data) {
           drawChart(data, width, height);
