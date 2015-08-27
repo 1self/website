@@ -10,6 +10,7 @@ function buildStack (stack) {
 
         $('.out-of-text').text(cardsArray.length);
         $('.card-number-text').text("1");
+        $('.card-count').show();
 
         if (numberOfCardsToShow > cardsArray.length) {
             numberOfCardsToShow = cardsArray.length;
@@ -38,12 +39,6 @@ function markCardUnique(cardEl, label) {
 
 function stripHash(stringToStrip) {
     return stringToStrip.replace('#', '');
-}
-
-function getColour(idx) {
-    var colourArray = ['#dd2649', '#00a2d4', '#e93d31', '#f2ae1c', '#61b346', '#cf4b9a', '#367ec0', '#00ad87'];
-    return "#000000";
-    // return colourArray[idx % colourArray.length];
 }
 
 function getHighlightDates(cardData) {
@@ -106,7 +101,7 @@ function assignCardHandlers ($li) {
 }
 
 function injectCardData (cardData, $card) {
-	createCardText(cardData, "green");
+	createCardText(cardData);
 
     var $headlineText = $card.find(".headline-text");
     $headlineText.prepend(cardData.cardText);

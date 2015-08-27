@@ -48,14 +48,15 @@ function markCardRead(username, cardElem, cardReloadCount) {
     }
 }
 
-function createCardText(cardData, colour) {
+function createCardText(cardData) {
     var cardText = '';
+    var colour = getPrimaryColour(cardData.dataSource);
 
     if (cardData.type === "top10" || cardData.type === "bottom10") {
 
-        var template1 = '{{comparitor}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: [6th] [fewest] [commit]s in [a day] [ever]
-        var template2 = '{{comparitor}} {{action_pp}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [most] [commit]ted [file changes] in [a day] [ever]
-        var template3 = '{{comparitor}} {{objects}} {{action_pl}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [music track] [listen]s in [a day] [ever]
+        var template1 = '{{value}} {{action_pl}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // e.g. [Yesterday]: [6th] [fewest] [commit]s in [a day] [ever]
+        var template2 = '{{value}} {{action_pp}} {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [most] [commit]ted [file changes] in [a day] [ever]
+        var template3 = '{{value}} {{objects}} {{action_pl}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [music track] [listen]s in [a day] [ever]
         // var template4 = '{{comparitor}} {{action_pl}} to {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [listen]s [to Royksopp] in [a day] [ever]
         // var template5 = '{{comparitor}} {{objects}} {{property}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [6th] [fewest] [computer desktop] [all distracting percent] in [a day] [ever]
         var template6 = '{{value}} {{action_pl}} to {{property}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [13] [listens] to [Four Tet]<br>Your [6th] [fewest] in [a day]
@@ -65,15 +66,18 @@ function createCardText(cardData, colour) {
 
         var templateDefault = '{{value}} {{{objects}}} {{{action_pp}}} {{{property}}}<br>Your {{comparitor}} in {{eventPeriod}} {{comparisonPeriod}}'; // [Yesterday]: [1.2] {objects} {actions} {properties}<br>Your [6th] [fewest] in [a day]
 
+
+        var propertiesObj = buildPropertiesTextAndGetValue(cardData.properties.sum);
+
         var supplantObject = {
             eventDate: stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)),
             comparitor: createComparitorText(cardData.position, cardData.type),
             eventPeriod: "a day",
             comparisonPeriod: "",
-            colour: colour
+            colour: colour,
+            value: propertiesObj.value
         };
 
-        var propertiesObj = buildPropertiesTextAndGetValue(cardData.properties.sum);
 
         if (cardData.actionTags[0] === "commit" || cardData.actionTags[1] === "push") {
             if (cardData.properties.sum.__count__) {
@@ -95,14 +99,12 @@ function createCardText(cardData, colour) {
             } else {
                 supplantObject.action_pl = displayTags(pluralise(cardData.actionTags));
                 supplantObject.property = propertiesObj.propertiesText;
-                supplantObject.value = propertiesObj.value;
                 cardText = template6.supplant(supplantObject);
                 // console.log("template6");
             }
         } else if (cardData.actionTags[0] === "use") {
             supplantObject.property = "&quot;" + propertiesObj.propertiesText + "&quot;";
             supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
-            supplantObject.value = propertiesObj.value;
             supplantObject.cardDate = cardData.cardDate;
             cardText = template7.supplant(supplantObject);
             // console.log("template7", cardData.actionTags);
@@ -113,7 +115,6 @@ function createCardText(cardData, colour) {
             } else {
                 supplantObject.property = "coding sessions";
             }
-            supplantObject.value = propertiesObj.value;
             cardText = template8.supplant(supplantObject);
 
         } else if (cardData.actionTags[0] === "exercise") {
@@ -124,12 +125,10 @@ function createCardText(cardData, colour) {
                 } else {
                     supplantObject.property = "walks";
                 }
-                supplantObject.value = propertiesObj.value;
                 cardText = template8.supplant(supplantObject);
             } else if (cardData.actionTags[1] === "ride") {
                 if (cardData.propertyName === "distance.sum") {
                     supplantObject.property = "metres ridden";
-                    supplantObject.value = propertiesObj.value;
                     cardText = template8.supplant(supplantObject);
                 }
             }
@@ -137,7 +136,6 @@ function createCardText(cardData, colour) {
 
         } else if (cardData.actionTags[0] === "browse" && cardData.chart.indexOf('times-visited') > 0) {
             supplantObject.property = propertiesObj.propertiesText;
-            supplantObject.value = propertiesObj.value;
             supplantObject.objects = customFormatObjTags(displayTags(cardData.objectTags));
             cardText = template9.supplant(supplantObject);
             // console.log("template9");
@@ -147,7 +145,6 @@ function createCardText(cardData, colour) {
             supplantObject.property = propertiesObj.propertiesText;
             supplantObject.action_pp = displayTags(pastParticiple(cardData.actionTags));
             supplantObject.objects = displayTags(cardData.objectTags);
-            supplantObject.value = propertiesObj.value;
             cardText = templateDefault.supplant(supplantObject);
             // console.log("templateDefault");
         } 
@@ -185,7 +182,6 @@ function buildPropertiesTextAndGetValue (propertiesObject) {
             objectKey = null;
 
         if (propertyText !== "") {
-            // returnString += '<span class="property-text" style="color: {{colour}}">' + propertyText + '</span>';
             returnString += propertyText;
             if (objectKey && objectKey !== "__count__") {
                 returnString += ": ";
