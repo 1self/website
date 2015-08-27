@@ -77,6 +77,27 @@
 }).call(this);
 
 
+function clickPulse(x, y, $pulseElem) {
+    
+    var clickY = y - $pulseElem.offset().top;
+    var clickX = x - $pulseElem.offset().left;
+    var setX = parseInt(clickX);
+    var setY = parseInt(clickY);
+
+    $pulseElem.find("svg.click-circle").remove();
+    $pulseElem.append('<svg class="click-circle"><circle cx="'+setX+'" cy="'+setY+'" r="'+100+'"></circle></svg>');
+
+
+    var c = $pulseElem.find("circle");
+    console.log(c);
+    c.animate(
+        {
+          "r" : $pulseElem.outerWidth()
+        }, 200, function() { $pulseElem.find("svg.click-circle").remove(); }
+    );  
+}
+
+
 
 
 

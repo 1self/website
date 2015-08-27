@@ -137,7 +137,7 @@ function createCard (cardData) {
 }
 
 
-$(document).ready(function(){ 
+$(document).ready(function() { 
 
     var stack;
     var discardPile = [];
@@ -239,12 +239,14 @@ $(document).ready(function(){
         // sendGAEvent('thrown-in-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
     });
 
-	$(".next").click(function() {
-	   throwOutNext(stack);
+	$(".next").click(function(e) {
+        clickPulse(e.pageX, e.pageY, $('.menu-wrap'));
+        throwOutNext(stack);
 	});
 
-	$(".previous").click(function() {
-	   throwInPrevious(stack);
+	$(".previous").click(function(e) {
+        clickPulse(e.pageX, e.pageY, $('.menu-wrap'));
+        throwInPrevious(stack);
 	});
 
 	buildStack(stack);
