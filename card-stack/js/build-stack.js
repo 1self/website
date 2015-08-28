@@ -99,6 +99,8 @@ function assignCardHandlers ($li) {
 	$li.find(".more, .more-back").click(function() {
 		$li.find(".card-container").toggleClass("hover");
 		$li.find(".back").toggleClass("iefix");
+        $li.find(".back").on('mousedown', function() { return false; });
+        $li.find(".back").on('touchstart', function() { return false; });
  	 });
 }
 
@@ -133,8 +135,10 @@ function createCard (cardData) {
 
     var $back = $card.find('.back');
 
-    if ($back.length > 0)
-        $back.height($('body').height()); 
+    if ($back.length > 0) {
+        var bodyHeight = $('body').height(); 
+        $back.height(bodyHeight);
+    }
 
 	return $card;
 }

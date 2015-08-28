@@ -45,12 +45,6 @@
     return $(this).addClass("clicked");
   });
 
-  $(".more, .more-back").click(function() {
-    console.log('click 4');
-    $(".card-container").toggleClass("hover");
-    $(".back").toggleClass("iefix");
-  });
-
   $(".share").click(function() {
     console.log('click 5');
     $(".flyout-btn").toggleClass("btn-rotate");
