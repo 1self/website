@@ -130,6 +130,12 @@ function createCard (cardData) {
 	}
 
 	$card.removeClass("card-template");
+
+    var $back = $card.find('.back');
+
+    if ($back.length > 0)
+        $back.height($('body').height()); 
+
 	return $card;
 }
 
