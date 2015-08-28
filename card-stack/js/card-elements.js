@@ -349,13 +349,16 @@ function setSourceElements (cardData) {
 function renderThumbnailMedia($cardLi, cardData) {
 
     if (cardData.thumbnailMedia) {
-        var iFrameSrc = cardData.thumbnailMedia;
-        iFrameSrc += '?lineColour=' + stripHash(getPrimaryColour(cardData.dataSource));
-        iFrameSrc += '&highlightCondition=' + cardData.type;
-        iFrameSrc += '&highlightDates=' + getHighlightDates(cardData);
-        iFrameSrc += '&doTransitions=true';
-        iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
-        $cardLi.find(".front .chart-iframe").attr("src", iFrameSrc);
+        $iframe = $cardLi.find(".front .chart-iframe");
+        if (!$iframe.attr('src') || $iframe.attr('src') === "") {
+            var iFrameSrc = cardData.thumbnailMedia;
+            iFrameSrc += '?lineColour=' + stripHash(getPrimaryColour(cardData.dataSource));
+            iFrameSrc += '&highlightCondition=' + cardData.type;
+            iFrameSrc += '&highlightDates=' + getHighlightDates(cardData);
+            iFrameSrc += '&doTransitions=true';
+            iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
+            $iframe.attr("src", iFrameSrc);
+        }
     }
 }
 
@@ -363,15 +366,18 @@ function renderThumbnailMedia($cardLi, cardData) {
 function renderMainMedia($cardLi, cardData) {
 
     if (cardData.thumbnailMedia) {
-        var iFrameSrc = cardData.thumbnailMedia;
-        iFrameSrc += '?lineColour=' + stripHash(getPrimaryColour(cardData.dataSource));
-        iFrameSrc += '&highlightCondition=' + cardData.type;
-        iFrameSrc += '&highlightDates=' + getHighlightDates(cardData);
-        iFrameSrc += '&vaxis=true&haxis=true';
-        iFrameSrc += '&displayTooltips=true';
-        iFrameSrc += '&doTransitions=false';
-        iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
-        $cardLi.find(".back .chart-iframe").attr("src", iFrameSrc);
+        $iframe = $cardLi.find(".back .chart-iframe");
+        if (!$iframe.attr('src') || $iframe.attr('src') === "") {
+            var iFrameSrc = cardData.thumbnailMedia;
+            iFrameSrc += '?lineColour=' + stripHash(getPrimaryColour(cardData.dataSource));
+            iFrameSrc += '&highlightCondition=' + cardData.type;
+            iFrameSrc += '&highlightDates=' + getHighlightDates(cardData);
+            iFrameSrc += '&vaxis=true&haxis=true';
+            iFrameSrc += '&displayTooltips=true';
+            iFrameSrc += '&doTransitions=false';
+            iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
+            $iframe.attr("src", iFrameSrc);
+        }
     }
 }
 

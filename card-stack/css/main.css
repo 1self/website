@@ -416,13 +416,13 @@ hr {
     box-sizing: border-box
 }
 
-#viewport li.in-deck:nth-child(1) {
+#viewport li:nth-child(1) {
     top: -20px;
     width: 90%;
     margin: 0 5% 0 5%
 }
 
-#viewport li.in-deck:nth-child(2) {
+#viewport li:nth-child(2) {
     top: -10px;
     width: 95%;
     margin: 0 2.5% 0 2.5%
@@ -479,7 +479,7 @@ hr {
     height: 100%
 }
 
-.card-container.static:hover .card {
+/*.card-container.static:hover .card {
     -webkit-transform: none;
     -ms-transform: none;
     transform: none
@@ -494,7 +494,7 @@ hr {
 .card-container:not(.manual-flip):hover .card {
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg)
-}
+}*/
 
 .card-container.hover.manual-flip .card {
     -webkit-transform: rotateY(180deg);
