@@ -1957,6 +1957,8 @@ circle {
     text-align: center;
     top: 20px;
     left: 0px;
+    padding-left: 6%;
+    padding-right: 6%;
 }
 
 .headline .service-container {
