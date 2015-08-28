@@ -8,6 +8,8 @@ function buildStack (stack) {
     deferred.done(function(cardsArray) {
     	globalCardsArray = cardsArray;
 
+        $('.loading-div-top').hide();
+        $('.loading-div-bottom').hide();
         $('.out-of-text').text(cardsArray.length);
         $('.card-number-text').text("1");
         $('.card-count').show();
