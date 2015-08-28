@@ -1078,9 +1078,9 @@ footer:before {
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: 60%;
-    -webkit-transform: rotate(65deg);
-    -ms-transform: rotate(65deg);
-    transform: rotate(65deg)
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg)
 }
 
 .flyout-wrap .flyout li:nth-of-type(1) a:not(.clicked) span {
@@ -1114,7 +1114,10 @@ footer:before {
     background-color: #FFF;
     background-repeat: no-repeat;
     background-position: 50%;
-    background-size: 60%
+    background-size: 60%;
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg)
 }
 
 .flyout-wrap .flyout li:nth-of-type(2) a:not(.clicked) span {
@@ -1149,9 +1152,9 @@ footer:before {
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: 60%;
-    -webkit-transform: rotate(3deg);
-    -ms-transform: rotate(3deg);
-    transform: rotate(3deg)
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg)
 }
 
 .flyout-wrap .flyout li:nth-of-type(3) a:not(.clicked) span {
@@ -1186,9 +1189,9 @@ footer:before {
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: 60%;
-    -webkit-transform: rotate(-25deg);
-    -ms-transform: rotate(-25deg);
-    transform: rotate(-25deg)
+    -webkit-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    transform: rotate(-30deg)
 }
 
 .flyout-wrap .flyout li:nth-of-type(4) a:not(.clicked) span {

@@ -89,7 +89,6 @@ function clickPulse(x, y, $pulseElem) {
 
 
     var c = $pulseElem.find("circle");
-    console.log(c);
     c.animate(
         {
           "r" : $pulseElem.outerWidth()
