@@ -1,5 +1,5 @@
 var deferred; // = $.Deferred();
-var offline = false;
+var offline = true;
 var API_HOST = "https://api.1self.co";
 var username = getQSParam().user;
 
