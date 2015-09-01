@@ -99,7 +99,8 @@ function assignCardHandlers ($li) {
     $li.find(".more, .more-back").click(function() {
         $li.find(".card-container").toggleClass("hover");
         $li.find(".back").toggleClass("iefix");
-        // $li.find(".back").on('mousedown', function() { return false; });
+        // $li.find(".back .headline").on('mousedown', function() { return false; });
+        // $li.find(".back .headline").on('touchstart', function() { return false; });
         // $li.find(".back").on('touchstart', function() { return false; });
      });
 
