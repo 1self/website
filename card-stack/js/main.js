@@ -101,6 +101,7 @@ function sendGAEvent(eventAction, eventLabel, eventValue) {
     gaObj.eventValue = eventValue;
 
     console.log('gaObj', gaObj);
+    console.log(ga);
 
     ga('send', 'event', gaObj);
 }
