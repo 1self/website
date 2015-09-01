@@ -833,7 +833,9 @@ footer {
     bottom: 0px;
     height: 15%;
     width: 100%;
-    background: linear-gradient(to bottom, #31373d 0%, #58636e 100%)
+    background: #999999;
+    background: -webkit-linear-gradient(to bottom, #353535 0%, #999999 100%);
+    background: linear-gradient(to bottom, #353535 0%, #999999 100%);
 }
 
 footer .wrap {
@@ -1872,17 +1874,28 @@ circle {
     top: 0
 }*/
 
-.card.date-card .front {
+/*.card.date-card .front {
     background-color: gray;
-    background-image: url(../img/texture.svg);
-    background-repeat: tile;
-    background-size: contain;
-}
+}*/
 
 .card.date-card .front .gradient-overlay {
     height: 100%;
     width: 100%;
-    background-color: rgba(60,60,60,0.75);
+    background: linear-gradient(to bottom, #353535 0%, #999999 100%);
+    /*background-color: rgba(60,60,60,0.75);*/
+}
+
+.card.date-card .front .texture-overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /*background-color: rgba(60,60,60,0.75);*/
+    background-image: url(../img/texture.svg);
+    background-repeat: tile;
+    background-size: contain;
+    opacity: 0.1;
 }
 
 .headline b {
