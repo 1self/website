@@ -96,12 +96,24 @@ function addToStack ($liTemplate, stack, cardData, cardIndex, renderThumbnail) {
 }
 
 function assignCardHandlers ($li) {
-	$li.find(".more, .more-back").click(function() {
-		$li.find(".card-container").toggleClass("hover");
-		$li.find(".back").toggleClass("iefix");
-        $li.find(".back").on('mousedown', function() { return false; });
-        $li.find(".back").on('touchstart', function() { return false; });
- 	 });
+    $li.find(".more, .more-back").click(function() {
+        $li.find(".card-container").toggleClass("hover");
+        $li.find(".back").toggleClass("iefix");
+        // $li.find(".back").on('mousedown', function() { return false; });
+        // $li.find(".back").on('touchstart', function() { return false; });
+     });
+
+    $li.find(".more-back").click(function() {
+        $(".previous").show();
+        $(".next").show();
+        $li.find(".front .chart-container").show();
+     });
+
+    $li.find(".more").click(function() {
+        $(".previous").hide();
+        $(".next").hide();
+        $li.find(".front .chart-container").hide();
+     });
 }
 
 function injectCardData (cardData, $card) {
