@@ -1852,7 +1852,7 @@ footer:before {
     overflow: hidden;
 }
 
-svg {
+.click-circle {
   position: absolute;
   top: 0;
   left: 0;
@@ -1860,7 +1860,7 @@ svg {
   height: 100%;
 }
 
-circle {
+.click-circle circle {
   fill: rgba(255,255,255,0.1);
 }
 
