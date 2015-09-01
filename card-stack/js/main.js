@@ -30,6 +30,9 @@
     $(".overlay").toggleClass("open");
     // $(".flyout").find("a").removeClass();
     
+    $li = $('.topOfMain');
+    sendGAEvent('menu-button-click-' + $li.attr('cardIndex'), $li.attr('cardId'), username);
+
     return $(".flyout").removeClass("flyout-init fade").toggleClass("expand");
   });
 
@@ -99,13 +102,13 @@ function sendGAEvent(eventAction, eventLabel, eventValue) {
 
     console.log('gaObj', gaObj);
 
-    // ga('send', 'event', gaObj);
+    ga('send', 'event', gaObj);
 }
 
 window.logInfoClick = function(elem) {
     var $elem = $(elem);
     var cardLi = $elem.parentsUntil('ul', 'li')[0];
-    sendGAEvent('infoLink_click', $elem.attr('href'), cardLi.getAttribute('cardIndex'));
+    sendGAEvent('infoLink_click', cardLi.getAttribute('cardId'), username);
 };
 
 

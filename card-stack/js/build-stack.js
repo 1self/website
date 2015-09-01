@@ -108,12 +108,14 @@ function assignCardHandlers ($li) {
         $(".previous").show();
         $(".next").show();
         $li.find(".front .chart-container").show();
+        sendGAEvent('flipped-to-front-' + $li.attr('cardIndex'), $li.attr('cardId'), username);
      });
 
     $li.find(".more").click(function() {
         $(".previous").hide();
         $(".next").hide();
         $li.find(".front .chart-container").hide();
+        sendGAEvent('flipped-to-back-' + $li.attr('cardIndex'), $li.attr('cardId'), username);
      });
 }
 
@@ -205,7 +207,7 @@ $(document).ready(function() {
         var $cardNumText = $('.card-number-text');
         $cardNumText.text(parseInt($cardNumText.text()) + 1);
         
-        // sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
+        sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), username);
 
         var cardReloadCount = 0;
         markCardRead(username, e.target, cardReloadCount); // username is declared globally in index.html
@@ -251,12 +253,13 @@ $(document).ready(function() {
                 bottomCard.destroy();
                 $(bottomLi).remove();
             }
+
+            sendGAEvent('thrown-in-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), username);
         }
 
 // http://stackoverflow.com/questions/2087510/callback-on-css-transition
 // http://stackoverflow.com/questions/5023514/how-do-i-normalize-css3-transition-functions-across-browsers
 
-        // sendGAEvent('thrown-in-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), e.target.getAttribute('cardIndex'));
     });
 
 	$(".next").click(function(e) {
@@ -289,6 +292,7 @@ function throwInPrevious(stack){
 	if (cardLi) {
 		var card = stack.getCard(cardLi);
 		card.throwIn(cardLi.thrownX, cardLi.thrownY);
+        sendGAEvent('button-thrown-in-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), username); 
 	}
 }
 
@@ -301,7 +305,7 @@ function throwOutNext(stack){
 	    cardLi.thrownY = getRandomInt(-100, 100);
 	    cardLi.thrownX = 1;
 	    card.throwOut(cardLi.thrownX, cardLi.thrownY);
-	//     sendGAEvent('button-thrown-out-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), cardLi.getAttribute('cardIndex'));            
+	    sendGAEvent('button-thrown-out-' + cardLi.getAttribute('cardIndex'), cardLi.getAttribute('cardId'), username);            
 	// } else {
 	//     $('.getMoreCardsBtn').addClass('standard-shadow');
 	//     $('.getMoreCardsBtn').hide();
