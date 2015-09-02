@@ -361,7 +361,7 @@ console.log('rendering front chart');
             iFrameSrc += '&highlightDates=' + getHighlightDates(cardData);
             iFrameSrc += '&doTransitions=true';
             iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
-            console.log('setting front card src');
+            console.log('setting front card src', iFrameSrc);
             $iframe.attr("src", iFrameSrc);
             console.log('set front src');
         }
