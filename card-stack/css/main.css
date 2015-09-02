@@ -2224,8 +2224,8 @@ footer:before {
 }
 
 .removed-from-deck {
-    -webkit-animation: card-fade 0.5s ease-out 1 forwards;
-    animation: card-fade 0.5s ease-out 1 forwards
+    /*-webkit-animation: card-fade 0.5s ease-out 1 forwards;
+    animation: card-fade 0.5s ease-out 1 forwards*/
 }
 
 @-webkit-keyframes card-fade {
