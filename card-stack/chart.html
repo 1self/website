@@ -47,7 +47,7 @@ console.log('inside chart.html');
         $chartLoading.height(height);
         $chartLoading.css('color', lineColour);
 
-console.log('about to get chart data');
+console.log('about to get chart data 1');
         getData(dataSrc, function (data) {
           drawChart(data, width, height);
         });
@@ -163,7 +163,7 @@ console.log('about to get chart data');
             callback(dataset);
         } else {
             var apiURL = dataSrc;
-            console.log('about to get chart data');
+            console.log('about to get chart data', apiURL);
             // alert(apiURL);
             var jqxhr = $.getJSON(apiURL,
                     function() {
