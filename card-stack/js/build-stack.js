@@ -1,6 +1,9 @@
 var cardsAdded = 0;
 var $liTemplate = $(".li-template");
 var globalCardsArray;
+var $loadingDivTop;
+var $noMoreCardsDiv;
+var $noCardsDiv;
 
 function buildStack (stack) {
     var numberOfCardsToShow = 3;
@@ -8,26 +11,34 @@ function buildStack (stack) {
     deferred.done(function(cardsArray) {
     	globalCardsArray = cardsArray;
 
-        $('.loading-div-top').remove();
         $('.loading-div-bottom').remove();
-        $('.out-of-text').text(cardsArray.length);
-        $('.card-number-text').text("1");
-        $('.card-count').show();
+        $noMoreCardsDiv = $('.no-more-cards-div-bottom').remove();
 
-        if (numberOfCardsToShow > cardsArray.length) {
-            numberOfCardsToShow = cardsArray.length;
-        }
+        if (cardsArray.length > 0) {
+            $loadingDivTop = $('.loading-div-top').remove();
+            $noCardsDiv = $('.no-cards-div-bottom').remove();
+            $('.out-of-text').text(cardsArray.length);
+            $('.card-number-text').text("1");
+            $('.card-count').show();
+            showFlickButtons('nextOnly');
 
-        // for (var i = numberOfCardsToShow + skip - 1; i >= skip; i--) {
-        for (var i = 0; i < numberOfCardsToShow; i++) {
-            var $li = addToStack($liTemplate, stack, cardsArray[i], i, (i === skip));
-            
-            if (i === skip) {
-	          	markCardUnique($li[0], 'topOfMain');
-                renderThumbnailMedia($li, cardsArray[i]);
-	        	renderMainMedia($li, cardsArray[i]);
+            if (numberOfCardsToShow > cardsArray.length) {
+                numberOfCardsToShow = cardsArray.length;
             }
-       	}
+
+            // for (var i = numberOfCardsToShow + skip - 1; i >= skip; i--) {
+            for (var i = 0; i < numberOfCardsToShow; i++) {
+                var $li = addToStack($liTemplate, stack, cardsArray[i], i, (i === skip));
+                
+                if (i === skip) {
+    	          	markCardUnique($li[0], 'topOfMain');
+                    renderThumbnailMedia($li, cardsArray[i]);
+    	        	renderMainMedia($li, cardsArray[i]);
+                }
+           	}
+        } else {
+            $('.no-cards-div-bottom').removeClass('hide');
+        }
 
     });
 }
@@ -105,18 +116,38 @@ function assignCardHandlers ($li) {
      });
 
     $li.find(".more-back").click(function() {
-        $(".previous").show();
-        $(".next").show();
+        showFlickButtons();
         $li.find(".front .chart-container").show();
         sendGAEvent('flipped-to-front-' + $li.attr('cardIndex'), $li.attr('cardId'), username);
      });
 
     $li.find(".more").click(function() {
-        $(".previous").hide();
-        $(".next").hide();
+        hideFlickButtons();
         $li.find(".front .chart-container").hide();
         sendGAEvent('flipped-to-back-' + $li.attr('cardIndex'), $li.attr('cardId'), username);
      });
+}
+
+function hideFlickButtons(oneOnly) {
+    if (oneOnly === 'nextOnly') {
+        $(".next").addClass('hide'); 
+    } else if (oneOnly === 'previousOnly') {
+        $(".previous").addClass('hide'); 
+    } else {
+        $(".next").addClass('hide'); 
+        $(".previous").addClass('hide'); 
+    }
+}
+
+function showFlickButtons(oneOnly) {
+    if (oneOnly === 'nextOnly') {
+        $(".next").removeClass('hide'); 
+    } else if (oneOnly === 'previousOnly') {
+        $(".previous").removeClass('hide'); 
+    } else {
+        $(".next").removeClass('hide'); 
+        $(".previous").removeClass('hide'); 
+    }  
 }
 
 function injectCardData (cardData, $card) {
@@ -200,12 +231,20 @@ $(document).ready(function() {
             newTop.cardVisibleAt = (new Date()).getTime();
             renderThumbnailMedia($newTop, cardData);
             renderMainMedia($newTop, cardData);
+
+            var $cardNumText = $('.card-number-text');
+            $cardNumText.text(parseInt($cardNumText.text()) + 1);
+
+            showFlickButtons();
+
         } else {
         	$('.stack li').removeClass('topOfMain');
+            $('.card-count').hide();
+            $('.stack').prepend($loadingDivTop);
+            $('.stack').append($noMoreCardsDiv);
+            $('.no-more-cards-div-bottom').removeClass('hide');
+            hideFlickButtons('nextOnly');
         }
-
-        var $cardNumText = $('.card-number-text');
-        $cardNumText.text(parseInt($cardNumText.text()) + 1);
         
         sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), username);
 
@@ -252,6 +291,16 @@ $(document).ready(function() {
                 var bottomCard = stack.getCard(bottomLi);
                 bottomCard.destroy();
                 $(bottomLi).remove();
+            }
+
+            $loadingDivTop = $('.loading-div-top').remove();
+            $noMoreCardsDiv = $('.no-more-cards-div-bottom').remove();
+            $('.no-more-cards-div-bottom').addClass('hide');
+            showFlickButtons();
+            $('.card-count').show();
+
+            if (discardPile.length === 0) {
+                hideFlickButtons('previousOnly');
             }
 
             sendGAEvent('thrown-in-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), username);
