@@ -263,21 +263,25 @@ $(document).ready(function() {
 
             discardPile.pop();
             var cardEl = $(discardPile[discardPile.length - 1])[0];
+            // var $prevTopOfMain = $('.stack li.topOfMain');
             markCardUnique(e.target, 'topOfMain');
             markCardUnique(cardEl, 'topOfDiscard');
+
+            var cardsInDeck = $('.stack li.in-deck').detach();
+            $('.stack').prepend(cardsInDeck);
+
             $(e.target).show();
         
             e.target.classList.add('in-deck');
             e.target.classList.remove('removed-from-deck');
 
             // move discarded cards back to top of stack to ensure ordering is correct
-            var discards = $('.stack li.removed-from-deck').detach();
-            $('.stack').append(discards);
+            // var discards = $('.stack li.removed-from-deck').detach();
+            // $('.stack').append(discards);
 
             // bring the active card to the top in the li list so it can always be interacted with
             bringToTop(e.target);
 
-            var cardsInDeck = $('.stack li.in-deck');
 
             if (cardsInDeck.length > 0) {
                 var $cardNumText = $('.card-number-text');
