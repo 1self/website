@@ -263,32 +263,17 @@ $(document).ready(function() {
 
             discardPile.pop();
             var cardEl = $(discardPile[discardPile.length - 1])[0];
-            // var $prevTopOfMain = $('.stack li.topOfMain');
             markCardUnique(e.target, 'topOfMain');
             markCardUnique(cardEl, 'topOfDiscard');
 
-            var cardsInDeck = $('.stack li.in-deck').detach();
-            $('.stack').prepend(cardsInDeck);
+            var cardsInDeck = $('.stack li.in-deck');
 
-            $(e.target).show();
-        
-            e.target.classList.add('in-deck');
-            e.target.classList.remove('removed-from-deck');
-
-            // move discarded cards back to top of stack to ensure ordering is correct
-            // var discards = $('.stack li.removed-from-deck').detach();
-            // $('.stack').append(discards);
-
-            // bring the active card to the top in the li list so it can always be interacted with
-            bringToTop(e.target);
-
-
-            if (cardsInDeck.length > 0) {
+            if (cardsInDeck.length >= 0) {
                 var $cardNumText = $('.card-number-text');
                 $cardNumText.text(parseInt($cardNumText.text()) - 1);
             }
 
-            if (cardsInDeck.length > 3) {
+            if (cardsInDeck.length >= 3) {
 
                 cardsAdded--;
                 var bottomLi = $('.stack li.in-deck')[0];
@@ -296,6 +281,18 @@ $(document).ready(function() {
                 bottomCard.destroy();
                 $(bottomLi).remove();
             }
+
+            // move existing in-deck cards to bottom of stack for correct formatting
+            cardsInDeck = $('.stack li.in-deck').detach();
+            $('.stack').prepend(cardsInDeck);
+
+            $(e.target).show();
+        
+            e.target.classList.add('in-deck');
+            e.target.classList.remove('removed-from-deck');
+
+            // bring the active card to the top in the li list so it can always be interacted with
+            bringToTop(e.target);
 
             $loadingDivTop = $('.loading-div-top').remove();
             $noMoreCardsDiv = $('.no-more-cards-div-bottom').remove();
