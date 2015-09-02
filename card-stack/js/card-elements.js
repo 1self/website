@@ -35,7 +35,7 @@ console.log('viewDuration',viewDuration);
 
         console.log('markCardRead url:', apiUrl, ", dataBody: ", dataBody);
 
-        if (!offline) {
+        if (!offline && false) {
             $.ajax({
                         url: apiUrl,
                         data: JSON.stringify(dataBody),
