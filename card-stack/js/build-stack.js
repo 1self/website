@@ -295,9 +295,15 @@ $(document).ready(function() {
             // bring the active card to the top in the li list so it can always be interacted with
             bringToTop(e.target);
 
-            $loadingDivTop = $('.loading-div-top').remove();
-            $noMoreCardsDiv = $('.no-more-cards-div-bottom').remove();
-            $('.no-more-cards-div-bottom').addClass('hide');
+            if ($('.loading-div-top').length > 0) {
+                $loadingDivTop = $('.loading-div-top').remove();
+            }
+
+            if ($('.no-more-cards-div-bottom').length > 0) {
+                $noMoreCardsDiv = $('.no-more-cards-div-bottom').remove();
+                $('.no-more-cards-div-bottom').addClass('hide');
+            }
+
             showFlickButtons();
             $('.card-count').show();
 
