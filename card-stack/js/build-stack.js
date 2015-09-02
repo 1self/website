@@ -233,7 +233,7 @@ $(document).ready(function() {
             renderMainMedia($newTop, cardData);
 
             var $cardNumText = $('.card-number-text');
-            $cardNumText.text(parseInt($cardNumText.text()) + 1);
+            $cardNumText.text(cardsOnDiscard + 1);
 
             showFlickButtons();
 
@@ -269,8 +269,9 @@ $(document).ready(function() {
             var cardsInDeck = $('.stack li.in-deck');
 
             if (cardsInDeck.length >= 0) {
+                var cardsOnDiscard = discardPile.length;
                 var $cardNumText = $('.card-number-text');
-                $cardNumText.text(parseInt($cardNumText.text()) - 1);
+                $cardNumText.text(cardsOnDiscard + 1);
             }
 
             if (cardsInDeck.length >= 3) {
