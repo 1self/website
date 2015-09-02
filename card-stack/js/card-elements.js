@@ -12,14 +12,18 @@ moment.locale('en', {
 
 function markCardRead(username, cardElem, cardReloadCount) {
 
+    console.log('enter markCardRead', cardElem);
+
     var cardId = cardElem.getAttribute('cardId');
+    console.log('cardid:', cardid);
+
     if (cardId) {
         var now = new Date();
-
+console.log('now', now);
         var apiUrl = API_HOST + "/v1/users/" + username + "/cards/" + cardId;
 
         var viewDuration = now.getTime() - cardElem.cardVisibleAt;
-
+console.log('viewDuration',viewDuration);
         var dataBody = {   "read" : true, 
                             "readInfo" : 
                                             { 
