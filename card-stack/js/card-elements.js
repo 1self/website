@@ -351,7 +351,7 @@ function setSourceElements (cardData) {
 
 
 function renderThumbnailMedia($cardLi, cardData) {
-
+console.log('rendering front chart');
     if (cardData.thumbnailMedia) {
         $iframe = $cardLi.find(".front .chart-iframe");
         if (!$iframe.attr('src') || $iframe.attr('src') === "") {
@@ -361,14 +361,16 @@ function renderThumbnailMedia($cardLi, cardData) {
             iFrameSrc += '&highlightDates=' + getHighlightDates(cardData);
             iFrameSrc += '&doTransitions=true';
             iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
+            console.log('setting front card src');
             $iframe.attr("src", iFrameSrc);
+            console.log('set front src');
         }
     }
 }
 
 
 function renderMainMedia($cardLi, cardData) {
-
+console.log('rendering back chart');
     if (cardData.thumbnailMedia) {
         $iframe = $cardLi.find(".back .chart-iframe");
         if (!$iframe.attr('src') || $iframe.attr('src') === "") {
@@ -380,7 +382,9 @@ function renderMainMedia($cardLi, cardData) {
             iFrameSrc += '&displayTooltips=true';
             iFrameSrc += '&doTransitions=false';
             iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
+            console.log('setting back card src');
             $iframe.attr("src", iFrameSrc);
+            console.log('set back src');
         }
     }
 }
