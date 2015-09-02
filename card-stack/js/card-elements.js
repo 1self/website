@@ -362,7 +362,7 @@ console.log('rendering front chart');
             iFrameSrc += '&doTransitions=true';
             iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
             console.log('setting front card src', iFrameSrc);
-            $iframe.attr("src", iFrameSrc);
+            // $iframe.attr("src", iFrameSrc);
             console.log('set front src');
         }
     }
@@ -383,7 +383,7 @@ console.log('rendering back chart');
             iFrameSrc += '&doTransitions=false';
             iFrameSrc += '&dataSrc=' + encodeURIComponent(API_HOST + cardData.chart);
             console.log('setting back card src');
-            $iframe.attr("src", iFrameSrc);
+            // $iframe.attr("src", iFrameSrc);
             console.log('set back src');
         }
     }
