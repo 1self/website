@@ -245,16 +245,14 @@ $(document).ready(function() {
             $('.no-more-cards-div-bottom').removeClass('hide');
             hideFlickButtons('nextOnly');
         }
-        console.log('about to send GA event');
+        
         sendGAEvent('thrown-out-' + e.target.getAttribute('cardIndex'), e.target.getAttribute('cardId'), username);
-console.log('sent ga event');
+
         var cardReloadCount = 0;
         markCardRead(username, e.target, cardReloadCount); // username is declared globally in index.html
-console.log('after markCardRead');
+
         if (cardsAdded < globalCardsArray.length) {
-            console.log('inside final if');
         	addToStack($liTemplate, stack, globalCardsArray[cardsAdded], cardsAdded, false);
-            console.log('after final add to stack');
         }
 
     });
