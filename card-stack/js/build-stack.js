@@ -214,7 +214,7 @@ $(document).ready(function() {
         discardPile.push(e.target);
 
         var $target = $(e.target);
-        $target.fadeOut(1000, function() { console.log('fade complete'); $target.hide(); });
+        $target.fadeOut(2000, function() { $target.hide(); }); // fade it out and then ensure it's hidden so the DOM knows it doesn't need to render it
 
         markCardUnique(e.target, 'topOfDiscard');
         e.target.thrownX = 1;
@@ -290,7 +290,10 @@ $(document).ready(function() {
             cardsInDeck = $('.stack li.in-deck').detach();
             $('.stack').prepend(cardsInDeck);
 
-            $(e.target).show();
+            $target = $(e.target); 
+            $target.stop(true, false); // stop the fade out animation
+            $target.fadeIn(1); // fade it back in
+            $target.show(); // ensure it's visible
         
             e.target.classList.add('in-deck');
             e.target.classList.remove('removed-from-deck');
