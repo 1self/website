@@ -520,8 +520,8 @@ hr {
     background: none repeat scroll 0 0 #fff;
     border-radius: 4px;
     color: #444444;
-/*    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;*/
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
     -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     background: transparent;
@@ -532,11 +532,8 @@ hr {
 .front {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-/*    top: 0;
-    left: 0;*/
     width: 90%;
     height: 100%;
-/*    border-radius: 4px;*/
     z-index: 2;
     margin-left: auto;
     margin-right: auto;
@@ -2224,8 +2221,9 @@ footer:before {
 }
 
 .removed-from-deck {
-    -webkit-animation: card-fade 0.5s ease-out 1 forwards;
-    animation: card-fade 0.5s ease-out 1 forwards
+/*    -webkit-animation: card-fade 0.5s ease-out 1 forwards;
+    animation: card-fade 0.5s ease-out 1 forwards*/
+    display: none;
 }
 
 @-webkit-keyframes card-fade {
