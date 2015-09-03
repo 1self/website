@@ -15,7 +15,7 @@ function markCardRead(username, cardElem, cardReloadCount) {
     console.log('enter markCardRead', cardElem);
 
     var cardId = cardElem.getAttribute('cardId');
-    console.log('cardid:', cardId);
+    console.log('cardid:', cardid);
 
     if (cardId) {
         var now = new Date();
