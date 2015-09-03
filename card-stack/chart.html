@@ -24,7 +24,7 @@
     </div>
 
     <script>
-console.log('inside chart.html');
+
     var lineColour = '#' + getQSParam().lineColour;
     var vhlt = getQSParam().vhlt === "true";
     var hhlt = getQSParam().hhlt === "true";
@@ -47,11 +47,9 @@ console.log('inside chart.html');
         $chartLoading.height(height);
         $chartLoading.css('color', lineColour);
 
-console.log('about to get chart data');
         getData(dataSrc, function (data) {
           drawChart(data, width, height);
         });
-        console.log('after chart data get call');
     });
 
     function drawChart(data, width, height) {
@@ -163,7 +161,6 @@ console.log('about to get chart data');
             callback(dataset);
         } else {
             var apiURL = dataSrc;
-            console.log('about to get chart data');
             // alert(apiURL);
             var jqxhr = $.getJSON(apiURL,
                     function() {
