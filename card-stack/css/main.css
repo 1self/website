@@ -2223,7 +2223,7 @@ footer:before {
 .removed-from-deck {
 /*    -webkit-animation: card-fade 0.5s ease-out 1 forwards;
     animation: card-fade 0.5s ease-out 1 forwards*/
-    display: none;
+/*    display: none;*/
 }
 
 @-webkit-keyframes card-fade {

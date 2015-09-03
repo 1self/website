@@ -213,6 +213,9 @@ $(document).ready(function() {
         e.target.classList.add('removed-from-deck');
         discardPile.push(e.target);
 
+        var $target = $(e.target);
+        $target.fadeOut(1000, function() { console.log('fade complete'); $target.hide(); });
+
         markCardUnique(e.target, 'topOfDiscard');
         e.target.thrownX = 1;
         e.target.thrownY = 78;
