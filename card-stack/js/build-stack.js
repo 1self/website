@@ -183,7 +183,7 @@ function createCard (cardData) {
 
     if ($back.length > 0) {
         var bodyHeight = $('body').height(); 
-        // $back.height(bodyHeight);
+        $back.height(bodyHeight);
     }
 
 	return $card;
