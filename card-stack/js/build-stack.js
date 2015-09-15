@@ -166,6 +166,7 @@ function injectCardData (cardData, $card) {
         var $infoLink = $card.find(".headline-info a");
         $infoLink.text(cardData.cardText.extraInfo.text);
         $infoLink.attr('href', cardData.cardText.extraInfo.link);
+        $infoLink.css("color", colour);
 
         $headlineInfo.css("color", colour);
         $headlineInfo.show();

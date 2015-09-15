@@ -204,11 +204,13 @@ function buildPropertiesTextAndGetValue (propertiesObject) {
 
     if (isDuration)
         if (returnObj.value < 60)
-            returnObj.value = setPrecision(returnObj.value) + " seconds";
+            returnObj.value = setPrecision(returnObj.value, 3) + " seconds";
         else
             returnObj.value = moment.duration(returnObj.value, "seconds").humanize();
     else if (isPercent)
-        returnObj.value = setPrecision(returnObj.value) + '%';
+        returnObj.value = setPrecision(returnObj.value, 3) + '%';
+    else
+        returnObj.value = setPrecision(returnObj.value, 4);
 
     return returnObj;
 }
@@ -312,8 +314,8 @@ function customFormatActionTags(actionTagsString) {
         return actionTagsString;
 }
 
-function setPrecision(numberToSet) {
-    var returnString = numberToSet.toPrecision(3) + '';
+function setPrecision(numberToSet, precision) {
+    var returnString = numberToSet.toPrecision(precision) + '';
     while (returnString.indexOf('.') >= 0 && (returnString.charAt(returnString.length - 1) === '0' || returnString.charAt(returnString.length - 1) === '.')) {
         returnString = returnString.substring(0, returnString.length - 1);
     }
