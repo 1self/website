@@ -203,10 +203,13 @@ function buildPropertiesTextAndGetValue (propertiesObject) {
     }
 
     if (isDuration)
-        if (returnObj.value < 60)
-            returnObj.value = setPrecision(returnObj.value, 3) + " seconds";
-        else
-            returnObj.value = moment.duration(returnObj.value, "seconds").humanize();
+        if (returnObj.value <= 60) {
+            returnObj.value = Math.round(returnObj.value) + "s";
+        } else if (returnObj.value > 60 && returnObj.value <= 3600) {
+            returnObj.value = Math.floor(returnObj.value / 60) + 'm ' + Math.round(returnObj.value % 60) + 's';
+        } else {
+            returnObj.value = Math.floor(returnObj.value / 3600) + 'h ' + Math.round((returnObj.value % 3600) / 60) + 'm';
+        }
     else if (isPercent)
         returnObj.value = setPrecision(returnObj.value, 3) + '%';
     else
