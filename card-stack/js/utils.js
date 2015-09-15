@@ -107,7 +107,10 @@ function ordinal_suffix_of(i, superscriptSuffixInHtml) {
 }
 
 function sigFigs(n, sig) {
-    var mult = Math.pow(10,
-        sig - Math.floor(Math.log(n) / Math.LN10) - 1);
-    return Math.round(n * mult) / mult;
+    if (n === 0) {
+        return 0;
+    } else {
+        var mult = Math.pow(10, sig - Math.floor(Math.log(n) / Math.LN10) - 1);
+        return Math.round(n * mult) / mult;        
+    }
 }
