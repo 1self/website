@@ -181,6 +181,9 @@ function injectCardData (cardData, $card) {
     var $headline = $card.find(".headline");
 	$headline.addClass(cardData.dataSource);
 
+    var $cardMenu = $card.find(".card-menu");
+    $cardMenu.addClass(cardData.dataSource);
+
 }
 
 function createCard (cardData) {
