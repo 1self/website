@@ -289,7 +289,7 @@ h5 {
 }
 
 p {
-    margin: 0 0 20px;
+    margin: 0 0 10px;
     font-family: 'Raleway', sans-serif;
     font-size: 1em
 }
@@ -1938,13 +1938,25 @@ footer:before {
     vertical-align: bottom;
 }
 
+.headline-description {
+    font-size: 3.5vh;
+    line-height: 3.5vh;
+/*    float: left;*/
+}
+
 .headline-text .infoLink {
     font-size: 0.7em;
 }
 
 .headline .event-date {
-    float: left;
-    width: 80%;
+/*    float: left;
+    width: 80%;*/
+    font-size: 2.5vh;
+}
+
+.headline-comparitor {
+    font-size: 2.5vh;
+/*    float: left;*/
 }
 
 .date-card .event-date {

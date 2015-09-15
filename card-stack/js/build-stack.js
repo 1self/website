@@ -158,8 +158,8 @@ function injectCardData (cardData, $card) {
     // var $headlineText = $card.find(".headline-text");
     // $headlineText.prepend(cardData.cardText);
 
-    $card.find(".headline-comparitor").text(cardData.cardText.comparitor);
-    $card.find(".headline-description").text(cardData.cardText.description);
+    $card.find(".headline-comparitor").append(cardData.cardText.comparitor);
+    $card.find(".headline-description").append(cardData.cardText.description);
     
     var $headlineInfo = $card.find(".headline-info");
     if (cardData.cardText.extraInfo) {
