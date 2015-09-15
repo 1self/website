@@ -2256,6 +2256,7 @@ footer:before {
     z-index: 6;
     font-size: 0.7em;
     display: table;
+    cursor: pointer;
 }
 
 .card-menu .more div {
@@ -2269,6 +2270,7 @@ footer:before {
 .card-menu .more span {
     padding: 5px;
     border-radius: 10px;
+
 }
 
 .card-menu .more-back {
@@ -2279,7 +2281,8 @@ footer:before {
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: center;
-    z-index: 0
+    z-index: 0;
+    cursor: pointer;
 }
 
 .back .headline {
