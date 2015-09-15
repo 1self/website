@@ -315,11 +315,18 @@ function customFormatActionTags(actionTagsString) {
 }
 
 function setPrecision(numberToSet, precision) {
-    var returnString = numberToSet.toPrecision(precision) + '';
-    while (returnString.indexOf('.') >= 0 && (returnString.charAt(returnString.length - 1) === '0' || returnString.charAt(returnString.length - 1) === '.')) {
-        returnString = returnString.substring(0, returnString.length - 1);
-    }
-    return returnString;
+    // var returnString = numberToSet.toPrecision(precision) + '';
+    // while (returnString.indexOf('.') >= 0 && (returnString.charAt(returnString.length - 1) === '0' || returnString.charAt(returnString.length - 1) === '.')) {
+    //     returnString = returnString.substring(0, returnString.length - 1);
+    // }
+    // return returnString;
+    return sigFigs(numberToSet, precision);
+}
+
+function sigFigs(n, sig) {
+    var mult = Math.pow(10,
+        sig - Math.floor(Math.log(n) / Math.LN10) - 1);
+    return Math.round(n * mult) / mult;
 }
 
 function stripAtDetail(stringToStrip) {
