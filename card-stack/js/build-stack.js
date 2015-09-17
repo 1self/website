@@ -5,6 +5,10 @@ var $loadingDivTop;
 var $noMoreCardsDiv;
 var $noCardsDiv;
 
+$(document).ready(function() {
+    executeOnLoadTasks();
+});
+
 function buildStack (stack) {
     var numberOfCardsToShow = 3;
     var skip = 0;
@@ -176,7 +180,7 @@ function injectCardData (cardData, $card) {
     }
 
     var $eventDate = $card.find(".event-date");
-    $eventDate.text(stripAtDetail(dateRangetext(cardData.startRange, cardData.endRange)));
+    $eventDate.text(dateRangetext(cardData.type, cardData.startRange, cardData.endRange));
 
     var $headline = $card.find(".headline");
 	$headline.addClass(cardData.dataSource);
@@ -190,9 +194,8 @@ function createCard (cardData) {
 	var $card; 
 
 	if (cardData.type ==="date") {
-        var cardDate = moment(cardData.cardDate);
 		$card = $(".card-template.date-card").clone();
-        $card.find('.event-date').text(stripAtDetail(cardDate.calendar()));
+        $card.find('.event-date').text(dateRangetext(cardData.type, cardData.cardDate));
 
 	} else if (cardData.type === "top10" || cardData.type === "bottom10") {
 		$card = $(".card-template.top-ten-card").clone();
@@ -212,7 +215,9 @@ function createCard (cardData) {
 }
 
 
-$(document).ready(function() { 
+function executeOnLoadTasks() { 
+
+    getCards();
 
     var stack;
     var discardPile = [];
@@ -359,7 +364,7 @@ $(document).ready(function() {
 
 	buildStack(stack);
 
-});
+}
 
 function existsInDiscard(discardPile, targetElem) {
     for (var i = 0; i < discardPile.length; i++) {

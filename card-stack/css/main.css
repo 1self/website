@@ -41,7 +41,7 @@ audio:not([controls]) {
 }
 
 [hidden],
-template {
+template, .template {
     display: none
 }
 
@@ -1966,16 +1966,21 @@ footer:before {
     font-size: 2.5vh;
 }
 
-.date-card .event-date {
-    color: #fff;
-    font-size: 2.5em;
-    width: 100%;
+.date-card .card-content {
     position: absolute;
     text-align: center;
     top: 20px;
     left: 0px;
+    width: 100%;
+}
+
+.date-card .card-content .event-date {
+    color: #fff;
+    font-size: 2.5em;
+    font-size: 8vw;
+    width: 100%; 
     padding-left: 6%;
-    padding-right: 6%;
+    padding-right: 6%;   
 }
 
 .headline .service-container {
@@ -2030,6 +2035,12 @@ footer:before {
 }
 
 .headline.googlefit .service {
+    background: url(../img/service-googlefit.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.summary-item-logo.visitcounter {
     background: url(../img/service-googlefit.svg);
     background-repeat: no-repeat;
     background-size: contain;
@@ -2154,6 +2165,12 @@ footer:before {
     background-size: contain;
 }
 
+.summary-item-logo.visitcounter {
+    background: url(../img/service-strava.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .card-menu.strava .more span {
     border: solid 1px rgb(242,97,34);
     color: rgb(242,97,34);
@@ -2200,6 +2217,12 @@ footer:before {
 }
 
 .headline.visitcounter .service {
+    background: url(../img/service-visitcounter.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.summary-item-logo.visitcounter {
     background: url(../img/service-visitcounter.svg);
     background-repeat: no-repeat;
     background-size: contain;
@@ -2370,126 +2393,235 @@ footer:before {
     box-shadow: 1px 1px 5px #CCC;
 }
 
-.settings main {
+.integrations main {
+    padding-top: 0px;
+    height: 70%;
+}
+
+.integrations .background {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: url(../img/logo-background.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain    
+}
+
+.integrations .integrations-section {
+    width: 90%;
+    margin: auto;
+    background-color: rgba(30,30,30,0.3);
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+.integrations .section-header {
+    color: #00B597;
+    margin-bottom: 0.3em;
+}
+
+.integrations .section-content-collapse {
+    background-color: #fff;
+    margin: auto;
+    height: 40px;
+    border: 1px solid #CCC;
+    box-shadow: 1px 1px 5px #CCC;
+    padding: 5px;
+}
+
+.integrations .section-content-expand {
+    margin: auto;
+    display: none;
+}
+
+.integrations .section-content-collapse .service-container {
+    width: 27px;
+    height: 27px;
+    float: left;
+    padding: 3px;
+    margin: 1px;
+    border: solid 1px #999;
+    border-radius: 13.5px;
+}
+
+.integrations .section-content-collapse .service-container .service {
+    width: 100%;
+    height: 100%;
+}
+
+.integrations .integrations-content {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-.settings .service {
-    width: 20%;
-    height: 100%;
-    float: left
+.integrations .integration-card .service {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 0.3em;
 }
 
-.settings .content {
-    width: 60%;
+.integrations .content {
     height: 100%;
     float: left;
-    font-size: 80%;
+    font-size: 0.7em;
     overflow: hidden;
     padding: 0.5em
 }
 
-.settings .button {
-    width: 20%;
+       /* <div class="integration-card">
+            <div class="integration-card-left">
+                <div class="service rescuetime"></div>
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.
+                </p>
+            </div>
+            <div class="integration-card-right">
+                <div class="integration-connect">Connect</div>
+            </div>
+        </div>*/
+
+.integration-card {
+    background: white;
+    height: 15%;
+    min-height: 100px;
+    border: 1px solid #CCC;
+    margin: 0 auto 1em auto;
+    box-shadow: 1px 1px 5px #CCC;
+    padding: 5px;
+}
+
+.integration-card.flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: stretch;
+}
+
+.integration-card-left {
     height: 100%;
-    float: left
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100%;
 }
 
-.settings .rescuetime {
-    background: url(../img/service-rescuetime.svg);
-    z-index: 6;
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center center
+.integration-card-right {
+    width: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding-right: 0.5em;
 }
 
-.settings .sublime {
-    background: url(../img/service-sublime.svg);
-    z-index: 6;
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center center
+.integration-card .service {
+    float: left;
 }
 
-.settings .foursquare {
+.integration-button {
+    width: 60px;
+    border-radius: 13px;
+    height: 26px;
+    font-size: 0.6em;
+    display: table;
+    background-color: #00B597;
+    color: #fff;
+}
+
+.integration-button div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+.integrations .foursquare {
     background: url(../img/service-foursquare.svg);
-    z-index: 6;
     background-repeat: no-repeat;
-    background-size: 60%;
-    background-position: center center
+    background-size: contain;
 }
 
-.settings .github {
+.integrations .github {
     background: url(../img/service-github.svg);
-    z-index: 6;
     background-repeat: no-repeat;
-    background-size: 60%;
-    background-position: center center
+    background-size: contain;
 }
 
-.settings .lastfm {
-    background: url(../img/service-lastfm.svg);
-    z-index: 6;
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center center
-}
-
-.settings .googlefit {
+.integrations .googlefit {
     background: url(../img/service-googlefit.svg);
-    z-index: 6;
     background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center center
+    background-size: contain;
 }
 
-.settings .strava {
-    background: url(../img/service-strava.svg);
-    z-index: 6;
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center center
-}
-
-.settings .intellij {
-    background: url(../img/service-intellij.svg);
-    z-index: 6;
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center center
-}
-
-.settings .stackoverflow {
-    background: url(../img/service-stackoverflow.svg);
-    z-index: 6;
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center center
-}
-
-.settings .twitter {
-    background: url(../img/service-twitter.svg);
-    z-index: 6;
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center center
-}
-
-.settings .visitcounter {
-    background: url(../img/service-visitcounter.svg);
-    z-index: 6;
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center center
-}
-
-.settings .hackernews {
+.integrations .hackernews {
     background: url(../img/service-hackernews.svg);
-    z-index: 6;
     background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center center
+    background-size: contain;
+}
+
+.integrations .instagram {
+    background: url(../img/service-instagram.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.integrations .intellij {
+    background: url(../img/service-intellij.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.integrations .lastfm {
+    background: url(../img/service-lastfm.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.integrations .rescuetime {
+    background: url(../img/service-rescuetime.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.integrations .stackoverflow {
+    background: url(../img/service-stackoverflow.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.integrations .strava {
+    background: url(../img/service-strava.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.integrations .sublime {
+    background: url(../img/service-sublime.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.integrations .twitter {
+    background: url(../img/service-twitter.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.integrations .visitcounter {
+    background: url(../img/service-visitcounter.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.integrations .visualstudio {
+    background: url(../img/service-visualstudio.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 @media screen and (min-width: 780px) {

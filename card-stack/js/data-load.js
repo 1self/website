@@ -40,10 +40,51 @@ function getCards() {
         });
 }
 
-$(function() {
-    getCards();
+// $(function() {
+//     getCards();
 
-});
+// });
+
+function getIntegrationsInCategories() {
+    var integrationJSON = [];
+
+    integrationJSON.push(integrationCatTemplate('Productivity', ['RescueTime', 'Visit Counter', 'GitHub']));
+    integrationJSON.push(integrationCatTemplate('Social', ['Twitter', 'Instagram', 'Foursquare', 'Hacker News', 'last.fm']));
+    integrationJSON.push(integrationCatTemplate('Fitness', ['Google Fit', 'Strava']));
+    integrationJSON.push(integrationCatTemplate('Software Development', ['GitHub', 'Sublime', 'Intelli J', 'Visual Studio', 'StackOverflow']));
+
+    return integrationJSON;
+}
+
+function integrationCatTemplate(categoryName, integrations) {
+    var catTemplate = {
+        category: categoryName,
+        integrations: []
+    };
+
+    for (var i = 0; i < integrations.length; i++) {
+        catTemplate.integrations.push(integrationTemplate(integrations[i], false));
+    }
+
+    return catTemplate;
+}
+
+function integrationTemplate(serviceName, hasConnected) {
+    return {
+        serviceName: serviceName,
+        identifier: formatIdentifier(serviceName),
+        shortDescription: "blah blah shortDescription",
+        longDescription: "blah blah longDescription. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.",
+        hasConnected: hasConnected
+    };
+}
+
+function formatIdentifier(serviceName) {
+    var identifier = serviceName.toLowerCase();
+    identifier = identifier.replace('.', '');
+    identifier = identifier.replace(' ', '');
+    return identifier;
+}
 
 
 
