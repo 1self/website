@@ -13,7 +13,7 @@ function executeOnLoadTasks() {
     if (localStorage.seenIntegrationIntro) {
         $('.overlay').hide();
     } else {
-
+        $('.overlay').addClass('on-top');
         $('.get-started-button').click(function() {
             $('.overlay.on-top').fadeOut();
 
