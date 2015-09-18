@@ -55,62 +55,32 @@
     <!--[if lt IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-    <div class="overlay on-top">
-        <div class="overlay-content">
-            <h3>Welcome, [username].</h3>
-            Great news! You've qualified to get 1self free for 2 years.
-            <br>
-            <br>
-            Now, let's start finding remarkable things about you.
-            <hr>
-            <h3>How 1self works</h3>
-            1self works by enabling you to link up data from all areas of your life. 1self is hooked in to many of your favourite apps and services. You just need to pick which services and apps you want to join to 1self and then 1self will help you find out more and more remarkable things.
-            <hr>
-            So, let's start by linking up some data sources. The more you link up, the more 1self will be able to find remarkable things about you.
-            <br>
-            <div class="get-started-button"><div>Start linking</div></div>
-        </div>
-    </div>
+    <div class="overlay"></div>
 
     <header role="banner">
-        Your integrations
+        <div class="back-button"><div>&lt; back</div></div>
+        <div class="page-title">Connect service</div>
     </header>
     
     <main role="main">
         <div class="background"></div>
         <div class="integrations-content">
-            <div class="integrations-section-header">
-                <p>
-                    Below are the available integrations for 1self. Take a look through the categories below and choose which services to link up. 
-                </p>
-                <p class="small">
-                    Remember, your data is safe and private with 1self.
-                </p>
-            </div>
-
-            <div class="integrations-section template">
-                <div class="section-header">
-                    Productivity
-                </div>
-                <div class="section-content-collapse">
-                    <div class="service-container template">
-                        <div class="service"></div>
-                    </div>
-                </div>
-                <div class="section-content-expand">
-                    <div class="integration-card-container template">
-                        <div class="integration-card top-border">
-                            <div class="integration-card-left">
-                                <div class="content">
-                                    <div class="service"></div>
-                                    <p class="service-name">Service Name</p>
-                                    <p class="serivce-short-description">Service short description</p>
-                                </div>
-                            </div>
-                            <div class="integration-card-right">
-                                <div class="integration-button"><div>Connect</div></div>
+            <div class="integration-detail-container">
+                <div class="integration-detail top-border">
+                    <div class="integration-detail-top">
+                        <div class="integration-card-left">
+                            <div class="content">
+                                <div class="service"></div>
+                                <p class="serivce-short-description">Service short description</p>
                             </div>
                         </div>
+                        <div class="integration-card-right">
+                            <div class="integration-button"><div>Connect</div></div>
+                        </div>
+                    </div>
+                    <div class="integration-detail-bottom">
+                        <p></p>
+                        <div class="large-connect-button"><div>Connect</div></div>
                     </div>
                 </div>
             </div>
@@ -161,7 +131,7 @@
     <!-- main script -->
     <script src="js/main.js"></script>
     <script src="js/data-load.js"></script>
-    <script src="js/integrations.js"></script>
+    <script src="js/integration.js"></script>
 </body>
 
 </html>

@@ -45,7 +45,7 @@ function getCards() {
 
 // });
 
-function getIntegrationsInCategories() {
+function getIntegrationsInCategories(callback, serviceIdentifier) {
     var integrationJSON = [];
 
     integrationJSON.push(integrationCatTemplate('Productivity', ['RescueTime', 'Visit Counter', 'GitHub']));
@@ -53,7 +53,21 @@ function getIntegrationsInCategories() {
     integrationJSON.push(integrationCatTemplate('Fitness', ['Google Fit', 'Strava']));
     integrationJSON.push(integrationCatTemplate('Software Development', ['GitHub', 'Sublime', 'Intelli J', 'Visual Studio', 'StackOverflow']));
 
-    return integrationJSON;
+    if (!serviceIdentifier) {
+        callback(integrationJSON);
+    } else {
+        var singleIntegrationJSON;
+        integrationJSON.some(function (category) {
+            category.integrations.forEach(function (integration) {
+                if (integration.identifier === serviceIdentifier) {
+                    singleIntegrationJSON = integration;
+                    return singleIntegrationJSON; // break out of some loop if set
+                }
+            });
+            return singleIntegrationJSON; // break out of some loop if set
+        });
+        callback(singleIntegrationJSON);
+    }
 }
 
 function integrationCatTemplate(categoryName, integrations) {
@@ -73,8 +87,8 @@ function integrationTemplate(serviceName, hasConnected) {
     return {
         serviceName: serviceName,
         identifier: formatIdentifier(serviceName),
-        shortDescription: "blah blah shortDescription",
-        longDescription: "blah blah longDescription. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.",
+        shortDescription: "blah blah " + serviceName + " shortDescription",
+        longDescription: "blah blah " + serviceName + "  longDescription. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.",
         hasConnected: hasConnected
     };
 }

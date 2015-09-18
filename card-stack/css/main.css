@@ -356,6 +356,26 @@ a:focus {
     float: left
 }
 
+.glow-border {
+    -webkit-box-shadow:0 0 20px #00B597; 
+    -moz-box-shadow: 0 0 20px #00B597; 
+    box-shadow:0 0 20px #00B597;  
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s;
+}
+
+.glow-border-off {
+    -webkit-box-shadow:0 0 0px #00B597; 
+    -moz-box-shadow: 0 0 0px #00B597; 
+    box-shadow:0 0 0px #00B597;  
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s;
+}
+
 .list-unstyled {
     list-style: none;
     margin-left: 0;
@@ -370,6 +390,10 @@ hr {
     border: 0;
     border-bottom: 1px solid #ddd;
     margin: 40px 0
+}
+
+.overlay hr {
+    margin: 20px 0;
 }
 
 .subtle {
@@ -944,6 +968,26 @@ footer:before {
     width: 100%;
     height: 100%;
     z-index: 5
+}
+
+.overlay.on-top {
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    color: white;
+    font-size: 0.8em;
+}
+
+.overlay-content {
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    padding-top: 20px;
+    padding-top: 5vh;
 }
 
 .menu-wrap {
@@ -2398,6 +2442,28 @@ footer:before {
     height: 70%;
 }
 
+.back-button {
+    float: left;
+    font-size: 0.8em;
+    border: 1px solid #999;
+    height: 26px;
+    border-radius: 13px;
+    display: table;
+    padding: 3px;
+    width: 4.5em;
+    margin-right: 1em;
+}
+
+.back-button div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.page-title {
+    float: left;
+}
+
 .integrations .background {
     width: 100%;
     height: 100%;
@@ -2411,9 +2477,20 @@ footer:before {
 .integrations .integrations-section {
     width: 90%;
     margin: auto;
-    background-color: rgba(30,30,30,0.3);
+    background-color: rgba(255,255,255,0.7);
     padding: 0.5em;
     margin-bottom: 1em;
+}
+
+.integrations .integrations-section-header {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255,255,255,0.7);
+    padding: 0.5em;
+    margin-bottom: 1em;
+    font-size: 0.8em;
+    margin-top: 10px;
 }
 
 .integrations .section-header {
@@ -2459,11 +2536,11 @@ footer:before {
     overflow-x: hidden;
 }
 
-.integrations .integration-card .service {
+.integrations .integration-card .service, .integrations .integration-detail .service {
     width: 40px;
     height: 40px;
     float: left;
-    margin-right: 0.3em;
+    margin-right: 0.7em;
 }
 
 .integrations .content {
@@ -2474,26 +2551,19 @@ footer:before {
     padding: 0.5em
 }
 
-       /* <div class="integration-card">
-            <div class="integration-card-left">
-                <div class="service rescuetime"></div>
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.
-                </p>
-            </div>
-            <div class="integration-card-right">
-                <div class="integration-connect">Connect</div>
-            </div>
-        </div>*/
-
-.integration-card {
+.integration-card-container {
     background: white;
     height: 15%;
     min-height: 100px;
     border: 1px solid #CCC;
     margin: 0 auto 1em auto;
     box-shadow: 1px 1px 5px #CCC;
+}
+
+.integration-card {
     padding: 5px;
+    width: 100%;
+    height: 100%;
 }
 
 .integration-card.flex {
@@ -2502,6 +2572,28 @@ footer:before {
     flex-wrap: nowrap;
     align-items: center;
     align-content: stretch;
+}
+
+.integration-detail-container {
+    background: white;
+    border: 1px solid #CCC;
+    margin: 0 auto 1em auto;
+    box-shadow: 1px 1px 5px #CCC;
+    width: 90%;
+    max-width: 600px;  
+}
+
+.integration-detail {
+    padding: 5px;
+    width: 100%;
+}
+
+.integration-detail-top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: stretch;    
 }
 
 .integration-card-left {
@@ -2531,6 +2623,8 @@ footer:before {
     display: table;
     background-color: #00B597;
     color: #fff;
+    box-shadow: 1px 1px 5px #CCC;
+    cursor: pointer;
 }
 
 .integration-button div {
@@ -2539,89 +2633,201 @@ footer:before {
     text-align: center;
 }
 
+.get-started-button, .large-connect-button {
+    width: 60%;
+    max-width: 150px;
+    border-radius: 13px;
+    height: 26px;
+/*    font-size: 0.6em;*/
+    display: table;
+    background-color: #00B597;
+    color: #fff;
+    margin: auto;
+    cursor: pointer;
+}
 
-.integrations .foursquare {
+.get-started-button div, .large-connect-button div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.service-name {
+    font-size: 1.2em;
+}
+
+.integrations .service.foursquare {
     background: url(../img/service-foursquare.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .github {
+.integrations .service.github {
     background: url(../img/service-github.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .googlefit {
+.integrations .service.googlefit {
     background: url(../img/service-googlefit.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .hackernews {
+.integrations .service.hackernews {
     background: url(../img/service-hackernews.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .instagram {
+.integrations .service.instagram {
     background: url(../img/service-instagram.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .intellij {
+.integrations .service.intellij {
     background: url(../img/service-intellij.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .lastfm {
+.integrations .service.lastfm {
     background: url(../img/service-lastfm.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .rescuetime {
+.integrations .service.rescuetime {
     background: url(../img/service-rescuetime.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .stackoverflow {
+.integrations .service.stackoverflow {
     background: url(../img/service-stackoverflow.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .strava {
+.integrations .service.strava {
     background: url(../img/service-strava.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .sublime {
+.integrations .service.sublime {
     background: url(../img/service-sublime.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .twitter {
+.integrations .service.twitter {
     background: url(../img/service-twitter.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .visitcounter {
+.integrations .service.visitcounter {
     background: url(../img/service-visitcounter.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.integrations .visualstudio {
+.integrations .service.visualstudio {
     background: url(../img/service-visualstudio.svg);
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+.top-border.foursquare {
+    border-top-style: solid;
+    border-color: #fa4778;
+    border-top-width: 5px;
+}
+
+.top-border.github {
+    border-top-style: solid;
+    border-color: #000000;
+    border-top-width: 5px;
+}
+
+.top-border.googlefit {
+    border-top-style: solid;
+    border-color: #DC493C;
+    border-top-width: 5px;
+}
+
+.top-border.hackernews {
+    border-top-style: solid;
+    border-color: rgb(244,101,7);
+    border-top-width: 5px;
+}
+
+.top-border.instagram {
+    border-top-style: solid;
+    border-color: rgb(23,90,131);
+    border-top-width: 5px;
+}
+
+.top-border.intellij {
+    border-top-style: solid;
+    border-color: rgb(26,92,171);
+    border-top-width: 5px;
+}
+
+.top-border.lastfm {
+    border-top-style: solid;
+    border-color: rgb(221,38,73);
+    border-top-width: 5px;
+}
+
+.top-border.rescuetime {
+    border-top-style: solid;
+    border-color: #a52011;
+    border-top-width: 5px;
+}
+
+.top-border.stackoverflow {
+    border-top-style: solid;
+    border-color: rgb(244,121,32);
+    border-top-width: 5px;
+}
+
+.top-border.strava {
+    border-top-style: solid;
+    border-color: rgb(242,97,34);
+    border-top-width: 5px;
+}
+
+.top-border.sublime {
+    border-top-style: solid;
+    border-color: #ff8100;
+    border-top-width: 5px;
+}
+
+.top-border.twitter {
+    border-top-style: solid;
+    border-color: rgb(77,151,212);
+    border-top-width: 5px;
+}
+
+.top-border.visitcounter {
+    border-top-style: solid;
+    border-color: rgb(14,182,234);
+    border-top-width: 5px;
+}
+
+.top-border.visualstudio {
+    border-top-style: solid;
+    border-color: rgb(106,32,125);
+    border-top-width: 5px;
+}
+
+.top-border.unknown-data-source {
+    border-top-style: solid;
+    border-color: #0097C4;
+    border-top-width: 5px;
 }
 
 @media screen and (min-width: 780px) {
