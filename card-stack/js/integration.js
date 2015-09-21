@@ -36,6 +36,7 @@ function renderIntegrationDetail(integrationJSON) {
 
     $integrationDetail.addClass(integrationJSON.identifier);
     $integrationDetail.find('.service').addClass(integrationJSON.identifier);
-    $integrationDetail.find('.serivce-short-description').text(integrationJSON.shortDescription);
-    $integrationDetail.find('.integration-detail-bottom p').text(integrationJSON.longDescription);
+    $integrationDetail.find('.service-short-description').html(integrationJSON.shortDescription);
+    $integrationDetail.find('.integration-detail-bottom .integration-long-description').html(integrationJSON.longDescription);
+    $integrationDetail.find('.integration-detail-bottom .integration-instructions').html(integrationJSON.instructions);
 }

@@ -84,11 +84,16 @@ function integrationCatTemplate(categoryName, integrations) {
 }
 
 function integrationTemplate(serviceName, hasConnected) {
+
+    var identifier = formatIdentifier(serviceName);
+    var descriptions = serviceDescriptions(identifier);
+
     return {
         serviceName: serviceName,
-        identifier: formatIdentifier(serviceName),
-        shortDescription: "blah blah " + serviceName + " shortDescription",
-        longDescription: "blah blah " + serviceName + "  longDescription. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.",
+        identifier: identifier,
+        shortDescription: descriptions.shortDescription,
+        longDescription: descriptions.longDescription,
+        instructions: descriptions.instructions,
         hasConnected: hasConnected
     };
 }
@@ -98,6 +103,56 @@ function formatIdentifier(serviceName) {
     identifier = identifier.replace('.', '');
     identifier = identifier.replace(' ', '');
     return identifier;
+}
+
+function serviceDescriptions(serviceIdentifier) {
+    var returnDesc;
+    var descriptions = [
+        {   identifier: 'rescuetime',
+            shortDescription: 'Find your ideal work-life balance and understand how you spend your computer time',
+            longDescription: 'RescueTime is a popular app that helps improve your time management in order to stay more productive and happy at your computer.'
+                                + '<br>RescueTime is developed independently to 1self by a seprate company.'
+                                + '<br>By using the 1self RescueTime integration you&apos;ll be able to get even deeper insights into your digital behaviour.',
+            instructions: '<b>I do not have a RescueTime account</b>'
+                                + '<br>If you do not have a RescueTime account then you need to <a href="http://www.rescuetime.com" target="_blank">go to RescueTime.com</a> to register. '
+                                + 'After registering be sure to download and install the RescueTime application. '
+                                + 'Once complete, return to this page (we&apos;ll keep it open in this tab for you).'
+                                + '<br><a href="http://www.rescuetime.com" target="_blank">Register at RescueTime</a>'
+                                + '<br><br>'
+                                + '<b>I have a RescueTime account</b>'
+                                + '<br>Great! Just click the &quot;Connect&quot; button below.'
+        },
+        {   identifier: 'visitcounter',
+            shortDescription: 'Find out how often and when you visit popular websites or others that you choose to track with this Chrome browser extension',
+            longDescription: 'Visit Counter gives you amazing insights into your browsing behaviour. Find out which websites you visit most and when you visit them.'
+                                + '<br>Visit Counter is developed by 1self. It will only log visits to the websites that you want logged and will entirely ignore all others.',
+            instructions: 'Simply click the &quot;Connect&quot; button below to be taken to the Chrome web store where you can download and install the extension.'
+        },
+        {   identifier: 'github',
+            shortDescription: 'Your coding activity visualized. See which hours of which days you&apos;re most active. Correlate your pushes with your IDE activity.',
+            longDescription: 'Visit Counter gives you amazing insights into your browsing behaviour. Find out which websites you visit most and when you visit them.'
+                                + '<br>Visit Counter is developed by 1self. It will only log visits to the websites that you want logged and will entirely ignore all others.',
+            instructions: 'Simply click the &quot;Connect&quot; button below to be taken to the Chrome web store where you can download and install the extension.'
+        }
+    ];
+
+    for (var i = 0; i < descriptions.length; i++) {
+        if (descriptions[i].identifier === serviceIdentifier) {
+            returnDesc = descriptions[i];
+            break;
+        }
+    }
+
+    if (!returnDesc) {
+        returnDesc = {
+            identifier: serviceIdentifier,
+            shortDescription: "blah blah " + serviceIdentifier + " shortDescription",
+            longDescription: "blah blah " + serviceIdentifier + "  longDescription. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla cursus lorem et mollis tempus. Vivamus at semper augue.",
+            instructions: "default instructions"
+        };
+    }
+
+    return returnDesc;
 }
 
 

@@ -2452,6 +2452,7 @@ footer:before {
     padding: 3px;
     width: 4.5em;
     margin-right: 1em;
+    cursor: pointer;
 }
 
 .back-button div {
@@ -2477,16 +2478,17 @@ footer:before {
 .integrations .integrations-section {
     width: 90%;
     margin: auto;
-    background-color: rgba(255,255,255,0.7);
+    background-color: white; /*rgba(255,255,255,0.7);*/
     padding: 0.5em;
     margin-bottom: 1em;
+    box-shadow: 1px 1px 5px #CCC;
 }
 
 .integrations .integrations-section-header {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgba(255,255,255,0.7);
+    background-color: white; /*rgba(255,255,255,0.7);*/
     padding: 0.5em;
     margin-bottom: 1em;
     font-size: 0.8em;
@@ -2501,9 +2503,8 @@ footer:before {
 .integrations .section-content-collapse {
     background-color: #fff;
     margin: auto;
-    height: 40px;
-    border: 1px solid #CCC;
-    box-shadow: 1px 1px 5px #CCC;
+    height: 60px;
+/*    border: 1px solid #CCC;*/
     padding: 5px;
 }
 
@@ -2513,12 +2514,12 @@ footer:before {
 }
 
 .integrations .section-content-collapse .service-container {
-    width: 27px;
-    height: 27px;
+    width: 44px;
+    height: 44px;
     float: left;
     padding: 3px;
-    margin: 1px;
-    border: solid 1px #999;
+    margin: 4px;
+/*    border: solid 1px #999;*/
     border-radius: 13.5px;
 }
 
@@ -2577,14 +2578,14 @@ footer:before {
 .integration-detail-container {
     background: white;
     border: 1px solid #CCC;
-    margin: 0 auto 1em auto;
+    margin: 1em auto 1em auto;
     box-shadow: 1px 1px 5px #CCC;
     width: 90%;
     max-width: 600px;  
 }
 
 .integration-detail {
-    padding: 1.5em;
+    padding: 5px;
     width: 100%;
 }
 
@@ -2609,6 +2610,20 @@ footer:before {
     flex-direction: row;
     align-items: flex-end;
     padding-right: 0.5em;
+}
+
+.integration-detail-bottom {
+    font-size: 0.8em;
+}
+
+.integration-instructions-container {
+    margin-top: 15px;
+}
+
+.integration-instructions-header {
+    color: #00B597;
+    font-size: 1.2em;
+    margin-bottom: 5px;
 }
 
 .integration-card .service {

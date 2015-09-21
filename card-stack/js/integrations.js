@@ -91,7 +91,7 @@ function buildIntegrationCard(integration, $integrationCardTemplate) {
     $card.addClass(integration.identifier);
     $card.find('.service').addClass(integration.identifier);
     $card.find('.content p.service-name').text(integration.serviceName);
-    $card.find('.content p.serivce-short-description').text(integration.shortDescription);
+    $card.find('.content p.service-short-description').html(integration.shortDescription);
 
     $card.click(function() {
         window.location.href = 'integration.html?service=' + integration.identifier;
