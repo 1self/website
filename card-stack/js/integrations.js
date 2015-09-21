@@ -93,6 +93,8 @@ function buildIntegrationCard(integration, $integrationCardTemplate) {
     $card.find('.content p.service-name').text(integration.serviceName);
     $card.find('.content p.service-short-description').html(integration.shortDescription);
 
+    $card.find('.integration-button div').text(integration.buttonText);
+
     $card.click(function() {
         window.location.href = 'integration.html?service=' + integration.identifier;
         return false;

@@ -39,4 +39,15 @@ function renderIntegrationDetail(integrationJSON) {
     $integrationDetail.find('.service-short-description').html(integrationJSON.shortDescription);
     $integrationDetail.find('.integration-detail-bottom .integration-long-description').html(integrationJSON.longDescription);
     $integrationDetail.find('.integration-detail-bottom .integration-instructions').html(integrationJSON.instructions);
+
+    $buttons = $integrationDetail.find('.integration-button div, .large-connect-button div');
+    // $largeButton = $integrationDetail.find('.large-connect-button');
+
+    $buttons.text(integrationJSON.buttonText);
+    // $largeButton.text(integrationJSON.buttonText);
+
+    $buttons.click(function() {
+        window.open(integrationJSON.buttonHref);
+        return false;
+    });
 }
