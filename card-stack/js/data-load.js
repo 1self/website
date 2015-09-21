@@ -208,6 +208,24 @@ function serviceDescriptions(serviceIdentifier) {
                                 + '<br>The last step is really simple. Just click the button below to link your Last.fm account with 1self. Phew! :)',
             buttonText: 'Connect',
             buttonHref: 'https://packagecontrol.io/packages/1Self'
+        },
+        {   identifier: 'googlefit',
+            shortDescription: 'Auto-insights on your activity data. Google Fit can track your steps and other activities but you&apos;ll never look at the Google Fit app. 1self will bring your fitness data to you.',
+            longDescription: 'By linking up your Google Fit data with 1self you’ll be able to see your fitness data in context with the rest of your life. '
+                                + 'Do you do more walking on days where you listen to music? Are you healthier when you’re not at work? '
+                                + 'All of this and more is possible by integrating Google Fit data with 1self.',
+            instructions: 'Simply click the &quot;Connect&quot; button below to integrate your Google Fit data.',
+            buttonText: 'Connect',
+            buttonHref: 'https://packagecontrol.io/packages/1Self'
+        },
+        {   identifier: 'strava',
+            shortDescription: 'Auto-insights on your cycling data. Find out where your ride ranked out of all you rides. Highest max speed, distance ridden, metres climbed. The 1self Strava integration will give you easy access to all that and more.',
+            longDescription: 'By linking up Strava with 1self you’ll be able to see new views on your data and also get automatically generated insights to give you another level of awareness about your rides. '
+                                + 'Teamed with Strava, 1self will tell you where the ride you just did ranked in terms of your top speed, your distance climbed, your average speed and how far you&apos;ve ridden. '
+                                + 'You&apos;ll be able to see that information over different periods (week, month, year, all time) and compare with your friends.',
+            instructions: 'Simply click the &quot;Connect&quot; button below to integrate Strava with 1self.',
+            buttonText: 'Connect',
+            buttonHref: 'https://packagecontrol.io/packages/1Self'
         }
     ];
 
