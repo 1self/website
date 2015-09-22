@@ -988,6 +988,19 @@ footer:before {
     margin: auto;
     padding-top: 20px;
     padding-top: 5vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+.welcome-header {
+    color: #00B597;
+    font-size: 1.4em;
+}
+
+.welcome-sub-header {
+    color: #00B597;
+    font-size: 1.2em;
 }
 
 .menu-wrap {
@@ -1004,11 +1017,6 @@ footer:before {
 
 .flyout {
     position: relative;
-    /*bottom: 73px;*/
-    /*-webkit-transform: rotate(-34deg);
-    -ms-transform: rotate(-34deg);
-    transform: rotate(-34deg);*/
-    /*left: -98px;*/
     z-index: 5
 }
 
@@ -2518,15 +2526,26 @@ footer:before {
     width: 44px;
     height: 44px;
     float: left;
-    padding: 3px;
     margin: 4px;
-/*    border: solid 1px #999;*/
-    border-radius: 13.5px;
+    border: solid 1px #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
 }
 
 .integrations .section-content-collapse .service-container .service {
     width: 100%;
     height: 100%;
+}
+
+.integrations .section-content-collapse .service-container .service-tick {
+    color: #00B597;
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    bottom: 13%;
+    right: 10%;
+    display: none;
 }
 
 .integrations .integrations-content {
@@ -2660,6 +2679,8 @@ footer:before {
     color: #fff;
     margin: auto;
     cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .get-started-button div, .large-connect-button div {
@@ -2709,7 +2730,7 @@ footer:before {
 }
 
 .integrations .service.intellij {
-    background: url(../img/service-intellij.svg);
+    background: url(../img/service-intellij.png);
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -2739,13 +2760,13 @@ footer:before {
 }
 
 .integrations .service.strava {
-    background: url(../img/service-strava.svg);
+    background: url(../img/service-strava.png);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 .integrations .service.sublime {
-    background: url(../img/service-sublime.svg);
+    background: url(../img/service-sublime.png);
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -2757,13 +2778,13 @@ footer:before {
 }
 
 .integrations .service.visitcounter {
-    background: url(../img/service-visitcounter.svg);
+    background: url(../img/service-visitcounter.png);
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 .integrations .service.visualstudio {
-    background: url(../img/service-visualstudio.svg);
+    background: url(../img/service-visualstudio.png);
     background-repeat: no-repeat;
     background-size: contain;
 }

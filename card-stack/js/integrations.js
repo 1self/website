@@ -14,6 +14,9 @@ function executeOnLoadTasks() {
         $('.overlay').hide();
     } else {
         $('.overlay').addClass('on-top');
+
+        $('.welcome-header').text('Welcome, ' + username + '!');
+
         $('.get-started-button').click(function() {
             $('.overlay.on-top').fadeOut();
 
@@ -79,6 +82,8 @@ function buildServiceCollapseItem(integration, $smallServiceTemplate) {
     var $element = $smallServiceTemplate.clone();
     $element.removeClass('template');
     $element.find('.service').addClass(integration.identifier);
+    if (integration.hasConnected)
+        $element.find('.service-tick').show();
     return $element;
 }
 

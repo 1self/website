@@ -78,7 +78,7 @@ function integrationCatTemplate(categoryName, integrations) {
     };
 
     for (var i = 0; i < integrations.length; i++) {
-        catTemplate.integrations.push(integrationTemplate(integrations[i], false));
+        catTemplate.integrations.push(integrationTemplate(integrations[i], (i % 2 === 0)));
     }
 
     return catTemplate;
@@ -90,6 +90,7 @@ function integrationTemplate(serviceName, hasConnected) {
     var descriptions = serviceDescriptions(identifier);
 
     descriptions.serviceName = serviceName;
+    descriptions.hasConnected = hasConnected;
 
     return descriptions;
 }

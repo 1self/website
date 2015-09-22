@@ -37,17 +37,23 @@ function renderIntegrationDetail(integrationJSON) {
     $integrationDetail.addClass(integrationJSON.identifier);
     $integrationDetail.find('.service').addClass(integrationJSON.identifier);
     $integrationDetail.find('.service-short-description').html(integrationJSON.shortDescription);
-    $integrationDetail.find('.integration-detail-bottom .integration-long-description').html(integrationJSON.longDescription);
-    $integrationDetail.find('.integration-detail-bottom .integration-instructions').html(integrationJSON.instructions);
 
-    $buttons = $integrationDetail.find('.integration-button div, .large-connect-button div');
-    // $largeButton = $integrationDetail.find('.large-connect-button');
+    if (integrationJSON.hasConnected) {
+        $integrationDetail.find('.integration-detail-bottom').hide();
+    } else {
+        $integrationDetail.find('.integration-detail-bottom .integration-long-description').html(integrationJSON.longDescription);
+        $integrationDetail.find('.integration-detail-bottom .integration-instructions').html(integrationJSON.instructions);
 
-    $buttons.text(integrationJSON.buttonText);
-    // $largeButton.text(integrationJSON.buttonText);
+        $buttons = $integrationDetail.find('.integration-button div, .large-connect-button div');
+        // $largeButton = $integrationDetail.find('.large-connect-button');
 
-    $buttons.click(function() {
-        window.open(integrationJSON.buttonHref);
-        return false;
-    });
+        $buttons.text(integrationJSON.buttonText);
+        // $largeButton.text(integrationJSON.buttonText);
+
+        $buttons.click(function() {
+            window.open(integrationJSON.buttonHref);
+            return false;
+        });        
+    }
+
 }
