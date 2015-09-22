@@ -294,6 +294,10 @@ p {
     font-size: 1em
 }
 
+p.small {
+    font-size: 0.8em;
+}
+
 pre {
     background: #222;
     color: #fff;
