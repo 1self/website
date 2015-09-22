@@ -40,6 +40,8 @@ function renderIntegrationDetail(integrationJSON) {
 
     if (integrationJSON.hasConnected) {
         $integrationDetail.find('.integration-detail-bottom').hide();
+        $integrationDetail.find('.integration-button').hide();
+        $integrationDetail.find('.integration-connected').show();
     } else {
         $integrationDetail.find('.integration-detail-bottom .integration-long-description').html(integrationJSON.longDescription);
         $integrationDetail.find('.integration-detail-bottom .integration-instructions').html(integrationJSON.instructions);

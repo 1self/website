@@ -2529,8 +2529,14 @@ footer:before {
     margin: 4px;
     border: solid 1px #ccc;
     border-radius: 50%;
-    overflow: hidden;
     position: relative;
+}
+
+.service-container-inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 50%;
 }
 
 .integrations .section-content-collapse .service-container .service {
@@ -2605,7 +2611,7 @@ footer:before {
 }
 
 .integration-detail {
-    padding: 5px;
+    padding: 8px;
     width: 100%;
 }
 
@@ -2666,6 +2672,18 @@ footer:before {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+}
+
+.integration-connected {
+    width: 100%;
+    text-align: center;
+    font-size: 0.7em;
+    display: none;
+}
+
+.integration-connected div {
+    width: 100%;
+    color: #999;
 }
 
 .get-started-button, .large-connect-button {
