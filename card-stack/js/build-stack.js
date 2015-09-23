@@ -13,6 +13,10 @@ function buildStack (stack) {
     var numberOfCardsToShow = 3;
     var skip = 0;
     deferred.done(function(cardsArray) {
+
+        if (!seenIntroCards())
+            cardsArray = insertIntroCards(cardsArray);
+
     	globalCardsArray = cardsArray;
 
         $('.loading-div-bottom').remove();
@@ -45,6 +49,48 @@ function buildStack (stack) {
         }
 
     });
+}
+
+function seenIntroCards() {
+    if (localStorage.seenIntroCards)
+        return true;
+    else
+        return false;
+}
+
+function insertIntroCards(cardsArray) {
+    cardsArray = getIntroCard(-1).concat(cardsArray);
+    return cardsArray;
+}
+
+function getIntroCard(cardIndex) {
+    var introCards = [];
+
+    introCards.push({
+        introCardId: 0,
+        type: "intro"
+    });
+    introCards.push({
+        introCardId: 1,
+        type: "intro"
+    });
+    introCards.push({
+        introCardId: 2,
+        type: "intro"
+    });
+    introCards.push({
+        introCardId: 3,
+        type: "intro"
+    });
+    introCards.push({
+        introCardId: 4,
+        type: "intro"
+    });
+
+    if (cardIndex === -1)
+        return introCards;
+    else
+        return introCards[cardIndex];
 }
 
 function markCardUnique(cardEl, label) {
@@ -200,7 +246,9 @@ function createCard (cardData) {
 	} else if (cardData.type === "top10" || cardData.type === "bottom10") {
 		$card = $(".card-template.top-ten-card").clone();
 		injectCardData(cardData, $card);
-	}
+	} else if (cardData.type === "intro") {
+        $card = $(".card-template.intro-card-" + cardData.introCardId).clone();
+    }
 
 	$card.removeClass("card-template");
 

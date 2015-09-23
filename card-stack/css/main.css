@@ -836,6 +836,21 @@ main {
     padding-left: 10px;
 }
 
+.intro-card .front .card-menu {
+    height: 10%;
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+img.swipe-helper {
+    width: 20%;
+    float: left;
+    margin-right: 10px;
+    border: solid 1px #999;
+    border-radius: 10px;
+}
+
 .share-fav {
     width: 100%;
     height: 100%;
@@ -1928,21 +1943,6 @@ footer:before {
   fill: rgba(255,255,255,0.1);
 }
 
-/*.headline:before {
-    content: "";
-    position: absolute;
-    background-size: contain;
-    opacity: 0.1;
-    width: 100%;
-    height: 50%;
-    left: 0;
-    top: 0
-}*/
-
-/*.card.date-card .front {
-    background-color: gray;
-}*/
-
 .card.date-card .front .gradient-overlay {
     height: 100%;
     width: 100%;
@@ -1950,12 +1950,19 @@ footer:before {
     /*background-color: rgba(60,60,60,0.75);*/
 }
 
-.card.date-card .front .texture-overlay {
+.card.intro-card .gradient-overlay {
     height: 100%;
     width: 100%;
+    background: linear-gradient(to bottom, #fff 0%, #999 100%);
+    /*background-color: rgba(60,60,60,0.75);*/
+}
+
+.card.date-card .front .texture-overlay, .card.intro-card .texture-overlay {
+    height: 100%;
+    width: 90%;
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: 5%;
     /*background-color: rgba(60,60,60,0.75);*/
     background-image: url(../img/texture.svg);
     background-repeat: tile;
@@ -2022,12 +2029,63 @@ footer:before {
     font-size: 2.5vh;
 }
 
-.date-card .card-content {
+.intro-counter {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 0.6em;
+}
+
+.intro-header {
+    font-size: 1.2em;
+    color: #00b197;
+    text-align: left;
+    height: 15%;
+    padding-top: 10px;
+}
+
+.intro-content {
+    font-size: 0.8em;
+    text-align: left;
+    height: 75%;
+}
+
+.intro-card .back .intro-header {
+    height: 12%;
+}
+
+.intro-card .back .intro-content {
+    height: 34%;
+    font-size: 0.7em;
+}
+
+.intro-card .back .chart {
+    height: 33%;
+    top: 47%;
+}
+
+.intro-content p {
+    margin-bottom: 1.5em;
+}
+
+.intro-content.nose {
+    text-align: center;
+}
+
+.intro-card .down-gif {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.date-card .card-content, .intro-card .card-content {
     position: absolute;
     text-align: center;
-    top: 20px;
-    left: 0px;
-    width: 100%;
+    top: 0px;
+    left: 5%;
+    width: 90%;
+    height: 100%;
+    padding: 15px;
 }
 
 .date-card .card-content .event-date {
@@ -2037,6 +2095,12 @@ footer:before {
     width: 100%; 
     padding-left: 6%;
     padding-right: 6%;   
+}
+
+.intro-card .card-menu .more span {
+    border: solid 1px #00b197;
+    color: #00b197;
+    background-color: #fff;
 }
 
 .headline .service-container {
